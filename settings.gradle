@@ -1,0 +1,2 @@
+include ':renetik-android-core' 
+project(':renetik-android-core').projectDir = file("library")

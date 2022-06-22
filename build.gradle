@@ -1,0 +1,29 @@
+buildscript {
+    ext {
+        sdk_version = 32
+        min_sdk_version = 24
+        kotlin_version = '1.7.0'
+        appcompat_version = '1.4.2'
+        ktx_version = '1.8.0'
+        junit_version = '4.13.2'
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.2.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
