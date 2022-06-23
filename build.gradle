@@ -30,5 +30,5 @@ task clean(type: Delete) {
 
 wrapper {
     gradleVersion = "7.4.2"
-    distributionType = Wrapper.DistributionType.BIN
+    distributionType = Wrapper.DistributionType.ALL
 }
