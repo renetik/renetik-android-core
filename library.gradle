@@ -1,8 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
-//group = 'renetik'
-//version = '1.9.7'
 
 android {
     compileSdkVersion project.properties.sdk_version
@@ -10,12 +8,12 @@ android {
         minSdkVersion project.properties.min_sdk_version
         targetSdkVersion project.properties.sdk_version
     }
-//    publishing {
-//        singleVariant("release") {
-//            withSourcesJar()
-//            withJavadocJar()
-//        }
-//    }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavGITHadocJar()
+        }
+    }
     testOptions {
         unitTests.all {
             testLogging {
@@ -38,17 +36,17 @@ dependencies {
     testImplementation "junit:junit:$junit_version"
     testImplementation 'org.robolectric:robolectric:4.8'
 }
-task androidSourcesJar(type: Jar) {
-    classifier 'sources'
-    from android.sourceSets.main.java.srcDirs
-}
 project.afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
                 from components.release
-                artifact androidSourcesJar // optional sources
+                artifact androidSourcesJar
             }
         }
     }
+}
+task androidSourcesJar(type: Jar) {
+    classifier 'sources'
+    from android.sourceSets.main.java.srcDirs
 }
