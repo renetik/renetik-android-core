@@ -1,3 +1,4 @@
+apply from: 'renetik_android_build_common.gradle'
 buildscript {
     ext {
         sdk_version = 32
