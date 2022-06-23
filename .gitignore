@@ -43,3 +43,4 @@ build_file_checksums.ser
 .git.bfg-report
 fabric.properties
 sample/release
+github.properties
