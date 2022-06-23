@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
+group = 'renetik'
+version = '1.9.7'
 
 android {
     compileSdkVersion project.properties.sdk_version
