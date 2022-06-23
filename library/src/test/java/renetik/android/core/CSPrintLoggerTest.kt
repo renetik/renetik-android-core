@@ -10,7 +10,7 @@ import renetik.android.core.logging.CSLoggerEvent.Debug
 import renetik.android.core.logging.CSLoggerEvent.Warn
 import renetik.android.core.logging.CSPrintLogger
 
-class CSLogTest {
+class CSPrintLoggerTest {
     @Test
     fun warnTestNoInit() {
         logWarn("test")

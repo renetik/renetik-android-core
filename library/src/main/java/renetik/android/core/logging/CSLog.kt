@@ -17,7 +17,7 @@ object CSLog {
     }
 
     fun logDebug(message: (() -> Any)? = null) {
-        if (isDebug)
+        if (instance.isDebug)
             instance.debug(*createDebugMessage(message?.invoke() ?: NoMessage))
     }
 
