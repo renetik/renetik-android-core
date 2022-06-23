@@ -1,17 +1,17 @@
 apply from: '../library.gradle'
-//afterEvaluate {
-//    publishing {
-//        publications {
-//            release(MavenPublication) {
-//                from components.release
-//                groupId 'com.renetik.library'
-//                artifactId project.name
-////                artifactId 'renetik-android-core'
-////                version = android.defaultConfig.versionName // or manually '1.0'
-////                version = "1.9.6"
-//                version = "master-SNAPSHOT"
-//            }
-//        }
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId 'com.renetik.library'
+                artifactId project.name
+//                artifactId 'renetik-android-core'
+//                version = android.defaultConfig.versionName // or manually '1.0'
+//                version = "1.9.6"
+                version = "1.9.10"
+            }
+        }
 //        repositories {
 //            maven {
 //                def propsFile = rootProject.file('github.properties')
@@ -25,8 +25,8 @@ apply from: '../library.gradle'
 //                }
 //            }
 //        }
-//    }
-//}
+    }
+}
 //task sourceJar(type: Jar) {
 //    from android.sourceSets.main.java.srcDirs
 //    archiveClassifier.set("sources")

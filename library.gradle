@@ -8,12 +8,12 @@ android {
         minSdkVersion project.properties.min_sdk_version
         targetSdkVersion project.properties.sdk_version
     }
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
+//    publishing {
+//        singleVariant("release") {
+//            withSourcesJar()
+//            withJavadocJar()
+//        }
+//    }
     testOptions {
         unitTests.all {
             testLogging {
