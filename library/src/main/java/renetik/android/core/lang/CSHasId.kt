@@ -1,9 +1,11 @@
 package renetik.android.core.lang
 
 interface CSHasId {
-    val id: String
+	companion object
+
+	val id: String
 }
 
-fun CSId(id: String): CSHasId = CSIdImplementation(id)
-
-private data class CSIdImplementation(override val id: String) : CSHasId
+fun CSId(id: String): CSHasId = object : CSHasId {
+	override val id = id
+}
