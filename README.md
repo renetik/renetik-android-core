@@ -19,3 +19,5 @@ dependencies {
     implementation 'com.github.renetik.renetik-android-core:1.9.1'
 }
 ```
+
+## [Html Documentation](https://renetik.github.io/renetik-android-core/)
