@@ -1,5 +1,5 @@
 [![](https://jitpack.io/v/renetik/renetik-android-core.svg)](https://jitpack.io/#renetik/renetik-android-core)
-# Renetik Android Core Library
+# Renetik Android Core
 Framework to enjoy, improve and speed up your application development while writing readable code.
 This library although used daily is not polished for other people to dive in easily anymore. 
 It is used as base library for music production and performance app Renetik Instrument.  
@@ -19,3 +19,5 @@ dependencies {
     implementation 'com.github.renetik.renetik-android-core:1.9.1'
 }
 ```
+
+## [Html Documentation](https://renetik.github.io/renetik-android-core/)
