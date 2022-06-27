@@ -1,7 +1,6 @@
-# Module renetik-android-core
-
+[comment]: <> (Header)
 [![Android CI](https://github.com/renetik/renetik-android-core/workflows/Android%20CI/badge.svg)](https://github.com/renetik/renetik-android-core/actions/workflows/android.yml)
-
+# Renetik Android Core
 Framework to enjoy, improve and speed up your application development while writing readable code.
 Used as library for music production and performance app Renetik Instruments www.renetik.com as well as other projects.
 
