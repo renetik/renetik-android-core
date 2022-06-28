@@ -15,7 +15,6 @@ class AnyCSNullTest {
 		assertTrue(isAnyNotNull(a, b, c))
 		b = null; c = null
 		assertTrue(isAllNull(a, b, c))
-		assertTrue(true)
 	}
 
 	@Test
