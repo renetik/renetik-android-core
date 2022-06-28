@@ -1,5 +1,6 @@
-# Module renetik-android-core
-[![Android CI](https://github.com/renetik/renetik-android-core/workflows/Android%20CI/badge.svg)](https://github.com/renetik/renetik-android-core/actions/workflows/android.yml)
+<span hidden>Header</span>
+[![Android CI](https://github.com/renetik/renetik-android-core/workflows/Android%20CI/badge.svg)
+](https://github.com/renetik/renetik-android-core/actions/workflows/android.yml)
 
 # Renetik Android Core
 
