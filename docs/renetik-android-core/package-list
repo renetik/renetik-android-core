@@ -627,6 +627,7 @@ $dokka.location:renetik.android.core.logging/CSLog/logInfoToast/#kotlin.Array[ko
 $dokka.location:renetik.android.core.logging/CSLog/logWarn/#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-log/log-warn.html
 $dokka.location:renetik.android.core.logging/CSLog/logWarn/#kotlin.Throwable#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-log/log-warn.html
 $dokka.location:renetik.android.core.logging/CSLog/logWarnToast/#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-log/log-warn-toast.html
+$dokka.location:renetik.android.core.logging/CSLog/logger/#/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-log/logger.html
 $dokka.location:renetik.android.core.logging/CSLogger///PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-logger/index.html
 $dokka.location:renetik.android.core.logging/CSLogger/asTraceString/kotlin.Throwable?#/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-logger/as-trace-string.html
 $dokka.location:renetik.android.core.logging/CSLogger/debug/#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-logger/debug.html
