@@ -353,6 +353,7 @@ $dokka.location:renetik.android.core.kotlin.primitives//trimNewLines/kotlin.Stri
 $dokka.location:renetik.android.core.kotlin.primitives//update/kotlin.Int#kotlin.Int#kotlin.Function1[kotlin.Int,kotlin.Unit]#kotlin.Function1[kotlin.Int,kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/update.html
 $dokka.location:renetik.android.core.kotlin.primitives//upperCased/kotlin.String#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/upper-cased.html
 $dokka.location:renetik.android.core.kotlin.reflect////PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.reflect/index.html
+$dokka.location:renetik.android.core.kotlin.reflect//createInstance/#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.reflect/create-instance.html
 $dokka.location:renetik.android.core.kotlin.reflect//createInstance/kotlin.reflect.KClass[TypeParam(bounds=[kotlin.Any])]#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.reflect/create-instance.html
 $dokka.location:renetik.android.core.kotlin.reflect//isLazyInitialized/kotlin.reflect.KProperty0[*]#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.reflect/is-lazy-initialized.html
 $dokka.location:renetik.android.core.kotlin.reflect//orNull/kotlin.reflect.KProperty0[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.reflect/or-null.html
