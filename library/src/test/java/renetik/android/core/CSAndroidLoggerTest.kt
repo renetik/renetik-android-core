@@ -16,10 +16,6 @@ import renetik.android.core.logging.CSLoggerEvent.Warn
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE)
 class CSAndroidLoggerTest {
-	@Test
-	fun warnTestNoInit() {
-		logWarn("test")
-	}
 
 	@Test
 	fun logWithListener() {
