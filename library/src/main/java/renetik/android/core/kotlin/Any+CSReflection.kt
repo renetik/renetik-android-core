@@ -3,6 +3,7 @@ package renetik.android.core.kotlin
 import renetik.android.core.java.lang.createInstance
 import renetik.android.core.lang.catchAllWarn
 import renetik.android.core.lang.catchAllWarnReturnNull
+import kotlin.reflect.KClass
 
 const val INVOKE_FAILED = "invoke_failed"
 
@@ -60,3 +61,5 @@ fun <T> Any.invokeFunction(name: String, argumentType: Class<T>, argument: T): A
 } catch (e: Exception) {
     INVOKE_FAILED
 }
+
+val <T : Any> T.kClass: KClass<T> get() = javaClass.kotlin

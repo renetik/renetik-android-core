@@ -10,11 +10,6 @@ import renetik.android.core.lang.CSValue
 @Suppress("UNCHECKED_CAST")
 fun <Type : Any> Any.type() = (this as Type)
 
-//val Any.asString: String
-//	get() = (this as? CSHasTitle)?.title
-//		?: (this as? CSValue<*>)?.value as? String
-//		?: "$this"
-
 val Any?.asString
 	get() = (this as? CSHasTitle)?.title
 		?: (this as? CSValue<*>)?.value as? String

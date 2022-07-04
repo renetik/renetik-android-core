@@ -1,15 +1,13 @@
-package renetik.android.core
+package renetik.android.core.logging
 
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import renetik.android.core.logging.CSAndroidLogger
 import renetik.android.core.logging.CSLog.init
 import renetik.android.core.logging.CSLog.logDebug
 import renetik.android.core.logging.CSLog.logWarn
-import renetik.android.core.logging.CSLoggerEvent
 import renetik.android.core.logging.CSLoggerEvent.Debug
 import renetik.android.core.logging.CSLoggerEvent.Warn
 

@@ -1,4 +1,4 @@
-package renetik.android.core
+package renetik.android.core.kotlin.text
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
