@@ -22,11 +22,89 @@ allprojects {
     }
 }
 ```
-
-Step 2. Add the dependency
-
 ```gradle
 dependencies {
     implementation 'com.renetik.library:renetik-android-core:$renetik-android-version'
+}
+```
+## Examples
+```
+    @Test
+    fun testLazyVar() {
+        var testVar: String by lazyVar { "initial" }
+        assertEquals("initial", testVar)
+        testVar = "test"
+        assertEquals("test", testVar)
+    }
+
+    @Test
+    fun testNullableLazyVar() {
+        var testVar: String? by lazyVar { "initial" }
+        assertEquals("initial", testVar)
+        testVar = "test"
+        assertEquals("test", testVar)
+        testVar = null
+        assertEquals(null, testVar)
+    }
+
+```
+```
+    @Test
+    fun equalsAny() {
+        Assert.assertTrue("third".equalsAny("first", "second", "third"))
+        Assert.assertFalse("fourth".equalsAny("first", "second", "third"))
+
+        val values = listOf("first", "second", "third")
+        Assert.assertTrue("third" equalsAny values)
+        Assert.assertFalse("fourth" equalsAny values)
+    }
+
+    @Test
+    fun equalsNone() {
+        Assert.assertTrue("fourth".equalsNone("first", "second", "third"))
+        Assert.assertFalse("second".equalsNone("first", "second", "third"))
+
+        val values = listOf("first", "second", "third")
+        Assert.assertTrue("fourth" equalsNone values)
+        Assert.assertFalse("first" equalsNone values)
+    }
+
+    @Test
+    fun equalsAll() {
+        Assert.assertTrue("fourth".equalsAll("fourth", "fourth", "fourth"))
+        Assert.assertFalse("fourth".equalsAll("first", "second", "third"))
+
+        Assert.assertTrue("fourth" equalsAll listOf("fourth", "fourth", "fourth"))
+        Assert.assertFalse("fourth" equalsAll listOf("first", "second", "third"))
+    }
+```
+```
+class CSAndroidLoggerTest {
+    var event: CSLoggerEvent? = null
+    var message: String? = null
+    private val listener = { event: CSLoggerEvent, message: String ->
+        this.event = event
+        this.message = message
+    }
+
+    @Test
+    fun logWithListener() {
+        init(CSAndroidLogger(name = "TestLog", isDebug = true, listener))
+        logWarn("test")
+        Assert.assertEquals(Warn, event)
+        Assert.assertTrue(message!!.endsWith("test"))
+    }
+
+    @Test
+    fun isDebug() {
+        init(CSAndroidLogger(name = "TestLog", isDebug = false, listener))
+        logDebug { "test" }
+        Assert.assertNull(event)
+
+        init(CSAndroidLogger(name = "TestLog", isDebug = true, listener))
+        logDebug { "test2" }
+        Assert.assertEquals(Debug, event)
+        Assert.assertTrue(message!!.endsWith("test2"))
+    }
 }
 ```
