@@ -7,70 +7,70 @@ import java.lang.Thread.currentThread
 import java.text.DateFormat.getDateTimeInstance
 
 object CSLog {
-	private const val NoMessage = "No Message"
+    private const val NoMessage = "No Message"
 
-	var logger: CSLogger = CSPrintLogger()
+    var logger: CSLogger = CSPrintLogger()
 
-	fun init(logger: CSLogger) {
-		this.logger = logger
-	}
+    fun init(logger: CSLogger) {
+        this.logger = logger
+    }
 
-	fun logDebug(message: (() -> Any)? = null) {
-		if (logger.isDebug)
-			logger.debug(*createDebugMessage(message?.invoke() ?: NoMessage))
-	}
+    fun logDebug(message: (() -> Any)? = null) {
+        if (logger.isDebug)
+            logger.debug(*createDebugMessage(message?.invoke() ?: NoMessage))
+    }
 
-	fun logDebug(e: Throwable) = logger.debug(e)
+    fun logDebug(e: Throwable) = logger.debug(e)
 
-	fun logWarn(vararg values: Any?) = logger.warn(*createMessage(values))
-	fun logWarn(e: Throwable, vararg values: Any?) = logger.warn(e, *createMessage(values))
-	fun logError(vararg values: Any?) = logger.error(*createMessage(values))
-	fun logError(e: Throwable, vararg values: Any?) = logger.error(e, *createMessage(values))
-	fun logInfo(vararg values: Any?) = logger.info(*createMessage(values))
+    fun logWarn(vararg values: Any?) = logger.warn(*createMessage(values))
+    fun logWarn(e: Throwable, vararg values: Any?) = logger.warn(e, *createMessage(values))
+    fun logError(vararg values: Any?) = logger.error(*createMessage(values))
+    fun logError(e: Throwable, vararg values: Any?) = logger.error(e, *createMessage(values))
+    fun logInfo(vararg values: Any?) = logger.info(*createMessage(values))
 
-	fun logInfoToast(vararg values: Any?) {
-		logger.info(*createMessage(values))
-		toast(" ".separateToString(*values))
-	}
+    fun logInfoToast(vararg values: Any?) {
+        logger.info(*createMessage(values))
+        toast(" ".separateToString(*values))
+    }
 
-	fun logWarnToast(vararg values: Any?) {
-		logger.warn(*createMessage(values))
-		toast(" ".separateToString(*values))
-	}
+    fun logWarnToast(vararg values: Any?) {
+        logger.warn(*createMessage(values))
+        toast(" ".separateToString(*values))
+    }
 
-	fun logErrorToast(vararg values: Any?) {
-		logger.error(*createMessage(values))
-		toast(" ".separateToString(*values))
-	}
+    fun logErrorToast(vararg values: Any?) {
+        logger.error(*createMessage(values))
+        toast(" ".separateToString(*values))
+    }
 
-	private fun createMessage(values: Array<out Any?>): Array<out Any?> = Array(values.size + 2) {
-		if (it == 0) time
-		else if (it == 1) traceLine
-		else values[it - 2]
-	}
+    private fun createMessage(values: Array<out Any?>): Array<out Any?> = Array(values.size + 2) {
+        if (it == 0) time
+        else if (it == 1) traceLine
+        else values[it - 2]
+    }
 
-	private val timeFormat by lazy { getDateTimeInstance() }
+    private val timeFormat by lazy { getDateTimeInstance() }
 
-	private val traceLine
-		get() = currentThread().stackTrace[5].let { element ->
-			"${element.className}$${element.methodName}(${element.fileName}:${element.lineNumber})"
-		}
+    private val traceLine
+        get() = currentThread().stackTrace[5].let { element ->
+            "${element.className}$${element.methodName}(${element.fileName}:${element.lineNumber})"
+        }
 
-	private val time get() = timeFormat.format(currentTimeMillis())
+    private val time get() = timeFormat.format(currentTimeMillis())
 
-	private fun createDebugMessage(values: Array<out Any?>) = Array(values.size + 2) {
-		when (it) {
-			0 -> time
-			1 -> traceLine
-			else -> values[it - 2]
-		}
-	}
+    private fun createDebugMessage(values: Array<out Any?>) = Array(values.size + 2) {
+        when (it) {
+            0 -> time
+            1 -> traceLine
+            else -> values[it - 2]
+        }
+    }
 
-	private fun createDebugMessage(message: Any?) = Array(3) {
-		when (it) {
-			0 -> time
-			1 -> traceLine
-			else -> message
-		}
-	}
+    private fun createDebugMessage(message: Any?) = Array(3) {
+        when (it) {
+            0 -> time
+            1 -> traceLine
+            else -> message
+        }
+    }
 }

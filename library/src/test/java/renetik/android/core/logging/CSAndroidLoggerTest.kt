@@ -14,35 +14,30 @@ import renetik.android.core.logging.CSLoggerEvent.Warn
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE)
 class CSAndroidLoggerTest {
+    var event: CSLoggerEvent? = null
+    var message: String? = null
+    private val listener = { event: CSLoggerEvent, message: String ->
+        this.event = event
+        this.message = message
+    }
 
-	@Test
-	fun logWithListener() {
-		var _event: CSLoggerEvent? = null
-		var _message: String? = null
-		init(CSAndroidLogger(name = "TestLog", isDebug = true) { event, message ->
-			_event = event
-			_message = message
-		})
-		logWarn("test")
-		Assert.assertEquals(Warn, _event)
-		Assert.assertTrue(_message!!.endsWith("test"))
-	}
+    @Test
+    fun logWithListener() {
+        init(CSAndroidLogger(name = "TestLog", isDebug = true, listener))
+        logWarn("test")
+        Assert.assertEquals(Warn, event)
+        Assert.assertTrue(message!!.endsWith("test"))
+    }
 
-	@Test
-	fun isDebug() {
-		var _event: CSLoggerEvent? = null
-		var _message: String? = null
-		val listener = { event: CSLoggerEvent, message: String ->
-			_event = event
-			_message = message
-		}
-		init(CSAndroidLogger(name = "TestLog", isDebug = false, listener))
-		logDebug { "test" }
-		Assert.assertNull(_event)
+    @Test
+    fun isDebug() {
+        init(CSAndroidLogger(name = "TestLog", isDebug = false, listener))
+        logDebug { "test" }
+        Assert.assertNull(event)
 
-		init(CSAndroidLogger(name = "TestLog", isDebug = true, listener))
-		logDebug { "test2" }
-		Assert.assertEquals(Debug, _event)
-		Assert.assertTrue(_message!!.endsWith("test2"))
-	}
+        init(CSAndroidLogger(name = "TestLog", isDebug = true, listener))
+        logDebug { "test2" }
+        Assert.assertEquals(Debug, event)
+        Assert.assertTrue(message!!.endsWith("test2"))
+    }
 }
