@@ -622,6 +622,16 @@ $dokka.location:renetik.android.core.logging/CSAndroidLogger/listener/#/Pointing
 $dokka.location:renetik.android.core.logging/CSAndroidLogger/name/#/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-android-logger/name.html
 $dokka.location:renetik.android.core.logging/CSAndroidLogger/warn/#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-android-logger/warn.html
 $dokka.location:renetik.android.core.logging/CSAndroidLogger/warn/#kotlin.Throwable#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-android-logger/warn.html
+$dokka.location:renetik.android.core.logging/CSDummyLogger///PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-dummy-logger/index.html
+$dokka.location:renetik.android.core.logging/CSDummyLogger/CSDummyLogger/#/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-dummy-logger/-c-s-dummy-logger.html
+$dokka.location:renetik.android.core.logging/CSDummyLogger/debug/#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-dummy-logger/debug.html
+$dokka.location:renetik.android.core.logging/CSDummyLogger/debug/#kotlin.Throwable#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-dummy-logger/debug.html
+$dokka.location:renetik.android.core.logging/CSDummyLogger/error/#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-dummy-logger/error.html
+$dokka.location:renetik.android.core.logging/CSDummyLogger/error/#kotlin.Throwable#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-dummy-logger/error.html
+$dokka.location:renetik.android.core.logging/CSDummyLogger/info/#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-dummy-logger/info.html
+$dokka.location:renetik.android.core.logging/CSDummyLogger/isDebug/#/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-dummy-logger/is-debug.html
+$dokka.location:renetik.android.core.logging/CSDummyLogger/warn/#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-dummy-logger/warn.html
+$dokka.location:renetik.android.core.logging/CSDummyLogger/warn/#kotlin.Throwable#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-dummy-logger/warn.html
 $dokka.location:renetik.android.core.logging/CSLog///PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-log/index.html
 $dokka.location:renetik.android.core.logging/CSLog/init/#renetik.android.core.logging.CSLogger/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-log/init.html
 $dokka.location:renetik.android.core.logging/CSLog/logDebug/#kotlin.Function0[kotlin.Any]?/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-log/log-debug.html
