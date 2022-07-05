@@ -23,7 +23,7 @@ class CSPrintLogger(val name: String = LIBRARY_PACKAGE_NAME,
 
     override fun error(e: Throwable, vararg values: Any?) {
         val message = createMessage(*values)
-        println("$Error: $name: $message $e")
+        println("$Error: $name: $message $e ${e.asTraceString}")
         listener?.invoke(Error, message.addSpace().add(e.asTraceString).toString())
     }
 
@@ -43,7 +43,7 @@ class CSPrintLogger(val name: String = LIBRARY_PACKAGE_NAME,
     override fun debug(e: Throwable, vararg values: Any?) {
         if (!isDebug) return
         val message = createMessage(*values)
-        println("$Debug: $name: $message $e")
+        println("$Debug: $name: $message $e ${e.asTraceString}")
         listener?.invoke(Debug, message.addSpace().add(e.asTraceString).toString())
     }
 
@@ -55,7 +55,7 @@ class CSPrintLogger(val name: String = LIBRARY_PACKAGE_NAME,
 
     override fun warn(e: Throwable, vararg values: Any?) {
         val message = createMessage(*values)
-        println("$Warn: $name: $message $e")
+        println("$Warn: $name: $message $e ${e.asTraceString}")
         listener?.invoke(Warn, message.addSpace().add(e.asTraceString).toString())
     }
 

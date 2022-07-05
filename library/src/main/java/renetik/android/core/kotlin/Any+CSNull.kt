@@ -16,13 +16,11 @@ fun isAllNull(vararg items: Any?): Boolean {
     return true
 }
 
-fun <T : Any, R> T?.notNull(block: (T) -> R): R? = if (this != null) block(this) else null
-
-val <T : Any> T?.notNull get() = this != null
+val Any?.isNull get() = this == null
+val Any?.notNull get() = this != null
 
 fun <T : Any, R> T?.isNull(block: () -> R): R? = if (this == null) block() else null
+fun <T : Any, R> T?.notNull(block: (T) -> R): R? = if (this != null) block(this) else null
 
-val Any?.isNull get() = this == null
-
-//Has to be here otherwise calls go to Any?.isNull
-val CSProperty<out Any?>.isNull get() = value == null
+val CSProperty<out Any?>.isNull get() = value.isNull
+val CSProperty<out Any?>.notNull get() = value.notNull

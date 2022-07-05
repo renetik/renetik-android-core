@@ -410,8 +410,9 @@ $dokka.location:renetik.android.core.kotlin//isNull/TypeParam(bounds=[kotlin.Any
 $dokka.location:renetik.android.core.kotlin//isNull/kotlin.Any?#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/is-null.html
 $dokka.location:renetik.android.core.kotlin//isNull/renetik.android.core.lang.property.CSProperty[kotlin.Any?]#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/is-null.html
 $dokka.location:renetik.android.core.kotlin//kClass/TypeParam(bounds=[kotlin.Any])#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/k-class.html
-$dokka.location:renetik.android.core.kotlin//notNull/TypeParam(bounds=[kotlin.Any])?#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/not-null.html
 $dokka.location:renetik.android.core.kotlin//notNull/TypeParam(bounds=[kotlin.Any])?#kotlin.Function1[TypeParam(bounds=[kotlin.Any]),TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/not-null.html
+$dokka.location:renetik.android.core.kotlin//notNull/kotlin.Any?#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/not-null.html
+$dokka.location:renetik.android.core.kotlin//notNull/renetik.android.core.lang.property.CSProperty[kotlin.Any?]#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/not-null.html
 $dokka.location:renetik.android.core.kotlin//observing/#TypeParam(bounds=[kotlin.Any?])#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/observing.html
 $dokka.location:renetik.android.core.kotlin//privateField/kotlin.Any#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/private-field.html
 $dokka.location:renetik.android.core.kotlin//rootCause/kotlin.Throwable#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/root-cause.html
@@ -456,6 +457,8 @@ $dokka.location:renetik.android.core.lang.property//value/renetik.android.core.l
 $dokka.location:renetik.android.core.lang.property/CSListValuesProperty///PointingToDeclaration/renetik-android-core/renetik.android.core.lang.property/-c-s-list-values-property/index.html
 $dokka.location:renetik.android.core.lang.property/CSListValuesProperty/values/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.property/-c-s-list-values-property/values.html
 $dokka.location:renetik.android.core.lang.property/CSProperty///PointingToDeclaration/renetik-android-core/renetik.android.core.lang.property/-c-s-property/index.html
+$dokka.location:renetik.android.core.lang.property/CSProperty/getValue/#kotlin.Any?#kotlin.reflect.KProperty[*]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.property/-c-s-property/get-value.html
+$dokka.location:renetik.android.core.lang.property/CSProperty/setValue/#kotlin.Any?#kotlin.reflect.KProperty[*]#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.property/-c-s-property/set-value.html
 $dokka.location:renetik.android.core.lang.property/CSProperty/value/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.property/-c-s-property/value.html
 $dokka.location:renetik.android.core.lang////PointingToDeclaration/renetik-android-core/renetik.android.core.lang/index.html
 $dokka.location:renetik.android.core.lang//CSId/#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-id.html
@@ -608,6 +611,7 @@ $dokka.location:renetik.android.core.lang/CSValidatorImplementation/validate/#/P
 $dokka.location:renetik.android.core.lang/CSValue.Companion///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-value/-companion/index.html
 $dokka.location:renetik.android.core.lang/CSValue.Companion/value/#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-value/-companion/value.html
 $dokka.location:renetik.android.core.lang/CSValue///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-value/index.html
+$dokka.location:renetik.android.core.lang/CSValue/getValue/#kotlin.Any?#kotlin.reflect.KProperty[*]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-value/get-value.html
 $dokka.location:renetik.android.core.lang/CSValue/value/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-value/value.html
 $dokka.location:renetik.android.core.logging////PointingToDeclaration/renetik-android-core/renetik.android.core.logging/index.html
 $dokka.location:renetik.android.core.logging/CSAndroidLogger///PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-android-logger/index.html

@@ -1,6 +1,9 @@
 package renetik.android.core.lang
 
-interface CSValue<T> {
+import kotlin.properties.ReadOnlyProperty
+import kotlin.reflect.KProperty
+
+interface CSValue<T> : ReadOnlyProperty<Any?, T> {
     val value: T
 
     companion object {
@@ -8,6 +11,9 @@ interface CSValue<T> {
             override val value: T = value
         }
     }
+
+    override fun getValue(thisRef: Any?, property: KProperty<*>): T =
+        synchronized(this) { value }
 }
 
 interface CSSynchronizedValue<T> : CSValue<T>
