@@ -25,7 +25,7 @@ dependencies {
 }
 ```
 ## Examples
-```
+```kotlin
     @Test
     fun testLazyVar() {
         var testVar: String by lazyVar { "initial" }
@@ -45,7 +45,7 @@ dependencies {
     }
 
 ```
-```
+```kotlin
     @Test
     fun equalsAny() {
         Assert.assertTrue("third".equalsAny("first", "second", "third"))
@@ -75,7 +75,7 @@ dependencies {
         Assert.assertFalse("fourth" equalsAll listOf("first", "second", "third"))
     }
 ```
-```
+```kotlin
 class CSAndroidLoggerTest {
     var event: CSLoggerEvent? = null
     var message: String? = null
