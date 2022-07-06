@@ -31,7 +31,10 @@ inline fun <reified ClassType : Any>
 fun <T> createClass(className: String) =
     catchAllWarnReturnNull { Class.forName(className) } as? Class<T>
 
-fun <T> createInstance(className: String) =
+inline fun <reified T> createInstance(): T? =
+    T::class.java.createInstance()
+
+fun <T> createInstance(className: String): T? =
     createClass<T>(className)?.createInstance()
 
 fun invokeFunction(type: Class<*>, name: String,

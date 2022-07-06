@@ -389,6 +389,7 @@ $dokka.location:renetik.android.core.kotlin//asStringArray/kotlin.collections.Li
 $dokka.location:renetik.android.core.kotlin//asStringList/kotlin.collections.List[*]#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/as-string-list.html
 $dokka.location:renetik.android.core.kotlin//className/TypeParam(bounds=[kotlin.Any])#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/class-name.html
 $dokka.location:renetik.android.core.kotlin//createClass/#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/create-class.html
+$dokka.location:renetik.android.core.kotlin//createInstance/#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/create-instance.html
 $dokka.location:renetik.android.core.kotlin//createInstance/#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/create-instance.html
 $dokka.location:renetik.android.core.kotlin//equalsAll/kotlin.Any?#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/equals-all.html
 $dokka.location:renetik.android.core.kotlin//equalsAll/kotlin.Any?#kotlin.collections.Iterable[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/equals-all.html
