@@ -90,6 +90,7 @@ $dokka.location:renetik.android.core.extensions.content//resourceDimension/andro
 $dokka.location:renetik.android.core.extensions.content//resourceInts/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/resource-ints.html
 $dokka.location:renetik.android.core.extensions.content//resourceStrings/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/resource-strings.html
 $dokka.location:renetik.android.core.extensions.content//setLocale/android.content.Context#java.util.Locale/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/set-locale.html
+$dokka.location:renetik.android.core.extensions.content//size/android.content.SharedPreferences#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/size.html
 $dokka.location:renetik.android.core.extensions.content//spToPixel/android.content.Context#kotlin.Float/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/sp-to-pixel.html
 $dokka.location:renetik.android.core.extensions.content//spToPixel/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/sp-to-pixel.html
 $dokka.location:renetik.android.core.extensions.content//spToPixelF/android.content.Context#kotlin.Float/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/sp-to-pixel-f.html
