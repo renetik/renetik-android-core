@@ -3,6 +3,8 @@ package renetik.android.core.extensions.content
 import android.content.SharedPreferences
 
 val SharedPreferences.size get() = all.size
+fun SharedPreferences.getString(key: String) = getString(key, null)
+
 fun SharedPreferences.copyTo(destination: SharedPreferences) = destination.load(this)
 
 fun SharedPreferences.load(source: SharedPreferences) = with(edit()) {
