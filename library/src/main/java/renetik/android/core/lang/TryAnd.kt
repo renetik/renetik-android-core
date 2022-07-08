@@ -3,7 +3,22 @@ package renetik.android.core.lang
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logWarn
 
-// TODO remake to this pattern:  runCatching {  }.onFailure {  }
+inline fun <reified E : Throwable> catch(block: () -> void): Result<void> = try {
+    Result.success(block())
+} catch (e: Throwable) {
+    if (e is E) {
+        Result.failure(e)
+    } else throw e
+}
+
+inline fun <reified E : Throwable> catchWarn(block: () -> void): Result<void> = try {
+    Result.success(block())
+} catch (e: Throwable) {
+    if (e is E) {
+        logWarn(e)
+        Result.failure(e)
+    } else throw e
+}
 
 inline fun <ReturnType> catchReturn(
     tryFunction: () -> ReturnType, onExceptionReturn: (Throwable) -> ReturnType
@@ -35,8 +50,8 @@ inline fun <ReturnType, reified ExceptionType : Throwable> catchWarnReturn(
     onExceptionReturn: ReturnType, tryFunction: () -> ReturnType
 ) = catchWarnReturn<ExceptionType, ReturnType>(message = null, tryFunction) { onExceptionReturn }
 
-inline fun <reified ExceptionType : Throwable> catchWarn(tryFunction: () -> Unit) =
-    catchWarnReturn<Unit, ExceptionType>(Unit, tryFunction)
+//inline fun <reified ExceptionType : Throwable> catchWarn(tryFunction: () -> Unit) =
+//    catchWarnReturn<Unit, ExceptionType>(Unit, tryFunction)
 
 inline fun <ReturnType> catchAllWarnReturn(
     onExceptionReturn: ReturnType, tryFunction: () -> ReturnType
