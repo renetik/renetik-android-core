@@ -1,6 +1,6 @@
 package renetik.android.core.kotlin
 
-import renetik.android.core.lang.property.CSProperty
+import renetik.android.core.lang.property.CSVariable
 
 fun isAnyNotNull(vararg items: Any?) = !isAllNull(*items)
 
@@ -22,5 +22,5 @@ val Any?.notNull get() = this != null
 fun <T : Any, R> T?.isNull(block: () -> R): R? = if (this == null) block() else null
 fun <T : Any, R> T?.notNull(block: (T) -> R): R? = if (this != null) block(this) else null
 
-val CSProperty<out Any?>.isNull get() = value.isNull
-val CSProperty<out Any?>.notNull get() = value.notNull
+val CSVariable<out Any?>.isNull get() = value.isNull
+val CSVariable<out Any?>.notNull get() = value.notNull

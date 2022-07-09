@@ -3,7 +3,7 @@ package renetik.android.core.lang
 import renetik.android.core.kotlin.primitives.Empty
 import renetik.android.core.kotlin.primitives.containsAll
 import renetik.android.core.kotlin.primitives.isFalse
-import renetik.android.core.lang.property.CSProperty
+import renetik.android.core.lang.property.CSVariable
 
 inline val CSValue<Boolean>.isTrue get() = value
 inline val CSValue<Boolean>.isFalse get() = !value
@@ -42,7 +42,7 @@ fun CSValue<String>.contains(value: String,
                              ignoreCase: Boolean = false) =
     this.value.contains(value, ignoreCase)
 
-fun CSValue<String>.contains(property: CSProperty<String>,
+fun CSValue<String>.contains(property: CSVariable<String>,
                              ignoreCase: Boolean = false) =
     this.contains(property.value, ignoreCase)
 

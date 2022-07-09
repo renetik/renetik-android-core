@@ -2,7 +2,7 @@ package renetik.android.core.kotlin
 
 import org.junit.Assert.*
 import org.junit.Test
-import renetik.android.core.lang.property.CSProperty
+import renetik.android.core.lang.property.CSVariable
 
 class AnyCSNullTest {
     @Test
@@ -31,7 +31,7 @@ class AnyCSNullTest {
 
     @Test
     fun propertyIsNullTest() {
-        val property = object : CSProperty<String?> {
+        val property = object : CSVariable<String?> {
             override var value: String? = null
         }
         assertTrue(property.isNull)

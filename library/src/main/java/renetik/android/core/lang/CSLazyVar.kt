@@ -24,3 +24,4 @@ class CSLazyVar<T>(initializer: () -> T) : ReadWriteProperty<Any?, T> {
             isSet = true
         }
 }
+

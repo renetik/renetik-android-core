@@ -5,6 +5,7 @@
 # Renetik Android - Core
 #### [https://github.com/renetik/renetik-android-core](https://github.com/renetik/renetik-android-core/) ➜ [Documentation](https://renetik.github.io/renetik-android-core/)
 
+Core library of Renetik Libraries collection, with **bunch** **of** **useful** **staff**.
 Framework to enjoy, improve and speed up your application development while writing readable code.
 Used as library in many projects and improving it while developing new projects.
 I am open for [Hire](https://renetik.github.io) or investment in my mobile app music production & perfromance project Renetik Instruments www.renetik.com.
@@ -26,6 +27,7 @@ dependencies {
 ```
 ## Examples
 ```kotlin
+class CSLazyVarTest {
     @Test
     fun testLazyVar() {
         var testVar: String by lazyVar { "initial" }
@@ -43,40 +45,43 @@ dependencies {
         testVar = null
         assertEquals(null, testVar)
     }
-
+}
 ```
 ```kotlin
+class AnyCSEqualsTest {
     @Test
     fun equalsAny() {
-        Assert.assertTrue("third".equalsAny("first", "second", "third"))
-        Assert.assertFalse("fourth".equalsAny("first", "second", "third"))
+        assertTrue("third".equalsAny("first", "second", "third"))
+        assertFalse("fourth".equalsAny("first", "second", "third"))
 
         val values = listOf("first", "second", "third")
-        Assert.assertTrue("third" equalsAny values)
-        Assert.assertFalse("fourth" equalsAny values)
+        assertTrue("third" equalsAny values)
+        assertFalse("fourth" equalsAny values)
     }
 
     @Test
     fun equalsNone() {
-        Assert.assertTrue("fourth".equalsNone("first", "second", "third"))
-        Assert.assertFalse("second".equalsNone("first", "second", "third"))
+        assertTrue("fourth".equalsNone("first", "second", "third"))
+        assertFalse("second".equalsNone("first", "second", "third"))
 
         val values = listOf("first", "second", "third")
-        Assert.assertTrue("fourth" equalsNone values)
-        Assert.assertFalse("first" equalsNone values)
+        assertTrue("fourth" equalsNone values)
+        assertFalse("first" equalsNone values)
     }
 
     @Test
     fun equalsAll() {
-        Assert.assertTrue("fourth".equalsAll("fourth", "fourth", "fourth"))
-        Assert.assertFalse("fourth".equalsAll("first", "second", "third"))
+        assertTrue("fourth".equalsAll("fourth", "fourth", "fourth"))
+        assertFalse("fourth".equalsAll("first", "second", "third"))
 
-        Assert.assertTrue("fourth" equalsAll listOf("fourth", "fourth", "fourth"))
-        Assert.assertFalse("fourth" equalsAll listOf("first", "second", "third"))
+        assertTrue("fourth" equalsAll listOf("fourth", "fourth", "fourth"))
+        assertFalse("fourth" equalsAll listOf("first", "second", "third"))
     }
+}
 ```
 ```kotlin
 class CSAndroidLoggerTest {
+
     var event: CSLoggerEvent? = null
     var message: String? = null
     private val listener = { event: CSLoggerEvent, message: String ->
@@ -88,20 +93,26 @@ class CSAndroidLoggerTest {
     fun logWithListener() {
         init(CSAndroidLogger(name = "TestLog", isDebug = true, listener))
         logWarn("test")
-        Assert.assertEquals(Warn, event)
-        Assert.assertTrue(message!!.endsWith("test"))
+
+        assertEquals(Warn, event)
+        val messageEnd =
+            "renetik.android.core.logging.CSAndroidLoggerTest\$logWithListener(CSAndroidLoggerTest.kt:26) test"
+        assertTrue(message!!.endsWith(messageEnd))
     }
 
     @Test
     fun isDebug() {
         init(CSAndroidLogger(name = "TestLog", isDebug = false, listener))
         logDebug { "test" }
-        Assert.assertNull(event)
+        assertNull(event)
+        assertNull(message)
 
         init(CSAndroidLogger(name = "TestLog", isDebug = true, listener))
         logDebug { "test2" }
-        Assert.assertEquals(Debug, event)
-        Assert.assertTrue(message!!.endsWith("test2"))
+        assertEquals(Debug, event)
+        val messageEnd =
+            "renetik.android.core.logging.CSAndroidLoggerTest\$isDebug(CSAndroidLoggerTest.kt:42) test2"
+        assertTrue(message!!.endsWith(messageEnd))
     }
 }
 ```

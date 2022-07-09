@@ -1,5 +1,5 @@
 package renetik.android.core.lang.property
 
-interface CSListValuesProperty<T> : CSProperty<T> {
+interface CSListValuesProperty<T> : CSVariable<T> {
     val values: List<T>
 }

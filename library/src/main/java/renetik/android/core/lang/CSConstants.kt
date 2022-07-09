@@ -1,4 +1,12 @@
+@file:Suppress("ObjectPropertyName")
+
 package renetik.android.core.lang
+
+object CSStringConstants {
+    const val NewLine = "\n"
+    const val Space = " "
+    const val `$` = "$"
+}
 
 object CSDataConstants {
     const val KB = 1024

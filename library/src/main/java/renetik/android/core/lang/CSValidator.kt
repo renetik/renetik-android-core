@@ -1,6 +1,6 @@
 package renetik.android.core.lang
 
-import renetik.android.core.lang.property.CSProperty
+import renetik.android.core.lang.property.CSVariable
 
 interface CSValidator {
     fun validate(): Boolean?
@@ -12,7 +12,7 @@ class CSValidatorImplementation(val function: () -> Boolean?) : CSValidator {
     override fun validate() = function()
 }
 
-class CSPropertyValidator<T>(val property: CSProperty<T>,
+class CSPropertyValidator<T>(val property: CSVariable<T>,
                              val validate: (T) -> Boolean) : CSValidator {
     override fun validate() = validate(property.value)
 }
