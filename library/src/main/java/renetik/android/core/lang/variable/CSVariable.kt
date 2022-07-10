@@ -1,7 +1,6 @@
-package renetik.android.core.lang.property
+package renetik.android.core.lang.variable
 
-import renetik.android.core.lang.CSSynchronizedValue
-import renetik.android.core.lang.CSValue
+import renetik.android.core.lang.value.CSValue
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 

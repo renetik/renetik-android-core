@@ -5,7 +5,7 @@ import renetik.android.core.kotlin.primitives.asFloat
 import renetik.android.core.kotlin.primitives.asInt
 import renetik.android.core.kotlin.primitives.asLong
 import renetik.android.core.lang.CSHasTitle
-import renetik.android.core.lang.CSValue
+import renetik.android.core.lang.value.CSValue
 
 @Suppress("UNCHECKED_CAST")
 fun <Type : Any> Any.type() = (this as Type)

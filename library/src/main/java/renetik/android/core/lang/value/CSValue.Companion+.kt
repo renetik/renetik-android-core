@@ -1,4 +1,6 @@
-package renetik.android.core.lang
+package renetik.android.core.lang.value
+
+import renetik.android.core.lang.value.CSValue
 
 fun <T : CSValue<Boolean>?> CSValue.Companion.isAnyTrue(vararg items: T): Boolean {
     items.forEach { if (it?.value == true) return true }

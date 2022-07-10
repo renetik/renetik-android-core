@@ -1,6 +1,6 @@
 package renetik.android.core.lang
 
-import renetik.android.core.lang.property.CSVariable
+import renetik.android.core.lang.variable.CSVariable
 
 interface CSValidator {
     fun validate(): Boolean?

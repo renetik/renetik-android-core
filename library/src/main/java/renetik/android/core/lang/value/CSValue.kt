@@ -1,4 +1,4 @@
-package renetik.android.core.lang
+package renetik.android.core.lang.value
 
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty

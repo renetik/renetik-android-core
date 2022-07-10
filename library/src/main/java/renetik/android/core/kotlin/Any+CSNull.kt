@@ -1,6 +1,6 @@
 package renetik.android.core.kotlin
 
-import renetik.android.core.lang.property.CSVariable
+import renetik.android.core.lang.variable.CSVariable
 
 fun isAnyNotNull(vararg items: Any?) = !isAllNull(*items)
 

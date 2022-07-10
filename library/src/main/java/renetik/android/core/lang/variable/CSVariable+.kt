@@ -1,4 +1,4 @@
-package renetik.android.core.lang.property
+package renetik.android.core.lang.variable
 
 import renetik.android.core.kotlin.asString
 

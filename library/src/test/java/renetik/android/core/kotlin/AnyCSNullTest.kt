@@ -2,7 +2,7 @@ package renetik.android.core.kotlin
 
 import org.junit.Assert.*
 import org.junit.Test
-import renetik.android.core.lang.property.CSVariable
+import renetik.android.core.lang.variable.CSVariable
 
 class AnyCSNullTest {
     @Test

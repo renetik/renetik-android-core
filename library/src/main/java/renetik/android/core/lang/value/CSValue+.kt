@@ -1,9 +1,11 @@
-package renetik.android.core.lang
+package renetik.android.core.lang.value
 
 import renetik.android.core.kotlin.primitives.Empty
 import renetik.android.core.kotlin.primitives.containsAll
 import renetik.android.core.kotlin.primitives.isFalse
-import renetik.android.core.lang.property.CSVariable
+import renetik.android.core.lang.value.CSValue
+import renetik.android.core.lang.Func
+import renetik.android.core.lang.variable.CSVariable
 
 inline val CSValue<Boolean>.isTrue get() = value
 inline val CSValue<Boolean>.isFalse get() = !value
