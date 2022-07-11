@@ -1,6 +1,7 @@
 package renetik.android.core.logging
 
-import renetik.android.core.extensions.content.CSToast.toast
+import android.content.Context
+import renetik.android.core.extensions.content.toast
 import renetik.android.core.kotlin.primitives.separateToString
 import java.lang.System.currentTimeMillis
 import java.lang.Thread.currentThread
@@ -37,17 +38,17 @@ object CSLog {
     fun logInfo(vararg values: Any?) =
         logger.info(*createMessage("logInfo", values))
 
-    fun logInfoToast(vararg values: Any?) {
+    fun Context.logInfoToast(vararg values: Any?) {
         logger.info(*createMessage("logWarnToast", values))
         toast(" ".separateToString(*values))
     }
 
-    fun logWarnToast(vararg values: Any?) {
+    fun Context.logWarnToast(vararg values: Any?) {
         logger.warn(*createMessage("logWarnToast", values))
         toast(" ".separateToString(*values))
     }
 
-    fun logErrorToast(vararg values: Any?) {
+    fun Context.logErrorToast(vararg values: Any?) {
         logger.error(*createMessage("logErrorToast", values))
         toast(" ".separateToString(*values))
     }

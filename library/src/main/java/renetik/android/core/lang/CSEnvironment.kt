@@ -8,7 +8,8 @@ import renetik.android.core.kotlin.invokeFunction
 object CSEnvironment {
     var isDebug = BuildConfig.DEBUG
 
-    val application: Application?
-        get() = createClass<Any>("android.app.ActivityThread")
-            ?.invokeFunction("currentApplication") as? Application
+    var app: Application by lazyVar {
+        createClass<Any>("android.app.ActivityThread")
+            ?.invokeFunction("currentApplication") as Application
+    }
 }
