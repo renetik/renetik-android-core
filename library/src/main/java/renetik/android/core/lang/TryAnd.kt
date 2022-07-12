@@ -11,6 +11,8 @@ inline fun <reified E : Throwable> catch(block: () -> void): Result<void> = try 
     } else throw e
 }
 
+inline fun catchAll(block: () -> void): Result<void> = catch<Throwable>(block)
+
 inline fun <reified E : Throwable> catchWarn(block: () -> void): Result<void> = try {
     Result.success(block())
 } catch (e: Throwable) {

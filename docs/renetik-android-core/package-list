@@ -498,9 +498,10 @@ $dokka.location:renetik.android.core.lang.variable/CSVariable/getValue/#kotlin.A
 $dokka.location:renetik.android.core.lang.variable/CSVariable/setValue/#kotlin.Any?#kotlin.reflect.KProperty[*]#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-variable/set-value.html
 $dokka.location:renetik.android.core.lang.variable/CSVariable/value/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-variable/value.html
 $dokka.location:renetik.android.core.lang////PointingToDeclaration/renetik-android-core/renetik.android.core.lang/index.html
-$dokka.location:renetik.android.core.lang//CSId/#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-id.html
+$dokka.location:renetik.android.core.lang//CSHasId/#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-has-id.html
 $dokka.location:renetik.android.core.lang//CSValidator/#kotlin.Function0[kotlin.Boolean?]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-validator.html
 $dokka.location:renetik.android.core.lang//catch/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/catch.html
+$dokka.location:renetik.android.core.lang//catchAll/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/catch-all.html
 $dokka.location:renetik.android.core.lang//catchAllError/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/catch-all-error.html
 $dokka.location:renetik.android.core.lang//catchAllErrorReturn/#TypeParam(bounds=[kotlin.Any?])#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/catch-all-error-return.html
 $dokka.location:renetik.android.core.lang//catchAllErrorReturnNull/#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/catch-all-error-return-null.html
