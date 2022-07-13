@@ -1,7 +1,6 @@
 package renetik.android.core.extensions.content
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.*
 import android.content.ContextWrapper.WINDOW_SERVICE
 import android.content.Intent.ACTION_BATTERY_CHANGED
@@ -22,8 +21,6 @@ import android.view.View
 import android.view.WindowManager
 import androidx.annotation.StringRes
 import androidx.core.content.res.getDrawableOrThrow
-import renetik.android.core.kotlin.createClass
-import renetik.android.core.kotlin.invokeFunction
 import renetik.android.core.kotlin.primitives.isFlagSet
 import renetik.android.core.kotlin.primitives.isSet
 import renetik.android.core.lang.catchAllErrorReturnNull

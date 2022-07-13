@@ -37,30 +37,14 @@ inline fun <reified T> createInstance(): T? =
 fun <T> createInstance(className: String): T? =
     createClass<T>(className)?.createInstance()
 
+fun <T> Class<T>?.invoke(function: String, argument: T? = null): Any? =
+    this?.getMethod(function)?.invoke(argument)
+
 fun invokeFunction(type: Class<*>, name: String,
                    argumentTypes: Array<Class<*>>, arguments: Array<Any>
 ): Any? = try {
     type.getDeclaredMethod(name, *argumentTypes)
         .apply { isAccessible = true }.invoke(null, *arguments)
-} catch (e: Exception) {
-    INVOKE_FAILED
-}
-
-fun Any.invokeFunction(name: String): Any? = try {
-    javaClass.getMethod(name, null).invoke(this)
-} catch (e: Exception) {
-    INVOKE_FAILED
-}
-
-fun Any.invokeFunction(name: String, argumentTypes: Array<Class<*>>,
-                       arguments: Array<Any>): Any? = try {
-    javaClass.getMethod(name, *argumentTypes).invoke(this, *arguments)
-} catch (e: Exception) {
-    INVOKE_FAILED
-}
-
-fun <T> Any.invokeFunction(name: String, argumentType: Class<T>, argument: T): Any? = try {
-    javaClass.getMethod(name, argumentType).invoke(this, argument)
 } catch (e: Exception) {
     INVOKE_FAILED
 }
