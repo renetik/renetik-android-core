@@ -5,7 +5,6 @@ $dokka.location:renetik.android.app//contentView1/android.app.Activity#/Pointing
 $dokka.location:renetik.android.app//contentView2/android.app.Activity#/PointingToDeclaration/renetik-android-core/renetik.android.app/content-view2.html
 $dokka.location:renetik.android.app//fixInputMethodLeak/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.app/fix-input-method-leak.html
 $dokka.location:renetik.android.app//isScreenLandscape/android.app.Activity#/PointingToDeclaration/renetik-android-core/renetik.android.app/is-screen-landscape.html
-$dokka.location:renetik.android.app//restart/android.app.Application#/PointingToDeclaration/renetik-android-core/renetik.android.app/restart.html
 $dokka.location:renetik.android.app//screenOrientation/android.app.Activity#/PointingToDeclaration/renetik-android-core/renetik.android.app/screen-orientation.html
 $dokka.location:renetik.android.core.base////PointingToDeclaration/renetik-android-core/renetik.android.core.base/index.html
 $dokka.location:renetik.android.core.base/CSApplication///PointingToDeclaration/renetik-android-core/renetik.android.core.base/-c-s-application/index.html
@@ -26,6 +25,8 @@ $dokka.location:renetik.android.core.common/CSStringBuilderWriter/flush/#/Pointi
 $dokka.location:renetik.android.core.common/CSStringBuilderWriter/toString/#/PointingToDeclaration/renetik-android-core/renetik.android.core.common/-c-s-string-builder-writer/to-string.html
 $dokka.location:renetik.android.core.common/CSStringBuilderWriter/write/#kotlin.CharArray?#kotlin.Int#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.common/-c-s-string-builder-writer/write.html
 $dokka.location:renetik.android.core.common/CSStringBuilderWriter/write/#kotlin.String?/PointingToDeclaration/renetik-android-core/renetik.android.core.common/-c-s-string-builder-writer/write.html
+$dokka.location:renetik.android.core.extensions.app////PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/index.html
+$dokka.location:renetik.android.core.extensions.app//restart/android.app.Application#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/restart.html
 $dokka.location:renetik.android.core.extensions.content.res////PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content.res/index.html
 $dokka.location:renetik.android.core.extensions.content.res//copyFileToDir/android.content.res.AssetManager#kotlin.String#java.io.File#kotlin.Boolean/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content.res/copy-file-to-dir.html
 $dokka.location:renetik.android.core.extensions.content.res//copyFilesToDir/android.content.res.AssetManager#kotlin.String#java.io.File#kotlin.Boolean/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content.res/copy-files-to-dir.html
@@ -749,6 +750,7 @@ $dokka.location:renetik.android.core.util/CSSynchronizedProperty/setValue/#kotli
 renetik.android.app
 renetik.android.core.base
 renetik.android.core.common
+renetik.android.core.extensions.app
 renetik.android.core.extensions.content
 renetik.android.core.extensions.content.res
 renetik.android.core.java

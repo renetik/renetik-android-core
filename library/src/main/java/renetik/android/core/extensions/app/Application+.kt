@@ -1,4 +1,4 @@
-package renetik.android.app
+package renetik.android.core.extensions.app
 
 import android.app.Application
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
