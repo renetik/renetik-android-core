@@ -97,6 +97,7 @@ $dokka.location:renetik.android.core.extensions.content//resourceBytes/android.c
 $dokka.location:renetik.android.core.extensions.content//resourceDimension/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/resource-dimension.html
 $dokka.location:renetik.android.core.extensions.content//resourceInts/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/resource-ints.html
 $dokka.location:renetik.android.core.extensions.content//resourceStrings/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/resource-strings.html
+$dokka.location:renetik.android.core.extensions.content//screenRotation/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/screen-rotation.html
 $dokka.location:renetik.android.core.extensions.content//setLocale/android.content.Context#java.util.Locale/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/set-locale.html
 $dokka.location:renetik.android.core.extensions.content//size/android.content.SharedPreferences#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/size.html
 $dokka.location:renetik.android.core.extensions.content//spToPixel/android.content.Context#kotlin.Float/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/sp-to-pixel.html
@@ -119,6 +120,12 @@ $dokka.location:renetik.android.core.extensions.content//versionString/android.c
 $dokka.location:renetik.android.core.extensions.content/CSColorInt///PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/-c-s-color-int/index.html
 $dokka.location:renetik.android.core.extensions.content/CSColorInt/CSColorInt/#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/-c-s-color-int/-c-s-color-int.html
 $dokka.location:renetik.android.core.extensions.content/CSColorInt/color/#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/-c-s-color-int/color.html
+$dokka.location:renetik.android.core.extensions.content/CSDisplayOrientation.LandscapeLeft///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}renetik-android-core/renetik.android.core.extensions.content/-c-s-display-orientation/-landscape-left/index.html
+$dokka.location:renetik.android.core.extensions.content/CSDisplayOrientation.LandscapeRight///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}renetik-android-core/renetik.android.core.extensions.content/-c-s-display-orientation/-landscape-right/index.html
+$dokka.location:renetik.android.core.extensions.content/CSDisplayOrientation.Portrait///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}renetik-android-core/renetik.android.core.extensions.content/-c-s-display-orientation/-portrait/index.html
+$dokka.location:renetik.android.core.extensions.content/CSDisplayOrientation.Unknown///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}renetik-android-core/renetik.android.core.extensions.content/-c-s-display-orientation/-unknown/index.html
+$dokka.location:renetik.android.core.extensions.content/CSDisplayOrientation.UpsideDown///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}renetik-android-core/renetik.android.core.extensions.content/-c-s-display-orientation/-upside-down/index.html
+$dokka.location:renetik.android.core.extensions.content/CSDisplayOrientation///PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/-c-s-display-orientation/index.html
 $dokka.location:renetik.android.core.extensions.content/CSToast///PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/-c-s-toast/index.html
 $dokka.location:renetik.android.core.extensions.content/CSToast/toast/#kotlin.String#renetik.android.core.extensions.content.CSToastLength/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/-c-s-toast/toast.html
 $dokka.location:renetik.android.core.extensions.content/CSToast/toast/#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/-c-s-toast/toast.html
@@ -126,6 +133,9 @@ $dokka.location:renetik.android.core.extensions.content/CSToastLength.LongTime//
 $dokka.location:renetik.android.core.extensions.content/CSToastLength.ShortTime///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}renetik-android-core/renetik.android.core.extensions.content/-c-s-toast-length/-short-time/index.html
 $dokka.location:renetik.android.core.extensions.content/CSToastLength///PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/-c-s-toast-length/index.html
 $dokka.location:renetik.android.core.extensions.content/CSToastLength/value/#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/-c-s-toast-length/value.html
+$dokka.location:renetik.android.core.extensions.graphics////PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.graphics/index.html
+$dokka.location:renetik.android.core.extensions.graphics//height/android.graphics.Rect#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.graphics/height.html
+$dokka.location:renetik.android.core.extensions.graphics//width/android.graphics.Rect#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.graphics/width.html
 $dokka.location:renetik.android.core.java.io////PointingToDeclaration/renetik-android-core/renetik.android.core.java.io/index.html
 $dokka.location:renetik.android.core.java.io//close/java.io.Closeable?#/PointingToDeclaration/renetik-android-core/renetik.android.core.java.io/close.html
 $dokka.location:renetik.android.core.java.io//copy/java.io.InputStream#java.io.OutputStream#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.java.io/copy.html
@@ -308,11 +318,13 @@ $dokka.location:renetik.android.core.kotlin.primitives//formatRoundTo/kotlin.Flo
 $dokka.location:renetik.android.core.kotlin.primitives//ifEmpty/kotlin.Array[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function1[kotlin.Array[TypeParam(bounds=[kotlin.Any?])],kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-empty.html
 $dokka.location:renetik.android.core.kotlin.primitives//ifEmpty/kotlin.Float#kotlin.Function1[kotlin.Float,kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-empty.html
 $dokka.location:renetik.android.core.kotlin.primitives//ifEmpty/kotlin.String#kotlin.Function1[kotlin.String,kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-empty.html
-$dokka.location:renetik.android.core.kotlin.primitives//ifFalse/kotlin.Boolean#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-false.html
+$dokka.location:renetik.android.core.kotlin.primitives//ifFalse/TypeParam(bounds=[kotlin.Boolean?])#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-false.html
+$dokka.location:renetik.android.core.kotlin.primitives//ifNotFalse/TypeParam(bounds=[kotlin.Boolean?])#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-not-false.html
+$dokka.location:renetik.android.core.kotlin.primitives//ifNotTrue/TypeParam(bounds=[kotlin.Boolean?])#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-not-true.html
 $dokka.location:renetik.android.core.kotlin.primitives//ifSet/kotlin.Array[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function1[kotlin.Array[TypeParam(bounds=[kotlin.Any?])],kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-set.html
 $dokka.location:renetik.android.core.kotlin.primitives//ifSet/kotlin.Float#kotlin.Function1[kotlin.Float,kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-set.html
 $dokka.location:renetik.android.core.kotlin.primitives//ifSet/kotlin.String#kotlin.Function1[kotlin.String,kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-set.html
-$dokka.location:renetik.android.core.kotlin.primitives//ifTrue/kotlin.Boolean#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-true.html
+$dokka.location:renetik.android.core.kotlin.primitives//ifTrue/TypeParam(bounds=[kotlin.Boolean?])#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-true.html
 $dokka.location:renetik.android.core.kotlin.primitives//isEmpty/kotlin.Array[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/is-empty.html
 $dokka.location:renetik.android.core.kotlin.primitives//isEmpty/kotlin.CharSequence?#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/is-empty.html
 $dokka.location:renetik.android.core.kotlin.primitives//isEmpty/kotlin.Float#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/is-empty.html
@@ -324,6 +336,7 @@ $dokka.location:renetik.android.core.kotlin.primitives//isFirstIndex/kotlin.Int#
 $dokka.location:renetik.android.core.kotlin.primitives//isFlafNotSet/kotlin.Int#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/is-flaf-not-set.html
 $dokka.location:renetik.android.core.kotlin.primitives//isFlagSet/kotlin.Int#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/is-flag-set.html
 $dokka.location:renetik.android.core.kotlin.primitives//isLastIndex/kotlin.Int#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/is-last-index.html
+$dokka.location:renetik.android.core.kotlin.primitives//isNotFalse/TypeParam(bounds=[kotlin.Boolean?])#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/is-not-false.html
 $dokka.location:renetik.android.core.kotlin.primitives//isNotTrue/TypeParam(bounds=[kotlin.Boolean?])#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/is-not-true.html
 $dokka.location:renetik.android.core.kotlin.primitives//isOdd/kotlin.Int#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/is-odd.html
 $dokka.location:renetik.android.core.kotlin.primitives//isSet/kotlin.Array[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/is-set.html
@@ -547,6 +560,9 @@ $dokka.location:renetik.android.core.lang/CSCondition.Factory///PointingToDeclar
 $dokka.location:renetik.android.core.lang/CSCondition.Factory/condition/#kotlin.Function0[kotlin.Boolean?]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-condition/-factory/condition.html
 $dokka.location:renetik.android.core.lang/CSCondition///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-condition/index.html
 $dokka.location:renetik.android.core.lang/CSCondition/evaluate/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-condition/evaluate.html
+$dokka.location:renetik.android.core.lang/CSConditionalResult///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-conditional-result/index.html
+$dokka.location:renetik.android.core.lang/CSConditionalResult/CSConditionalResult/#kotlin.Boolean/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-conditional-result/-c-s-conditional-result.html
+$dokka.location:renetik.android.core.lang/CSConditionalResult/elseDo/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-conditional-result/else-do.html
 $dokka.location:renetik.android.core.lang/CSDataConstants///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-data-constants/index.html
 $dokka.location:renetik.android.core.lang/CSDataConstants/GB/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-data-constants/-g-b.html
 $dokka.location:renetik.android.core.lang/CSDataConstants/KB/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-data-constants/-k-b.html
@@ -753,6 +769,7 @@ renetik.android.core.common
 renetik.android.core.extensions.app
 renetik.android.core.extensions.content
 renetik.android.core.extensions.content.res
+renetik.android.core.extensions.graphics
 renetik.android.core.java
 renetik.android.core.java.io
 renetik.android.core.java.lang
