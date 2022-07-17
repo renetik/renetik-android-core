@@ -17,12 +17,10 @@ import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.Display
 import android.view.LayoutInflater
-import android.view.Surface.*
 import android.view.View
 import android.view.WindowManager
 import androidx.annotation.StringRes
 import androidx.core.content.res.getDrawableOrThrow
-import renetik.android.core.extensions.content.CSDisplayOrientation.*
 import renetik.android.core.kotlin.primitives.isFlagSet
 import renetik.android.core.kotlin.primitives.isSet
 import renetik.android.core.lang.catchAllErrorReturnNull
@@ -118,53 +116,6 @@ val Context.batteryPercent: Float
         val level = batteryStatus!!.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
         val scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
         return level / scale.toFloat()
-    }
-
-@Suppress("DEPRECATION")
-val Context.defaultDisplay: Display
-    get() = (getSystemService(WINDOW_SERVICE) as WindowManager).defaultDisplay
-
-@Suppress("DEPRECATION")
-val Context.displayWidth: Int
-    get() = defaultDisplay.width
-
-@Suppress("DEPRECATION")
-val Context.displayHeight
-    get() = defaultDisplay.height
-
-private val Context.displayMetrics2
-    get() = DisplayMetrics().apply {
-        defaultDisplay.getMetrics(this)
-    }
-
-val Context.realDisplayMetrics
-    get() = DisplayMetrics().apply {
-        defaultDisplay.getRealMetrics(this)
-    }
-
-enum class CSDisplayOrientation {
-    Portrait, UpsideDown, LandscapeLeft, LandscapeRight, Unknown
-}
-
-val Context.screenRotation
-    get() = if (isPhone) screenRotationOnPhone else screenRotationOnTablet
-
-private val Context.screenRotationOnPhone
-    get() = when (defaultDisplay.rotation) {
-        ROTATION_0 -> Portrait
-        ROTATION_90 -> LandscapeRight
-        ROTATION_180 -> UpsideDown
-        ROTATION_270 -> LandscapeLeft
-        else -> Unknown
-    }
-
-private val Context.screenRotationOnTablet
-    get() = when (defaultDisplay.rotation) {
-        ROTATION_0 -> LandscapeRight
-        ROTATION_90 -> UpsideDown
-        ROTATION_180 -> LandscapeLeft
-        ROTATION_270 -> Portrait
-        else -> Unknown
     }
 
 fun Context.string(@StringRes resId: Int): String {

@@ -58,6 +58,7 @@ $dokka.location:renetik.android.core.extensions.content//copyTo/android.content.
 $dokka.location:renetik.android.core.extensions.content//createContextForLocale/android.content.Context#java.util.Locale/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/create-context-for-locale.html
 $dokka.location:renetik.android.core.extensions.content//createTempFile/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/create-temp-file.html
 $dokka.location:renetik.android.core.extensions.content//defaultDisplay/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/default-display.html
+$dokka.location:renetik.android.core.extensions.content//deviceDefaultOrientation/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/device-default-orientation.html
 $dokka.location:renetik.android.core.extensions.content//displayHeight/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/display-height.html
 $dokka.location:renetik.android.core.extensions.content//displayMetrics/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/display-metrics.html
 $dokka.location:renetik.android.core.extensions.content//displayWidth/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/display-width.html
@@ -78,16 +79,19 @@ $dokka.location:renetik.android.core.extensions.content//input/android.content.C
 $dokka.location:renetik.android.core.extensions.content//isDarkMode/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-dark-mode.html
 $dokka.location:renetik.android.core.extensions.content//isDebug/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-debug.html
 $dokka.location:renetik.android.core.extensions.content//isLandscape/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-landscape.html
+$dokka.location:renetik.android.core.extensions.content//isLandscape/renetik.android.core.extensions.content.CSDisplayOrientation#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-landscape.html
 $dokka.location:renetik.android.core.extensions.content//isMidiSupported/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-midi-supported.html
 $dokka.location:renetik.android.core.extensions.content//isNetworkConnected/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-network-connected.html
 $dokka.location:renetik.android.core.extensions.content//isPhone/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-phone.html
 $dokka.location:renetik.android.core.extensions.content//isPortrait/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-portrait.html
+$dokka.location:renetik.android.core.extensions.content//isPortrait/renetik.android.core.extensions.content.CSDisplayOrientation#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-portrait.html
 $dokka.location:renetik.android.core.extensions.content//isServiceRunning/android.content.Context#java.lang.Class[android.app.Service]/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-service-running.html
 $dokka.location:renetik.android.core.extensions.content//isSystemDarkMode/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-system-dark-mode.html
 $dokka.location:renetik.android.core.extensions.content//isTablet/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-tablet.html
 $dokka.location:renetik.android.core.extensions.content//load/android.content.SharedPreferences#android.content.SharedPreferences/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/load.html
 $dokka.location:renetik.android.core.extensions.content//midi/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/midi.html
 $dokka.location:renetik.android.core.extensions.content//openInputStream/android.content.Context#android.net.Uri/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/open-input-stream.html
+$dokka.location:renetik.android.core.extensions.content//orientation/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/orientation.html
 $dokka.location:renetik.android.core.extensions.content//packageInfo/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/package-info.html
 $dokka.location:renetik.android.core.extensions.content//progressDrawable/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/progress-drawable.html
 $dokka.location:renetik.android.core.extensions.content//realDisplayMetrics/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/real-display-metrics.html
@@ -97,7 +101,6 @@ $dokka.location:renetik.android.core.extensions.content//resourceBytes/android.c
 $dokka.location:renetik.android.core.extensions.content//resourceDimension/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/resource-dimension.html
 $dokka.location:renetik.android.core.extensions.content//resourceInts/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/resource-ints.html
 $dokka.location:renetik.android.core.extensions.content//resourceStrings/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/resource-strings.html
-$dokka.location:renetik.android.core.extensions.content//screenRotation/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/screen-rotation.html
 $dokka.location:renetik.android.core.extensions.content//setLocale/android.content.Context#java.util.Locale/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/set-locale.html
 $dokka.location:renetik.android.core.extensions.content//size/android.content.SharedPreferences#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/size.html
 $dokka.location:renetik.android.core.extensions.content//spToPixel/android.content.Context#kotlin.Float/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/sp-to-pixel.html
