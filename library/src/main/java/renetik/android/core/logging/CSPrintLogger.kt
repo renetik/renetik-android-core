@@ -1,17 +1,16 @@
 package renetik.android.core.logging
 
-import renetik.android.core.BuildConfig.DEBUG
 import renetik.android.core.BuildConfig.LIBRARY_PACKAGE_NAME
 import renetik.android.core.kotlin.primitives.Space
 import renetik.android.core.kotlin.text.add
 import renetik.android.core.kotlin.text.addSpace
 import renetik.android.core.kotlin.text.deleteLast
 import renetik.android.core.lang.void
-import renetik.android.core.logging.CSLoggerEvent.*
+import renetik.android.core.logging.CSLogLevel.*
 
 class CSPrintLogger(val name: String = LIBRARY_PACKAGE_NAME,
-                    override val isDebug: Boolean = DEBUG,
-                    private val listener: ((event: CSLoggerEvent,
+                    override val level: CSLogLevel = Debug,
+                    private val listener: ((event: CSLogLevel,
                                             message: String) -> void)? = null) : CSLogger {
 
 
@@ -34,14 +33,12 @@ class CSPrintLogger(val name: String = LIBRARY_PACKAGE_NAME,
     }
 
     override fun debug(vararg values: Any?) {
-        if (!isDebug) return
         val message = createMessage(*values).toString()
         println("$Debug: $name: $message")
         listener?.invoke(Debug, message)
     }
 
     override fun debug(e: Throwable, vararg values: Any?) {
-        if (!isDebug) return
         val message = createMessage(*values)
         println("$Debug: $name: $message $e ${e.asTraceString}")
         listener?.invoke(Debug, message.addSpace().add(e.asTraceString).toString())

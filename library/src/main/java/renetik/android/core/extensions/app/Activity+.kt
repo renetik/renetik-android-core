@@ -6,6 +6,7 @@ import android.content.res.Configuration.*
 import android.view.View
 import renetik.android.core.extensions.content.input
 import renetik.android.core.logging.CSLog.logDebug
+import renetik.android.core.logging.CSLogMessage.Companion.message
 
 val Activity.contentView1: View
     get() = window.findViewById(android.R.id.content)
@@ -32,6 +33,6 @@ fun Context.fixInputMethodLeak() {
         if (obj == null || obj !is View) continue
         if (obj.context === this) declaredField.set(input, null) else continue
     } catch (throwable: Throwable) {
-        logDebug(throwable)
+        logDebug { message(throwable) }
     }
 }

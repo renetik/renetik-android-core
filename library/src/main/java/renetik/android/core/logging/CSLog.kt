@@ -2,93 +2,70 @@ package renetik.android.core.logging
 
 import android.content.Context
 import renetik.android.core.extensions.content.toast
-import renetik.android.core.kotlin.primitives.separateToString
+import renetik.android.core.kotlin.CSUnexpectedException
+import renetik.android.core.lang.ReturnFunc
+import renetik.android.core.logging.CSLogLevel.*
+import renetik.android.core.logging.CSLogMessage.Companion.Empty
 import java.lang.System.currentTimeMillis
 import java.lang.Thread.currentThread
 import java.text.DateFormat.getDateTimeInstance
 
 object CSLog {
-    private const val NoMessage = "No Message"
-
     var logger: CSLogger = CSPrintLogger()
 
     fun init(logger: CSLogger) {
         this.logger = logger
     }
 
-    fun logDebug(message: (() -> Any)? = null) {
-        if (logger.isDebug) logger.debug(*createDebugMessage("logDebug",
-            message?.invoke() ?: NoMessage))
+    fun log(level: CSLogLevel, function: () -> CSLogMessage = { Empty }) = logImpl(level, function)
+    fun logDebug(function: () -> CSLogMessage = { Empty }) = logImpl(Debug, function)
+    fun logInfo(function: ReturnFunc<CSLogMessage> = { Empty }) = logImpl(Info, function)
+    fun logWarn(function: () -> CSLogMessage = { Empty }) = logImpl(Warn, function)
+    fun logError(function: () -> CSLogMessage = { Empty }) = logImpl(Error, function)
+
+    fun Context.logInfoToast(function: ReturnFunc<CSLogMessage> = { Empty }) {
+        logImpl(Info, function)
+        if (logger.isEnabled(Warn)) toast(function().message)
     }
 
-    fun logDebug(e: Throwable) = logger.debug(e)
-
-    fun logWarn(vararg values: Any?) =
-        logger.warn(*createMessage("logWarn", values))
-
-    fun logWarn(e: Throwable, vararg values: Any?) =
-        logger.warn(e, *createMessage("logWarn", values))
-
-    fun logError(vararg values: Any?) =
-        logger.error(*createMessage("logError", values))
-
-    fun logError(e: Throwable, vararg values: Any?) =
-        logger.error(e, *createMessage("logError", values))
-
-    fun logInfo(vararg values: Any?) =
-        logger.info(*createMessage("logInfo", values))
-
-    fun Context.logInfoToast(vararg values: Any?) {
-        logger.info(*createMessage("logWarnToast", values))
-        toast(" ".separateToString(*values))
+    fun Context.logWarnToast(message: ReturnFunc<CSLogMessage> = { Empty }) {
+        logImpl(Warn, message)
+        if (logger.isEnabled(Warn)) toast(message().message)
     }
 
-    fun Context.logWarnToast(vararg values: Any?) {
-        logger.warn(*createMessage("logWarnToast", values))
-        toast(" ".separateToString(*values))
+    fun Context.logErrorToast(message: ReturnFunc<CSLogMessage> = { Empty }) {
+        logImpl(Error, message)
+        if (logger.isEnabled(Warn)) toast(message().message)
     }
 
-    fun Context.logErrorToast(vararg values: Any?) {
-        logger.error(*createMessage("logErrorToast", values))
-        toast(" ".separateToString(*values))
-    }
-
-    private fun createMessage(logFunctionName: String,
-                              values: Array<out Any?>) = Array(values.size + 2) {
-        when (it) {
-            0 -> time
-            1 -> getTraceLine(logFunctionName)
-            else -> values[it - 2]
+    private fun logImpl(level: CSLogLevel, message: () -> CSLogMessage = { Empty }) {
+        if (logger.isEnabled(level)) message().let {
+            val text = createMessage(it.message)
+            when (level) {
+                Debug -> logger.debug(it.throwable, *text)
+                Info -> logger.info(it.throwable, *text)
+                Warn -> logger.warn(it.throwable, *text)
+                Error -> logger.error(it.throwable, *text)
+                else -> CSUnexpectedException.unexpected()
+            }
         }
     }
 
     private val timeFormat by lazy { getDateTimeInstance() }
 
-    private fun getTraceLine(logFunctionName: String): String {
-        val index = currentThread().stackTrace.indexOfFirst { it.methodName == logFunctionName } + 1
-        return currentThread().stackTrace[index].let { element ->
-            "${element.className}$${element.methodName}(${element.fileName}:${element.lineNumber})"
-        }
-    }
-
-
-    private val time get() = timeFormat.format(currentTimeMillis())
-
-    private fun createDebugMessage(
-        logFunctionName: String, values: Array<out Any?>) = Array(values.size + 2) {
+    fun createMessage(message: Any?) = Array(3) {
         when (it) {
-            0 -> time
-            1 -> getTraceLine(logFunctionName)
-            else -> values[it - 2]
-        }
-    }
-
-    private fun createDebugMessage(
-        logFunctionName: String, message: Any?) = Array(3) {
-        when (it) {
-            0 -> time
-            1 -> getTraceLine(logFunctionName)
+            0 -> timeFormat.format(currentTimeMillis())
+            1 -> getTraceLine()
             else -> message
+        }
+    }
+
+    private fun getTraceLine(): String {
+        val stackTrace = currentThread().stackTrace
+        val index = stackTrace.indexOfFirst { it.methodName == "logImpl" } + 2
+        return stackTrace[index].let { element ->
+            "${element.className}$${element.methodName}(${element.fileName}:${element.lineNumber})"
         }
     }
 }

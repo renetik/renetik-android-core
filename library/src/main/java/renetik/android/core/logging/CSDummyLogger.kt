@@ -1,9 +1,7 @@
 package renetik.android.core.logging
 
-import renetik.android.core.lang.CSEnvironment
-
 class CSDummyLogger() : CSLogger {
-    override val isDebug get() = CSEnvironment.isDebug
+    override val level: CSLogLevel = CSLogLevel.Debug
     override fun error(vararg values: Any?) = Unit
     override fun error(e: Throwable, vararg values: Any?) = Unit
     override fun info(vararg values: Any?) = Unit

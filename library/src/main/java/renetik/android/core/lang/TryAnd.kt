@@ -2,6 +2,7 @@ package renetik.android.core.lang
 
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logWarn
+import renetik.android.core.logging.CSLogMessage.Companion.message
 
 inline fun <reified E : Throwable> catch(block: () -> void): Result<void> = try {
     Result.success(block())
@@ -17,7 +18,7 @@ inline fun <reified E : Throwable> catchWarn(block: () -> void): Result<void> = 
     Result.success(block())
 } catch (e: Throwable) {
     if (e is E) {
-        logWarn(e)
+        logWarn { message(e) }
         Result.failure(e)
     } else throw e
 }
@@ -42,7 +43,7 @@ inline fun <reified ExceptionType : Throwable, ReturnType> catchWarnReturn(
         tryFunction()
     } catch (e: Throwable) {
         if (e is ExceptionType) {
-            logWarn(e, message)
+            logWarn { message(e, message) }
             onExceptionReturn(e)
         } else throw e
     }
@@ -76,7 +77,7 @@ inline fun <ReturnType, reified ExceptionType : Throwable> catchErrorReturn(
         tryFunction()
     } catch (e: Throwable) {
         if (e is ExceptionType) {
-            logError(e)
+            logError { message(e) }
             onExceptionReturn(e)
         } else throw e
     }

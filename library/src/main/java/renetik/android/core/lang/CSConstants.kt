@@ -3,6 +3,9 @@
 package renetik.android.core.lang
 
 object CSStringConstants {
+    const val Empty = ""
+    const val Comma = ","
+    const val Semicolon = ";"
     const val NewLine = "\n"
     const val Space = " "
     const val `$` = "$"
