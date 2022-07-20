@@ -24,7 +24,7 @@ class CSPrintLoggerTest {
         })
         logWarn { message("test") }
         Assert.assertEquals(Warn, _event)
-        Assert.assertTrue(_message!!.endsWith("test"))
+        Assert.assertTrue(_message!!.endsWith("test "))
     }
 
     @Test
@@ -42,6 +42,6 @@ class CSPrintLoggerTest {
         init(CSPrintLogger(name = "TestLog", level = Debug, listener))
         logDebug { message("test2") }
         Assert.assertEquals(Debug, _event)
-        Assert.assertTrue(_message!!.endsWith("test2"))
+        Assert.assertTrue(_message!!.endsWith("test2 "))
     }
 }

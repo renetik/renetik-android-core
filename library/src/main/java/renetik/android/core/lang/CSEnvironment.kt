@@ -20,6 +20,15 @@ object CSEnvironment {
     }
 
     val isDebug by lazy { app.isDebug }
+
+    val isTestRunner by lazy {
+        try {
+            Class.forName("org.junit.runner.Runner")
+            true
+        } catch (ignored: ClassNotFoundException) {
+            true
+        }
+    }
 }
 
 

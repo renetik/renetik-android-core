@@ -1,38 +1,11 @@
 package renetik.android.core.logging
 
-import java.io.PrintWriter
-import java.io.StringWriter
-
 interface CSLogger {
-
     val level: CSLogLevel
-
-    fun error(vararg values: Any?)
-
-    fun error(e: Throwable, vararg values: Any?)
-
-    fun info(vararg values: Any?)
-
-    fun debug(vararg values: Any?)
-
-    fun debug(e: Throwable, vararg values: Any?)
-
-    fun warn(vararg values: Any?)
-
-    fun warn(e: Throwable, vararg values: Any?)
-
-    val Throwable?.asTraceString: String
-        get() {
-            if (this == null) return ""
-            val stringWriter = StringWriter()
-            val printWriter = PrintWriter(stringWriter)
-            printStackTrace(printWriter)
-            printWriter.flush()
-            return stringWriter.toString()
-        }
-
-    fun isDisabled(level: CSLogLevel) =
-        level.ordinal < this.level.ordinal
-
+    fun debug(e: Throwable?, vararg values: Any?)
+    fun info(e: Throwable?, vararg values: Any?)
+    fun warn(e: Throwable?, vararg values: Any?)
+    fun error(e: Throwable?, vararg values: Any?)
+    fun isDisabled(level: CSLogLevel) = level.ordinal < this.level.ordinal
     fun isEnabled(level: CSLogLevel) = !isDisabled(level)
 }

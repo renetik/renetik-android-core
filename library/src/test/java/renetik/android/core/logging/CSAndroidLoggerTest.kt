@@ -27,7 +27,7 @@ class CSAndroidLoggerTest {
 
         assertEquals(Warn, event)
         val messageEnd =
-            "renetik.android.core.logging.CSAndroidLoggerTest\$logWithListener(CSAndroidLoggerTest.kt:26) test"
+            "renetik.android.core.logging.CSAndroidLoggerTest\$logWithListener(CSAndroidLoggerTest.kt:26) test "
         assertTrue(message!!.endsWith(messageEnd))
     }
 
@@ -42,7 +42,7 @@ class CSAndroidLoggerTest {
         logDebug { message("test2") }
         assertEquals(Debug, event)
         val messageEnd =
-            "renetik.android.core.logging.CSAndroidLoggerTest\$isDebug(CSAndroidLoggerTest.kt:42) test2"
+            "renetik.android.core.logging.CSAndroidLoggerTest\$isDebug(CSAndroidLoggerTest.kt:42) test2 "
         assertTrue(message!!.endsWith(messageEnd))
     }
 }

@@ -15,54 +15,32 @@ class CSAndroidLogger(
     override val level: CSLogLevel = if (isDebug) Debug else Error,
     val listener: CSLogListener? = null) : CSLogger {
 
-
-    override fun error(vararg values: Any?) {
-        if (isDisabled(Error)) return
-        val message = createMessage(*values).toString()
-        Log.e(tag, message)
-        listener?.invoke(Error, message)
-    }
-
-    override fun error(e: Throwable, vararg values: Any?) {
-        if (isDisabled(Error)) return
-        val message = createMessage(*values)
-        Log.e(tag, message.toString(), e)
-        listener?.invoke(Error, message.addSpace().add(getStackTraceString(e)).toString())
-    }
-
-    override fun info(vararg values: Any?) {
-        if (isDisabled(Info)) return
-        val message = createMessage(*values).toString()
-        Log.i(tag, message)
-        listener?.invoke(Info, message)
-    }
-
-    override fun debug(vararg values: Any?) {
-        if (isDisabled(Debug)) return
-        val message = createMessage(*values).toString()
-        Log.d(tag, message)
-        listener?.invoke(Debug, message)
-    }
-
-    override fun debug(e: Throwable, vararg values: Any?) {
+    override fun debug(e: Throwable?, vararg values: Any?) {
         if (isDisabled(Debug)) return
         val message = createMessage(*values)
         Log.d(tag, message.toString(), e)
         listener?.invoke(Debug, message.addSpace().add(getStackTraceString(e)).toString())
     }
 
-    override fun warn(vararg values: Any?) {
-        if (isDisabled(Warn)) return
-        val message = createMessage(*values).toString()
-        Log.w(tag, message)
-        listener?.invoke(Warn, message)
+    override fun info(e: Throwable?, vararg values: Any?) {
+        if (isDisabled(Info)) return
+        val message = createMessage(*values)
+        Log.i(tag, message.toString(), e)
+        listener?.invoke(Info, message.addSpace().add(getStackTraceString(e)).toString())
     }
 
-    override fun warn(e: Throwable, vararg values: Any?) {
+    override fun warn(e: Throwable?, vararg values: Any?) {
         if (isDisabled(Warn)) return
         val message = createMessage(*values)
         Log.w(tag, message.toString(), e)
         listener?.invoke(Warn, message.addSpace().add(getStackTraceString(e)).toString())
+    }
+
+    override fun error(e: Throwable?, vararg values: Any?) {
+        if (isDisabled(Error)) return
+        val message = createMessage(*values)
+        Log.e(tag, message.toString(), e)
+        listener?.invoke(Error, message.addSpace().add(getStackTraceString(e)).toString())
     }
 
     private fun createMessage(vararg values: Any?) = StringBuilder().apply {
