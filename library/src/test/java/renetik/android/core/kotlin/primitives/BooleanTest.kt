@@ -15,6 +15,14 @@ class BooleanTest {
         assertTrue(isTrue)
     }
 
+//    @Test
+//    fun testTrueCondition2() {
+//        val value: Boolean? = true
+//        var isTrue = false
+//        value.isTrue { isTrue = true } ?: run { fail() }
+//        assertTrue(isTrue)
+//    }
+
     @Test
     fun testFalseCondition() {
         val value: Boolean? = false
@@ -22,6 +30,14 @@ class BooleanTest {
         value.ifFalse { isFalse = true }.elseDo { fail() }
         assertTrue(isFalse)
     }
+
+//    @Test
+//    fun testFalseCondition2() {
+//        val value: Boolean? = false
+//        var isFalse = false
+//        value.isFalse { isFalse = true } ?: run { fail() }
+//        assertTrue(isFalse)
+//    }
 
     @Test
     fun testNullCondition() {

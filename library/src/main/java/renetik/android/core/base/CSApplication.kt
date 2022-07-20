@@ -6,12 +6,6 @@ import renetik.android.core.logging.CSLog.logWarn
 import renetik.android.core.logging.CSLogMessage.Companion.message
 
 abstract class CSApplication : Application() {
-
-    override fun onCreate() {
-        super.onCreate()
-//        CSEnvironment.app = this
-    }
-
     override fun onLowMemory() {
         super.onLowMemory()
         logWarn { message("onLowMemory") }

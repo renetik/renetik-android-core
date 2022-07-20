@@ -2,7 +2,6 @@ package renetik.android.core.extensions.content
 
 import android.annotation.SuppressLint
 import android.content.*
-import android.content.ContextWrapper.WINDOW_SERVICE
 import android.content.Intent.ACTION_BATTERY_CHANGED
 import android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE
 import android.content.pm.PackageInfo
@@ -13,12 +12,9 @@ import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.os.BatteryManager
 import android.util.Base64
-import android.util.DisplayMetrics
 import android.util.TypedValue
-import android.view.Display
 import android.view.LayoutInflater
 import android.view.View
-import android.view.WindowManager
 import androidx.annotation.StringRes
 import androidx.core.content.res.getDrawableOrThrow
 import renetik.android.core.kotlin.primitives.isFlagSet
@@ -51,12 +47,12 @@ val Context.isNetworkConnected
         .activeNetworkInfo?.isConnected ?: false
 
 @Suppress("DEPRECATION")
-val Context.versionString
+val Context.packageVersionString
     get() = packageInfo!!.versionCode.toString() + "-" + packageInfo!!.versionName
 
 @Suppress("DEPRECATION")
-val Context.versionCode
-    get() = packageInfo!!.versionCode.toString()
+val Context.packageVersionCode
+    get() = packageInfo!!.versionCode
 
 @Suppress("DEPRECATION")
 val Context.appKeyHash

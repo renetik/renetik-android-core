@@ -1,4 +1,4 @@
-package renetik.android.app
+package renetik.android.core.extensions.app
 
 import android.app.Activity
 import android.content.Context
@@ -8,19 +8,14 @@ import renetik.android.core.extensions.content.input
 import renetik.android.core.logging.CSLog.logDebug
 import renetik.android.core.logging.CSLogMessage.Companion.message
 
-val Activity.contentView1: View
-    get() = window.findViewById(android.R.id.content)
+val Activity.isWindowLandscape get() = windowOrientation == ORIENTATION_LANDSCAPE
 
-val Activity.contentView2: View
-    get() = window.decorView.rootView
-
-val Activity.isScreenLandscape get() = screenOrientation == ORIENTATION_LANDSCAPE
-val Activity.screenOrientation: Int
+val Activity.windowOrientation: Int
     get() {
-        val display = getWindowManager().getDefaultDisplay()
+        val display = windowManager.defaultDisplay
         return when {
-            display.getWidth() == display.getHeight() -> ORIENTATION_SQUARE
-            display.getWidth() < display.getHeight() -> ORIENTATION_PORTRAIT
+            display.width == display.height -> ORIENTATION_SQUARE
+            display.width < display.height -> ORIENTATION_PORTRAIT
             else -> ORIENTATION_LANDSCAPE
         }
     }

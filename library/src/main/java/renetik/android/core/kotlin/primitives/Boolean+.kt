@@ -11,11 +11,13 @@ val <T : Boolean?> T.isFalse: Boolean get() = this == false
 val <T : Boolean?> T.isNotTrue: Boolean get() = this != true
 val <T : Boolean?> T.isNotFalse: Boolean get() = this != false
 
-fun <T : Boolean?, R> T.isTrue(function: ReturnFunc<R>): R? =
-    if (isTrue) function() else null
+fun <T : Boolean?, R> T.isTrue(function: ReturnFunc<R>) {
+    if (isTrue) function()
+}
 
-fun <T : Boolean?, R> T.isFalse(function: ReturnFunc<R>): R? =
-    if (isFalse) function() else null
+fun <T : Boolean?, R> T.isFalse(function: ReturnFunc<R>) {
+    if (isFalse) function()
+}
 
 fun <T : Boolean?> T.ifTrue(function: Func): CSConditionalResult {
     if (isTrue) function()

@@ -1,15 +1,8 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
-$dokka.location:renetik.android.app////PointingToDeclaration/renetik-android-core/renetik.android.app/index.html
-$dokka.location:renetik.android.app//contentView1/android.app.Activity#/PointingToDeclaration/renetik-android-core/renetik.android.app/content-view1.html
-$dokka.location:renetik.android.app//contentView2/android.app.Activity#/PointingToDeclaration/renetik-android-core/renetik.android.app/content-view2.html
-$dokka.location:renetik.android.app//fixInputMethodLeak/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.app/fix-input-method-leak.html
-$dokka.location:renetik.android.app//isScreenLandscape/android.app.Activity#/PointingToDeclaration/renetik-android-core/renetik.android.app/is-screen-landscape.html
-$dokka.location:renetik.android.app//screenOrientation/android.app.Activity#/PointingToDeclaration/renetik-android-core/renetik.android.app/screen-orientation.html
 $dokka.location:renetik.android.core.base////PointingToDeclaration/renetik-android-core/renetik.android.core.base/index.html
 $dokka.location:renetik.android.core.base/CSApplication///PointingToDeclaration/renetik-android-core/renetik.android.core.base/-c-s-application/index.html
 $dokka.location:renetik.android.core.base/CSApplication/CSApplication/#/PointingToDeclaration/renetik-android-core/renetik.android.core.base/-c-s-application/-c-s-application.html
-$dokka.location:renetik.android.core.base/CSApplication/onCreate/#/PointingToDeclaration/renetik-android-core/renetik.android.core.base/-c-s-application/on-create.html
 $dokka.location:renetik.android.core.base/CSApplication/onLowMemory/#/PointingToDeclaration/renetik-android-core/renetik.android.core.base/-c-s-application/on-low-memory.html
 $dokka.location:renetik.android.core.base/CSApplication/onTerminate/#/PointingToDeclaration/renetik-android-core/renetik.android.core.base/-c-s-application/on-terminate.html
 $dokka.location:renetik.android.core.common////PointingToDeclaration/renetik-android-core/renetik.android.core.common/index.html
@@ -26,7 +19,10 @@ $dokka.location:renetik.android.core.common/CSStringBuilderWriter/toString/#/Poi
 $dokka.location:renetik.android.core.common/CSStringBuilderWriter/write/#kotlin.CharArray?#kotlin.Int#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.common/-c-s-string-builder-writer/write.html
 $dokka.location:renetik.android.core.common/CSStringBuilderWriter/write/#kotlin.String?/PointingToDeclaration/renetik-android-core/renetik.android.core.common/-c-s-string-builder-writer/write.html
 $dokka.location:renetik.android.core.extensions.app////PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/index.html
+$dokka.location:renetik.android.core.extensions.app//fixInputMethodLeak/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/fix-input-method-leak.html
+$dokka.location:renetik.android.core.extensions.app//isWindowLandscape/android.app.Activity#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/is-window-landscape.html
 $dokka.location:renetik.android.core.extensions.app//restart/android.app.Application#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/restart.html
+$dokka.location:renetik.android.core.extensions.app//windowOrientation/android.app.Activity#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/window-orientation.html
 $dokka.location:renetik.android.core.extensions.content.res////PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content.res/index.html
 $dokka.location:renetik.android.core.extensions.content.res//copyFileToDir/android.content.res.AssetManager#kotlin.String#java.io.File#kotlin.Boolean/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content.res/copy-file-to-dir.html
 $dokka.location:renetik.android.core.extensions.content.res//copyFilesToDir/android.content.res.AssetManager#kotlin.String#java.io.File#kotlin.Boolean/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content.res/copy-files-to-dir.html
@@ -93,6 +89,8 @@ $dokka.location:renetik.android.core.extensions.content//midi/android.content.Co
 $dokka.location:renetik.android.core.extensions.content//openInputStream/android.content.Context#android.net.Uri/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/open-input-stream.html
 $dokka.location:renetik.android.core.extensions.content//orientation/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/orientation.html
 $dokka.location:renetik.android.core.extensions.content//packageInfo/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/package-info.html
+$dokka.location:renetik.android.core.extensions.content//packageVersionCode/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/package-version-code.html
+$dokka.location:renetik.android.core.extensions.content//packageVersionString/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/package-version-string.html
 $dokka.location:renetik.android.core.extensions.content//progressDrawable/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/progress-drawable.html
 $dokka.location:renetik.android.core.extensions.content//realDisplayMetrics/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/real-display-metrics.html
 $dokka.location:renetik.android.core.extensions.content//register/android.content.Context#android.content.IntentFilter#kotlin.Function2[android.content.Intent,android.content.BroadcastReceiver,kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/register.html
@@ -118,8 +116,6 @@ $dokka.location:renetik.android.core.extensions.content//toOpenUrl/android.conte
 $dokka.location:renetik.android.core.extensions.content//toast/android.content.Context#kotlin.String#renetik.android.core.extensions.content.CSToastLength/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/toast.html
 $dokka.location:renetik.android.core.extensions.content//toast/android.content.Context#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/toast.html
 $dokka.location:renetik.android.core.extensions.content//unregister/android.content.Context#android.content.BroadcastReceiver/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/unregister.html
-$dokka.location:renetik.android.core.extensions.content//versionCode/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/version-code.html
-$dokka.location:renetik.android.core.extensions.content//versionString/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/version-string.html
 $dokka.location:renetik.android.core.extensions.content/CSColorInt///PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/-c-s-color-int/index.html
 $dokka.location:renetik.android.core.extensions.content/CSColorInt/CSColorInt/#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/-c-s-color-int/-c-s-color-int.html
 $dokka.location:renetik.android.core.extensions.content/CSColorInt/color/#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/-c-s-color-int/color.html
@@ -787,7 +783,6 @@ $dokka.location:renetik.android.core.util/CSSynchronizedProperty///PointingToDec
 $dokka.location:renetik.android.core.util/CSSynchronizedProperty/CSSynchronizedProperty/#TypeParam(bounds=[kotlin.Any?])#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]?/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-synchronized-property/-c-s-synchronized-property.html
 $dokka.location:renetik.android.core.util/CSSynchronizedProperty/getValue/#kotlin.Any#kotlin.reflect.KProperty[*]/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-synchronized-property/get-value.html
 $dokka.location:renetik.android.core.util/CSSynchronizedProperty/setValue/#kotlin.Any#kotlin.reflect.KProperty[*]#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-synchronized-property/set-value.html
-renetik.android.app
 renetik.android.core.base
 renetik.android.core.common
 renetik.android.core.extensions.app
