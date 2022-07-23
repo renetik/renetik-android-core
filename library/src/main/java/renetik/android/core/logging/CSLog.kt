@@ -3,9 +3,12 @@ package renetik.android.core.logging
 import android.content.Context
 import renetik.android.core.extensions.content.toast
 import renetik.android.core.kotlin.CSUnexpectedException
-import renetik.android.core.lang.ReturnFunc
+import renetik.android.core.kotlin.primitives.leaveEndOfLength
+import renetik.android.core.kotlin.run
+import renetik.android.core.lang.CSStringConstants.NewLine
 import renetik.android.core.logging.CSLogLevel.*
 import renetik.android.core.logging.CSLogMessage.Companion.Empty
+import renetik.android.core.logging.CSLogMessage.Companion.message
 import java.lang.System.currentTimeMillis
 import java.lang.Thread.currentThread
 import java.text.DateFormat.getDateTimeInstance
@@ -17,28 +20,38 @@ object CSLog {
         this.logger = logger
     }
 
-    fun log(level: CSLogLevel, function: () -> CSLogMessage = { Empty }) = logImpl(level, function)
-    fun logDebug(function: () -> CSLogMessage = { Empty }) = logImpl(Debug, function)
-    fun logInfo(function: ReturnFunc<CSLogMessage> = { Empty }) = logImpl(Info, function)
-    fun logWarn(function: () -> CSLogMessage = { Empty }) = logImpl(Warn, function)
-    fun logError(function: () -> CSLogMessage = { Empty }) = logImpl(Error, function)
+    fun log(level: CSLogLevel) = run { logImpl(level) { message("") } }
+    fun log(level: CSLogLevel, function: () -> CSLogMessage) = run { logImpl(level, function) }
 
-    fun Context.logInfoToast(function: ReturnFunc<CSLogMessage> = { Empty }) {
-        logImpl(Info, function)
-        if (logger.isEnabled(Warn)) toast(function().message)
-    }
+    fun logDebug() = run { logImpl(Debug) { message("") } }
+    fun logDebug(function: () -> CSLogMessage) = run { logImpl(Debug, function) }
 
-    fun Context.logWarnToast(message: ReturnFunc<CSLogMessage> = { Empty }) {
-        logImpl(Warn, message)
-        if (logger.isEnabled(Warn)) toast(message().message)
-    }
+    fun logInfo() = run { logImpl(Info) { message("") } }
+    fun logInfo(function: () -> CSLogMessage) = run { logImpl(Info, function) }
 
-    fun Context.logErrorToast(message: ReturnFunc<CSLogMessage> = { Empty }) {
-        logImpl(Error, message)
-        if (logger.isEnabled(Warn)) toast(message().message)
-    }
+    fun logWarn() = run { logImpl(Warn) { message("") } }
+    fun logWarn(function: () -> CSLogMessage) = run { logImpl(Warn, function) }
 
-    private fun logImpl(level: CSLogLevel, message: () -> CSLogMessage = { Empty }) {
+    fun logError() = run { logImpl(Error) { message("") } }
+    fun logError(function: () -> CSLogMessage) = run { logImpl(Error, function) }
+
+    fun Context.logDebugToast() = toast(Debug, logImpl(Debug) { message("") })
+    fun Context.logDebugToast(function: () -> CSLogMessage) =
+        toast(Debug, logImpl(Debug, function))
+
+    fun Context.logInfoToast() = toast(Info, logImpl(Info) { message("") })
+    fun Context.logInfoToast(function: () -> CSLogMessage) =
+        toast(Info, logImpl(Info, function))
+
+    fun Context.logWarnToast() = toast(Warn, logImpl(Warn) { message("") })
+    fun Context.logWarnToast(function: () -> CSLogMessage) =
+        toast(Warn, logImpl(Warn, function))
+
+    fun Context.logErrorToast() = toast(Error, logImpl(Error) { message("") })
+    fun Context.logErrorToast(function: () -> CSLogMessage) =
+        toast(Error, logImpl(Error, function))
+
+    private fun logImpl(level: CSLogLevel, message: () -> CSLogMessage = { Empty }): Array<Any?>? {
         if (logger.isEnabled(level)) message().let {
             val text = createMessage(it.message)
             when (level) {
@@ -48,7 +61,14 @@ object CSLog {
                 Error -> logger.error(it.throwable, *text)
                 else -> CSUnexpectedException.unexpected()
             }
+            return text
         }
+        return null
+    }
+
+    private fun Context.toast(level: CSLogLevel, text: Array<Any?>?) {
+        if (logger.isEnabled(level)) toast("${text!![1]}".leaveEndOfLength(100)
+            .chunked(50).joinToString { "$it$NewLine" })
     }
 
     private val timeFormat by lazy { getDateTimeInstance() }

@@ -34,6 +34,13 @@ fun <T> createClass(className: String) =
 inline fun <reified T> createInstance(): T? =
     T::class.java.createInstance()
 
+fun classExist(name: String): Boolean = try {
+    Class.forName(name)
+    true
+} catch (ignored: ClassNotFoundException) {
+    false
+}
+
 fun <T> createInstance(className: String): T? =
     createClass<T>(className)?.createInstance()
 

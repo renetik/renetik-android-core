@@ -11,11 +11,11 @@ val <T : Boolean?> T.isFalse: Boolean get() = this == false
 val <T : Boolean?> T.isNotTrue: Boolean get() = this != true
 val <T : Boolean?> T.isNotFalse: Boolean get() = this != false
 
-fun <T : Boolean?, R> T.isTrue(function: ReturnFunc<R>) {
+fun <T : Boolean?> T.isTrue(function: Func) {
     if (isTrue) function()
 }
 
-fun <T : Boolean?, R> T.isFalse(function: ReturnFunc<R>) {
+fun <T : Boolean?> T.isFalse(function: Func) {
     if (isFalse) function()
 }
 

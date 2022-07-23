@@ -72,15 +72,13 @@ inline fun <ReturnType>
 
 inline fun <ReturnType, reified ExceptionType : Throwable> catchErrorReturn(
     tryFunction: () -> ReturnType, onExceptionReturn: (ExceptionType) -> ReturnType
-): ReturnType {
-    return try {
-        tryFunction()
-    } catch (e: Throwable) {
-        if (e is ExceptionType) {
-            logError { message(e) }
-            onExceptionReturn(e)
-        } else throw e
-    }
+): ReturnType = try {
+    tryFunction()
+} catch (e: Throwable) {
+    if (e is ExceptionType) {
+        logError { message(e) }
+        onExceptionReturn(e)
+    } else throw e
 }
 
 inline fun <reified ExceptionType : Throwable, ReturnType>

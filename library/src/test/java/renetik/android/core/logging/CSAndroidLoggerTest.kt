@@ -4,11 +4,13 @@ import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import renetik.android.core.kotlin.primitives.leaveEndOfLength
 import renetik.android.core.logging.CSLog.init
 import renetik.android.core.logging.CSLog.logDebug
+import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
-import renetik.android.core.logging.CSLogMessage.Companion.message
 import renetik.android.core.logging.CSLogLevel.*
+import renetik.android.core.logging.CSLogMessage.Companion.message
 
 @RunWith(RobolectricTestRunner::class)
 class CSAndroidLoggerTest {
@@ -24,11 +26,20 @@ class CSAndroidLoggerTest {
     fun logWithListener() {
         init(CSAndroidLogger(tag = "TestLog", level = Debug, listener))
         logWarn { message("test") }
-
         assertEquals(Warn, event)
         val messageEnd =
-            "renetik.android.core.logging.CSAndroidLoggerTest\$logWithListener(CSAndroidLoggerTest.kt:26) test "
+            "renetik.android.core.logging.CSAndroidLoggerTest\$logWithListener(CSAndroidLoggerTest.kt:28) test"
         assertTrue(message!!.endsWith(messageEnd))
+    }
+
+    @Test
+    fun logEmpty() {
+        init(CSAndroidLogger(tag = "TestLog", level = Debug, listener))
+        logInfo()
+        assertEquals(Info, event)
+        val messageEnd =
+            "renetik.android.core.logging.CSAndroidLoggerTest\$logEmpty(CSAndroidLoggerTest.kt:38)"
+        assertEquals(messageEnd, message?.leaveEndOfLength(messageEnd.length))
     }
 
     @Test
@@ -42,7 +53,7 @@ class CSAndroidLoggerTest {
         logDebug { message("test2") }
         assertEquals(Debug, event)
         val messageEnd =
-            "renetik.android.core.logging.CSAndroidLoggerTest\$isDebug(CSAndroidLoggerTest.kt:42) test2 "
+            "renetik.android.core.logging.CSAndroidLoggerTest\$isDebug(CSAndroidLoggerTest.kt:53) test2"
         assertTrue(message!!.endsWith(messageEnd))
     }
 }
