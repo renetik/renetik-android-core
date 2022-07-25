@@ -1,7 +1,3 @@
 package renetik.android.core.lang
 
-object CSLeakCanary {
-    fun Any.expectWeaklyReachable(description: String) = Unit
-    fun enable() = Unit
-    fun disable() = Unit
-}
+object CSLeakCanary : CSLeakCanaryInterface

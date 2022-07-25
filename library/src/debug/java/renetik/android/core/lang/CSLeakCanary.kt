@@ -7,17 +7,17 @@ import renetik.android.core.kotlin.run
 import renetik.android.core.lang.CSEnvironment.isTestRunner
 import renetik.android.core.lang.variable.CSVariable.Companion.variable
 
-object CSLeakCanary {
-    private var enabled by variable(true, ::updateConfiguration).apply()
+object CSLeakCanary : CSLeakCanaryInterface {
+    private var enabled by variable(false, ::updateConfiguration)
 
-    fun Any.expectWeaklyReachable(description: String) {
+    override fun Any.expectWeaklyReachable(description: String) {
         if (!isTestRunner && enabled)
             objectWatcher.expectWeaklyReachable(this, description)
     }
 
-    fun enable() = run { enabled = true }
+    override fun enabled() = run { enabled = true }
 
-    fun disable() = run { enabled = false }
+    override fun disabled() = run { enabled = false }
 
     private fun updateConfiguration(isEnabled: Boolean) {
         if (isTestRunner) return

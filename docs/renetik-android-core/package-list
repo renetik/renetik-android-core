@@ -28,7 +28,10 @@ $dokka.location:renetik.android.core.common/CSStringBuilderWriter/toString/#/Poi
 $dokka.location:renetik.android.core.common/CSStringBuilderWriter/write/#kotlin.CharArray?#kotlin.Int#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.common/-c-s-string-builder-writer/write.html
 $dokka.location:renetik.android.core.common/CSStringBuilderWriter/write/#kotlin.String?/PointingToDeclaration/renetik-android-core/renetik.android.core.common/-c-s-string-builder-writer/write.html
 $dokka.location:renetik.android.core.extensions.app////PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/index.html
+$dokka.location:renetik.android.core.extensions.app//fixInputMethod/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/fix-input-method.html
 $dokka.location:renetik.android.core.extensions.app//fixInputMethodLeak/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/fix-input-method-leak.html
+$dokka.location:renetik.android.core.extensions.app//fixInputMethodManagerLeak/#android.content.Context?/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/fix-input-method-manager-leak.html
+$dokka.location:renetik.android.core.extensions.app//fixInputMethodManagerLeak2/#android.content.Context/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/fix-input-method-manager-leak2.html
 $dokka.location:renetik.android.core.extensions.app//isWindowLandscape/android.app.Activity#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/is-window-landscape.html
 $dokka.location:renetik.android.core.extensions.app//restart/android.app.Application#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/restart.html
 $dokka.location:renetik.android.core.extensions.app//windowOrientation/android.app.Activity#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/window-orientation.html
@@ -163,6 +166,9 @@ $dokka.location:renetik.android.core.java.io//write/java.io.File#kotlin.String/P
 $dokka.location:renetik.android.core.java.lang////PointingToDeclaration/renetik-android-core/renetik.android.core.java.lang/index.html
 $dokka.location:renetik.android.core.java.lang//createInstance/java.lang.Class[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/renetik-android-core/renetik.android.core.java.lang/create-instance.html
 $dokka.location:renetik.android.core.java.lang//isMain/java.lang.Thread#/PointingToDeclaration/renetik-android-core/renetik.android.core.java.lang/is-main.html
+$dokka.location:renetik.android.core.java.lang/CSThread///PointingToDeclaration/renetik-android-core/renetik.android.core.java.lang/-c-s-thread/index.html
+$dokka.location:renetik.android.core.java.lang/CSThread/sleepNano/#kotlin.Float/PointingToDeclaration/renetik-android-core/renetik.android.core.java.lang/-c-s-thread/sleep-nano.html
+$dokka.location:renetik.android.core.java.lang/CSThread/sleepNano/#kotlin.Long/PointingToDeclaration/renetik-android-core/renetik.android.core.java.lang/-c-s-thread/sleep-nano.html
 $dokka.location:renetik.android.core.java.util.concurrent////PointingToDeclaration/renetik-android-core/renetik.android.core.java.util.concurrent/index.html
 $dokka.location:renetik.android.core.java.util.concurrent//background/java.util.concurrent.ScheduledExecutorService#kotlin.Long#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.java.util.concurrent/background.html
 $dokka.location:renetik.android.core.java.util.concurrent//backgroundNano/java.util.concurrent.ScheduledExecutorService#kotlin.Long#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.java.util.concurrent/background-nano.html
@@ -521,6 +527,18 @@ $dokka.location:renetik.android.core.lang.variable//value/renetik.android.core.l
 $dokka.location:renetik.android.core.lang.variable//value/renetik.android.core.lang.variable.CSVariable[kotlin.Float]#kotlin.Number/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/value.html
 $dokka.location:renetik.android.core.lang.variable/CSListValuesVariable///PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-list-values-variable/index.html
 $dokka.location:renetik.android.core.lang.variable/CSListValuesVariable/values/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-list-values-variable/values.html
+$dokka.location:renetik.android.core.lang.variable/CSSynchronizedProperty.Companion///PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-synchronized-property/-companion/index.html
+$dokka.location:renetik.android.core.lang.variable/CSSynchronizedProperty.Companion/synchronized/#TypeParam(bounds=[kotlin.Any?])#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]?/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-synchronized-property/-companion/synchronized.html
+$dokka.location:renetik.android.core.lang.variable/CSSynchronizedProperty///PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-synchronized-property/index.html
+$dokka.location:renetik.android.core.lang.variable/CSSynchronizedProperty/CSSynchronizedProperty/#TypeParam(bounds=[kotlin.Any?])#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]?/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-synchronized-property/-c-s-synchronized-property.html
+$dokka.location:renetik.android.core.lang.variable/CSSynchronizedProperty/getValue/#kotlin.Any#kotlin.reflect.KProperty[*]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-synchronized-property/get-value.html
+$dokka.location:renetik.android.core.lang.variable/CSSynchronizedProperty/setValue/#kotlin.Any#kotlin.reflect.KProperty[*]#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-synchronized-property/set-value.html
+$dokka.location:renetik.android.core.lang.variable/CSSynchronizedVariable///PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-synchronized-variable/index.html
+$dokka.location:renetik.android.core.lang.variable/CSSynchronizedVariableImpl///PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-synchronized-variable-impl/index.html
+$dokka.location:renetik.android.core.lang.variable/CSSynchronizedVariableImpl/CSSynchronizedVariableImpl/#TypeParam(bounds=[kotlin.Any?])#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]?/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-synchronized-variable-impl/-c-s-synchronized-variable-impl.html
+$dokka.location:renetik.android.core.lang.variable/CSSynchronizedVariableImpl/onChange/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-synchronized-variable-impl/on-change.html
+$dokka.location:renetik.android.core.lang.variable/CSSynchronizedVariableImpl/value/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-synchronized-variable-impl/value.html
+$dokka.location:renetik.android.core.lang.variable/CSSynchronizedVariableImpl/value/#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-synchronized-variable-impl/value.html
 $dokka.location:renetik.android.core.lang.variable/CSVariable.Companion///PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-variable/-companion/index.html
 $dokka.location:renetik.android.core.lang.variable/CSVariable.Companion/variable/#TypeParam(bounds=[kotlin.Any?])#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]?/PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-variable/-companion/variable.html
 $dokka.location:renetik.android.core.lang.variable/CSVariable///PointingToDeclaration/renetik-android-core/renetik.android.core.lang.variable/-c-s-variable/index.html
@@ -563,11 +581,11 @@ $dokka.location:renetik.android.core.lang//isEmpty/renetik.android.core.lang.CSS
 $dokka.location:renetik.android.core.lang//lazyVar/#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/lazy-var.html
 $dokka.location:renetik.android.core.lang//notEmpty/renetik.android.core.lang.CSSize#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/not-empty.html
 $dokka.location:renetik.android.core.lang//tryAndFinally/#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/try-and-finally.html
-$dokka.location:renetik.android.core.lang/CSAssociation///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-association/index.html
-$dokka.location:renetik.android.core.lang/CSAssociation/CSAssociation/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-association/-c-s-association.html
-$dokka.location:renetik.android.core.lang/CSAssociation/add/#kotlin.String#TypeParam(bounds=[kotlin.Any?])?/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-association/add.html
-$dokka.location:renetik.android.core.lang/CSAssociation/value/#kotlin.String#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-association/value.html
-$dokka.location:renetik.android.core.lang/CSAssociation/value/#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-association/value.html
+$dokka.location:renetik.android.core.lang/CSAssociations///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-associations/index.html
+$dokka.location:renetik.android.core.lang/CSAssociations/CSAssociations/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-associations/-c-s-associations.html
+$dokka.location:renetik.android.core.lang/CSAssociations/add/#kotlin.String#TypeParam(bounds=[kotlin.Any?])?/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-associations/add.html
+$dokka.location:renetik.android.core.lang/CSAssociations/value/#kotlin.String#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-associations/value.html
+$dokka.location:renetik.android.core.lang/CSAssociations/value/#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-associations/value.html
 $dokka.location:renetik.android.core.lang/CSBackground///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-background/index.html
 $dokka.location:renetik.android.core.lang/CSBackground/background/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-background/background.html
 $dokka.location:renetik.android.core.lang/CSBackground/background/#kotlin.Int#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-background/background.html
@@ -614,9 +632,13 @@ $dokka.location:renetik.android.core.lang/CSLazyVar/getValue/#kotlin.Any?#kotlin
 $dokka.location:renetik.android.core.lang/CSLazyVar/isSet/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-lazy-var/is-set.html
 $dokka.location:renetik.android.core.lang/CSLazyVar/setValue/#kotlin.Any?#kotlin.reflect.KProperty[*]#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-lazy-var/set-value.html
 $dokka.location:renetik.android.core.lang/CSLeakCanary///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/[android-jvm]-c-s-leak-canary/index.html
-$dokka.location:renetik.android.core.lang/CSLeakCanary/disable/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/[android-jvm]-c-s-leak-canary/disable.html
-$dokka.location:renetik.android.core.lang/CSLeakCanary/enable/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/[android-jvm]-c-s-leak-canary/enable.html
+$dokka.location:renetik.android.core.lang/CSLeakCanary/disabled/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/[android-jvm]-c-s-leak-canary/disabled.html
+$dokka.location:renetik.android.core.lang/CSLeakCanary/enabled/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/[android-jvm]-c-s-leak-canary/enabled.html
 $dokka.location:renetik.android.core.lang/CSLeakCanary/expectWeaklyReachable/kotlin.Any#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/[android-jvm]-c-s-leak-canary/expect-weakly-reachable.html
+$dokka.location:renetik.android.core.lang/CSLeakCanaryInterface///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-leak-canary-interface/index.html
+$dokka.location:renetik.android.core.lang/CSLeakCanaryInterface/disabled/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-leak-canary-interface/disabled.html
+$dokka.location:renetik.android.core.lang/CSLeakCanaryInterface/enabled/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-leak-canary-interface/enabled.html
+$dokka.location:renetik.android.core.lang/CSLeakCanaryInterface/expectWeaklyReachable/kotlin.Any#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-leak-canary-interface/expect-weakly-reachable.html
 $dokka.location:renetik.android.core.lang/CSList///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-list/index.html
 $dokka.location:renetik.android.core.lang/CSList/CSList/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-list/-c-s-list.html
 $dokka.location:renetik.android.core.lang/CSList/CSList/#kotlin.collections.Collection[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-list/-c-s-list.html
@@ -800,12 +822,6 @@ $dokka.location:renetik.android.core.util/CSMemory///PointingToDeclaration/rene
 $dokka.location:renetik.android.core.util/CSMemory/getAvailableHeapSizeInMB/java.lang.Runtime#/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-memory/get-available-heap-size-in-m-b.html
 $dokka.location:renetik.android.core.util/CSMemory/getRealTotalMemoryUsage/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-memory/get-real-total-memory-usage.html
 $dokka.location:renetik.android.core.util/CSMemory/usedMemoryInPercent/#/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-memory/used-memory-in-percent.html
-$dokka.location:renetik.android.core.util/CSSynchronizedProperty.Companion///PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-synchronized-property/-companion/index.html
-$dokka.location:renetik.android.core.util/CSSynchronizedProperty.Companion/synchronized/#TypeParam(bounds=[kotlin.Any?])#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]?/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-synchronized-property/-companion/synchronized.html
-$dokka.location:renetik.android.core.util/CSSynchronizedProperty///PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-synchronized-property/index.html
-$dokka.location:renetik.android.core.util/CSSynchronizedProperty/CSSynchronizedProperty/#TypeParam(bounds=[kotlin.Any?])#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]?/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-synchronized-property/-c-s-synchronized-property.html
-$dokka.location:renetik.android.core.util/CSSynchronizedProperty/getValue/#kotlin.Any#kotlin.reflect.KProperty[*]/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-synchronized-property/get-value.html
-$dokka.location:renetik.android.core.util/CSSynchronizedProperty/setValue/#kotlin.Any#kotlin.reflect.KProperty[*]#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-synchronized-property/set-value.html
 renetik.android.core.base
 renetik.android.core.common
 renetik.android.core.extensions.app

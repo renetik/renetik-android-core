@@ -1,7 +1,7 @@
 package renetik.android.core.lang
 
 @Suppress("UNCHECKED_CAST")
-class CSAssociation {
+class CSAssociations {
     private val dictionary: MutableMap<String, Any?> by lazy { mutableMapOf() }
 
     fun <T> value(key: String): T? = dictionary[key] as? T

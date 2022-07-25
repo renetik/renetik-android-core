@@ -1,9 +1,9 @@
-package renetik.android.core.util
+package renetik.android.core.lang.variable
 
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-class CSSynchronizedProperty<T>(value: T, private val didSet: ((T) -> Unit)? = null)
+class CSSynchronizedProperty<T>(value: T, private val onChange: ((T) -> Unit)? = null)
     : ReadWriteProperty<Any, T> {
 
     companion object {
@@ -19,7 +19,7 @@ class CSSynchronizedProperty<T>(value: T, private val didSet: ((T) -> Unit)? = n
     override fun setValue(thisRef: Any, property: KProperty<*>, value: T) {
         kotlin.synchronized(this) {
             field = value
-            didSet?.invoke(value)
+            onChange?.invoke(value)
         }
     }
 }

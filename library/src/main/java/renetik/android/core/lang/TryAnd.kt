@@ -7,9 +7,7 @@ import renetik.android.core.logging.CSLogMessage.Companion.message
 inline fun <reified E : Throwable> catch(block: () -> void): Result<void> = try {
     Result.success(block())
 } catch (e: Throwable) {
-    if (e is E) {
-        Result.failure(e)
-    } else throw e
+    if (e is E) Result.failure(e) else throw e
 }
 
 inline fun catchAll(block: () -> void): Result<void> = catch<Throwable>(block)
