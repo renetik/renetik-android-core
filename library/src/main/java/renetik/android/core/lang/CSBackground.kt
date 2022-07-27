@@ -7,7 +7,7 @@ import java.util.concurrent.Executors.newSingleThreadScheduledExecutor
 import java.util.concurrent.ScheduledFuture
 
 object CSBackground {
-    private val executor = newSingleThreadScheduledExecutor()
+     val executor = newSingleThreadScheduledExecutor()
 
     fun background(function: () -> Unit) =
         executor.background(function = function)

@@ -8,7 +8,7 @@ import renetik.android.core.lang.CSHasTitle
 import renetik.android.core.lang.value.CSValue
 
 @Suppress("UNCHECKED_CAST")
-fun <Type : Any> Any.type() = (this as Type)
+fun <Type : Any> Any.to() = (this as Type)
 
 val Any?.asString
 	get() = (this as? CSHasTitle)?.title

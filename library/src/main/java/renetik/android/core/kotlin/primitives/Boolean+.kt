@@ -11,30 +11,30 @@ val <T : Boolean?> T.isFalse: Boolean get() = this == false
 val <T : Boolean?> T.isNotTrue: Boolean get() = this != true
 val <T : Boolean?> T.isNotFalse: Boolean get() = this != false
 
-fun <T : Boolean?> T.isTrue(function: Func) {
+inline fun <T : Boolean?> T.isTrue(function: Func) {
     if (isTrue) function()
 }
 
-fun <T : Boolean?> T.isFalse(function: Func) {
+inline fun <T : Boolean?> T.isFalse(function: Func) {
     if (isFalse) function()
 }
 
-fun <T : Boolean?> T.ifTrue(function: Func): CSConditionalResult {
+inline fun <T : Boolean?> T.ifTrue(function: Func): CSConditionalResult {
     if (isTrue) function()
     return CSConditionalResult(!isTrue)
 }
 
-fun <T : Boolean?> T.ifNotTrue(function: Func): CSConditionalResult {
+inline fun <T : Boolean?> T.ifNotTrue(function: Func): CSConditionalResult {
     if (isNotTrue) function()
     return CSConditionalResult(!isNotTrue)
 }
 
-fun <T : Boolean?> T.ifFalse(function: Func): CSConditionalResult {
+inline fun <T : Boolean?> T.ifFalse(function: Func): CSConditionalResult {
     if (isFalse) function()
     return CSConditionalResult(!isFalse)
 }
 
-fun <T : Boolean?> T.ifNotFalse(function: Func): CSConditionalResult {
+inline fun <T : Boolean?> T.ifNotFalse(function: Func): CSConditionalResult {
     if (isNotFalse) function()
     return CSConditionalResult(!isNotFalse)
 }
