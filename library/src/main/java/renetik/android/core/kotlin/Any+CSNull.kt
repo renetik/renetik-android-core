@@ -21,14 +21,21 @@ fun isAllNull(vararg items: Any?): Boolean {
 val Any?.isNull get() = this == null
 val Any?.notNull get() = this != null
 
+fun <T : Any> T?.onNull(block: () -> Unit) {
+    if (this == null) block()
+}
+
+fun <T : Any> T?.onNotNull(block: (T) -> Unit) {
+    if (this != null) block(this)
+}
+
 fun <T : Any, R> T?.isNull(block: () -> R): R? = if (this == null) block() else null
+fun <T : Any, R> T?.isNotNull(block: (T) -> R): R? = if (this != null) block(this) else null
 
 fun <T : Any> T?.ifNull(block: Func): CSConditionalResult {
     if (this == null) block()
     return CSConditionalResult(this != null)
 }
-
-fun <T : Any, R> T?.notNull(block: (T) -> R): R? = if (this != null) block(this) else null
 
 fun <T : Any> T?.ifNotNull(block: Func): CSConditionalResult {
     if (this != null) block()

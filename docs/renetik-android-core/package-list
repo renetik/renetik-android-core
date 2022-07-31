@@ -28,10 +28,6 @@ $dokka.location:renetik.android.core.common/CSStringBuilderWriter/toString/#/Poi
 $dokka.location:renetik.android.core.common/CSStringBuilderWriter/write/#kotlin.CharArray?#kotlin.Int#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.common/-c-s-string-builder-writer/write.html
 $dokka.location:renetik.android.core.common/CSStringBuilderWriter/write/#kotlin.String?/PointingToDeclaration/renetik-android-core/renetik.android.core.common/-c-s-string-builder-writer/write.html
 $dokka.location:renetik.android.core.extensions.app////PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/index.html
-$dokka.location:renetik.android.core.extensions.app//fixInputMethod/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/fix-input-method.html
-$dokka.location:renetik.android.core.extensions.app//fixInputMethodLeak/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/fix-input-method-leak.html
-$dokka.location:renetik.android.core.extensions.app//fixInputMethodManagerLeak/#android.content.Context?/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/fix-input-method-manager-leak.html
-$dokka.location:renetik.android.core.extensions.app//fixInputMethodManagerLeak2/#android.content.Context/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/fix-input-method-manager-leak2.html
 $dokka.location:renetik.android.core.extensions.app//isWindowLandscape/android.app.Activity#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/is-window-landscape.html
 $dokka.location:renetik.android.core.extensions.app//restart/android.app.Application#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/restart.html
 $dokka.location:renetik.android.core.extensions.app//windowOrientation/android.app.Activity#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.app/window-orientation.html
@@ -342,6 +338,7 @@ $dokka.location:renetik.android.core.kotlin.primitives//ifSet/kotlin.Array[TypeP
 $dokka.location:renetik.android.core.kotlin.primitives//ifSet/kotlin.Float#kotlin.Function1[kotlin.Float,kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-set.html
 $dokka.location:renetik.android.core.kotlin.primitives//ifSet/kotlin.String#kotlin.Function1[kotlin.String,kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-set.html
 $dokka.location:renetik.android.core.kotlin.primitives//ifTrue/TypeParam(bounds=[kotlin.Boolean?])#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-true.html
+$dokka.location:renetik.android.core.kotlin.primitives//ifTrueReturn/TypeParam(bounds=[kotlin.Boolean?])#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-true-return.html
 $dokka.location:renetik.android.core.kotlin.primitives//isEmpty/kotlin.Array[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/is-empty.html
 $dokka.location:renetik.android.core.kotlin.primitives//isEmpty/kotlin.CharSequence?#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/is-empty.html
 $dokka.location:renetik.android.core.kotlin.primitives//isEmpty/kotlin.Float#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/is-empty.html
@@ -452,15 +449,16 @@ $dokka.location:renetik.android.core.kotlin//isAllNotNull/#kotlin.Array[kotlin.A
 $dokka.location:renetik.android.core.kotlin//isAllNull/#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/is-all-null.html
 $dokka.location:renetik.android.core.kotlin//isAnyNotNull/#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/is-any-not-null.html
 $dokka.location:renetik.android.core.kotlin//isAnyNull/#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/is-any-null.html
+$dokka.location:renetik.android.core.kotlin//isNotNull/TypeParam(bounds=[kotlin.Any])?#kotlin.Function1[TypeParam(bounds=[kotlin.Any]),TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/is-not-null.html
 $dokka.location:renetik.android.core.kotlin//isNull/TypeParam(bounds=[kotlin.Any])?#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/is-null.html
 $dokka.location:renetik.android.core.kotlin//isNull/kotlin.Any?#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/is-null.html
 $dokka.location:renetik.android.core.kotlin//isNull/renetik.android.core.lang.variable.CSVariable[kotlin.Any?]#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/is-null.html
 $dokka.location:renetik.android.core.kotlin//kClass/TypeParam(bounds=[kotlin.Any])#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/k-class.html
-$dokka.location:renetik.android.core.kotlin//notNull/TypeParam(bounds=[kotlin.Any])?#kotlin.Function1[TypeParam(bounds=[kotlin.Any]),TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/not-null.html
 $dokka.location:renetik.android.core.kotlin//notNull/kotlin.Any?#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/not-null.html
 $dokka.location:renetik.android.core.kotlin//notNull/renetik.android.core.lang.variable.CSVariable[kotlin.Any?]#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/not-null.html
-$dokka.location:renetik.android.core.kotlin//observing/#TypeParam(bounds=[kotlin.Any?])#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/observing.html
 $dokka.location:renetik.android.core.kotlin//onNotNull/#TypeParam(bounds=[kotlin.Any?])?#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/on-not-null.html
+$dokka.location:renetik.android.core.kotlin//onNotNull/TypeParam(bounds=[kotlin.Any])?#kotlin.Function1[TypeParam(bounds=[kotlin.Any]),kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/on-not-null.html
+$dokka.location:renetik.android.core.kotlin//onNull/TypeParam(bounds=[kotlin.Any])?#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/on-null.html
 $dokka.location:renetik.android.core.kotlin//privateField/kotlin.Any#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/private-field.html
 $dokka.location:renetik.android.core.kotlin//rootCause/kotlin.Throwable#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/root-cause.html
 $dokka.location:renetik.android.core.kotlin//rootCauseMessage/kotlin.Throwable#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin/root-cause-message.html
@@ -616,6 +614,7 @@ $dokka.location:renetik.android.core.lang/CSEnvironment/app/#/PointingToDeclarat
 $dokka.location:renetik.android.core.lang/CSEnvironment/isDebug/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-environment/is-debug.html
 $dokka.location:renetik.android.core.lang/CSEnvironment/isEmulator/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-environment/is-emulator.html
 $dokka.location:renetik.android.core.lang/CSEnvironment/isTestRunner/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-environment/is-test-runner.html
+$dokka.location:renetik.android.core.lang/CSEnvironment/runnerClassNames/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-environment/runner-class-names.html
 $dokka.location:renetik.android.core.lang/CSHasDrawable///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-has-drawable/index.html
 $dokka.location:renetik.android.core.lang/CSHasDrawable/drawable/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-has-drawable/drawable.html
 $dokka.location:renetik.android.core.lang/CSHasId.Companion///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-has-id/-companion/index.html
@@ -623,6 +622,8 @@ $dokka.location:renetik.android.core.lang/CSHasId///PointingToDeclaration/renet
 $dokka.location:renetik.android.core.lang/CSHasId/id/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-has-id/id.html
 $dokka.location:renetik.android.core.lang/CSHasTitle///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-has-title/index.html
 $dokka.location:renetik.android.core.lang/CSHasTitle/title/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-has-title/title.html
+$dokka.location:renetik.android.core.lang/CSLang///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-lang/index.html
+$dokka.location:renetik.android.core.lang/CSLang/EmptyFunc/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-lang/-empty-func.html
 $dokka.location:renetik.android.core.lang/CSLayoutRes.Companion///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-layout-res/-companion/index.html
 $dokka.location:renetik.android.core.lang/CSLayoutRes.Companion/layout/#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-layout-res/-companion/layout.html
 $dokka.location:renetik.android.core.lang/CSLayoutRes///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-layout-res/index.html
@@ -687,6 +688,7 @@ $dokka.location:renetik.android.core.lang/CSStringConstants/Semicolon/#/Pointing
 $dokka.location:renetik.android.core.lang/CSStringConstants/Space/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-string-constants/-space.html
 $dokka.location:renetik.android.core.lang/CSTimeConstants///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-time-constants/index.html
 $dokka.location:renetik.android.core.lang/CSTimeConstants/Day/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-time-constants/-day.html
+$dokka.location:renetik.android.core.lang/CSTimeConstants/HalfMinute/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-time-constants/-half-minute.html
 $dokka.location:renetik.android.core.lang/CSTimeConstants/HalfSecond/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-time-constants/-half-second.html
 $dokka.location:renetik.android.core.lang/CSTimeConstants/Hour/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-time-constants/-hour.html
 $dokka.location:renetik.android.core.lang/CSTimeConstants/MilliToNanoSecondMultiplier/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-time-constants/-milli-to-nano-second-multiplier.html

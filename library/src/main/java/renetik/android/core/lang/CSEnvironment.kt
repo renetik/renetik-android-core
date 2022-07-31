@@ -37,7 +37,14 @@ object CSEnvironment {
 
     val isDebug by lazy { app.isDebug }
 
-    val isTestRunner by lazy { classExist("org.junit.runner.Runner") }
+    var runnerClassNames = mutableListOf("org.junit.runner.Runner",
+        "androidx.test.runner.AndroidJUnitRunner",
+        "org.robolectric.RobolectricTestRunner")
+
+    val isTestRunner: Boolean by lazy {
+        for (name in runnerClassNames) if (classExist(name)) return@lazy true
+        false
+    }
 
     val isEmulator: Boolean by lazy {
         (BRAND.startsWith("generic") && DEVICE.startsWith("generic")

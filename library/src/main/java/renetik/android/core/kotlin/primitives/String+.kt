@@ -1,6 +1,6 @@
 package renetik.android.core.kotlin.primitives
 
-import renetik.android.core.kotlin.notNull
+import renetik.android.core.kotlin.isNotNull
 import renetik.android.core.kotlin.text.StringBuilder
 import renetik.android.core.kotlin.text.add
 import renetik.android.core.kotlin.text.deleteLast
@@ -82,7 +82,7 @@ fun String.leaveEndOfLength(length: Int): String {
 
 fun String.separateToString(vararg items: Any?): String {
     val text = StringBuilder()
-    for (value in items) value.notNull { text.add(it).add(this) }
+    for (value in items) value.isNotNull { text.add(it).add(this) }
     if (!text.isEmpty) text.deleteLast(this.length)
     return text.toString()
 }

@@ -2,6 +2,10 @@
 
 package renetik.android.core.lang
 
+object CSLang{
+    val EmptyFunc = {}
+}
+
 object CSStringConstants {
     const val Empty = ""
     const val Comma = ","
@@ -28,6 +32,7 @@ object CSTimeConstants {
     const val HalfSecond = 500
     const val Second = 1000
     const val Minute = 60 * Second
+    const val HalfMinute = Minute / 2
     const val Hour = 60 * Minute
     const val Day = 24 * Hour
     const val MilliToNanoSecondMultiplier = 1000000

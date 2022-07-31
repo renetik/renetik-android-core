@@ -3,7 +3,6 @@ package renetik.android.core.java.util
 import android.content.Context
 import android.text.format.DateFormat.getDateFormat
 import android.text.format.DateFormat.getTimeFormat
-import renetik.android.core.kotlin.notNull
 import renetik.android.core.lang.catchAllWarn
 import renetik.android.core.lang.catchError
 import java.text.DateFormat
@@ -47,5 +46,5 @@ fun Date.formatToISO8601(): String {
 
 fun Context.parseTimeFormat(text: String) = catchAllWarn { getTimeFormat(this).parse(text) }
 fun Context.parseDateFormat(text: String) = catchAllWarn { getDateFormat(this).parse(text) }
-fun Context.formatDate(date: Date) = date.notNull { getDateFormat(this).format(date) }
-fun Context.formatTime(date: Date) = date.notNull { getTimeFormat(this).format(date) }
+fun Context.formatDate(date: Date): String = getDateFormat(this).format(date)
+fun Context.formatTime(date: Date): String = getTimeFormat(this).format(date)

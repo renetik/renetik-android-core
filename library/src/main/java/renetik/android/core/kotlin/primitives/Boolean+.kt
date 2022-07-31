@@ -15,6 +15,11 @@ inline fun <T : Boolean?> T.isTrue(function: Func) {
     if (isTrue) function()
 }
 
+inline fun <T : Boolean?, R> T.ifTrueReturn(function: ReturnFunc<R>): R? {
+    if (isTrue) return function()
+    return null
+}
+
 inline fun <T : Boolean?> T.isFalse(function: Func) {
     if (isFalse) function()
 }
