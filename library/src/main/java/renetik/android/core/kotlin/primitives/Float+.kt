@@ -31,6 +31,13 @@ fun Float.formatOffDecimal(format: String = "#.##",
     return df.format(this)
 }
 
-val Float.rest: Float get() = if (this == 0f) 0f else this - this.toInt()
+val Float.rest: Float
+    get() = toString().let {
+        if (it.contains(".")) it.substringAfter(".").toInt() / 100f
+        else 0f
+    }
+
+fun Float.min(minimum: Float) = if (this > minimum) this else minimum
+fun Float.max(maximum: Float) = if (this < maximum) this else maximum
 
 

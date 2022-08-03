@@ -34,9 +34,11 @@ object CSMemory {
                     ",used:${formatFileSize(context, usedMemInBytes)} ($usedMemInPercentage%)"
     }
 
-    fun Context.getRealTotalMemoryUsage(): RealTotalMemoryUsage {
+    fun Context.memoryUsageInfo(): RealTotalMemoryUsage {
         val memoryInfo = ActivityManager.MemoryInfo()
         (getSystemService(ACTIVITY_SERVICE) as ActivityManager).getMemoryInfo(memoryInfo)
         return RealTotalMemoryUsage(this, memoryInfo.totalMem, memoryInfo.availMem)
     }
+
+
 }

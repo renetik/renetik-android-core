@@ -364,8 +364,10 @@ $dokka.location:renetik.android.core.kotlin.primitives//isTrue/TypeParam(bounds=
 $dokka.location:renetik.android.core.kotlin.primitives//iterator/kotlin.Array[TypeParam(bounds=[kotlin.Any?])]?#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/iterator.html
 $dokka.location:renetik.android.core.kotlin.primitives//leaveEndOfLength/kotlin.String#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/leave-end-of-length.html
 $dokka.location:renetik.android.core.kotlin.primitives//lowerCased/kotlin.String#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/lower-cased.html
+$dokka.location:renetik.android.core.kotlin.primitives//max/kotlin.Float#kotlin.Float/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/max.html
 $dokka.location:renetik.android.core.kotlin.primitives//max/kotlin.Int#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/max.html
 $dokka.location:renetik.android.core.kotlin.primitives//maxLengthOf/kotlin.String#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/max-length-of.html
+$dokka.location:renetik.android.core.kotlin.primitives//min/kotlin.Float#kotlin.Float/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/min.html
 $dokka.location:renetik.android.core.kotlin.primitives//min/kotlin.Int#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/min.html
 $dokka.location:renetik.android.core.kotlin.primitives//noAccents/kotlin.String#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/no-accents.html
 $dokka.location:renetik.android.core.kotlin.primitives//random/kotlin.Boolean.Companion#/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/random.html
@@ -824,7 +826,7 @@ $dokka.location:renetik.android.core.util/CSMemory.RealTotalMemoryUsage/nativeHe
 $dokka.location:renetik.android.core.util/CSMemory.RealTotalMemoryUsage/toString/#/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-memory/-real-total-memory-usage/to-string.html
 $dokka.location:renetik.android.core.util/CSMemory///PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-memory/index.html
 $dokka.location:renetik.android.core.util/CSMemory/getAvailableHeapSizeInMB/java.lang.Runtime#/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-memory/get-available-heap-size-in-m-b.html
-$dokka.location:renetik.android.core.util/CSMemory/getRealTotalMemoryUsage/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-memory/get-real-total-memory-usage.html
+$dokka.location:renetik.android.core.util/CSMemory/memoryUsageInfo/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-memory/memory-usage-info.html
 $dokka.location:renetik.android.core.util/CSMemory/usedMemoryInPercent/#/PointingToDeclaration/renetik-android-core/renetik.android.core.util/-c-s-memory/used-memory-in-percent.html
 renetik.android.core.base
 renetik.android.core.common
