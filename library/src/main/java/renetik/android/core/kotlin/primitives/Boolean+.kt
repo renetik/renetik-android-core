@@ -20,6 +20,11 @@ inline fun <T : Boolean?, R> T.ifTrueReturn(function: ReturnFunc<R>): R? {
     return null
 }
 
+inline fun <T : Boolean?, R> T.ifFalseReturn(function: ReturnFunc<R>): R? {
+    if (isFalse) return function()
+    return null
+}
+
 inline fun <T : Boolean?> T.isFalse(function: Func) {
     if (isFalse) function()
 }
