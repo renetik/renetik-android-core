@@ -8,12 +8,12 @@ import renetik.android.core.lang.CSHasTitle
 import renetik.android.core.lang.value.CSValue
 
 @Suppress("UNCHECKED_CAST")
-fun <Type : Any> Any.to() = (this as Type)
+fun <Type : Any> Any.to(): Type = this as Type
 
 val Any?.asString
-	get() = (this as? CSHasTitle)?.title
-		?: (this as? CSValue<*>)?.value as? String
-		?: this?.let { "$it" } ?: ""
+    get() = (this as? CSHasTitle)?.title
+        ?: (this as? CSValue<*>)?.value as? String
+        ?: this?.let { "$it" } ?: ""
 
 val List<*>.asStringArray get() = asStringList.toTypedArray()
 val List<*>.asStringList: List<String> get() = map { it.asString }

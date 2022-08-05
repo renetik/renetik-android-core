@@ -5,7 +5,6 @@ import java.io.File
 import java.io.File.createTempFile
 import java.util.*
 
-
 fun File.createFileAndDirs() = apply {
     parentFile?.mkdirs()
     createNewFile()
@@ -42,3 +41,5 @@ fun File.moveTo(file: File, overwrite: Boolean = true) {
     copyTo(file, overwrite)
     delete()
 }
+
+val File.itemCount: Int get() = list()?.size ?: 0

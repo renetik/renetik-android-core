@@ -14,3 +14,4 @@ inline fun <T : Any> T.runIf(condition: Boolean, function: (T) -> T) =
 inline val <T : Any> T.className get() = this::class.simpleName
 
 fun Any?.toId() = (this as? CSHasId)?.id ?: toString()
+

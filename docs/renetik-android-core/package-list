@@ -154,6 +154,7 @@ $dokka.location:renetik.android.core.java.io//createDirs/java.io.File#/PointingT
 $dokka.location:renetik.android.core.java.io//createFileAndDirs/java.io.File#/PointingToDeclaration/renetik-android-core/renetik.android.core.java.io/create-file-and-dirs.html
 $dokka.location:renetik.android.core.java.io//createFileDirs/java.io.File#/PointingToDeclaration/renetik-android-core/renetik.android.core.java.io/create-file-dirs.html
 $dokka.location:renetik.android.core.java.io//isDirEmpty/java.io.File#/PointingToDeclaration/renetik-android-core/renetik.android.core.java.io/is-dir-empty.html
+$dokka.location:renetik.android.core.java.io//itemCount/java.io.File#/PointingToDeclaration/renetik-android-core/renetik.android.core.java.io/item-count.html
 $dokka.location:renetik.android.core.java.io//moveTo/java.io.File#java.io.File#kotlin.Boolean/PointingToDeclaration/renetik-android-core/renetik.android.core.java.io/move-to.html
 $dokka.location:renetik.android.core.java.io//readString/java.io.File#/PointingToDeclaration/renetik-android-core/renetik.android.core.java.io/read-string.html
 $dokka.location:renetik.android.core.java.io//readText/java.io.InputStream#/PointingToDeclaration/renetik-android-core/renetik.android.core.java.io/read-text.html
@@ -332,6 +333,7 @@ $dokka.location:renetik.android.core.kotlin.primitives//ifEmpty/kotlin.Array[Typ
 $dokka.location:renetik.android.core.kotlin.primitives//ifEmpty/kotlin.Float#kotlin.Function1[kotlin.Float,kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-empty.html
 $dokka.location:renetik.android.core.kotlin.primitives//ifEmpty/kotlin.String#kotlin.Function1[kotlin.String,kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-empty.html
 $dokka.location:renetik.android.core.kotlin.primitives//ifFalse/TypeParam(bounds=[kotlin.Boolean?])#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-false.html
+$dokka.location:renetik.android.core.kotlin.primitives//ifFalseReturn/TypeParam(bounds=[kotlin.Boolean?])#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-false-return.html
 $dokka.location:renetik.android.core.kotlin.primitives//ifNotFalse/TypeParam(bounds=[kotlin.Boolean?])#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-not-false.html
 $dokka.location:renetik.android.core.kotlin.primitives//ifNotTrue/TypeParam(bounds=[kotlin.Boolean?])#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-not-true.html
 $dokka.location:renetik.android.core.kotlin.primitives//ifSet/kotlin.Array[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function1[kotlin.Array[TypeParam(bounds=[kotlin.Any?])],kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.kotlin.primitives/if-set.html
@@ -595,6 +597,12 @@ $dokka.location:renetik.android.core.lang/CSBackground/backgroundNano/#kotlin.Lo
 $dokka.location:renetik.android.core.lang/CSBackground/backgroundRepeat/#kotlin.Long#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-background/background-repeat.html
 $dokka.location:renetik.android.core.lang/CSBackground/backgroundRepeat/#kotlin.Long#kotlin.Long#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-background/background-repeat.html
 $dokka.location:renetik.android.core.lang/CSBackground/executor/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-background/executor.html
+$dokka.location:renetik.android.core.lang/CSButtonAction.Companion///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-button-action/-companion/index.html
+$dokka.location:renetik.android.core.lang/CSButtonAction.Companion/button/#kotlin.String#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-button-action/-companion/button.html
+$dokka.location:renetik.android.core.lang/CSButtonAction///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-button-action/index.html
+$dokka.location:renetik.android.core.lang/CSButtonAction/CSButtonAction/#kotlin.String#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-button-action/-c-s-button-action.html
+$dokka.location:renetik.android.core.lang/CSButtonAction/onClick/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-button-action/on-click.html
+$dokka.location:renetik.android.core.lang/CSButtonAction/title/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-button-action/title.html
 $dokka.location:renetik.android.core.lang/CSComparisonConstants///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-comparison-constants/index.html
 $dokka.location:renetik.android.core.lang/CSComparisonConstants/Ascending/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-comparison-constants/-ascending.html
 $dokka.location:renetik.android.core.lang/CSComparisonConstants/Descending/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-comparison-constants/-descending.html
@@ -699,10 +707,6 @@ $dokka.location:renetik.android.core.lang/CSTimeConstants/QuarterSecond/#/Pointi
 $dokka.location:renetik.android.core.lang/CSTimeConstants/Second/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-time-constants/-second.html
 $dokka.location:renetik.android.core.lang/CSTimeConstants/SecondNano/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-time-constants/-second-nano.html
 $dokka.location:renetik.android.core.lang/CSTimeConstants/toNanosecond/kotlin.Int#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-time-constants/to-nanosecond.html
-$dokka.location:renetik.android.core.lang/CSUserAction///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-user-action/index.html
-$dokka.location:renetik.android.core.lang/CSUserAction/CSUserAction/#kotlin.String#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-user-action/-c-s-user-action.html
-$dokka.location:renetik.android.core.lang/CSUserAction/onClick/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-user-action/on-click.html
-$dokka.location:renetik.android.core.lang/CSUserAction/title/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-user-action/title.html
 $dokka.location:renetik.android.core.lang/CSValidator///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-validator/index.html
 $dokka.location:renetik.android.core.lang/CSValidator/validate/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-validator/validate.html
 $dokka.location:renetik.android.core.lang/CSValidatorImplementation///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-validator-implementation/index.html
