@@ -15,8 +15,6 @@ import android.util.DisplayMetrics
 import android.util.DisplayMetrics.DENSITY_DEFAULT
 import android.util.TypedValue
 import android.util.TypedValue.*
-import android.view.Surface.*
-import android.view.WindowManager
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -24,9 +22,7 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat.getColor
-import androidx.core.content.ContextCompat.getSystemService
 import renetik.android.core.R
-import renetik.android.core.extensions.content.CSDisplayOrientation.*
 import renetik.android.core.kotlin.asString
 import renetik.android.core.kotlin.collections.list
 import renetik.android.core.kotlin.equalsAny
@@ -105,27 +101,35 @@ private fun Context.attributeValue(@AttrRes attribute: Int) =
     TypedValue().apply { theme.resolveAttribute(attribute, this, true) }
 
 @ColorInt
-fun Context.attributeColor(@AttrRes attribute: Int) = attributeValue(attribute).data.apply {
-    if (this == 0) throw NotFoundException()
-}
+fun Context.attributeColor(@AttrRes attribute: Int) =
+    attributeValue(attribute).data.apply {
+        if (this == 0) throw NotFoundException()
+    }
 
-fun Context.attributeDimensionPixel(@AttrRes attribute: Int): Int {
+fun Context.attributeDimensionPixel(@AttrRes attribute: Int, default: Int = 0): Int {
     val attributes = obtainStyledAttributes(intArrayOf(attribute))
-    val dimension = attributes.getDimensionPixelSize(0, 0)
+    val dimension = attributes.getDimensionPixelSize(0, default)
     attributes.recycle()
     return dimension
 }
 
-fun Context.attributeDimension(@AttrRes attribute: Int): Float {
+fun Context.attributeDimension(@AttrRes attribute: Int, default: Float = 0f): Float {
     val attributes = obtainStyledAttributes(intArrayOf(attribute))
-    val dimension = attributes.getDimension(0, 0f)
+    val dimension = attributes.getDimension(0, default)
     attributes.recycle()
     return dimension
 }
 
-fun Context.attributeFloat(@AttrRes attribute: Int): Float {
+fun Context.attributeInt(@AttrRes attribute: Int, default: Int = 0): Int {
     val attributes = obtainStyledAttributes(intArrayOf(attribute))
-    val float = attributes.getFloat(0, 0F)
+    val value = attributes.getInt(0, default)
+    attributes.recycle()
+    return value
+}
+
+fun Context.attributeFloat(@AttrRes attribute: Int, default: Float = 0f): Float {
+    val attributes = obtainStyledAttributes(intArrayOf(attribute))
+    val float = attributes.getFloat(0, default)
     attributes.recycle()
     return float
 }
