@@ -3,13 +3,14 @@ package renetik.android.core.extensions.content
 import android.app.Service
 import android.bluetooth.BluetoothManager
 import android.content.Context
-import android.content.Context.BLUETOOTH_SERVICE
-import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.Context.*
 import android.content.ContextWrapper.MIDI_SERVICE
 import android.content.Intent
+import android.media.AudioManager
 import android.media.midi.MidiManager
 import android.view.inputmethod.InputMethodManager
 
+val Context.audio get() = getSystemService(AUDIO_SERVICE) as AudioManager
 val Context.bluetooth get() = getSystemService(BLUETOOTH_SERVICE) as BluetoothManager
 val Context.input get() = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
 

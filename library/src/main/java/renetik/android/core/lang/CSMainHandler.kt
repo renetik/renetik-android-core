@@ -6,15 +6,15 @@ import renetik.android.core.logging.CSLog.logWarn
 import renetik.android.core.logging.CSLogMessage.Companion.message
 
 object CSMainHandler {
-    val mainHandler by lazy { Handler(getMainLooper()) }
+    val handler by lazy { Handler(getMainLooper()) }
 
     fun postOnMain(function: () -> Unit) {
-        if (!mainHandler.post(function))
+        if (!handler.post(function))
             logWarn { message("Runnable not run") }
     }
 
     fun postOnMain(delay: Long, function: () -> Unit) {
-        if (!mainHandler.postDelayed(function, delay))
+        if (!handler.postDelayed(function, delay))
             logWarn { message("Runnable not run") }
     }
 
@@ -22,5 +22,5 @@ object CSMainHandler {
         postOnMain(delay.toLong(), function)
 
     fun removePosted(function: () -> Unit) =
-        mainHandler.removeCallbacks(function)
+        handler.removeCallbacks(function)
 }

@@ -45,13 +45,15 @@ $dokka.location:renetik.android.core.extensions.content//applicationLogo/android
 $dokka.location:renetik.android.core.extensions.content//asString/android.content.Intent#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/as-string.html
 $dokka.location:renetik.android.core.extensions.content//assetsReadText/android.content.Context#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/assets-read-text.html
 $dokka.location:renetik.android.core.extensions.content//attributeColor/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-color.html
-$dokka.location:renetik.android.core.extensions.content//attributeDimension/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-dimension.html
-$dokka.location:renetik.android.core.extensions.content//attributeDimensionPixel/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-dimension-pixel.html
-$dokka.location:renetik.android.core.extensions.content//attributeFloat/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-float.html
+$dokka.location:renetik.android.core.extensions.content//attributeDimension/android.content.Context#kotlin.Int#kotlin.Float/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-dimension.html
+$dokka.location:renetik.android.core.extensions.content//attributeDimensionPixel/android.content.Context#kotlin.Int#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-dimension-pixel.html
+$dokka.location:renetik.android.core.extensions.content//attributeFloat/android.content.Context#kotlin.Int#kotlin.Float/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-float.html
+$dokka.location:renetik.android.core.extensions.content//attributeInt/android.content.Context#kotlin.Int#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-int.html
 $dokka.location:renetik.android.core.extensions.content//attributeResourceId/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-resource-id.html
 $dokka.location:renetik.android.core.extensions.content//attributeString/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-string.html
 $dokka.location:renetik.android.core.extensions.content//attributeString/android.content.Context#kotlin.IntArray#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-string.html
 $dokka.location:renetik.android.core.extensions.content//attributeString2/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-string2.html
+$dokka.location:renetik.android.core.extensions.content//audio/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/audio.html
 $dokka.location:renetik.android.core.extensions.content//batteryPercent/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/battery-percent.html
 $dokka.location:renetik.android.core.extensions.content//bluetooth/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/bluetooth.html
 $dokka.location:renetik.android.core.extensions.content//clearDrawable/#android.graphics.Rect/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/clear-drawable.html
@@ -164,6 +166,7 @@ $dokka.location:renetik.android.core.java.lang////PointingToDeclaration/renetik
 $dokka.location:renetik.android.core.java.lang//createInstance/java.lang.Class[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/renetik-android-core/renetik.android.core.java.lang/create-instance.html
 $dokka.location:renetik.android.core.java.lang//isMain/java.lang.Thread#/PointingToDeclaration/renetik-android-core/renetik.android.core.java.lang/is-main.html
 $dokka.location:renetik.android.core.java.lang/CSThread///PointingToDeclaration/renetik-android-core/renetik.android.core.java.lang/-c-s-thread/index.html
+$dokka.location:renetik.android.core.java.lang/CSThread/currentThread/#/PointingToDeclaration/renetik-android-core/renetik.android.core.java.lang/-c-s-thread/current-thread.html
 $dokka.location:renetik.android.core.java.lang/CSThread/sleepNano/#kotlin.Float/PointingToDeclaration/renetik-android-core/renetik.android.core.java.lang/-c-s-thread/sleep-nano.html
 $dokka.location:renetik.android.core.java.lang/CSThread/sleepNano/#kotlin.Long/PointingToDeclaration/renetik-android-core/renetik.android.core.java.lang/-c-s-thread/sleep-nano.html
 $dokka.location:renetik.android.core.java.util.concurrent////PointingToDeclaration/renetik-android-core/renetik.android.core.java.util.concurrent/index.html
@@ -672,7 +675,7 @@ $dokka.location:renetik.android.core.lang/CSListInterface/put/#TypeParam(bounds=
 $dokka.location:renetik.android.core.lang/CSListInterface/removeAll/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-list-interface/remove-all.html
 $dokka.location:renetik.android.core.lang/CSListInterface/size/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-list-interface/size.html
 $dokka.location:renetik.android.core.lang/CSMainHandler///PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-main-handler/index.html
-$dokka.location:renetik.android.core.lang/CSMainHandler/mainHandler/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-main-handler/main-handler.html
+$dokka.location:renetik.android.core.lang/CSMainHandler/handler/#/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-main-handler/handler.html
 $dokka.location:renetik.android.core.lang/CSMainHandler/postOnMain/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-main-handler/post-on-main.html
 $dokka.location:renetik.android.core.lang/CSMainHandler/postOnMain/#kotlin.Int#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-main-handler/post-on-main.html
 $dokka.location:renetik.android.core.lang/CSMainHandler/postOnMain/#kotlin.Long#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/renetik-android-core/renetik.android.core.lang/-c-s-main-handler/post-on-main.html
