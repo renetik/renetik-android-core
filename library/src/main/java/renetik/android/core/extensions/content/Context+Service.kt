@@ -10,13 +10,13 @@ import android.media.AudioManager
 import android.media.midi.MidiManager
 import android.view.inputmethod.InputMethodManager
 
-val Context.audio get() = getSystemService(AUDIO_SERVICE) as AudioManager
-val Context.bluetooth get() = getSystemService(BLUETOOTH_SERVICE) as BluetoothManager
-val Context.input get() = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+val Context.audioService get() = getSystemService(AUDIO_SERVICE) as AudioManager
+val Context.bluetoothService get() = getSystemService(BLUETOOTH_SERVICE) as BluetoothManager
+val Context.inputService get() = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
 
-val Context.isMidiSupported: Boolean get() = getSystemService(MIDI_SERVICE) != null
-val Context.midi: MidiManager? get() = getSystemService(MIDI_SERVICE) as? MidiManager
-fun <T> Context.ifHasMidi(function: (MidiManager) -> T): T? = midi?.let { function(it) }
+val Context.midiService: MidiManager? get() = getSystemService(MIDI_SERVICE) as? MidiManager
+val Context.isMidiSupported: Boolean get() = midiService != null
+fun <T> Context.ifHasMidi(function: (MidiManager) -> T): T? = midiService?.let { function(it) }
 
 fun Context.startService(serviceClass: Class<out Service>) =
     startService(Intent(this, serviceClass))
