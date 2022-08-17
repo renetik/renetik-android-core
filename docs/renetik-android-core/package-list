@@ -53,9 +53,9 @@ $dokka.location:renetik.android.core.extensions.content//attributeResourceId/and
 $dokka.location:renetik.android.core.extensions.content//attributeString/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-string.html
 $dokka.location:renetik.android.core.extensions.content//attributeString/android.content.Context#kotlin.IntArray#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-string.html
 $dokka.location:renetik.android.core.extensions.content//attributeString2/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/attribute-string2.html
-$dokka.location:renetik.android.core.extensions.content//audio/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/audio.html
+$dokka.location:renetik.android.core.extensions.content//audioService/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/audio-service.html
 $dokka.location:renetik.android.core.extensions.content//batteryPercent/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/battery-percent.html
-$dokka.location:renetik.android.core.extensions.content//bluetooth/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/bluetooth.html
+$dokka.location:renetik.android.core.extensions.content//bluetoothService/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/bluetooth-service.html
 $dokka.location:renetik.android.core.extensions.content//clearDrawable/#android.graphics.Rect/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/clear-drawable.html
 $dokka.location:renetik.android.core.extensions.content//clearDrawable/#android.graphics.drawable.Drawable/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/clear-drawable.html
 $dokka.location:renetik.android.core.extensions.content//color/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/color.html
@@ -81,7 +81,7 @@ $dokka.location:renetik.android.core.extensions.content//getDrawable/android.con
 $dokka.location:renetik.android.core.extensions.content//getString/android.content.SharedPreferences#kotlin.String/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/get-string.html
 $dokka.location:renetik.android.core.extensions.content//ifHasMidi/android.content.Context#kotlin.Function1[android.media.midi.MidiManager,TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/if-has-midi.html
 $dokka.location:renetik.android.core.extensions.content//inflate/android.content.Context#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/inflate.html
-$dokka.location:renetik.android.core.extensions.content//input/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/input.html
+$dokka.location:renetik.android.core.extensions.content//inputService/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/input-service.html
 $dokka.location:renetik.android.core.extensions.content//isDarkMode/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-dark-mode.html
 $dokka.location:renetik.android.core.extensions.content//isDebug/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-debug.html
 $dokka.location:renetik.android.core.extensions.content//isLandscape/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-landscape.html
@@ -95,7 +95,7 @@ $dokka.location:renetik.android.core.extensions.content//isServiceRunning/androi
 $dokka.location:renetik.android.core.extensions.content//isSystemDarkMode/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-system-dark-mode.html
 $dokka.location:renetik.android.core.extensions.content//isTablet/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/is-tablet.html
 $dokka.location:renetik.android.core.extensions.content//load/android.content.SharedPreferences#android.content.SharedPreferences/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/load.html
-$dokka.location:renetik.android.core.extensions.content//midi/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/midi.html
+$dokka.location:renetik.android.core.extensions.content//midiService/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/midi-service.html
 $dokka.location:renetik.android.core.extensions.content//openInputStream/android.content.Context#android.net.Uri/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/open-input-stream.html
 $dokka.location:renetik.android.core.extensions.content//orientation/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/orientation.html
 $dokka.location:renetik.android.core.extensions.content//packageInfo/android.content.Context#/PointingToDeclaration/renetik-android-core/renetik.android.core.extensions.content/package-info.html
@@ -791,10 +791,12 @@ $dokka.location:renetik.android.core.logging/CSPrintLogger/level/#/PointingToDec
 $dokka.location:renetik.android.core.logging/CSPrintLogger/name/#/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-print-logger/name.html
 $dokka.location:renetik.android.core.logging/CSPrintLogger/warn/#kotlin.Throwable?#kotlin.Array[kotlin.Any?]/PointingToDeclaration/renetik-android-core/renetik.android.core.logging/-c-s-print-logger/warn.html
 $dokka.location:renetik.android.core.math////PointingToDeclaration/renetik-android-core/renetik.android.core.math/index.html
+$dokka.location:renetik.android.core.math//left/renetik.android.core.math.CSPoint[TypeParam(bounds=[kotlin.Number])]#/PointingToDeclaration/renetik-android-core/renetik.android.core.math/left.html
 $dokka.location:renetik.android.core.math//percentToValueInt/renetik.android.core.math.CSPercentCalculator#kotlin.Float/PointingToDeclaration/renetik-android-core/renetik.android.core.math/percent-to-value-int.html
 $dokka.location:renetik.android.core.math//percentToValueInt/renetik.android.core.math.CSPercentCalculator#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.math/percent-to-value-int.html
 $dokka.location:renetik.android.core.math//size/renetik.android.core.math.CSPercentCalculator#kotlin.Double/PointingToDeclaration/renetik-android-core/renetik.android.core.math/size.html
 $dokka.location:renetik.android.core.math//size/renetik.android.core.math.CSPercentCalculator#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.math/size.html
+$dokka.location:renetik.android.core.math//top/renetik.android.core.math.CSPoint[TypeParam(bounds=[kotlin.Number])]#/PointingToDeclaration/renetik-android-core/renetik.android.core.math/top.html
 $dokka.location:renetik.android.core.math//valueToPercentInt/renetik.android.core.math.CSPercentCalculator#kotlin.Float/PointingToDeclaration/renetik-android-core/renetik.android.core.math/value-to-percent-int.html
 $dokka.location:renetik.android.core.math//valueToPercentInt/renetik.android.core.math.CSPercentCalculator#kotlin.Int/PointingToDeclaration/renetik-android-core/renetik.android.core.math/value-to-percent-int.html
 $dokka.location:renetik.android.core.math/CSMath///PointingToDeclaration/renetik-android-core/renetik.android.core.math/-c-s-math/index.html
