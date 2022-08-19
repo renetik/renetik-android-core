@@ -41,6 +41,7 @@ val Context.applicationLogo: Drawable? get() = applicationInfo.loadLogo(packageM
  */
 val Context.applicationIcon: Drawable get() = applicationInfo.loadIcon(packageManager)
 
+@Suppress("DEPRECATION")
 val Context.isNetworkConnected
     @SuppressLint("MissingPermission")
     get() = (getSystemService(ContextWrapper.CONNECTIVITY_SERVICE) as ConnectivityManager)
@@ -71,6 +72,7 @@ val Context.packageInfo
         packageManager.getPackageInfo(packageName, 0)
     }
 
+@Suppress("DEPRECATION")
 @SuppressLint("UseCompatLoadingForDrawables")
 fun Context.getDrawable(name: String): Drawable? {
     val resourceId = resources.getIdentifier(name, "drawable", packageName)

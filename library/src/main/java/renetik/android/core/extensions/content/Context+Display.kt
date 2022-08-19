@@ -1,7 +1,6 @@
 package renetik.android.core.extensions.content
 
 import android.content.Context
-import android.content.ContextWrapper
 import android.content.ContextWrapper.WINDOW_SERVICE
 import android.content.res.Configuration.*
 import android.util.DisplayMetrics
@@ -23,11 +22,13 @@ val Context.displayWidth: Int
 val Context.displayHeight
     get() = defaultDisplay.height
 
+@Suppress("DEPRECATION")
 private val Context.displayMetrics2
     get() = DisplayMetrics().apply {
         defaultDisplay.getMetrics(this)
     }
 
+@Suppress("DEPRECATION")
 val Context.realDisplayMetrics
     get() = DisplayMetrics().apply {
         defaultDisplay.getRealMetrics(this)
