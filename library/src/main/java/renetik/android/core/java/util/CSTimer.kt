@@ -2,7 +2,6 @@ package renetik.android.core.java.util
 
 import renetik.android.core.java.util.concurrent.*
 import renetik.android.core.lang.Func
-import java.util.concurrent.Executors
 import java.util.concurrent.Executors.newSingleThreadScheduledExecutor
 import java.util.concurrent.ScheduledExecutorService
 
