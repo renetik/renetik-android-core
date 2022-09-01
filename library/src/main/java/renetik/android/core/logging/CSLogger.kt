@@ -6,6 +6,4 @@ interface CSLogger {
     fun info(e: Throwable?, vararg values: Any?)
     fun warn(e: Throwable?, vararg values: Any?)
     fun error(e: Throwable?, vararg values: Any?)
-    fun isDisabled(level: CSLogLevel) = level.ordinal < this.level.ordinal
-    fun isEnabled(level: CSLogLevel) = !isDisabled(level)
 }
