@@ -47,9 +47,9 @@ inline fun <reified ExceptionType : Throwable, ReturnType> catchWarnReturn(
     }
 }
 
-inline fun <ReturnType, reified ExceptionType : Throwable> catchWarnReturn(
-    onExceptionReturn: ReturnType, tryFunction: () -> ReturnType
-) = catchWarnReturn<ExceptionType, ReturnType>(message = null, tryFunction) { onExceptionReturn }
+inline fun <ReturnType, reified ExceptionType : Throwable>
+        catchWarnReturn(onExceptionReturn: ReturnType, tryFunction: () -> ReturnType) =
+    catchWarnReturn<ExceptionType, ReturnType>(message = null, tryFunction) { onExceptionReturn }
 
 //inline fun <reified ExceptionType : Throwable> catchWarn(tryFunction: () -> Unit) =
 //    catchWarnReturn<Unit, ExceptionType>(Unit, tryFunction)
