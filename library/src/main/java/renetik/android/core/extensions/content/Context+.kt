@@ -1,8 +1,12 @@
 package renetik.android.core.extensions.content
 
 import android.annotation.SuppressLint
-import android.content.*
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.ContextWrapper.CONNECTIVITY_SERVICE
+import android.content.Intent
 import android.content.Intent.ACTION_BATTERY_CHANGED
+import android.content.IntentFilter
 import android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
@@ -10,7 +14,10 @@ import android.content.pm.PackageManager.NameNotFoundException
 import android.graphics.drawable.Animatable
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
+import android.net.NetworkCapabilities.*
 import android.os.BatteryManager
+import android.os.Build.VERSION.SDK_INT
+import android.os.Build.VERSION_CODES.Q
 import android.util.Base64
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -31,21 +38,29 @@ val Context.isDebug get() = applicationInfo.flags isFlagSet FLAG_DEBUGGABLE
 fun <ViewType : View> Context.inflate(layoutId: Int) =
     LayoutInflater.from(this).inflate(layoutId, null) as ViewType
 
-val Context.applicationLabel: String get() = "${applicationInfo.loadLabel(packageManager)}"
-
-val Context.applicationLogo: Drawable? get() = applicationInfo.loadLogo(packageManager)
-
 /**
  * If the item does not have an icon, the item's default icon is returned
  * such as the default activity icon.
  */
 val Context.applicationIcon: Drawable get() = applicationInfo.loadIcon(packageManager)
+val Context.applicationLabel: String get() = "${applicationInfo.loadLabel(packageManager)}"
+val Context.applicationLogo: Drawable? get() = applicationInfo.loadLogo(packageManager)
 
-@Suppress("DEPRECATION")
-val Context.isNetworkConnected
-    @SuppressLint("MissingPermission")
-    get() = (getSystemService(ContextWrapper.CONNECTIVITY_SERVICE) as ConnectivityManager)
-        .activeNetworkInfo?.isConnected ?: false
+val Context.isNetworkConnected: Boolean
+    get() {
+        val manager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        return if (SDK_INT >= Q)
+            manager.getNetworkCapabilities(manager.activeNetwork)?.let {
+                it.hasTransport(TRANSPORT_WIFI) ||
+                        it.hasTransport(TRANSPORT_CELLULAR) ||
+                        it.hasTransport(TRANSPORT_BLUETOOTH) ||
+                        it.hasTransport(TRANSPORT_ETHERNET) ||
+                        it.hasTransport(TRANSPORT_VPN)
+            } ?: false
+        else
+            @Suppress("DEPRECATION")
+            manager.activeNetworkInfo?.isConnected == true
+    }
 
 @Suppress("DEPRECATION")
 val Context.packageVersionString
