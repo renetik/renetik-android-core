@@ -20,7 +20,7 @@ class CSAndroidLogger(
         val message = createMessage(*values)
         Log.d(tag, message.toString(), e)
         listener?.invoke(Debug,
-            message.addSpace().add(getStackTraceString(e)).toString().trim())//TODO!!!!
+            message.addSpace().add(getStackTraceString(e)).trim().toString())
     }
 
     override fun info(e: Throwable?, vararg values: Any?) {
@@ -28,7 +28,7 @@ class CSAndroidLogger(
         val message = createMessage(*values)
         Log.i(tag, message.toString(), e)
         listener?.invoke(Info,
-            message.addSpace().add(getStackTraceString(e)).toString().trim()) //TODO!!!!
+            message.addSpace().add(getStackTraceString(e)).trim().toString())
     }
 
     override fun warn(e: Throwable?, vararg values: Any?) {
@@ -36,7 +36,7 @@ class CSAndroidLogger(
         val message = createMessage(*values)
         Log.w(tag, message.toString(), e)
         listener?.invoke(Warn,
-            message.addSpace().add(getStackTraceString(e)).toString().trim())//TODO!!!!
+            message.addSpace().add(getStackTraceString(e)).trim().toString())
     }
 
     override fun error(e: Throwable?, vararg values: Any?) {
@@ -44,7 +44,7 @@ class CSAndroidLogger(
         val message = createMessage(*values)
         Log.e(tag, message.toString(), e)
         listener?.invoke(Error,
-            message.addSpace().add(getStackTraceString(e)).toString().trim())//TODO!!!!
+            message.addSpace().add(getStackTraceString(e)).trim().toString())
     }
 
     private fun createMessage(vararg values: Any?) = StringBuilder().apply {
