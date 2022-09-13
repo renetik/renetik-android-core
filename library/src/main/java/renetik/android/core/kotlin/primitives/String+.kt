@@ -115,3 +115,5 @@ fun String.containsAll(words: List<String>, ignoreCase: Boolean = false): Boolea
     for (word in words) if (!contains(word, ignoreCase)) return false
     return true
 }
+
+fun String.count(string: String) = split(string).dropLastWhile { it.isEmpty() }.size - 1
