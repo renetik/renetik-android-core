@@ -21,6 +21,12 @@ fun <T> Context.ifHasMidi(function: (MidiManager) -> T): T? = midiService?.let {
 fun Context.startService(serviceClass: Class<out Service>) =
     startService(Intent(this, serviceClass))
 
+inline fun <reified T : Service> Context.startService() =
+    startService(Intent(this, T::class.java))
+
 fun Context.stopService(serviceClass: Class<out Service>) =
     stopService(Intent(this, serviceClass))
+
+inline fun <reified T : Service> Context.stopService() =
+    stopService(Intent(this, T::class.java))
 
