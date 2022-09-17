@@ -15,7 +15,8 @@ import android.graphics.drawable.Animatable
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities.*
-import android.os.BatteryManager
+import android.os.BatteryManager.EXTRA_LEVEL
+import android.os.BatteryManager.EXTRA_SCALE
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.Q
 import android.util.Base64
@@ -114,10 +115,17 @@ val Context.progressDrawable: Drawable
         return drawable
     }
 
-fun Context.register(intent: IntentFilter, receiver: (Intent, BroadcastReceiver) -> void) =
-    registerReceiver(object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) = receiver(intent, this)
-    }, intent)
+fun Context.register(action: String, function: () -> void): BroadcastReceiver =
+    register(IntentFilter(action)) { _, _ -> function() }
+
+fun Context.register(intent: IntentFilter,
+                     function: (Intent, BroadcastReceiver) -> void): BroadcastReceiver {
+    val receiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) = function(intent, this)
+    }
+    registerReceiver(receiver, intent)
+    return receiver
+}
 
 fun Context.unregister(receiver: BroadcastReceiver) {
     unregisterReceiver(receiver)
@@ -126,8 +134,8 @@ fun Context.unregister(receiver: BroadcastReceiver) {
 val Context.batteryPercent: Float
     get() {
         val batteryStatus = registerReceiver(null, IntentFilter(ACTION_BATTERY_CHANGED))
-        val level = batteryStatus!!.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
-        val scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
+        val level = batteryStatus!!.getIntExtra(EXTRA_LEVEL, -1)
+        val scale = batteryStatus.getIntExtra(EXTRA_SCALE, -1)
         return level / scale.toFloat()
     }
 
