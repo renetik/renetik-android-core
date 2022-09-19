@@ -12,17 +12,13 @@ val <T> List<T>.beforeLast get() = at(lastIndex - 1)
 
 val <T> List<T>.last get() = at(lastIndex)
 
-fun <T> List<T>.at(index: Int): T? = if (index in 0 until size) get(index) else null
+fun <T> List<T>.at(index: Int): T? = if (index in indices) get(index) else null
 
-fun <T> List<T>.index(item: T): Int? {
-    val indexOf = indexOf(item)
-    return if (indexOf == -1) null else indexOf
-}
+fun <T> List<T>.index(item: T): Int? =
+    indexOf(item).let { if (it == -1) null else it }
 
-fun <T> List<T>.index(predicate: (T) -> Boolean): Int? {
-    val indexOf = indexOfFirst(predicate)
-    return if (indexOf == -1) null else indexOf
-}
+fun <T> List<T>.index(predicate: (T) -> Boolean): Int? =
+    indexOfFirst(predicate).let { if (it == -1) null else it }
 
 infix fun <T> List<T>.has(item: T): Boolean = contains(item)
 infix fun <T> List<T>.hasAll(items: List<T>): Boolean = containsAll(items)
