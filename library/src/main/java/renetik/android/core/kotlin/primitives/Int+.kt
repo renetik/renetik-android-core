@@ -1,11 +1,20 @@
 package renetik.android.core.kotlin.primitives
 
 import renetik.android.core.lang.void
+import java.lang.System.nanoTime
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
 inline val Int.Companion.Empty get() = MAX_VALUE
-fun Int.Companion.random(min: Int, max: Int): Int {
+
+fun Int.Companion.unique(length: Int = 9): Int {
+    val nanoTimeString = "${nanoTime()}"
+    val startIndex: Int = nanoTimeString.length - length
+    val uniqueInt: String = nanoTimeString.substring(startIndex, startIndex + length)
+    return uniqueInt.toInt()
+}
+
+fun Int.Companion.random(min: Int = 0, max: Int = MAX_VALUE): Int {
     if (min >= max) throw IllegalArgumentException("max must be greater than min")
     return Random.nextInt(max - min + 1) + min
 }
