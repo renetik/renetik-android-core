@@ -118,6 +118,11 @@ val Context.progressDrawable: Drawable
 fun Context.register(action: String, function: () -> void): BroadcastReceiver =
     register(IntentFilter(action)) { _, _ -> function() }
 
+
+fun Context.register(action: String,
+                     function: (Intent, BroadcastReceiver) -> void): BroadcastReceiver =
+    register(IntentFilter(action), function)
+
 fun Context.register(intent: IntentFilter,
                      function: (Intent, BroadcastReceiver) -> void): BroadcastReceiver {
     val receiver = object : BroadcastReceiver() {
