@@ -25,7 +25,7 @@ fun Int.max(maximumValue: Int) = if (this < maximumValue) this else maximumValue
 fun Int.min(minimumValue: Int) = if (this > minimumValue) this else minimumValue
 
 infix fun Int.isFlagSet(bitwise: Int) = bitwise and this != 0
-infix fun Int.isFlafNotSet(bitwise: Int) = !this.isFlagSet(bitwise)
+infix fun Int.isFlagNotSet(bitwise: Int) = !this.isFlagSet(bitwise)
 
 val Int.isFirstIndex get() = this == 0
 val Int.asIndex get() = this - 1
