@@ -10,6 +10,9 @@ interface CSVariable<T> : CSValue<T>, ReadWriteProperty<Any?, T> {
     companion object {
         fun <T> variable(value: T, onChange: ArgFunc<T>? = null) =
             CSVariableImpl(value, onChange)
+
+        fun <T> variable(onChange: ArgFunc<T>? = null) =
+            CSLateVariableImpl(onChange)
     }
 
     override var value: T

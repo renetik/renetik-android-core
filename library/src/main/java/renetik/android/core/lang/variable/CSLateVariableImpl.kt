@@ -2,13 +2,14 @@ package renetik.android.core.lang.variable
 
 import renetik.android.core.lang.ArgFunc
 
-class CSVariableImpl<T>(
-    value: T,
+class CSLateVariableImpl<T>(
     val onChange: ArgFunc<T>? = null) : CSVariable<T> {
+    private var privateValue: T? = null
 
-    override var value: T = value
+    override var value: T
+        get() = privateValue!!
         set(value) {
-            field = value
+            privateValue = value
             onChange?.invoke(value)
         }
 
