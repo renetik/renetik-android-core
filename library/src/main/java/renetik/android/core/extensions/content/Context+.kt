@@ -95,12 +95,12 @@ fun Context.getDrawable(name: String): Drawable? {
     return resources.getDrawable(resourceId)
 }
 
-fun Context.getColorResource(name: String): Int? {
-    val colorResource = resources.getIdentifier(name, "color", packageName)
-    return if (colorResource == 0) null else colorResource
-}
+//fun Context.getColorResource(name: String): Int? {
+//    val colorResource = resources.getIdentifier(name, "color", packageName)
+//    return if (colorResource == 0) null else colorResource
+//}
 
-fun Context.getColor(name: String): CSColorInt? = getColorResource(name)?.let { color(it) }
+//fun Context.getColor(name: String): CSColorInt? = getColorResource(name)?.let { color(it) }
 
 val Context.progressDrawable: Drawable
     get() {
