@@ -115,6 +115,12 @@ val Context.progressDrawable: Drawable
         return drawable
     }
 
+
+fun BroadcastReceiver(function: (context: Context, intent: Intent) -> Unit) =
+    object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) = function(context, intent)
+    }
+
 fun Context.register(action: String, function: () -> void): BroadcastReceiver =
     register(IntentFilter(action)) { _, _ -> function() }
 
