@@ -3,12 +3,12 @@ package renetik.android.core.lang
 import renetik.android.core.java.util.concurrent.background
 import renetik.android.core.java.util.concurrent.backgroundNano
 import renetik.android.core.java.util.concurrent.backgroundRepeat
-import java.util.concurrent.Executors.newSingleThreadScheduledExecutor
-import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledFuture
+import java.util.concurrent.ScheduledThreadPoolExecutor
 
 object CSBackground {
-     val executor: ScheduledExecutorService = newSingleThreadScheduledExecutor()
+     val executor = ScheduledThreadPoolExecutor(1)
 
     fun background(function: Func): ScheduledFuture<*> =
         executor.background(function = function)
