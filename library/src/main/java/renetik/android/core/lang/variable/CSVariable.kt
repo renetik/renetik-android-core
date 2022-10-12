@@ -8,10 +8,13 @@ import kotlin.reflect.KProperty
 interface CSVariable<T> : CSValue<T>, ReadWriteProperty<Any?, T> {
 
     companion object {
-        fun <T> variable(value: T, onChange: ArgFunc<T>? = null) =
+        fun <T> variable(value: T, onChange: ArgFunc<T>? = null): CSVariable<T> =
             CSVariableImpl(value, onChange)
 
-        fun <T> variable(onChange: ArgFunc<T>? = null) =
+        fun <T> variableNull(value: T? = null, onChange: ArgFunc<T?>? = null): CSVariable<T?> =
+            variable(value, onChange)
+
+        fun <T> variable(onChange: ArgFunc<T>? = null): CSVariable<T> =
             CSLateVariableImpl(onChange)
     }
 
