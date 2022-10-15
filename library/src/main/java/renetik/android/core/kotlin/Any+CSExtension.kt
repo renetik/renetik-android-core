@@ -6,7 +6,7 @@ inline fun <T, R> onNotNull(receiver: T?, block: T.() -> R) {
     receiver?.let { receiver.block() }
 }
 
-inline fun <T : Any> T.run(function: (T) -> Unit): Unit = function(this)
+inline fun <T : Any> T.then(function: (T) -> Unit): Unit = function(this)
 
 inline fun <T : Any> T.runIf(condition: Boolean, function: (T) -> T) =
     if (condition) function(this) else this

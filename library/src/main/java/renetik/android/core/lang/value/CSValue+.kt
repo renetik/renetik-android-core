@@ -3,7 +3,6 @@ package renetik.android.core.lang.value
 import renetik.android.core.kotlin.primitives.Empty
 import renetik.android.core.kotlin.primitives.containsAll
 import renetik.android.core.kotlin.primitives.isFalse
-import renetik.android.core.lang.value.CSValue
 import renetik.android.core.lang.Func
 import renetik.android.core.lang.variable.CSVariable
 

@@ -4,7 +4,7 @@ import android.content.Context
 import renetik.android.core.extensions.content.toast
 import renetik.android.core.kotlin.CSUnexpectedException
 import renetik.android.core.kotlin.primitives.leaveEndOfLength
-import renetik.android.core.kotlin.run
+import renetik.android.core.kotlin.then
 import renetik.android.core.lang.CSStringConstants.NewLine
 import renetik.android.core.logging.CSLogLevel.*
 import renetik.android.core.logging.CSLogMessage.Companion.Empty
@@ -20,20 +20,21 @@ object CSLog {
         this.logger = logger
     }
 
-    fun log(level: CSLogLevel) = run { logImpl(level) { message("") } }
-    fun log(level: CSLogLevel, function: () -> CSLogMessage) = run { logImpl(level, function) }
+    fun log(level: CSLogLevel) = then { logImpl(level) { message("") } }
+    fun log(level: CSLogLevel, function: () -> CSLogMessage) =
+        then { logImpl(level, function) }
 
-    fun logDebug() = run { logImpl(Debug) { message("") } }
-    fun logDebug(function: () -> CSLogMessage) = run { logImpl(Debug, function) }
+    fun logDebug() = then { logImpl(Debug) { message("") } }
+    fun logDebug(function: () -> CSLogMessage) = then { logImpl(Debug, function) }
 
-    fun logInfo() = run { logImpl(Info) { message("") } }
-    fun logInfo(function: () -> CSLogMessage) = run { logImpl(Info, function) }
+    fun logInfo() = then { logImpl(Info) { message("") } }
+    fun logInfo(function: () -> CSLogMessage) = then { logImpl(Info, function) }
 
-    fun logWarn() = run { logImpl(Warn) { message("") } }
-    fun logWarn(function: () -> CSLogMessage) = run { logImpl(Warn, function) }
+    fun logWarn() = then { logImpl(Warn) { message("") } }
+    fun logWarn(function: () -> CSLogMessage) = then { logImpl(Warn, function) }
 
-    fun logError() = run { logImpl(Error) { message("") } }
-    fun logError(function: () -> CSLogMessage) = run { logImpl(Error, function) }
+    fun logError() = then { logImpl(Error) { message("") } }
+    fun logError(function: () -> CSLogMessage) = then { logImpl(Error, function) }
 
     fun Context.logDebugToast() = toast(Debug, logImpl(Debug) { message("") })
     fun Context.logDebugToast(function: () -> CSLogMessage) =

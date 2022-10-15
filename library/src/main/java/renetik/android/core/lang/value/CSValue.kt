@@ -1,5 +1,6 @@
 package renetik.android.core.lang.value
 
+import renetik.android.core.lang.variable.CSVariable
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
