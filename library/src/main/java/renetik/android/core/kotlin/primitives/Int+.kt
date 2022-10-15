@@ -1,6 +1,6 @@
 package renetik.android.core.kotlin.primitives
 
-import renetik.android.core.lang.void
+import renetik.android.core.lang.ArgFunc
 import java.lang.System.nanoTime
 import kotlin.math.absoluteValue
 import kotlin.random.Random
@@ -34,10 +34,10 @@ fun Int.isLastIndex(index: Int) = index == this - 1
 inline val Int.isEven: Boolean get() = this % 2 == 0
 inline val Int.isOdd: Boolean get() = !isEven
 
-inline fun Int.update(
-    newCount: Int, onAdd: (index: Int) -> void, onRemove: (index: Int) -> void) {
+fun Int.update(
+    newCount: Int, onAdd: ArgFunc<Int>? = null, onRemove: ArgFunc<Int>? = null) {
     val lastIndex = this - 1
     val difference = newCount - this
-    if (difference > 0) repeat(difference) { onAdd(lastIndex + 1 + it) }
-    else repeat(difference.absoluteValue) { onRemove(lastIndex - it) }
+    if (difference > 0) repeat(difference) { onAdd?.invoke(lastIndex + 1 + it) }
+    else repeat(difference.absoluteValue) { onRemove?.invoke(lastIndex - it) }
 }
