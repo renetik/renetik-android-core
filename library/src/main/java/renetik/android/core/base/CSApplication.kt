@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
 import android.os.Bundle
+import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
 import renetik.android.core.logging.CSLogMessage.Companion.message
@@ -28,6 +29,9 @@ abstract class CSApplication : Application(), ActivityLifecycleCallbacks {
     var activity: Activity? = null
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+        if (this.activity != null) logError {
+            message("activity should be null in single activity application")
+        }
         this.activity = activity
     }
 
