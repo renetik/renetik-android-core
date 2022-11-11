@@ -8,12 +8,12 @@ class CSWeakVariable<T>(value: T? = null) : CSVariable<T?> {
         fun <T> weak(value: T? = null) = CSWeakVariable(value)
     }
 
-    private var _reference: WeakReference<T>? = null
+    private var reference: WeakReference<T>? = null
 
     override var value: T?
-        get() = _reference?.get()
+        get() = reference?.get()
         set(value) {
-            _reference = WeakReference(value)
+            reference = WeakReference(value)
         }
 
     init {

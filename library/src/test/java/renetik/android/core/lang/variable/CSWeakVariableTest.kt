@@ -23,11 +23,11 @@ class CSWeakVariableTest {
 
     @Test
     fun testVarNulling() {
-        val instance = TestObject()
-        var testVar: TestObject? by weak(instance)
+        var instance: TestObject? = TestObject()
+        val testVar: TestObject? by weak(instance)
         System.gc()
         assertNotNull(testVar)
-        testVar = null
+        instance = null
         System.gc()
         assertNull(testVar)
     }
