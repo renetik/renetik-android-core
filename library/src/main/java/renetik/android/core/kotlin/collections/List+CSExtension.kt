@@ -2,6 +2,8 @@ package renetik.android.core.kotlin.collections
 
 import renetik.android.core.lang.CSList
 
+fun <T> List<T>.mutable() = toMutableList()
+
 val <T> List<T>.first get() = at(0)
 
 val <T> List<T>.second get() = at(1)
