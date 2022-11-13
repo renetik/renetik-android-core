@@ -8,7 +8,7 @@ import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.ScheduledThreadPoolExecutor
 
 object CSBackground {
-    val executor = ScheduledThreadPoolExecutor(1)
+    val executor = ScheduledThreadPoolExecutor(3)
 
     fun background(
         @WorkerThread function: Func): ScheduledFuture<*> =
