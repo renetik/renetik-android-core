@@ -49,11 +49,8 @@ infix fun <T> List<T>.isLast(item: T): Boolean = last === item
 
 infix fun <T> List<T>.isLastIndex(index: Int): Boolean = index == lastIndex
 
-fun <T> List<T>.range(fromIndex: Int) = range(fromIndex, size)
-
-fun <T> List<T>.range(fromIndex: Int, toIndex: Int) =
-    list(subList(fromIndex, toIndex))
-
+fun <T> List<T>.range(fromIndex: Int): List<T> = range(fromIndex, size)
+fun <T> List<T>.range(fromIndex: Int, toIndex: Int): List<T> = list(subList(fromIndex, toIndex))
 
 fun <T> list(block: (MutableList<T>.() -> Unit)? = null): CSList<T> =
     CSList<T>().apply { block?.invoke(this) }

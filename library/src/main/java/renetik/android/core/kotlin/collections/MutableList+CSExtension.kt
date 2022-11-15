@@ -85,3 +85,8 @@ fun <T> MutableList<T>.deleteIf(filter: (T) -> Boolean): Boolean {
 
 inline fun <T, R : Comparable<R>> MutableList<T>.sortedWith(
     crossinline using: (T) -> R?) = apply { sortBy(using) }
+
+fun <T> MutableList<T>.range(fromIndex: Int): MutableList<T> = range(fromIndex, size)
+
+fun <T> MutableList<T>.range(fromIndex: Int, toIndex: Int): MutableList<T> =
+    list(subList(fromIndex, toIndex))
