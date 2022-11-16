@@ -16,16 +16,8 @@ val <T> List<T>.last get() = at(lastIndex)
 
 fun <T> List<T>.at(index: Int): T? = if (index in indices) get(index) else null
 
-fun <T> List<T>.index(item: T): Int? =
-    indexOf(item).let { if (it == -1) null else it }
-
-fun <T> List<T>.index(predicate: (T) -> Boolean): Int? =
-    indexOfFirst(predicate).let { if (it == -1) null else it }
-
 infix fun <T> List<T>.has(item: T): Boolean = contains(item)
-infix fun <T> List<T>.hasAll(items: List<T>): Boolean = containsAll(items)
-infix fun <T> List<T>.hasAll(items: Array<out T>): Boolean = containsAll(items.asList())
-infix fun <T> List<T>.hasAll(items: Iterable<T>): Boolean = containsAll(items.toList())
+
 
 infix fun <T> List<T>.containsAny(items: Array<out T>): Boolean {
     items.forEach { if (contains(it)) return true }
@@ -48,9 +40,6 @@ fun <T> List<T>.beforeLast() = this[lastIndex - 1]
 infix fun <T> List<T>.isLast(item: T): Boolean = last === item
 
 infix fun <T> List<T>.isLastIndex(index: Int): Boolean = index == lastIndex
-
-fun <T> List<T>.range(fromIndex: Int): List<T> = range(fromIndex, size)
-fun <T> List<T>.range(fromIndex: Int, toIndex: Int): List<T> = list(subList(fromIndex, toIndex))
 
 fun <T> list(block: (MutableList<T>.() -> Unit)? = null): CSList<T> =
     CSList<T>().apply { block?.invoke(this) }

@@ -40,7 +40,7 @@ fun <T, ListType : MutableList<T>> ListType.deleteFirst() = delete(0)
 fun <T, ListType : MutableList<T>> ListType.deleteLast() = delete(lastIndex)
 fun <T, ListType : MutableList<T>> ListType.deleteAll() = apply { clear() }
 fun <T> MutableList<T>.removeRange(fromIndex: Int): List<T> =
-    catchAllWarnReturnNull { range(fromIndex) }?.let {
+    catchAllWarnReturnNull { rangeFrom(fromIndex) }?.let {
         removeAll(it)
         return it
     } ?: let { return list() }
@@ -86,7 +86,7 @@ fun <T> MutableList<T>.deleteIf(filter: (T) -> Boolean): Boolean {
 inline fun <T, R : Comparable<R>> MutableList<T>.sortedWith(
     crossinline using: (T) -> R?) = apply { sortBy(using) }
 
-fun <T> MutableList<T>.range(fromIndex: Int): MutableList<T> = range(fromIndex, size)
-
+fun <T> MutableList<T>.rangeFrom(index: Int): MutableList<T> = range(index, size)
+fun <T> MutableList<T>.rangeTo(index: Int): MutableList<T> = range(0, index)
 fun <T> MutableList<T>.range(fromIndex: Int, toIndex: Int): MutableList<T> =
     list(subList(fromIndex, toIndex))
