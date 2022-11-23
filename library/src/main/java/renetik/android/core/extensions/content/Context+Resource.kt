@@ -11,6 +11,8 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Environment.getExternalStorageDirectory
+import android.text.Html
+import android.text.Spanned
 import android.util.DisplayMetrics
 import android.util.DisplayMetrics.DENSITY_DEFAULT
 import android.util.TypedValue
@@ -35,6 +37,10 @@ import java.lang.Integer.MAX_VALUE
 
 
 class CSColorInt(@ColorInt val color: Int)
+
+fun Context.formatted(resId: Int): Spanned =
+    Html.fromHtml(getString(resId).replace("\n", "<br>")
+        .replace("[B]", "<b>").replace("[/B]", "</b>"), 0)
 
 fun Context.color(@ColorRes color: Int) = CSColorInt(getColor(this, color))
 fun Context.colorInt(@ColorInt color: Int) = CSColorInt(color)
