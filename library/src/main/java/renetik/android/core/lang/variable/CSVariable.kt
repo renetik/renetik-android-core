@@ -24,9 +24,15 @@ interface CSVariable<T> : CSValue<T>, ReadWriteProperty<Any?, T> {
             from: () -> T, to: (T) -> Unit): CSVariable<T> =
             CSVariableComputed(from, to)
 
+        @JvmName("variableComputed1")
         fun <T, V> CSVariable<V>.variableComputed(
-            get: (V) -> T, set: (CSVariable<V>, T) -> Unit): CSVariable<T> =
-            CSVariableComputed(from = { get(value) }, to = { set(this, it) })
+            from: (V) -> T, to: (V, T) -> Unit): CSVariable<T> =
+            CSVariableComputed(from = { from(value) }, to = { to(value, it) })
+
+        @JvmName("variableComputed2")
+        fun <T, V, Variable : CSVariable<V>> Variable.variableComputed(
+            get: (Variable).() -> T, set: (Variable).(T) -> Unit): CSVariable<T> =
+            CSVariableComputed(from = { get(this) }, to = { set(this, it) })
     }
 
     override var value: T
