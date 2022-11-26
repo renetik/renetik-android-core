@@ -10,6 +10,7 @@ import renetik.android.core.kotlin.createClass
 import renetik.android.core.kotlin.invoke
 import renetik.android.core.kotlin.isNull
 import renetik.android.core.kotlin.primitives.isTrue
+import renetik.android.core.logging.CSLog.logDebug
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
 import renetik.android.core.logging.CSLogMessage.Companion.message
@@ -64,7 +65,7 @@ object CSEnvironment {
                 || PRODUCT.contains("vbox86p")
                 || PRODUCT.contains("emulator")
                 || PRODUCT.contains("simulator")).apply {
-            if (isTrue) logInfo { message("Running in emulator") }
+//            if (isTrue) logDebug { message("Running in emulator") }
         }
     }
 }
