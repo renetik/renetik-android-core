@@ -31,7 +31,8 @@ fun <T, ListType : MutableList<T>> ListType.set(item: T, index: Int) =
 fun <T, ListType : MutableList<T>> ListType.reload(values: Iterable<T>) =
     deleteAll().putAll(values)
 
-fun <T, ListType : MutableList<T>> ListType.delete(item: T) = item.also { remove(it) }
+fun <T, ListType : MutableList<T>> ListType.delete(item: T): T =
+    item.also { remove(it) }
 
 fun <T, ListType : MutableList<T>> ListType.delete(index: Int): T? =
     at(index)?.apply { removeAt(index) }
