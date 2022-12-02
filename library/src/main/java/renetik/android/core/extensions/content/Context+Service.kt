@@ -11,6 +11,7 @@ import android.media.AudioManager
 import android.media.midi.MidiManager
 import android.os.PowerManager
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatActivity
 import renetik.android.core.kotlin.className
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
@@ -45,4 +46,3 @@ fun Context.stopService(serviceClass: Class<out Service>) =
 
 inline fun <reified T : Service> Context.stopService() =
     stopService(Intent(this, T::class.java))
-
