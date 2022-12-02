@@ -29,9 +29,12 @@ abstract class CSApplication : Application(), ActivityLifecycleCallbacks {
     var activity: Activity? = null
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-        if (this.activity != null) logError {
-            message("activity should be null in single activity application")
-        }
+        if (this.activity?.isDestroyed == false ||
+            this.activity?.isFinishing == false)
+            logError {
+                message("activity should be destroyed or null, " +
+                        "when new is created, in single activity application")
+            }
         this.activity = activity
     }
 
@@ -48,4 +51,5 @@ abstract class CSApplication : Application(), ActivityLifecycleCallbacks {
     override fun onActivityDestroyed(activity: Activity) {
         this.activity = null
     }
+
 }
