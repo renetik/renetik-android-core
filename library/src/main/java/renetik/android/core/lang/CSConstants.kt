@@ -2,7 +2,7 @@
 
 package renetik.android.core.lang
 
-object CSLang{
+object CSLang {
     val EmptyFunc = {}
 }
 
@@ -31,6 +31,7 @@ object CSTimeConstants {
     const val QuarterSecond = 250
     const val HalfSecond = 500
     const val Second = 1000
+    const val SecondLong = Second.toLong()
     const val Minute = 60 * Second
     const val HalfMinute = Minute / 2
     const val Hour = 60 * Minute
