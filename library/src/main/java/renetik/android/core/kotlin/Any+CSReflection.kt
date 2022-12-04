@@ -44,6 +44,12 @@ fun classExist(name: String): Boolean = try {
 fun <T> createInstance(className: String): T? =
     createClass<T>(className)?.createInstance()
 
+@Suppress("UNCHECKED_CAST")
+fun <T> createInstance(className: String, vararg arguments: Any): T? =
+    createClass<T>(className)?.constructors?.firstOrNull {
+        it.parameterTypes.size == arguments.size
+    }?.newInstance(*arguments) as? T
+
 fun <T> Class<T>?.invoke(function: String, argument: T? = null): Any? =
     this?.getMethod(function)?.invoke(argument)
 
