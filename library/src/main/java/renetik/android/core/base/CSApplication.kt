@@ -4,12 +4,17 @@ import android.app.Activity
 import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
 import android.os.Bundle
+import renetik.android.core.lang.CSEnvironment
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
 import renetik.android.core.logging.CSLogMessage.Companion.message
 
 abstract class CSApplication : Application(), ActivityLifecycleCallbacks {
+
+    companion object {
+        val app get() = CSEnvironment.app as CSApplication
+    }
 
     override fun onCreate() {
         super.onCreate()
