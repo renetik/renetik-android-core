@@ -1,12 +1,9 @@
 package renetik.android.core.extensions.content
 
 import android.annotation.SuppressLint
-import android.content.BroadcastReceiver
-import android.content.Context
+import android.content.*
 import android.content.ContextWrapper.CONNECTIVITY_SERVICE
-import android.content.Intent
 import android.content.Intent.ACTION_BATTERY_CHANGED
-import android.content.IntentFilter
 import android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
@@ -15,6 +12,7 @@ import android.graphics.drawable.Animatable
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities.*
+import android.net.Uri
 import android.os.BatteryManager.EXTRA_LEVEL
 import android.os.BatteryManager.EXTRA_SCALE
 import android.os.Build.VERSION.SDK_INT
@@ -30,8 +28,11 @@ import renetik.android.core.kotlin.primitives.isSet
 import renetik.android.core.lang.catchAllErrorReturnNull
 import renetik.android.core.lang.catchWarnReturnNull
 import renetik.android.core.lang.void
+import renetik.android.core.logging.CSLog
+import renetik.android.core.logging.CSLogMessage
 import java.security.MessageDigest
 import java.util.*
+
 
 val Context.isDebug get() = applicationInfo.flags isFlagSet FLAG_DEBUGGABLE
 
@@ -170,3 +171,69 @@ fun Context.createContextForLocale(locale: Locale): Context {
     config.setLayoutDirection(locale)
     return createConfigurationContext(config)
 }
+
+val Context.isPlayStoreInstalled get() = isPackageInstalled("com.google.market")
+
+@Suppress("DEPRECATION")
+fun Context.isPackageInstalled(packageName: String): Boolean = try {
+    getPackageManager().getPackageInfo(packageName, 0)
+    true
+} catch (e: NameNotFoundException) {
+    false
+}
+
+fun Context.goHome() = startActivity(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME))
+
+fun Context.startApplication(packageName: String) {
+    try {
+        val intent = Intent("android.intent.action.MAIN")
+        intent.addCategory("android.intent.category.LAUNCHER")
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        val resolveInfoList = packageManager.queryIntentActivities(intent, 0)
+        for (info in resolveInfoList)
+            if (info.activityInfo.packageName.equals(packageName, ignoreCase = true)) {
+                launchComponent(info.activityInfo.packageName, info.activityInfo.name)
+                return
+            }
+        showInMarket(packageName)
+    } catch (e: Exception) {
+        showInMarket(packageName)
+    }
+}
+
+private fun Context.launchComponent(packageName: String, name: String) {
+    val intent = Intent("android.intent.action.MAIN")
+    intent.addCategory("android.intent.category.LAUNCHER")
+    intent.component = ComponentName(packageName, name)
+    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    startActivity(intent)
+}
+
+private fun Context.showInMarket(packageName: String?) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName!!))
+    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    startActivity(intent)
+}
+
+fun Context.startActivityForUri(
+    uri: Uri, onActivityNotFound: ((ActivityNotFoundException) -> Unit)? = null) =
+    startActivityForUriAndType(uri, null, onActivityNotFound)
+
+fun Context.startActivityForUriAndType(
+    uri: Uri, type: String?, onActivityNotFound: ((ActivityNotFoundException) -> Unit)? = null) {
+    val intent = Intent(Intent.ACTION_VIEW)
+    intent.setDataAndType(uri, type)
+    // Grant Permission to a Specific Package
+    // https://developer.android.com/reference/androidx/core/content/FileProvider
+    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_GRANT_READ_URI_PERMISSION
+    intent.clipData = ClipData.newRawUri("", uri)
+    try {
+        startActivity(intent)
+    } catch (exception: ActivityNotFoundException) {
+        CSLog.logWarn { CSLogMessage.message(exception) }
+        onActivityNotFound?.invoke(exception)
+    }
+}
+
+fun Context.openUrl(url: String) =
+    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
