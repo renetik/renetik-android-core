@@ -172,7 +172,7 @@ fun Context.createContextForLocale(locale: Locale): Context {
     return createConfigurationContext(config)
 }
 
-val Context.isPlayStoreInstalled get() = isPackageInstalled("com.google.market")
+val Context.isPlayStoreInstalled get() = isPackageInstalled("com.android.vending")
 
 @Suppress("DEPRECATION")
 fun Context.isPackageInstalled(packageName: String): Boolean = try {
