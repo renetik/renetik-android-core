@@ -9,6 +9,7 @@ import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
 import renetik.android.core.logging.CSLogMessage.Companion.message
+import kotlin.reflect.KClass
 
 abstract class CSApplication : Application(), ActivityLifecycleCallbacks {
 
@@ -31,9 +32,12 @@ abstract class CSApplication : Application(), ActivityLifecycleCallbacks {
         logInfo { message("onTerminate") }
     }
 
+    abstract val activityType: KClass<out Activity>
+
     var activity: Activity? = null
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+        if (!activityType.isInstance(activity)) return
         if (this.activity?.isDestroyed == false ||
             this.activity?.isFinishing == false)
             logError {
@@ -54,7 +58,7 @@ abstract class CSApplication : Application(), ActivityLifecycleCallbacks {
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) = Unit
 
     override fun onActivityDestroyed(activity: Activity) {
+        if (!activityType.isInstance(activity)) return
         this.activity = null
     }
-
 }
