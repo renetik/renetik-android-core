@@ -29,7 +29,7 @@ object CSEnvironment {
     }
 
     val activity: Activity?
-        get() = (app as? CSApplication)?.activity.also {
+        get() = (app as? CSApplication<*>)?.activity.also {
             if (it.isNull) logWarn {
                 message("This method of getting activity" +
                         " depends on using CSApplication as base class for Application")

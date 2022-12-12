@@ -11,10 +11,11 @@ import renetik.android.core.logging.CSLog.logWarn
 import renetik.android.core.logging.CSLogMessage.Companion.message
 import kotlin.reflect.KClass
 
-abstract class CSApplication : Application(), ActivityLifecycleCallbacks {
+abstract class CSApplication<ActivityType : Activity>
+    : Application(), ActivityLifecycleCallbacks {
 
     companion object {
-        val app get() = CSEnvironment.app as CSApplication
+        val app get() = CSEnvironment.app as CSApplication<*>
     }
 
     override fun onCreate() {
@@ -32,9 +33,9 @@ abstract class CSApplication : Application(), ActivityLifecycleCallbacks {
         logInfo { message("onTerminate") }
     }
 
-    abstract val activityType: KClass<out Activity>
+    abstract val activityType: KClass<out ActivityType>
 
-    var activity: Activity? = null
+    var activity: ActivityType? = null
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         if (!activityType.isInstance(activity)) return
@@ -44,7 +45,8 @@ abstract class CSApplication : Application(), ActivityLifecycleCallbacks {
                 message("activity should be destroyed or null, " +
                         "when new is created, in single activity application")
             }
-        this.activity = activity
+        @Suppress("UNCHECKED_CAST")
+        this.activity = activity as ActivityType
     }
 
     override fun onActivityStarted(activity: Activity) = Unit

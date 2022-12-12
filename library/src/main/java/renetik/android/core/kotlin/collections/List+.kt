@@ -41,6 +41,8 @@ infix fun <T> List<T>.isLast(item: T): Boolean = last === item
 
 infix fun <T> List<T>.isLastIndex(index: Int): Boolean = index == lastIndex
 
+infix fun <T> List<T>.join(list: List<T>): List<T> = toMutableList().apply { addAll(list) }
+
 fun <T> list(block: (MutableList<T>.() -> Unit)? = null): CSList<T> =
     CSList<T>().apply { block?.invoke(this) }
 
@@ -59,17 +61,20 @@ fun <T> list(vararg items: Iterable<T>): MutableList<T> = list<T>().also {
 }
 
 inline fun <reified T> list(
-    size: Int, create: (index: Int, previous: T?, size: Int) -> T): List<T> {
+    size: Int, create: (index: Int, previous: T?, size: Int) -> T,
+): List<T> {
     var previous: T? = null
     return List(size) { index -> create(index, previous, size).apply { previous = this } }
 }
 
 fun <T, A, B> combine(
-    arrayA: Array<A>, arrayB: Array<B>, createItem: (A, B) -> T) =
+    arrayA: Array<A>, arrayB: Array<B>, createItem: (A, B) -> T,
+) =
     combine(arrayA.asList(), arrayB.asList(), createItem)
 
 fun <T, A, B> combine(
-    collectionA: Collection<A>, collectionB: Collection<B>, createItem: (A, B) -> T) =
+    collectionA: Collection<A>, collectionB: Collection<B>, createItem: (A, B) -> T,
+) =
     list<T>(size = collectionA.size * collectionB.size).apply {
         for (a in collectionA) for (b in collectionB) add(createItem(a, b))
     }
