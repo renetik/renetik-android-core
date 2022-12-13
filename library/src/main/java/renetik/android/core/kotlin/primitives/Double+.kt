@@ -15,8 +15,8 @@ fun Double.formatRoundTo(n: Int): Double {
 }
 
 fun Double.formatOffDecimal(format: String = "#.##",
-                            mode: RoundingMode = CEILING): Double {
+                            mode: RoundingMode = CEILING): String {
     val df = DecimalFormat(format)
     df.roundingMode = mode
-    return df.format(this).toDouble()
+    return df.format(this)
 }
