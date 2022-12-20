@@ -33,9 +33,14 @@ fun Float.formatOffDecimal(format: String = "#.##",
 
 val Float.rest: Float
     get() = toString().let {
-        if (it.contains(".")) it.substringAfter(".").toInt() / 100f
-        else 0f
+        if (it.contains(".")) {
+            val value = it.substringAfter(".")
+            value.toInt() / value.length.toFloat()
+        } else 0f
     }
+
+fun Float.rest(value: Int): Float =
+    if (value > 0) this % value else this
 
 fun Float.min(minimum: Float) = if (this > minimum) this else minimum
 fun Float.max(maximum: Float) = if (this < maximum) this else maximum
