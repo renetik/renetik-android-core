@@ -10,12 +10,12 @@ fun Double.roundToStep(step: Double): Double = (this / step).toInt() * step
 
 fun Int.roundToStep(step: Int): Int = (this / step) * step
 
-fun Double.formatRoundTo(n: Int): Double {
+fun Double.formatDecimal(n: Int): Double {
     return "%.${n}f".format(ENGLISH, this).toDouble()
 }
 
-fun Double.formatOffDecimal(format: String = "#.##",
-                            mode: RoundingMode = CEILING): String {
+fun Double.formatRoundDecimal(format: String = "#.##",
+                              mode: RoundingMode = CEILING): String {
     val df = DecimalFormat(format)
     df.roundingMode = mode
     return df.format(this)

@@ -20,12 +20,13 @@ fun Float.roundToStep(step: Float): Float = (this / step).toInt() * step
 fun Float.roundToStep(step: Double): Double = (this / step).toInt() * step
 fun Float.roundToStep(step: Int): Int = (this / step).toInt() * step
 
-fun Float.formatRoundTo(n: Int): String {
+fun Float.formatDecimal(n: Int): String {
+//    val prefix = if (this < 0) "-" else ""
     return "%.${n}f".format(Locale.ENGLISH, this)
 }
 
-fun Float.formatOffDecimal(format: String = "#.##",
-                           mode: RoundingMode = CEILING): String {
+fun Float.formatRoundDecimal(format: String = "#.##",
+                             mode: RoundingMode = CEILING): String {
     val df = DecimalFormat(format)
     df.roundingMode = mode
     return df.format(this)
