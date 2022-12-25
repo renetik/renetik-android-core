@@ -14,6 +14,6 @@ fun Application.restart() {
 }
 
 fun Application.exit() {
-//    Process.killProcess(Process.myPid())
+    Process.killProcess(Process.myPid())
     exitProcess(0)
 }
