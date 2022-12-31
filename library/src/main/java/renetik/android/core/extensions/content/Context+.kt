@@ -1,6 +1,7 @@
 package renetik.android.core.extensions.content
 
 import android.annotation.SuppressLint
+import android.app.PendingIntent
 import android.content.*
 import android.content.ContextWrapper.CONNECTIVITY_SERVICE
 import android.content.Intent.ACTION_BATTERY_CHANGED
@@ -125,6 +126,8 @@ fun BroadcastReceiver(function: (context: Context, intent: Intent) -> Unit) =
 fun Context.register(action: String, function: () -> void): BroadcastReceiver =
     register(IntentFilter(action)) { _, _ -> function() }
 
+fun Context.broadcastPendingIntent(actionId: String, flags: Int): PendingIntent =
+    PendingIntent.getBroadcast(this, 0, Intent(actionId), flags)
 
 fun Context.register(action: String,
                      function: (Intent, BroadcastReceiver) -> void): BroadcastReceiver =

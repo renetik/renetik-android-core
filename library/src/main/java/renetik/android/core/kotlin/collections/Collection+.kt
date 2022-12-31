@@ -29,3 +29,7 @@ fun <T> Collection<T>.firstIndex(predicate: (T) -> Boolean): Int? =
 fun <T> Collection<T>.lastIndex(predicate: (T) -> Boolean): Int? =
     indexOfLast(predicate).let { if (it == -1) null else it }
 
+//inline fun <T> Iterable<T>.onEach(action: (T) -> Unit) = apply {
+//    for (element in this) action(element)
+//}
+
