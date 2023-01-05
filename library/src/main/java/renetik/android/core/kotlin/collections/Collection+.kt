@@ -1,5 +1,6 @@
 package renetik.android.core.kotlin.collections
 
+
 inline val Collection<*>.length get() = size
 
 inline val Collection<*>.count get() = size

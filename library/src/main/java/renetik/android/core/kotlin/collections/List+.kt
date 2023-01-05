@@ -18,7 +18,6 @@ fun <T> List<T>.at(index: Int): T? = if (index in indices) get(index) else null
 
 infix fun <T> List<T>.has(item: T): Boolean = contains(item)
 
-
 infix fun <T> List<T>.containsAny(items: Array<out T>): Boolean {
     items.forEach { if (contains(it)) return true }
     return false
@@ -69,12 +68,10 @@ inline fun <reified T> list(
 
 fun <T, A, B> combine(
     arrayA: Array<A>, arrayB: Array<B>, createItem: (A, B) -> T,
-) =
-    combine(arrayA.asList(), arrayB.asList(), createItem)
+) = combine(arrayA.asList(), arrayB.asList(), createItem)
 
 fun <T, A, B> combine(
     collectionA: Collection<A>, collectionB: Collection<B>, createItem: (A, B) -> T,
-) =
-    list<T>(size = collectionA.size * collectionB.size).apply {
-        for (a in collectionA) for (b in collectionB) add(createItem(a, b))
-    }
+) = list<T>(size = collectionA.size * collectionB.size).apply {
+    for (a in collectionA) for (b in collectionB) add(createItem(a, b))
+}
