@@ -9,9 +9,6 @@ import renetik.android.core.kotlin.classExist
 import renetik.android.core.kotlin.createClass
 import renetik.android.core.kotlin.invoke
 import renetik.android.core.kotlin.isNull
-import renetik.android.core.kotlin.primitives.isTrue
-import renetik.android.core.logging.CSLog.logDebug
-import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
 import renetik.android.core.logging.CSLogMessage.Companion.message
 
@@ -24,7 +21,7 @@ object CSEnvironment {
         } catch (ex: Throwable) {
             logWarn { message(ex) }
             throw Exception("Getting Application from ActivityThread failed, " +
-                    "consider setting it manually.")
+                "consider setting it manually.")
         }
     }
 
@@ -32,11 +29,13 @@ object CSEnvironment {
         get() = (app as? CSApplication<*>)?.activity.also {
             if (it.isNull) logWarn {
                 message("This method of getting activity" +
-                        " depends on using CSApplication as base class for Application")
+                    " depends on using CSApplication as base class for Application")
             }
         }
 
     val isDebug by lazy { app.isDebug }
+
+    val isRelease by lazy { !isDebug }
 
     var runnerClassNames = mutableListOf("org.junit.runner.Runner",
         "androidx.test.runner.AndroidJUnitRunner",
@@ -49,22 +48,22 @@ object CSEnvironment {
 
     val isEmulator: Boolean by lazy {
         (BRAND.startsWith("generic") && DEVICE.startsWith("generic")
-                || FINGERPRINT.startsWith("generic")
-                || FINGERPRINT.startsWith("unknown")
-                || HARDWARE.contains("goldfish")
-                || HARDWARE.contains("ranchu")
-                || MODEL.contains("google_sdk")
-                || MODEL.contains("Emulator")
-                || MODEL.contains("Android SDK built for x86")
-                || MANUFACTURER.contains("Genymotion")
-                || PRODUCT.contains("sdk_google")
-                || PRODUCT.contains("google_sdk")
-                || PRODUCT.contains("sdk")
-                || PRODUCT.contains("sdk_x86")
-                || PRODUCT.contains("sdk_gphone64_arm64")
-                || PRODUCT.contains("vbox86p")
-                || PRODUCT.contains("emulator")
-                || PRODUCT.contains("simulator")).apply {
+            || FINGERPRINT.startsWith("generic")
+            || FINGERPRINT.startsWith("unknown")
+            || HARDWARE.contains("goldfish")
+            || HARDWARE.contains("ranchu")
+            || MODEL.contains("google_sdk")
+            || MODEL.contains("Emulator")
+            || MODEL.contains("Android SDK built for x86")
+            || MANUFACTURER.contains("Genymotion")
+            || PRODUCT.contains("sdk_google")
+            || PRODUCT.contains("google_sdk")
+            || PRODUCT.contains("sdk")
+            || PRODUCT.contains("sdk_x86")
+            || PRODUCT.contains("sdk_gphone64_arm64")
+            || PRODUCT.contains("vbox86p")
+            || PRODUCT.contains("emulator")
+            || PRODUCT.contains("simulator")).apply {
 //            if (isTrue) logDebug { message("Running in emulator") }
         }
     }
