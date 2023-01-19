@@ -20,17 +20,17 @@ interface CSVariable<T> : CSValue<T>, ReadWriteProperty<Any?, T> {
             onChange: ArgFunc<T>? = null): CSVariable<T> =
             CSLateVariableImpl(onChange)
 
-        fun <T> variableComputed(
+        fun <T> variable(
             from: () -> T, to: (T) -> Unit): CSVariable<T> =
             CSVariableComputed(from, to)
 
         @JvmName("variableComputed1")
-        fun <T, V> CSVariable<V>.variableComputed(
+        fun <T, V> CSVariable<V>.variable(
             from: (V) -> T, to: (V, T) -> Unit): CSVariable<T> =
             CSVariableComputed(from = { from(value) }, to = { to(value, it) })
 
         @JvmName("variableComputed2")
-        fun <T, V, Variable : CSVariable<V>> Variable.variableComputed(
+        fun <T, V, Variable : CSVariable<V>> Variable.variable(
             get: (Variable).() -> T, set: (Variable).(T) -> Unit): CSVariable<T> =
             CSVariableComputed(from = { get(this) }, to = { set(this, it) })
     }
