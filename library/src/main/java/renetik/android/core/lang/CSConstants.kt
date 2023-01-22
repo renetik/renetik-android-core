@@ -8,6 +8,7 @@ object CSLang {
 
 object CSStringConstants {
     const val Empty = ""
+    const val Ellipsize = "..."
     const val Comma = ","
     const val Semicolon = ";"
     const val NewLine = "\n"
