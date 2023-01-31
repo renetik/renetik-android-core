@@ -1,6 +1,8 @@
 package renetik.android.core.kotlin.primitives
 
+import renetik.android.core.extensions.content.dpToPixel
 import renetik.android.core.lang.ArgFunc
+import renetik.android.core.lang.CSEnvironment.app
 import java.lang.System.nanoTime
 import kotlin.math.absoluteValue
 import kotlin.random.Random
@@ -35,9 +37,12 @@ inline val Int.isEven: Boolean get() = this % 2 == 0
 inline val Int.isOdd: Boolean get() = !isEven
 
 fun Int.update(
-    newCount: Int, onAdd: ArgFunc<Int>? = null, onRemove: ArgFunc<Int>? = null) {
+    newCount: Int, onAdd: ArgFunc<Int>? = null, onRemove: ArgFunc<Int>? = null
+) {
     val lastIndex = this - 1
     val difference = newCount - this
     if (difference > 0) repeat(difference) { onAdd?.invoke(lastIndex + 1 + it) }
     else repeat(difference.absoluteValue) { onRemove?.invoke(lastIndex - it) }
 }
+
+inline val Int.dp: Int get() = app.dpToPixel(this)
