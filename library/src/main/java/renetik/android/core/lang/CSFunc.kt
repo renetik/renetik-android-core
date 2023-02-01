@@ -5,7 +5,8 @@ interface CSFunc {
 
     companion object {
         inline fun func(
-            crossinline function: () -> void): CSFunc = object : CSFunc {
+            crossinline function: () -> void
+        ): CSFunc = object : CSFunc {
             override fun invoke() = function()
         }
 
