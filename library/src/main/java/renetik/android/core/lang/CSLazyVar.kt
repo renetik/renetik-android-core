@@ -15,6 +15,7 @@ class CSLazyVar<T>(initializer: () -> T) : ReadWriteProperty<Any?, T> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): T =
         synchronized(this) {
             if (!isSet) return lazyValue
+            @Suppress("UNCHECKED_CAST")
             return value as T
         }
 

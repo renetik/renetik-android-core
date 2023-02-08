@@ -17,7 +17,7 @@ val Intent.asString: String
         extras?.let {
             string.append(" Extras: ")
             for (key in it.keySet()) {
-                val info = it.get(key)
+                val info = it.getString(key)
                 string.append("$key $info (${info?.javaClass?.name ?: ""})")
             }
         }
