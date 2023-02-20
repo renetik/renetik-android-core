@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package renetik.android.core.kotlin.collections
 
 import renetik.android.core.lang.catchAllWarnReturnNull
@@ -46,9 +48,9 @@ fun <T> MutableList<T>.removeRange(fromIndex: Int): List<T> =
         return it
     } ?: let { return list() }
 
-fun <T> MutableList<T>.delete(filter: (T) -> Boolean) = deleteFirst(filter)
+inline fun <T> MutableList<T>.delete(filter: (T) -> Boolean) = deleteFirst(filter)
 
-fun <T> MutableList<T>.deleteFirst(filter: (T) -> Boolean): T? {
+inline fun <T> MutableList<T>.deleteFirst(filter: (T) -> Boolean): T? {
     val each = iterator()
     while (each.hasNext()) {
         val item = each.next()
@@ -60,7 +62,7 @@ fun <T> MutableList<T>.deleteFirst(filter: (T) -> Boolean): T? {
     return null
 }
 
-fun <T> MutableList<T>.deleteLast(filter: (T) -> Boolean): T? {
+inline fun <T> MutableList<T>.deleteLast(filter: (T) -> Boolean): T? {
     val each = listIterator(size)
     while (each.hasPrevious()) {
         val item = each.previous()
@@ -72,7 +74,7 @@ fun <T> MutableList<T>.deleteLast(filter: (T) -> Boolean): T? {
     return null
 }
 
-fun <T> MutableList<T>.deleteIf(filter: (T) -> Boolean): Boolean {
+inline fun <T> MutableList<T>.deleteIf(filter: (T) -> Boolean): Boolean {
     var removed = false
     val each = iterator()
     while (each.hasNext()) {
