@@ -1,5 +1,7 @@
 package renetik.android.core.kotlin.primitives
 
+import renetik.android.core.extensions.content.dpToPixelF
+import renetik.android.core.lang.CSEnvironment.app
 import java.math.RoundingMode
 import java.math.RoundingMode.CEILING
 import java.text.DecimalFormat
@@ -45,5 +47,7 @@ fun Float.rest(value: Int): Float =
 
 fun Float.min(minimum: Float) = if (this > minimum) this else minimum
 fun Float.max(maximum: Float) = if (this < maximum) this else maximum
+
+inline val Float.dp: Float get() = app.dpToPixelF(this)
 
 

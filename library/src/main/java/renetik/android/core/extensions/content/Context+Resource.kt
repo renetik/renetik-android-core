@@ -93,8 +93,8 @@ fun Context.toDpF(pixel: Float) = pixel / (displayMetrics.densityDpi.toFloat() /
 fun Context.toDpF(pixel: Int) = toDpF(pixel.toFloat())
 fun Context.toDp(pixel: Int) = toDpF(pixel).toInt()
 
-fun Context.dpToPixelF(dp: Float) = applyDimension(COMPLEX_UNIT_DIP, dp, displayMetrics)
-fun Context.dpToPixelF(dp: Int) = dpToPixelF(dp.toFloat())
+fun Context.dpToPixelF(dp: Float): Float = applyDimension(COMPLEX_UNIT_DIP, dp, displayMetrics)
+fun Context.dpToPixelF(dp: Int): Float = dpToPixelF(dp.toFloat())
 fun Context.dpToPixel(dp: Float) = dpToPixelF(dp).toInt()
 fun Context.dpToPixel(dp: Int) = dpToPixelF(dp.toFloat()).toInt()
 
