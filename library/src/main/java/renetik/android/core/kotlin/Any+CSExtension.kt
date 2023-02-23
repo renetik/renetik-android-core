@@ -8,7 +8,7 @@ inline fun <T, R> onNotNull(receiver: T?, block: T.() -> R) {
 
 inline fun <T : Any> T.then(function: (T) -> Unit): Unit = function(this)
 
-inline fun <T : Any> T.runIf(condition: Boolean, function: (T) -> T) =
+inline fun <T : Any> T.changeIf(condition: Boolean, function: (T) -> T) =
     if (condition) function(this) else this
 
 inline val <T : Any> T.className get() = this::class.simpleName
