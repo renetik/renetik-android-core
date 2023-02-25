@@ -18,13 +18,13 @@ import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLogMessage.Companion.message
 
 val Context.notifications get() = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-val Context.audioService get() = getSystemService(AUDIO_SERVICE) as AudioManager
+val Context.audioManager get() = getSystemService(AUDIO_SERVICE) as AudioManager
 val Context.bluetoothService get() = getSystemService(BLUETOOTH_SERVICE) as BluetoothManager
 val Context.inputService get() = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
 
-val Context.midiService: MidiManager? get() = getSystemService(MIDI_SERVICE) as? MidiManager
-val Context.isMidiSupported: Boolean get() = midiService != null
-fun <T> Context.ifHasMidi(function: (MidiManager) -> T): T? = midiService?.let { function(it) }
+val Context.midiManager: MidiManager? get() = getSystemService(MIDI_SERVICE) as? MidiManager
+val Context.isMidiSupported: Boolean get() = midiManager != null
+fun <T> Context.ifHasMidi(function: (MidiManager) -> T): T? = midiManager?.let { function(it) }
 
 @SuppressLint("WakelockTimeout")
 fun Context.wakeLock(levelAndFlags: Int): PowerManager.WakeLock {
