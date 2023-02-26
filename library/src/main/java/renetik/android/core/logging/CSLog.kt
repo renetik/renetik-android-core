@@ -29,6 +29,7 @@ object CSLog {
 
     fun logInfo() = then { logImpl(Info) { message("") } }
     fun logInfo(function: () -> CSLogMessage) = then { logImpl(Info, function) }
+    fun logInfo(message: String = "") = then { logImpl(Info) { message(message) } }
 
     fun logWarn() = then { logImpl(Warn) { message("") } }
     fun logWarn(function: () -> CSLogMessage) = then { logImpl(Warn, function) }
