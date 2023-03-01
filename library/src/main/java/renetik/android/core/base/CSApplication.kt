@@ -20,6 +20,7 @@ abstract class CSApplication<ActivityType : Activity>
 
     override fun onCreate() {
         super.onCreate()
+        CSEnvironment.app = this
         registerActivityLifecycleCallbacks(this)
     }
 
