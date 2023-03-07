@@ -75,3 +75,8 @@ fun <T, A, B> combine(
 ) = list<T>(size = collectionA.size * collectionB.size).apply {
     for (a in collectionA) for (b in collectionB) add(createItem(a, b))
 }
+
+/**
+Returns copy of list with added element
+ */
+fun <E> List<E>.add(element: E): List<E> = mutable().apply { add(element) }
