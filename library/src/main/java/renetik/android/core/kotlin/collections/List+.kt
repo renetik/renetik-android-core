@@ -4,6 +4,13 @@ import renetik.android.core.lang.CSList
 
 fun <T> List<T>.mutable() = toMutableList()
 
+fun <T> List<T>.mutable(
+    add: T? = null, remove: T? = null
+) = mutable().apply {
+    add?.let { add(element = it) }
+    remove?.let { remove(element = it) }
+}
+
 val <T> List<T>.first get() = at(0)
 
 val <T> List<T>.second get() = at(1)
@@ -75,8 +82,3 @@ fun <T, A, B> combine(
 ) = list<T>(size = collectionA.size * collectionB.size).apply {
     for (a in collectionA) for (b in collectionB) add(createItem(a, b))
 }
-
-/**
-Returns copy of list with added element
- */
-fun <E> List<E>.add(element: E): List<E> = mutable().apply { add(element) }
