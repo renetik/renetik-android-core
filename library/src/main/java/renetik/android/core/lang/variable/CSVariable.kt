@@ -9,29 +9,35 @@ interface CSVariable<T> : CSValue<T>, ReadWriteProperty<Any?, T> {
 
     companion object {
         fun <T> variable(
-            value: T, onChange: ArgFunc<T>? = null): CSVariable<T> =
+            value: T, onChange: ArgFunc<T>? = null
+        ): CSVariable<T> =
             CSVariableImpl(value, onChange)
 
         fun <T> variableNull(
-            value: T? = null, onChange: ArgFunc<T?>? = null): CSVariable<T?> =
+            value: T? = null, onChange: ArgFunc<T?>? = null
+        ): CSVariable<T?> =
             variable(value, onChange)
 
         fun <T> variable(
-            onChange: ArgFunc<T>? = null): CSVariable<T> =
+            onChange: ArgFunc<T>? = null
+        ): CSVariable<T> =
             CSLateVariableImpl(onChange)
 
         fun <T> variable(
-            from: () -> T, to: (T) -> Unit): CSVariable<T> =
+            from: () -> T, to: (T) -> Unit
+        ): CSVariable<T> =
             CSVariableComputed(from, to)
 
         @JvmName("variableComputed1")
         fun <T, V> CSVariable<V>.variable(
-            from: (V) -> T, to: (V, T) -> Unit): CSVariable<T> =
+            from: (V) -> T, to: (V, T) -> Unit
+        ): CSVariable<T> =
             CSVariableComputed(from = { from(value) }, to = { to(value, it) })
 
         @JvmName("variableComputed2")
         fun <T, V, Variable : CSVariable<V>> Variable.variable(
-            get: (Variable).() -> T, set: (Variable).(T) -> Unit): CSVariable<T> =
+            get: (Variable).() -> T, set: (Variable).(T) -> Unit
+        ): CSVariable<T> =
             CSVariableComputed(from = { get(this) }, to = { set(this, it) })
     }
 
