@@ -9,7 +9,6 @@ import android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.NameNotFoundException
-import android.graphics.drawable.Animatable
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities.*
@@ -19,11 +18,9 @@ import android.os.BatteryManager.EXTRA_SCALE
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.Q
 import android.util.Base64
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.StringRes
-import androidx.core.content.res.getDrawableOrThrow
 import renetik.android.core.kotlin.primitives.isFlagSet
 import renetik.android.core.kotlin.primitives.isSet
 import renetik.android.core.lang.catchAllErrorReturnNull
@@ -55,10 +52,10 @@ val Context.isNetworkConnected: Boolean
         return if (SDK_INT >= Q)
             manager.getNetworkCapabilities(manager.activeNetwork)?.let {
                 it.hasTransport(TRANSPORT_WIFI) ||
-                        it.hasTransport(TRANSPORT_CELLULAR) ||
-                        it.hasTransport(TRANSPORT_BLUETOOTH) ||
-                        it.hasTransport(TRANSPORT_ETHERNET) ||
-                        it.hasTransport(TRANSPORT_VPN)
+                    it.hasTransport(TRANSPORT_CELLULAR) ||
+                    it.hasTransport(TRANSPORT_BLUETOOTH) ||
+                    it.hasTransport(TRANSPORT_ETHERNET) ||
+                    it.hasTransport(TRANSPORT_VPN)
             } ?: false
         else
             @Suppress("DEPRECATION")
@@ -85,17 +82,18 @@ val Context.appKeyHash
         } else null
     }
 
+@Suppress("DEPRECATION") // Updated in API 33
 val Context.packageInfo
     get() = catchWarnReturnNull<PackageInfo, NameNotFoundException> {
         packageManager.getPackageInfo(packageName, 0)
     }
 
-@Suppress("DEPRECATION")
-@SuppressLint("UseCompatLoadingForDrawables")
-fun Context.getDrawable(name: String): Drawable? {
-    val resourceId = resources.getIdentifier(name, "drawable", packageName)
-    return resources.getDrawable(resourceId)
-}
+//@Suppress("DEPRECATION")
+//@SuppressLint("UseCompatLoadingForDrawables")
+//fun Context.getDrawable(name: String): Drawable? {
+//    val resourceId = resources.getIdentifier(name, "drawable", packageName)
+//    return resources.getDrawable(resourceId)
+//}
 
 //fun Context.getColorResource(name: String): Int? {
 //    val colorResource = resources.getIdentifier(name, "color", packageName)
@@ -104,18 +102,18 @@ fun Context.getDrawable(name: String): Drawable? {
 
 //fun Context.getColor(name: String): CSColorInt? = getColorResource(name)?.let { color(it) }
 
-val Context.progressDrawable: Drawable
-    get() {
-        val value = TypedValue()
-        theme.resolveAttribute(android.R.attr.progressBarStyleSmall, value, false)
-        val progressBarStyle = value.data
-        val attributes = intArrayOf(android.R.attr.indeterminateDrawable)
-        val array = obtainStyledAttributes(progressBarStyle, attributes)
-        val drawable = array.getDrawableOrThrow(0)
-        array.recycle()
-        (drawable as? Animatable)?.start()
-        return drawable
-    }
+//val Context.progressDrawable: Drawable
+//    get() {
+//        val value = TypedValue()
+//        theme.resolveAttribute(android.R.attr.progressBarStyleSmall, value, false)
+//        val progressBarStyle = value.data
+//        val attributes = intArrayOf(android.R.attr.indeterminateDrawable)
+//        val array = obtainStyledAttributes(progressBarStyle, attributes)
+//        val drawable = array.getDrawableOrThrow(0)
+//        array.recycle()
+//        (drawable as? Animatable)?.start()
+//        return drawable
+//    }
 
 
 fun BroadcastReceiver(function: (context: Context, intent: Intent) -> Unit) =
@@ -129,12 +127,16 @@ fun Context.register(action: String, function: () -> void): BroadcastReceiver =
 fun Context.broadcastPendingIntent(actionId: String, flags: Int): PendingIntent =
     PendingIntent.getBroadcast(this, 0, Intent(actionId), flags)
 
-fun Context.register(action: String,
-                     function: (Intent, BroadcastReceiver) -> void): BroadcastReceiver =
+fun Context.register(
+    action: String,
+    function: (Intent, BroadcastReceiver) -> void
+): BroadcastReceiver =
     register(IntentFilter(action), function)
 
-fun Context.register(intent: IntentFilter,
-                     function: (Intent, BroadcastReceiver) -> void): BroadcastReceiver {
+fun Context.register(
+    intent: IntentFilter,
+    function: (Intent, BroadcastReceiver) -> void
+): BroadcastReceiver {
     val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) = function(intent, this)
     }
@@ -192,6 +194,7 @@ fun Context.startApplication(packageName: String) {
         val intent = Intent("android.intent.action.MAIN")
         intent.addCategory("android.intent.category.LAUNCHER")
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        @Suppress("DEPRECATION")
         val resolveInfoList = packageManager.queryIntentActivities(intent, 0)
         for (info in resolveInfoList)
             if (info.activityInfo.packageName.equals(packageName, ignoreCase = true)) {
@@ -219,11 +222,13 @@ private fun Context.showInMarket(packageName: String?) {
 }
 
 fun Context.startActivityForUri(
-    uri: Uri, onActivityNotFound: ((ActivityNotFoundException) -> Unit)? = null) =
+    uri: Uri, onActivityNotFound: ((ActivityNotFoundException) -> Unit)? = null
+) =
     startActivityForUriAndType(uri, null, onActivityNotFound)
 
 fun Context.startActivityForUriAndType(
-    uri: Uri, type: String?, onActivityNotFound: ((ActivityNotFoundException) -> Unit)? = null) {
+    uri: Uri, type: String?, onActivityNotFound: ((ActivityNotFoundException) -> Unit)? = null
+) {
     val intent = Intent(Intent.ACTION_VIEW)
     intent.setDataAndType(uri, type)
     // Grant Permission to a Specific Package
