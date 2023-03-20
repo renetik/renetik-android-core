@@ -4,6 +4,7 @@ import org.junit.Assert.*
 import org.junit.Test
 import renetik.android.core.lang.variable.CSWeakVariable.Companion.weak
 
+@Suppress("UNUSED_VALUE")
 class CSWeakVariableTest {
 
     class TestObject
