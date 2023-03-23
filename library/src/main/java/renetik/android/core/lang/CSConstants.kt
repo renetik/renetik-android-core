@@ -2,13 +2,10 @@
 
 package renetik.android.core.lang
 
-object CSLang {
-    val EmptyFunc = {}
-}
-
 object CSStringConstants {
     const val Empty = ""
-//    const val Ellipsize = "…"
+
+    //    const val Ellipsize = "…"
     const val Ellipsize = "..."
     const val Comma = ","
     const val Semicolon = ";"
