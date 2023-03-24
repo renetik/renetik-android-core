@@ -1,6 +1,7 @@
 package renetik.android.core.kotlin.collections
 
-fun <T> Iterable<T>.forEachWithPrevious(function: (item: T, previous: T?) -> Unit) {
+
+inline fun <T> Iterable<T>.forEachWithPrevious(function: (item: T, previous: T?) -> Unit) {
     var previous: T? = null
     for (item in this) {
         function(item, previous)

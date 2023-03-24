@@ -82,3 +82,8 @@ fun <T, A, B> combine(
 ) = list<T>(size = collectionA.size * collectionB.size).apply {
     for (a in collectionA) for (b in collectionB) add(createItem(a, b))
 }
+
+inline fun <T> List<T>.forEachReverse(action: (T) -> Unit) {
+    val iterator = listIterator()
+    while (iterator.hasPrevious()) action(iterator.previous())
+}
