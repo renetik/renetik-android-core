@@ -8,7 +8,8 @@ inline fun <reified T> array(size: Int, noinline create: (index: Int, size: Int)
     Array(size) { index -> create(index, size) }
 
 inline fun <reified T> array(
-    size: Int, create: (index: Int, previous: T?, size: Int) -> T): Array<T> {
+    size: Int, create: (index: Int, previous: T?, size: Int) -> T
+): Array<T> {
     var previous: T? = null
     return Array(size) { index -> create(index, previous, size).apply { previous = this } }
 }
@@ -50,3 +51,10 @@ inline fun <reified T> Array<out T>.toArray() = asList().toTypedArray()
 
 fun <T> Array<out T>.at(index: Int) = if (index in 0 until size) get(index) else null
 
+inline fun <T> Array<T>.forEachReverse(action: (T) -> Unit) {
+    var index = lastIndex
+    while (index >= 0) {
+        action(this[index])
+        index--
+    }
+}

@@ -83,7 +83,7 @@ fun <T, A, B> combine(
     for (a in collectionA) for (b in collectionB) add(createItem(a, b))
 }
 
-inline fun <T> List<T>.forEachReversed(action: (T) -> Unit) {
+inline fun <T> List<T>.forEachReverse(action: (T) -> Unit) {
     var index = lastIndex
     while (index >= 0) {
         action(this[index])
