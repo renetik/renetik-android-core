@@ -84,6 +84,9 @@ fun <T, A, B> combine(
 }
 
 inline fun <T> List<T>.forEachReverse(action: (T) -> Unit) {
-    val iterator = listIterator()
-    while (iterator.hasPrevious()) action(iterator.previous())
+    var index = lastIndex
+    while (index >= 0) {
+        action(this[index])
+        index--
+    }
 }
