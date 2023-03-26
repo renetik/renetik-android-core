@@ -3,10 +3,10 @@ package renetik.android.core.lang
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class CSLazyVarTest {
+class CSNullableLazyVarTest {
     @Test
     fun testLazyVar() {
-        var testVar: String by lazyVar { "initial" }
+        var testVar: String by nullableLazyVar { "initial" }
         assertEquals("initial", testVar)
         testVar = "test"
         assertEquals("test", testVar)
@@ -14,7 +14,7 @@ class CSLazyVarTest {
 
     @Test
     fun testNullableLazyVar() {
-        var testVar: String? by lazyVar { "initial" }
+        var testVar: String? by nullableLazyVar { "initial" }
         assertEquals("initial", testVar)
         testVar = "test"
         assertEquals("test", testVar)

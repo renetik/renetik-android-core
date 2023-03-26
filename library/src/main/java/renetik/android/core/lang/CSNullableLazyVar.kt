@@ -3,9 +3,9 @@ package renetik.android.core.lang
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-fun <T> lazyVar(initializer: () -> T) = CSLazyVar(initializer)
+fun <T> nullableLazyVar(initializer: () -> T) = CSNullableLazyVar(initializer)
 
-class CSLazyVar<T>(initializer: () -> T) : ReadWriteProperty<Any?, T> {
+class CSNullableLazyVar<T>(initializer: () -> T) : ReadWriteProperty<Any?, T> {
     private object initialValue
 
     var isSet = false

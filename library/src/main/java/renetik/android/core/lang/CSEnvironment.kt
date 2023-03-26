@@ -14,7 +14,7 @@ import renetik.android.core.logging.CSLogMessage.Companion.message
 
 
 object CSEnvironment {
-    var app: Application by lazyVar {
+    var app: Application by nullableLazyVar {
         try {
             createClass<Any>("android.app.ActivityThread")
                 ?.invoke("currentApplication") as Application
