@@ -6,7 +6,10 @@ import renetik.android.core.kotlin.CSUnexpectedException
 import renetik.android.core.kotlin.primitives.leaveEndOfLength
 import renetik.android.core.kotlin.then
 import renetik.android.core.lang.CSStringConstants.NewLine
-import renetik.android.core.logging.CSLogLevel.*
+import renetik.android.core.logging.CSLogLevel.Debug
+import renetik.android.core.logging.CSLogLevel.Error
+import renetik.android.core.logging.CSLogLevel.Info
+import renetik.android.core.logging.CSLogLevel.Warn
 import renetik.android.core.logging.CSLogMessage.Companion.Empty
 import renetik.android.core.logging.CSLogMessage.Companion.message
 import java.lang.System.currentTimeMillis
@@ -42,6 +45,7 @@ object CSLog {
         toast(Debug, logImpl(Debug, function))
 
     fun Context.logInfoToast() = toast(Info, logImpl(Info) { message("") })
+    fun Context.logInfoToast(value: String) = toast(Info, logImpl(Info) { message(value) })
     fun Context.logInfoToast(function: () -> CSLogMessage) =
         toast(Info, logImpl(Info, function))
 
