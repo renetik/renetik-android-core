@@ -20,3 +20,11 @@ fun Rect.load(start: CSPoint<Float>, end: CSPoint<Float>) = apply {
 }
 
 fun Rect.clear() = set(0, 0, 0, 0)
+
+fun Rect.offsetToNewLeft(value: Int) = offsetTo(value, top)
+
+fun Rect.offsetToNewRight(value: Int) = offsetTo(value - width, top)
+
+fun Rect.offsetToNewTop(value: Int) = offsetTo(left, value)
+
+fun Rect.offsetToNewBottom(value: Int) = offsetTo(left, value - height)
