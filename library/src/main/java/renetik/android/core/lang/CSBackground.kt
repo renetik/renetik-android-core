@@ -1,6 +1,5 @@
 package renetik.android.core.lang
 
-import android.os.HandlerThread
 import androidx.annotation.WorkerThread
 import renetik.android.core.java.util.concurrent.background
 import renetik.android.core.java.util.concurrent.backgroundNano
@@ -8,15 +7,8 @@ import renetik.android.core.java.util.concurrent.backgroundRepeat
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.ScheduledThreadPoolExecutor
 
-
 object CSBackground {
-    val executor = ScheduledThreadPoolExecutor(3)
-
-//    val handler by lazy {
-//        val handlerThread = HandlerThread("backgroundThread")
-//        if (!handlerThread.isAlive) handlerThread.start()
-//        handlerThread
-//    }
+    private val executor = ScheduledThreadPoolExecutor(3)
 
     fun background(
         @WorkerThread function: Func
