@@ -20,3 +20,5 @@ class CSWeakVariable<T>(value: T? = null) : CSVariable<T?> {
         value?.let { this.value = it }
     }
 }
+
+
