@@ -109,7 +109,7 @@ fun String.toMaxBytesSize(length: Int): String {
     } else this
 }
 
-fun String.maxLengthOf(count: Int) = if (count > count) substring(0 until 10) else this
+fun String.maxLengthOf(count: Int) = if (length > count) substring(0 until 10) else this
 
 fun String.containsAll(words: List<String>, ignoreCase: Boolean = false): Boolean {
     for (word in words) if (!contains(word, ignoreCase)) return false

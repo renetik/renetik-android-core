@@ -47,19 +47,16 @@ val CSValue<*>.isEmpty
 fun CSValue<String>.contains(
     value: String,
     ignoreCase: Boolean = false
-) =
-    this.value.contains(value, ignoreCase)
+) = this.value.contains(value, ignoreCase)
 
 fun CSValue<String>.contains(
     property: CSVariable<String>,
     ignoreCase: Boolean = false
-) =
-    this.contains(property.value, ignoreCase)
+) = this.contains(property.value, ignoreCase)
 
 fun CSValue<String>.containsAll(
     words: List<String>,
     ignoreCase: Boolean = false
-) =
-    value.containsAll(words, ignoreCase)
+) = value.containsAll(words, ignoreCase)
 
 inline val CSValue<Double>.number get() = value
