@@ -8,7 +8,7 @@ import renetik.android.core.lang.CSEnvironment.isTestRunner
 import renetik.android.core.lang.variable.CSVariable.Companion.variable
 
 object CSLeakCanary : CSLeakCanaryInterface {
-    private var enabled by variable(false, ::updateConfiguration)
+    var enabled by variable(false, ::updateConfiguration)
 
     override fun Any.expectWeaklyReachable(description: String) {
         if (!isTestRunner && enabled)
