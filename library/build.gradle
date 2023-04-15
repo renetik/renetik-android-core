@@ -1,3 +1,4 @@
+rootProject.ext.namespace = 'renetik.android.core'
 apply from: '../library.gradle'
 dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
