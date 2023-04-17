@@ -10,13 +10,15 @@ import renetik.android.core.lang.catchWarnReturn
 import renetik.android.core.lang.catchWarnReturnNull
 import java.nio.charset.StandardCharsets
 import java.text.Normalizer
-import java.util.*
+import java.util.Locale
+import java.util.Random
 
 inline val String.Companion.NewLine get() = CSStringConstants.NewLine
 inline val String.Companion.Comma get() = CSStringConstants.Comma
 inline val String.Companion.Semicolon get() = CSStringConstants.Semicolon
 inline val String.Companion.Empty get() = CSStringConstants.Empty
 inline val String.Companion.Space get() = CSStringConstants.Space
+inline val String.Companion.unsafeFileChars: String get() = CSStringConstants.UnsafeFileChars
 
 fun String.Companion.random(length: Int): String {
     val random = Random()
@@ -66,11 +68,14 @@ fun String.trimNewLines() = replace(String.NewLine, String.Empty)
 
 fun String.remove(toRemove: String) = replace(toRemove, "")
 
-fun String.replace(strings: Array<String>, replacement: String): String {
+fun String.replace(strings: Iterable<String>, replacement: String): String {
     val builder = StringBuilder(this)
     strings.forEach { builder.reload(builder.toString().replace(it, replacement)) }
     return builder.toString()
 }
+
+fun String.replace(strings: Array<String>, replacement: String) =
+    replace(strings.asIterable(), replacement)
 
 fun String.leaveEndOfLength(length: Int): String {
     if (this.length > length) {

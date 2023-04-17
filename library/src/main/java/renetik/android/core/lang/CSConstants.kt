@@ -12,6 +12,7 @@ object CSStringConstants {
     const val NewLine = "\n"
     const val Space = " "
     const val `$` = "$"
+    const val UnsafeFileChars =  "|\\?*<\":>+[]/'"
 }
 
 object CSDataConstants {
