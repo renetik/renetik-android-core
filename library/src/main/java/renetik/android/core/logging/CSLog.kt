@@ -73,7 +73,7 @@ object CSLog {
     }
 
     private fun Context.toast(level: CSLogLevel, text: Array<Any?>?) {
-        if (logger.isEnabled(level)) toast("${text!![1]}".leaveEndOfLength(100)
+        if (logger.isEnabled(level)) toast("${text!![2]}".leaveEndOfLength(100)
             .chunked(50).joinToString { "$it$NewLine" })
     }
 
