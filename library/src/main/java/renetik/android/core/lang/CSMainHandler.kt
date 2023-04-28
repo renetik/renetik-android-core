@@ -10,12 +10,12 @@ object CSMainHandler {
 
     fun postOnMain(function: () -> Unit) {
         if (!mainHandler.post(function))
-            logWarn { message("Runnable not run") }
+            logWarn { "Runnable not run" }
     }
 
     fun postOnMain(delay: Long, function: () -> Unit) {
         if (!mainHandler.postDelayed(function, delay))
-            logWarn { message("Runnable not run") }
+            logWarn { "Runnable not run" }
     }
 
     fun postOnMain(delay: Int, function: () -> Unit) =

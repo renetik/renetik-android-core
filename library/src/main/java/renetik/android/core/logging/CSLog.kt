@@ -28,17 +28,33 @@ object CSLog {
         then { logImpl(level, function) }
 
     fun logDebug() = then { logImpl(Debug) { message("") } }
-    fun logDebug(function: () -> CSLogMessage) = then { logImpl(Debug, function) }
+    fun logDebug(function: () -> String) = then { logImpl(Debug) { message(function()) } }
+    fun logDebug(throwable: Throwable?, function: (() -> String)? = null) =
+        then { logImpl(Debug) { message(throwable, function?.invoke()) } }
+
+    fun logDebugTrace(function: (() -> String)? = null) =
+        then { logImpl(Debug) { message(Throwable(), function?.invoke()) } }
 
     fun logInfo() = then { logImpl(Info) { message("") } }
-    fun logInfo(function: () -> CSLogMessage) = then { logImpl(Info, function) }
-    fun logInfo(message: String = "") = then { logImpl(Info) { message(message) } }
+    fun logInfo(function: () -> String) = then { logImpl(Info) { message(function()) } }
+    fun logInfo(throwable: Throwable?, function: (() -> String)? = null) =
+        then { logImpl(Info) { message(throwable, function?.invoke()) } }
 
     fun logWarn() = then { logImpl(Warn) { message("") } }
-    fun logWarn(function: () -> CSLogMessage) = then { logImpl(Warn, function) }
+    fun logWarn(function: () -> String) = then { logImpl(Warn) { message(function()) } }
+    fun logWarn(throwable: Throwable?, function: (() -> String)? = null) =
+        then { logImpl(Warn) { message(throwable, function?.invoke()) } }
+
+    fun logWarnTrace(function: () -> String) =
+        then { logImpl(Warn) { message(Throwable(), function.invoke()) } }
 
     fun logError() = then { logImpl(Error) { message("") } }
-    fun logError(function: () -> CSLogMessage) = then { logImpl(Error, function) }
+    fun logError(function: () -> String) = then { logImpl(Error) { message(function()) } }
+    fun logError(throwable: Throwable?, function: (() -> String)? = null) =
+        then { logImpl(Error) { message(throwable, function?.invoke()) } }
+
+    fun logErrorTrace(function: () -> String) =
+        then { logImpl(Error) { message(Throwable(), function.invoke()) } }
 
     fun Context.logDebugToast() = toast(Debug, logImpl(Debug) { message("") })
     fun Context.logDebugToast(function: () -> CSLogMessage) =

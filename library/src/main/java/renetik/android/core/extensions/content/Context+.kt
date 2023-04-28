@@ -27,6 +27,7 @@ import renetik.android.core.lang.catchAllErrorReturnNull
 import renetik.android.core.lang.catchWarnReturnNull
 import renetik.android.core.lang.void
 import renetik.android.core.logging.CSLog
+import renetik.android.core.logging.CSLog.logWarn
 import renetik.android.core.logging.CSLogMessage
 import java.security.MessageDigest
 import java.util.*
@@ -238,7 +239,7 @@ fun Context.startActivityForUriAndType(
     try {
         startActivity(intent)
     } catch (exception: ActivityNotFoundException) {
-        CSLog.logWarn { CSLogMessage.message(exception) }
+        logWarn(exception)
         onActivityNotFound?.invoke(exception)
     }
 }

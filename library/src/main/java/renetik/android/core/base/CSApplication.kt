@@ -26,12 +26,12 @@ abstract class CSApplication<ActivityType : Activity>
 
     override fun onLowMemory() {
         super.onLowMemory()
-        logWarn { message("onLowMemory") }
+        logWarn { "onLowMemory" }
     }
 
     override fun onTerminate() {
         super.onTerminate()
-        logInfo { message("onTerminate") }
+        logInfo { "onTerminate" }
     }
 
     abstract val activityType: KClass<out ActivityType>
@@ -43,8 +43,8 @@ abstract class CSApplication<ActivityType : Activity>
         if (this.activity?.isDestroyed == false ||
             this.activity?.isFinishing == false)
             logError {
-                message("activity should be destroyed or null, " +
-                        "when new is created, in single activity application")
+                "activity should be destroyed or null, " +
+                        "when new is created, in single activity application"
             }
         @Suppress("UNCHECKED_CAST")
         this.activity = activity as ActivityType

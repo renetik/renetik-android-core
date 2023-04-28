@@ -15,7 +15,6 @@ import android.view.inputmethod.InputMethodManager
 import renetik.android.core.kotlin.className
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
-import renetik.android.core.logging.CSLogMessage.Companion.message
 
 val Context.notifications get() = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 val Context.audioManager get() = getSystemService(AUDIO_SERVICE) as AudioManager
@@ -31,8 +30,8 @@ fun Context.wakeLock(levelAndFlags: Int): PowerManager.WakeLock {
     val lock = (getSystemService(POWER_SERVICE) as PowerManager)
         .newWakeLock(levelAndFlags, "wakeLock:${className}")
     lock.acquire()
-    if (lock.isHeld) logInfo { message("Wake Lock held: $this") }
-    else logError { message("Wake Lock not held: $this") }
+    if (lock.isHeld) logInfo { "Wake Lock held: $this" }
+    else logError { "Wake Lock not held: $this" }
     return lock
 }
 
