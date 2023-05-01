@@ -10,6 +10,7 @@ import android.content.ContextWrapper.MIDI_SERVICE
 import android.content.Intent
 import android.media.AudioManager
 import android.media.midi.MidiManager
+import android.os.Build
 import android.os.PowerManager
 import android.view.inputmethod.InputMethodManager
 import renetik.android.core.kotlin.className
@@ -40,6 +41,11 @@ fun Context.startService(serviceClass: Class<out Service>) =
 
 inline fun <reified T : Service> Context.startService() =
     startService(Intent(this, T::class.java))
+
+inline fun <reified T : Service> Context.startForegroundService() =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        startForegroundService(Intent(this, T::class.java))
+    else startService(Intent(this, T::class.java))
 
 fun Context.stopService(serviceClass: Class<out Service>) =
     stopService(Intent(this, serviceClass))
