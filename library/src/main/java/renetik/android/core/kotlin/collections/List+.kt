@@ -2,10 +2,12 @@ package renetik.android.core.kotlin.collections
 
 import renetik.android.core.lang.CSList
 
+fun <T> List<T>.clone() = toList()
+
 fun <T> List<T>.mutable() = toMutableList()
 
 fun <T> List<T>.mutable(
-    add: T? = null, remove: T? = null
+    add: T? = null, remove: T? = null,
 ) = mutable().apply {
     add?.let { add(element = it) }
     remove?.let { remove(element = it) }
