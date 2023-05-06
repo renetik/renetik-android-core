@@ -182,7 +182,7 @@ val Context.isPlayStoreInstalled get() = isPackageInstalled("com.android.vending
 
 @Suppress("DEPRECATION")
 fun Context.isPackageInstalled(packageName: String): Boolean = try {
-    getPackageManager().getPackageInfo(packageName, 0)
+    packageManager.getPackageInfo(packageName, 0)
     true
 } catch (e: NameNotFoundException) {
     false
