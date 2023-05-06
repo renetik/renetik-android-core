@@ -3,6 +3,8 @@ package renetik.android.core.kotlin.primitives
 import renetik.android.core.extensions.content.dpToPixel
 import renetik.android.core.lang.ArgFunc
 import renetik.android.core.lang.CSEnvironment.app
+import renetik.android.core.lang.CSTimeConstants.Minute
+import renetik.android.core.lang.CSTimeConstants.Second
 import java.lang.System.nanoTime
 import kotlin.math.absoluteValue
 import kotlin.random.Random
@@ -37,7 +39,7 @@ inline val Int.isEven: Boolean get() = this % 2 == 0
 inline val Int.isOdd: Boolean get() = !isEven
 
 fun Int.update(
-    newCount: Int, onAdd: ArgFunc<Int>? = null, onRemove: ArgFunc<Int>? = null
+    newCount: Int, onAdd: ArgFunc<Int>? = null, onRemove: ArgFunc<Int>? = null,
 ) {
     val lastIndex = this - 1
     val difference = newCount - this
@@ -46,3 +48,5 @@ fun Int.update(
 }
 
 inline val Int.dp: Int get() = app.dpToPixel(this)
+inline val Int.second: Int get() = this * Second
+inline val Int.minute: Int get() = this * Minute
