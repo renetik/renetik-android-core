@@ -8,7 +8,6 @@ import renetik.android.core.lang.CSEnvironment
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
-import renetik.android.core.logging.CSLogMessage.Companion.message
 import kotlin.reflect.KClass
 
 abstract class CSApplication<ActivityType : Activity>
@@ -41,10 +40,11 @@ abstract class CSApplication<ActivityType : Activity>
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         if (!activityType.isInstance(activity)) return
         if (this.activity?.isDestroyed == false ||
-            this.activity?.isFinishing == false)
+            this.activity?.isFinishing == false
+        )
             logError {
                 "activity should be destroyed or null, " +
-                        "when new is created, in single activity application"
+                    "when new is created, in single activity application"
             }
         @Suppress("UNCHECKED_CAST")
         this.activity = activity as ActivityType
@@ -62,6 +62,6 @@ abstract class CSApplication<ActivityType : Activity>
 
     override fun onActivityDestroyed(activity: Activity) {
         if (!activityType.isInstance(activity)) return
-        this.activity = null
+        if (this.activity == activity) this.activity = null
     }
 }
