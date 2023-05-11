@@ -2,18 +2,17 @@ package renetik.android.core.math
 
 import kotlin.math.roundToInt
 
-fun CSPercentCalculator.percentToValueInt(percent: Float): Int = percentToValue(percent).roundToInt()
-fun CSPercentCalculator.percentToValueInt(percent: Int): Int = percentToValue(percent).roundToInt()
+fun CSPercentCalculator.toValueFloat(percent: Number): Float = toValue(percent.toDouble()).toFloat()
+fun CSPercentCalculator.toValueInt(percent: Number): Int = toValue(percent.toDouble()).roundToInt()
 
-fun CSPercentCalculator.valueToPercentInt(value: Float): Int = valueToPercent(value)
-fun CSPercentCalculator.valueToPercentInt(value: Int): Int = valueToPercentInt(value.toFloat())
-
+fun CSPercentCalculator.toPercentFloat(value: Number): Float = toPercent(value.toDouble()).toFloat()
+fun CSPercentCalculator.toPercentInt(value: Number): Int = toPercent(value.toDouble()).roundToInt()
 
 fun CSPercentCalculator.size(size: Int) {
-    this.size = size.toFloat()
+    this.size = size.toDouble()
 }
 
 fun CSPercentCalculator.size(size: Double) {
-    this.size = size.toFloat()
+    this.size = size
 }
 
