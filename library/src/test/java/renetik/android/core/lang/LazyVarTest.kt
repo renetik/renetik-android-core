@@ -2,6 +2,7 @@ package renetik.android.core.lang
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import renetik.android.core.lang.lazy.nullableLazyVar
 
 class CSNullableLazyVarTest {
     @Test

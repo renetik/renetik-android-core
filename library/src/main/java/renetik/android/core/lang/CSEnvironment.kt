@@ -15,8 +15,8 @@ import renetik.android.core.kotlin.classExist
 import renetik.android.core.kotlin.createClass
 import renetik.android.core.kotlin.invoke
 import renetik.android.core.kotlin.isNull
+import renetik.android.core.lang.lazy.nullableLazyVar
 import renetik.android.core.logging.CSLog.logWarn
-import renetik.android.core.logging.CSLogMessage.Companion.message
 
 object CSEnvironment {
     var app: Application by nullableLazyVar {

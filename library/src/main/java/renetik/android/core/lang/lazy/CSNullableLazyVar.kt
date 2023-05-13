@@ -1,4 +1,4 @@
-package renetik.android.core.lang
+package renetik.android.core.lang.lazy
 
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
