@@ -14,7 +14,7 @@ class CSDummyLoggerTest {
 
     @Test
     fun warnTestNoInit() {
-        logWarn { message("test") }
+        logWarn { "test" }
     }
 
     @Test
@@ -23,7 +23,7 @@ class CSDummyLoggerTest {
             this.event = event
             this.message = message
         })
-        logWarn { message("test") }
+        logWarn { "test" }
         Assert.assertEquals(Warn, event)
 //        Assert.assertTrue(message!!.endsWith("test"))
     }
@@ -35,11 +35,11 @@ class CSDummyLoggerTest {
             this.message = message
         }
         init(CSDummyLogger(level = Info, listener))
-        logDebug { message("test") }
+        logDebug { "test" }
         Assert.assertNull(event)
 
         init(CSDummyLogger(level = Debug, listener))
-        logDebug { message("test2") }
+        logDebug { "test2" }
         Assert.assertEquals(Debug, event)
 //        Assert.assertTrue(message!!.endsWith("test2"))
     }

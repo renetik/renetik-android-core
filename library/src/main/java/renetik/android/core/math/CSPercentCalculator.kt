@@ -3,6 +3,9 @@ package renetik.android.core.math
 import kotlin.math.min
 
 class CSPercentCalculator(min: Number = 0.0, max: Number = 0.0) {
+
+    constructor(size: Number = 0.0) : this(max = size)
+
     val min: Double = min.toDouble()
     var size = max.toDouble() - this.min
         set(value) {
