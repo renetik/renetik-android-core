@@ -7,7 +7,6 @@ import renetik.android.core.lang.catchAllError
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import java.util.concurrent.TimeUnit.NANOSECONDS
-import java.util.concurrent.TimeUnit.SECONDS
 
 inline fun ScheduledExecutorService.background(
     delay: Long = 0, @WorkerThread crossinline function: () -> Unit,
@@ -40,8 +39,3 @@ inline fun ScheduledExecutorService.backgroundRepeat(
 inline fun ScheduledExecutorService.backgroundRepeatNano(
     period: Long, @WorkerThread crossinline function: () -> Unit,
 ) = backgroundRepeatNano(delay = period, period = period, function = function)
-
-fun ScheduledExecutorService.shutdownAndWait(second: Int = 10) {
-    shutdown()
-    awaitTermination(second.toLong(), SECONDS)
-}
