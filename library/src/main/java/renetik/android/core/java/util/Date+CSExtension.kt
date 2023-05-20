@@ -8,18 +8,25 @@ import renetik.android.core.lang.catchError
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 val currentTime get() = Date().time
 fun dateFromString(format: String, string: String) = catchError<ParseException> {
     SimpleDateFormat(format, Locale.US).parse("" + string)
 }
 
-fun Date.format(dateStyle: Int, timeStyle: Int): String =
+fun Date.format(dateStyle: Int = DateFormat.MEDIUM, timeStyle: Int = DateFormat.MEDIUM): String =
     DateFormat.getDateTimeInstance(dateStyle, timeStyle).format(this)
 
-fun Date.formatDate(style: Int): String = DateFormat.getDateInstance(style).format(this)
-fun Date.formatTime(style: Int): String = DateFormat.getTimeInstance(style).format(this)
+fun Date.formatDate(style: Int = DateFormat.MEDIUM): String =
+    DateFormat.getDateInstance(style).format(this)
+
+fun Date.formatTime(style: Int = DateFormat.MEDIUM): String =
+    DateFormat.getTimeInstance(style).format(this)
+
 fun Date.format(format: String): String = SimpleDateFormat(format, Locale.US).format(this)
 fun Date.addYears(value: Int): Date {
     val instance = Calendar.getInstance()
@@ -34,7 +41,6 @@ fun Date.addHours(value: Int): Date {
     instance.add(Calendar.HOUR, value)
     return instance.time
 }
-
 
 fun Date.createDatedDirName() = format("yyyy-MM-dd_HH-mm-ss")
 
