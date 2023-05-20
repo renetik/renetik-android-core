@@ -4,13 +4,15 @@ import android.app.Activity
 import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import renetik.android.core.kotlin.notImplemented
 import renetik.android.core.lang.CSEnvironment
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
 import kotlin.reflect.KClass
 
-abstract class CSApplication<ActivityType : Activity>
+abstract class CSApplication<ActivityType : AppCompatActivity>
     : Application(), ActivityLifecycleCallbacks {
 
     companion object {
@@ -33,12 +35,12 @@ abstract class CSApplication<ActivityType : Activity>
         logInfo { "onTerminate" }
     }
 
-    abstract val activityType: KClass<out ActivityType>
+    abstract val activityClass: KClass<out ActivityType>
 
     var activity: ActivityType? = null
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-        if (!activityType.isInstance(activity)) return
+        if (!activityClass.isInstance(activity)) return
         if (this.activity?.isDestroyed == false ||
             this.activity?.isFinishing == false
         )
@@ -61,7 +63,9 @@ abstract class CSApplication<ActivityType : Activity>
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) = Unit
 
     override fun onActivityDestroyed(activity: Activity) {
-        if (!activityType.isInstance(activity)) return
+        if (!activityClass.isInstance(activity)) return
         if (this.activity == activity) this.activity = null
     }
+
+    open fun restart(): Unit = notImplemented()
 }

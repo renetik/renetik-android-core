@@ -3,6 +3,9 @@ package renetik.android.core.kotlin
 import renetik.android.core.kotlin.CSUnexpectedException.Companion.unexpected
 import renetik.android.core.kotlin.CSUnsupportedException.Companion.unsupported
 
+fun notImplemented(message: String = "Note yet implemented"): Nothing =
+    throw unexpected(message)
+
 fun unfinished(message: String = "This code is unfinished, contact developer"): Nothing =
     throw unexpected(message)
 
