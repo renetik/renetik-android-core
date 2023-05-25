@@ -31,7 +31,7 @@ fun Date.format(format: String): String = SimpleDateFormat(format, Locale.US).fo
 
 val now get() = Date()
 
-fun Date.add(
+fun Date.modify(
     years: Int = 0, hours: Int = 0,
     minutes: Int = 0, seconds: Int = 0, millis: Int = 0
 ): Date {
