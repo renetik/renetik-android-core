@@ -28,17 +28,20 @@ fun Date.formatTime(style: Int = DateFormat.MEDIUM): String =
     DateFormat.getTimeInstance(style).format(this)
 
 fun Date.format(format: String): String = SimpleDateFormat(format, Locale.US).format(this)
-fun Date.addYears(value: Int): Date {
-    val instance = Calendar.getInstance()
-    instance.time = this
-    instance.add(Calendar.YEAR, value)
-    return instance.time
-}
 
-fun Date.addHours(value: Int): Date {
+val now get() = Date()
+
+fun Date.add(
+    years: Int = 0, hours: Int = 0,
+    minutes: Int = 0, seconds: Int = 0, millis: Int = 0
+): Date {
     val instance = Calendar.getInstance()
     instance.time = this
-    instance.add(Calendar.HOUR, value)
+    instance.add(Calendar.YEAR, years)
+    instance.add(Calendar.HOUR, hours)
+    instance.add(Calendar.MINUTE, minutes)
+    instance.add(Calendar.SECOND, seconds)
+    instance.add(Calendar.MILLISECOND, millis)
     return instance.time
 }
 
