@@ -37,6 +37,11 @@ infix fun <T> List<T>.containsAny(items: Iterable<T>): Boolean {
     return false
 }
 
+infix fun <T> List<T>.containsAll(items: Iterable<T>): Boolean {
+    items.forEach { if (!contains(it)) return false }
+    return true
+}
+
 infix fun <T> List<T>.containsNone(items: Iterable<T>) = !containsAny(items)
 
 fun <T> List<T>.second() = this[1]
