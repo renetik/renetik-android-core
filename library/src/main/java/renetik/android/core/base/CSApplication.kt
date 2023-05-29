@@ -38,6 +38,7 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
     abstract val activityClass: KClass<out ActivityType>
 
     var activity: ActivityType? = null
+        protected set
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         if (!activityClass.isInstance(activity)) return
