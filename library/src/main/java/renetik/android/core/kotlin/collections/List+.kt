@@ -63,7 +63,7 @@ fun <T> list(size: Int): MutableList<T> = ArrayList(size)
 fun <T> listOfNulls(size: Int) = list<T?>(size, null)
 fun <T> list(size: Int, default: T) = MutableList(size) { default }
 fun <T> list(size: Int, init: (index: Int) -> T) = MutableList(size, init)
-fun <T> list(vararg items: T): MutableList<T> = list<T>().putAll(*items)
+fun <T> list(vararg items: T): MutableList<T> = mutableListOf(*items)
 fun <T> list(items: Iterable<T>): MutableList<T> = list<T>().putAll(items)
 fun <T> list(items: Collection<T>): MutableList<T> = CSList(items)
 
