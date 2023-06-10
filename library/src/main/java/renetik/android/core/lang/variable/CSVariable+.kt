@@ -2,7 +2,9 @@ package renetik.android.core.lang.variable
 
 import renetik.android.core.kotlin.asString
 
-fun <T> CSVariable<T>.value(value: T) = apply { this.value = value }
+fun <T> CSVariable<T>.value(value: T) {
+    this.value = value
+}
 
 inline var CSVariable<String?>.string: String
     get() = value.asString
