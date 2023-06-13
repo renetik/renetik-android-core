@@ -23,6 +23,4 @@ object CSMainHandler {
 
     fun removePosted(function: () -> Unit) =
         mainHandler.removeCallbacks(function)
-
-
 }
