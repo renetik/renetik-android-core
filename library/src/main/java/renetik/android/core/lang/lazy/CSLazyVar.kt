@@ -12,7 +12,10 @@ class CSLazyVar<T>(private val onLoad: () -> T) : ReadWriteProperty<Any?, T> {
     override fun getValue(
         thisRef: Any?, property: KProperty<*>
     ): T = synchronized(this) {
-        if (!isInitialized) value = onLoad()
+        if (!isInitialized) {
+            value = onLoad()
+            isInitialized = true
+        }
         return value!!
     }
 

@@ -20,6 +20,7 @@ import android.util.TypedValue.*
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
+import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.appcompat.content.res.AppCompatResources
@@ -35,12 +36,13 @@ import java.io.FileNotFoundException
 import java.io.InputStream
 import java.lang.Integer.MAX_VALUE
 
-
 class CSColorInt(@ColorInt val color: Int)
 
 fun Context.formatted(resId: Int): Spanned =
-    Html.fromHtml(getString(resId).replace("\n", "<br>")
-        .replace("[B]", "<b>").replace("[/B]", "</b>"), 0)
+    Html.fromHtml(
+        getString(resId).replace("\n", "<br>")
+            .replace("[B]", "<b>").replace("[/B]", "</b>"), 0
+    )
 
 fun Context.color(@ColorRes color: Int) = CSColorInt(getColor(this, color))
 fun Context.colorInt(@ColorInt color: Int) = CSColorInt(color)
@@ -64,7 +66,7 @@ fun Context.openInputStream(uri: Uri) = catchErrorReturnNull<FileNotFoundExcepti
     return contentResolver.openInputStream(uri)
 }
 
-fun Context.resourceDimension(id: Int) = resources.getDimension(id).toInt()
+fun Context.resourceDimensionPx(@DimenRes id: Int) = resources.getDimension(id).toInt()
 
 fun Context.resourceStrings(id: Int) = catchWarnReturnNull<List<String>, NotFoundException> {
     list(*resources.getStringArray(id))
@@ -75,7 +77,6 @@ fun Context.resourceInts(id: Int) = catchError<NotFoundException> {
 }
 
 val Context.displayMetrics get():DisplayMetrics = resources.displayMetrics
-
 
 private const val LOW_DPI_STATUS_BAR_HEIGHT = 19
 private const val MEDIUM_DPI_STATUS_BAR_HEIGHT = 25
@@ -173,7 +174,8 @@ fun clearDrawable(bounds: Rect) = ColorDrawable().apply { this.bounds = bounds }
 
 val Context.isDarkMode
     get() = if (getDefaultNightMode()
-            .equalsAny(MODE_NIGHT_FOLLOW_SYSTEM, MODE_NIGHT_UNSPECIFIED)) isSystemDarkMode
+            .equalsAny(MODE_NIGHT_FOLLOW_SYSTEM, MODE_NIGHT_UNSPECIFIED)
+    ) isSystemDarkMode
     else getDefaultNightMode() == MODE_NIGHT_YES
 
 val Context.isSystemDarkMode
