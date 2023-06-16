@@ -1,11 +1,16 @@
 package renetik.android.core.lang.lazy
 
-import kotlin.properties.ReadWriteProperty
+import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-class CSLazyVar<T>(private val onLoad: () -> T) : ReadWriteProperty<Any?, T> {
+class CSLazyVal<T>(private val onLoad: () -> T) : ReadOnlyProperty<Any?, T> {
     private var isInitialized = false
     private var value: T? = null
+
+    fun reset() {
+        value = null
+        isInitialized = false
+    }
 
     override fun getValue(
         thisRef: Any?, property: KProperty<*>
@@ -17,14 +22,7 @@ class CSLazyVar<T>(private val onLoad: () -> T) : ReadWriteProperty<Any?, T> {
         return value!!
     }
 
-    override fun setValue(
-        thisRef: Any?, property: KProperty<*>, value: T
-    ) = synchronized(this) {
-        isInitialized = true
-        this.value = value
-    }
-
     companion object {
-        fun <T> lazyVar(initializer: () -> T) = CSLazyVar(initializer)
+        fun <T> lazyVal(initializer: () -> T) = CSLazyVal(initializer)
     }
 }
