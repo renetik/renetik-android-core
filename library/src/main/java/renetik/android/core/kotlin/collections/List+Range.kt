@@ -1,7 +1,5 @@
 package renetik.android.core.kotlin.collections
 
-//TODO: Should test this so its final how it works
-
 fun <T> List<T>.rangeFrom(index: Int): List<T> = list(subList(index, size))
 fun <T> List<T>.rangeTo(toIndex: Int): List<T> = list(subList(0, toIndex))
 fun <T> List<T>.range(fromIndex: Int, toIndex: Int): List<T> =
