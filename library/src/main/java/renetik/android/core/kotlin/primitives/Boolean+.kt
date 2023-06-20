@@ -6,13 +6,17 @@ import renetik.android.core.lang.ReturnFunc
 
 val Boolean.Companion.random get() = Int.random(0, 1) == 1
 
-val <T : Boolean?> T.isTrue: Boolean get() = this == true
-val <T : Boolean?> T.isFalse: Boolean get() = this == false
-val <T : Boolean?> T.isNotTrue: Boolean get() = this != true
-val <T : Boolean?> T.isNotFalse: Boolean get() = this != false
+val Boolean?.isTrue: Boolean get() = this == true
+val Boolean?.isFalse: Boolean get() = this == false
+val Boolean?.isNotTrue: Boolean get() = this != true
+val Boolean?.isNotFalse: Boolean get() = this != false
 
 inline fun <T : Boolean?> T.isTrue(function: Func) {
     if (isTrue) function()
+}
+
+inline fun <T : Boolean?> T.isFalse(function: Func) {
+    if (isFalse) function()
 }
 
 inline fun <T : Boolean?, R> T.ifTrueReturn(function: ReturnFunc<R>): R? {
@@ -23,10 +27,6 @@ inline fun <T : Boolean?, R> T.ifTrueReturn(function: ReturnFunc<R>): R? {
 inline fun <T : Boolean?, R> T.ifFalseReturn(function: ReturnFunc<R>): R? {
     if (isFalse) return function()
     return null
-}
-
-inline fun <T : Boolean?> T.isFalse(function: Func) {
-    if (isFalse) function()
 }
 
 inline fun <T : Boolean?> T.ifTrue(function: Func): CSConditionalResult {
