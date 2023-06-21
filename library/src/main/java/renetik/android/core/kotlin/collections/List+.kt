@@ -14,10 +14,24 @@ fun <T> List<T>.mutable(
 }
 
 val <T> List<T>.first get() = at(0)
-
 val <T> List<T>.second get() = at(1)
-
 val <T> List<T>.third get() = at(2)
+
+fun <T> List<T>.first() = this[0]
+fun <T> List<T>.second() = this[1]
+fun <T> List<T>.third() = this[2]
+fun <T> List<T>.fourth() = this[3]
+fun <T> List<T>.fifth() = this[4]
+fun <T> List<T>.sixth() = this[5]
+fun <T> List<T>.seventh() = this[6]
+
+fun <T> List<T>.one() = this[0]
+fun <T> List<T>.two() = this[1]
+fun <T> List<T>.three() = this[2]
+fun <T> List<T>.four() = this[3]
+fun <T> List<T>.five() = this[4]
+fun <T> List<T>.six() = this[5]
+fun <T> List<T>.seven() = this[6]
 
 val <T> List<T>.beforeLast get() = at(lastIndex - 1)
 
@@ -43,10 +57,6 @@ infix fun <T> List<T>.containsAll(items: Iterable<T>): Boolean {
 }
 
 infix fun <T> List<T>.containsNone(items: Iterable<T>) = !containsAny(items)
-
-fun <T> List<T>.second() = this[1]
-
-fun <T> List<T>.third() = this[2]
 
 fun <T> List<T>.beforeLast() = this[lastIndex - 1]
 
