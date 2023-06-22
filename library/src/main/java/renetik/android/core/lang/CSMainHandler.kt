@@ -1,12 +1,19 @@
 package renetik.android.core.lang
 
 import android.os.Handler
+import android.os.HandlerThread
 import android.os.Looper.getMainLooper
 import renetik.android.core.logging.CSLog.logWarn
-import renetik.android.core.logging.CSLogMessage.Companion.message
 
 object CSMainHandler {
-    val mainHandler by lazy { Handler(getMainLooper()) }
+    val backgroundHandler by lazy {
+        HandlerThread("CSMainHandler threadHandler").run {
+            start(); Handler(looper)
+        }
+    }
+    val mainHandler by lazy {
+        Handler(getMainLooper())
+    }
 
     fun postOnMain(function: () -> Unit) {
         if (!mainHandler.post(function))
