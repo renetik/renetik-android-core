@@ -1,5 +1,6 @@
 package renetik.android.core.kotlin
 
+import renetik.android.core.lang.ArgFunc
 import renetik.android.core.lang.CSConditionalResult
 import renetik.android.core.lang.Func
 import renetik.android.core.lang.variable.CSVariable
@@ -37,8 +38,8 @@ fun <T : Any> T?.ifNull(block: Func): CSConditionalResult {
     return CSConditionalResult(this != null)
 }
 
-fun <T : Any> T?.ifNotNull(block: Func): CSConditionalResult {
-    if (this != null) block()
+fun <T : Any> T?.ifNotNull(block: ArgFunc<T>): CSConditionalResult {
+    if (this != null) block(this)
     return CSConditionalResult(this == null)
 }
 
