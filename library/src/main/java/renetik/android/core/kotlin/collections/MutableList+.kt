@@ -21,6 +21,13 @@ fun <T, ListType : MutableList<T>> ListType.addDistinct(items: List<T>) =
 fun <T, ListType : MutableList<T>> ListType.addDistinct(item: T): T =
     item.apply { find { it == item } ?: add(item) }
 
+fun <T, ListType : MutableList<T>> ListType.replaceEqual(items: List<T>) =
+    apply { items.forEach { replaceEqual(it) } }
+
+fun <T, ListType : MutableList<T>> ListType.replaceEqual(item: T) = item.also {
+    val index = indexOf(it); if (index > -1) set(index, it) else add(it)
+}
+
 fun <T, ListType : MutableList<T>> ListType.put(item: T, index: Int): T =
     item.apply { add(index, this) }
 
@@ -87,7 +94,8 @@ inline fun <T> MutableList<T>.deleteIf(filter: (T) -> Boolean): Boolean {
 }
 
 inline fun <T, R : Comparable<R>> MutableList<T>.sortedWith(
-    crossinline using: (T) -> R?) = apply { sortBy(using) }
+    crossinline using: (T) -> R?
+) = apply { sortBy(using) }
 
 fun <T> MutableList<T>.rangeFrom(index: Int): MutableList<T> = range(index, size)
 fun <T> MutableList<T>.rangeTo(index: Int): MutableList<T> = range(0, index)
