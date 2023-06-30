@@ -3,6 +3,7 @@ package renetik.android.core.extensions.content
 import android.annotation.SuppressLint
 import android.app.NotificationManager
 import android.app.Service
+import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.content.Context.*
@@ -20,6 +21,7 @@ import renetik.android.core.logging.CSLog.logInfo
 val Context.notifications get() = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 val Context.audioManager get() = getSystemService(AUDIO_SERVICE) as AudioManager
 val Context.bluetoothService get() = getSystemService(BLUETOOTH_SERVICE) as BluetoothManager
+val Context.bluetoothAdapter: BluetoothAdapter get() = bluetoothService.adapter
 val Context.inputService get() = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
 
 val Context.midiManager: MidiManager? get() = getSystemService(MIDI_SERVICE) as? MidiManager
