@@ -20,11 +20,10 @@ import renetik.android.core.logging.CSLog.logWarn
 
 object CSEnvironment {
     var app: Application by nullableLazyVar {
-        try {
+        runCatching {
             createClass<Any>("android.app.ActivityThread")
                 ?.invoke("currentApplication") as Application
-        } catch (ex: Throwable) {
-            logWarn(ex)
+        }.onFailure(::logWarn).getOrElse {
             throw Exception(
                 "Getting Application from ActivityThread failed, " +
                     "consider setting it manually."

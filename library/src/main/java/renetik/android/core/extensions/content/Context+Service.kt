@@ -20,8 +20,8 @@ import renetik.android.core.logging.CSLog.logInfo
 
 val Context.notifications get() = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 val Context.audioManager get() = getSystemService(AUDIO_SERVICE) as AudioManager
-val Context.bluetoothService get() = getSystemService(BLUETOOTH_SERVICE) as BluetoothManager
-val Context.bluetoothAdapter: BluetoothAdapter get() = bluetoothService.adapter
+val Context.bluetooth get() = getSystemService(BLUETOOTH_SERVICE) as BluetoothManager
+val Context.bluetoothAdapter: BluetoothAdapter get() = bluetooth.adapter
 val Context.inputService get() = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
 
 val Context.midiManager: MidiManager? get() = getSystemService(MIDI_SERVICE) as? MidiManager
