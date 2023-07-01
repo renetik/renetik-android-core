@@ -1,48 +1,35 @@
 package renetik.android.core.kotlin
 
 import renetik.android.core.java.lang.createInstance
-import renetik.android.core.lang.catchAllWarn
-import renetik.android.core.lang.catchAllWarnReturnNull
+import renetik.android.core.logging.CSLog.logWarn
 import kotlin.reflect.KClass
 
-const val INVOKE_FAILED = "invoke_failed"
-
-fun <T> Any.privateField(name: String): T? = catchAllWarnReturnNull<T> {
+fun <T> Any.privateField(name: String): T? = runCatching {
     val field = this::class.java.getDeclaredField(name)
     field.isAccessible = true
     @Suppress("UNCHECKED_CAST")
     return field.get(this) as T
-}
+}.onFailure(::logWarn).getOrNull()
 
-fun <T> Any.setPrivateField(name: String, fieldValue: T) = catchAllWarn {
+fun <T> Any.setPrivateField(name: String, fieldValue: T) = runCatching {
     val field = this::class.java.getDeclaredField(name)
     field.isAccessible = true
     field.set(this, fieldValue)
-}
-
-inline fun <reified ClassType : Any>
-        ClassType.setPrivateField2(name: String, fieldValue: Any) = catchAllWarn {
-    val field = ClassType::class.java.getDeclaredField(name)
-    field.isAccessible = true
-    field.set(this, fieldValue)
-}
+}.onFailure(::logWarn)
 
 @Suppress("UNCHECKED_CAST")
-fun <T> createClass(className: String) =
-    catchAllWarnReturnNull { Class.forName(className) } as? Class<T>
+fun <T> createClass(className: String): Class<T>? = runCatching {
+    Class.forName(className) as? Class<T>
+}.onFailure(::logWarn).getOrNull()
 
 inline fun <reified T> createInstance(): T? =
     T::class.java.createInstance()
 
-fun classExist(name: String): Boolean = try {
-    Class.forName(name)
-    true
-} catch (ignored: ClassNotFoundException) {
-    false
-}
+fun classExist(name: String): Boolean = runCatching {
+    Class.forName(name); true
+}.getOrDefault(false)
 
-fun <T> createInstance(className: String): T? =
-    createClass<T>(className)?.createInstance()
+fun <T> createInstance(className: String): T? = createClass<T>(className)?.createInstance()
 
 @Suppress("UNCHECKED_CAST")
 fun <T> createInstance(className: String, vararg arguments: Any): T? =
@@ -53,13 +40,12 @@ fun <T> createInstance(className: String, vararg arguments: Any): T? =
 fun <T> Class<T>?.invoke(function: String, argument: T? = null): Any? =
     this?.getMethod(function)?.invoke(argument)
 
-fun invokeFunction(type: Class<*>, name: String,
-                   argumentTypes: Array<Class<*>>, arguments: Array<Any>
-): Any? = try {
-    type.getDeclaredMethod(name, *argumentTypes)
-        .apply { isAccessible = true }.invoke(null, *arguments)
-} catch (e: Exception) {
-    INVOKE_FAILED
-}
+fun Any.invokeFunction(name: String, argument: Any? = null): Any? = runCatching {
+    javaClass.getMethod(name).also { it.isAccessible = true }.invoke(this, argument)
+}.getOrNull()
+
+fun <T> Any.invokeFunction(name: String, vararg argument: Any): Any? = runCatching {
+    javaClass.getMethod(name).also { it.isAccessible = true }.invoke(this, argument)
+}.getOrNull()
 
 val <T : Any> T.kClass: KClass<T> get() = javaClass.kotlin
