@@ -11,7 +11,7 @@ object CSLeakCanary : CSLeakCanaryInterface {
     override var isEnabled: Boolean by variable(false, ::updateConfiguration)
 
     override fun Any.expectWeaklyReachable(description: String) {
-        if (!isTestRunner && isEnabled)
+        if (isEnabled && !isTestRunner)
             objectWatcher.expectWeaklyReachable(this, description)
     }
 

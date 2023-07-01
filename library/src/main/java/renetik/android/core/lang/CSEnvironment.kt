@@ -15,11 +15,11 @@ import renetik.android.core.kotlin.classExist
 import renetik.android.core.kotlin.createClass
 import renetik.android.core.kotlin.invoke
 import renetik.android.core.kotlin.isNull
-import renetik.android.core.lang.lazy.nullableLazyVar
+import renetik.android.core.lang.lazy.CSLazyVar.Companion.lazyVar
 import renetik.android.core.logging.CSLog.logWarn
 
 object CSEnvironment {
-    var app: Application by nullableLazyVar {
+    var app: Application by lazyVar {
         runCatching {
             createClass<Any>("android.app.ActivityThread")
                 ?.invoke("currentApplication") as Application

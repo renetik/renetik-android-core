@@ -4,7 +4,11 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 class CSLazyVar<T>(private val onLoad: () -> T) : ReadWriteProperty<Any?, T> {
-    private var isInitialized = false
+
+    @get:Synchronized
+    var isInitialized = false
+        private set
+
     private var value: T? = null
 
     override fun getValue(

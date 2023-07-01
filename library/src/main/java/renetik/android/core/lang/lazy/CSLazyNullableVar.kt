@@ -3,12 +3,10 @@ package renetik.android.core.lang.lazy
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-fun <T> nullableLazyVar(initializer: () -> T) = CSNullableLazyVar(initializer)
-
-class CSNullableLazyVar<T>(initializer: () -> T) : ReadWriteProperty<Any?, T> {
+class CSLazyNullableVar<T>(initializer: () -> T) : ReadWriteProperty<Any?, T> {
     private object initialValue
 
-    var isSet = false
+    private var isSet = false
     private val lazyValue by lazy { initializer() }
     private var value: Any? = initialValue
 
@@ -24,5 +22,9 @@ class CSNullableLazyVar<T>(initializer: () -> T) : ReadWriteProperty<Any?, T> {
             this.value = value
             isSet = true
         }
+
+    companion object {
+        fun <T> lazyNullableVar(initializer: () -> T) = CSLazyNullableVar(initializer)
+    }
 }
 
