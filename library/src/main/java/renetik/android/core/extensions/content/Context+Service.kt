@@ -9,11 +9,13 @@ import android.content.Context
 import android.content.Context.*
 import android.content.ContextWrapper.MIDI_SERVICE
 import android.content.Intent
+import android.location.LocationManager
 import android.media.AudioManager
 import android.media.midi.MidiManager
 import android.os.Build
 import android.os.PowerManager
 import android.view.inputmethod.InputMethodManager
+import androidx.core.location.LocationManagerCompat
 import renetik.android.core.kotlin.className
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
@@ -23,6 +25,10 @@ val Context.audioManager get() = getSystemService(AUDIO_SERVICE) as AudioManager
 val Context.bluetooth get() = getSystemService(BLUETOOTH_SERVICE) as BluetoothManager
 val Context.bluetoothAdapter: BluetoothAdapter get() = bluetooth.adapter
 val Context.inputService get() = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+
+val Context.locationManager get() = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+val Context.isLocationEnabled : Boolean get() =
+    LocationManagerCompat.isLocationEnabled(locationManager)
 
 val Context.midiManager: MidiManager? get() = getSystemService(MIDI_SERVICE) as? MidiManager
 val Context.isMidiSupported: Boolean get() = midiManager != null

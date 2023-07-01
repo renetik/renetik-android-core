@@ -10,6 +10,7 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.NameNotFoundException
 import android.graphics.drawable.Drawable
+import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities.*
 import android.net.Uri
@@ -21,17 +22,15 @@ import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.StringRes
+import androidx.core.location.LocationManagerCompat
 import renetik.android.core.kotlin.primitives.isFlagSet
 import renetik.android.core.kotlin.primitives.isSet
 import renetik.android.core.lang.catchAllErrorReturnNull
 import renetik.android.core.lang.catchWarnReturnNull
 import renetik.android.core.lang.void
-import renetik.android.core.logging.CSLog
 import renetik.android.core.logging.CSLog.logWarn
-import renetik.android.core.logging.CSLogMessage
 import java.security.MessageDigest
 import java.util.*
-
 
 val Context.isDebug get() = applicationInfo.flags isFlagSet FLAG_DEBUGGABLE
 
