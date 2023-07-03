@@ -2,6 +2,7 @@ package renetik.android.core.lang.lazy
 
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
+import kotlin.reflect.KProperty0
 
 fun <T> reloadLazyVar(initializer: () -> T) = CSReloadLazyVar(initializer)
 
@@ -20,7 +21,12 @@ class CSReloadLazyVar<T>(
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) =
         synchronized(this) { this.value = value }
 
-    fun clear() {
+    fun reset() {
         value = null
+    }
+
+    companion object {
+        fun reset(property: KProperty0<*>) =
+            (property.getDelegate() as CSReloadLazyVar<*>).reset()
     }
 }
