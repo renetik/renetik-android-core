@@ -3,6 +3,7 @@ package renetik.android.core.lang.lazy
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 import kotlin.reflect.KProperty0
+import kotlin.reflect.jvm.isAccessible
 
 fun <T> reloadLazyVar(initializer: () -> T) = CSReloadLazyVar(initializer)
 
@@ -26,7 +27,9 @@ class CSReloadLazyVar<T>(
     }
 
     companion object {
-        fun reset(property: KProperty0<*>) =
+        fun reset(property: KProperty0<*>) {
+            property.isAccessible = true
             (property.getDelegate() as CSReloadLazyVar<*>).reset()
+        }
     }
 }
