@@ -36,6 +36,7 @@ object CSLog {
         then { logImpl(Debug) { message(Throwable(), function?.invoke()) } }
 
     fun logInfo() = then { logImpl(Info) { message("") } }
+    fun logInfo(any: Any) = then { logImpl(Info) { message(any) } }
     fun logInfo(function: () -> String) = then { logImpl(Info) { message(function()) } }
     fun logInfo(throwable: Throwable?, function: (() -> String)? = null) =
         then { logImpl(Info) { message(throwable, function?.invoke()) } }
