@@ -1,15 +1,22 @@
 package renetik.android.core.lang.lazy
 
+import renetik.android.core.lang.atomic.CSAtomicBoolean.Companion.atomic
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-class CSLazyVar<T>(private val onLoad: () -> T) : ReadWriteProperty<Any?, T> {
+class CSLazyVar<T>(
+    private val onLoad: () -> T
+) : ReadWriteProperty<Any?, T>, CSLazyProperty {
 
-    @get:Synchronized
-    var isInitialized = false
+    override var isInitialized by atomic(false)
         private set
 
     private var value: T? = null
+
+    override fun reset() = synchronized(this) {
+        isInitialized = false
+        value = null
+    }
 
     override fun getValue(
         thisRef: Any?, property: KProperty<*>
