@@ -88,34 +88,6 @@ val Context.packageInfo
         packageManager.getPackageInfo(packageName, 0)
     }
 
-//@Suppress("DEPRECATION")
-//@SuppressLint("UseCompatLoadingForDrawables")
-//fun Context.getDrawable(name: String): Drawable? {
-//    val resourceId = resources.getIdentifier(name, "drawable", packageName)
-//    return resources.getDrawable(resourceId)
-//}
-
-//fun Context.getColorResource(name: String): Int? {
-//    val colorResource = resources.getIdentifier(name, "color", packageName)
-//    return if (colorResource == 0) null else colorResource
-//}
-
-//fun Context.getColor(name: String): CSColorInt? = getColorResource(name)?.let { color(it) }
-
-//val Context.progressDrawable: Drawable
-//    get() {
-//        val value = TypedValue()
-//        theme.resolveAttribute(android.R.attr.progressBarStyleSmall, value, false)
-//        val progressBarStyle = value.data
-//        val attributes = intArrayOf(android.R.attr.indeterminateDrawable)
-//        val array = obtainStyledAttributes(progressBarStyle, attributes)
-//        val drawable = array.getDrawableOrThrow(0)
-//        array.recycle()
-//        (drawable as? Animatable)?.start()
-//        return drawable
-//    }
-
-
 fun BroadcastReceiver(function: (context: Context, intent: Intent) -> Unit) =
     object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) = function(context, intent)
