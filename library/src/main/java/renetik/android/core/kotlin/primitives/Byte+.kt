@@ -1,3 +1,3 @@
 package renetik.android.core.kotlin.primitives
 
-fun Byte.toUnsigned() = if (this < 0) 256 + this else this.toInt()
+val Byte.unsignedInt: Int get() = toInt() and 0xFF
