@@ -5,6 +5,8 @@ import renetik.android.core.extensions.content.toast
 import renetik.android.core.kotlin.CSUnexpectedException
 import renetik.android.core.kotlin.primitives.leaveEndOfLength
 import renetik.android.core.kotlin.then
+import renetik.android.core.lang.CSEnvironment
+import renetik.android.core.lang.CSEnvironment.isDebug
 import renetik.android.core.lang.CSStringConstants.NewLine
 import renetik.android.core.logging.CSLogLevel.Debug
 import renetik.android.core.logging.CSLogLevel.Error
@@ -42,12 +44,17 @@ object CSLog {
         then { logImpl(Info) { message(throwable, function?.invoke()) } }
 
     fun logWarn() = then { logImpl(Warn) { message("") } }
-    fun logWarn(function: () -> String) = then { logImpl(Warn) { message(function()) } }
+    fun logWarn(function: () -> String) = then {
+        logImpl(Warn) { message(function()) }
+    }
+
     fun logWarn(throwable: Throwable?, function: (() -> String)? = null) =
         then { logImpl(Warn) { message(throwable, function?.invoke()) } }
 
-    fun logWarnTrace(function: () -> String) =
-        then { logImpl(Warn) { message(Throwable(), function.invoke()) } }
+    fun logWarnTrace(function: () -> String) = then {
+        if (isDebug) logImpl(Warn) { CSLogMessage.traceMessage(function()) }
+        else logImpl(Warn) { message(Throwable(), function.invoke()) }
+    }
 
     fun logError() = then { logImpl(Error) { message("") } }
     fun logError(function: () -> String) = then { logImpl(Error) { message(function()) } }
