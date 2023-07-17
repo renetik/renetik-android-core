@@ -6,12 +6,13 @@ import kotlin.reflect.KProperty
 
 class CSLazyVal<T>(
     private val onLoad: () -> T
-) : ReadOnlyProperty<Any?, T>, CSLazyProperty {
+) : ReadOnlyProperty<Any?, T>, CSLazyProperty<T> {
 
     override var isInitialized by atomic(false)
         private set
 
-    private var value: T? = null
+    override var value: T? = null
+        private set
 
     override fun reset() = synchronized(this) {
         isInitialized = false
