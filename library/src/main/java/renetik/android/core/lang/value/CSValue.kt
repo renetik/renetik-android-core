@@ -9,9 +9,10 @@ interface CSValue<T> : ReadOnlyProperty<Any?, T> {
             override val value: T = value
         }
 
-        fun <T> value(function: () -> T): CSValue<T> = object : CSValue<T> {
-            override val value: T get() = function()
-        }
+        inline fun <T> value(crossinline function: () -> T): CSValue<T> =
+            object : CSValue<T> {
+                override val value: T get() = function()
+            }
     }
 
     val value: T
