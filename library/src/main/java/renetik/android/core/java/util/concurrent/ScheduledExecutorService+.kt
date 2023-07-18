@@ -24,10 +24,10 @@ inline fun ScheduledExecutorService.backgroundRepeatNano(
     delay: Long = 0, period: Long, @WorkerThread crossinline function: () -> Unit,
 ) = scheduleAtFixedRate({ catchAllError(function) }, delay, period, NANOSECONDS)
 
-@Deprecated("Never proven this was good practice..")
-fun ScheduledExecutorService.backgroundRepeatRunOnUI(
-    delay: Long = 0, period: Long, @UiThread function: () -> Unit,
-) = backgroundRepeat(delay, period) { postOnMain(function) }
+//@Deprecated("Never proven this was good practice..")
+//fun ScheduledExecutorService.backgroundRepeatRunOnUI(
+//    delay: Long = 0, period: Long, @UiThread function: () -> Unit,
+//) = backgroundRepeat(delay, period) { postOnMain(function) }
 
 inline fun ScheduledExecutorService.backgroundRepeat(
     period: Long, @WorkerThread crossinline function: () -> Unit,

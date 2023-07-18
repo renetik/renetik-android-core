@@ -1,17 +1,12 @@
 package renetik.android.core.java.util
 
-import renetik.android.core.java.util.concurrent.*
-import renetik.android.core.lang.Func
-import java.util.concurrent.Executors.newSingleThreadScheduledExecutor
-import java.util.concurrent.ScheduledExecutorService
+//@Deprecated("Replace with CSBackground")
+//object CSTimer {
+//    val executor: ScheduledExecutorService = newSingleThreadScheduledExecutor()
 
-@Deprecated("Replace with CSBackground")
-object CSTimer {
-    val executor: ScheduledExecutorService = newSingleThreadScheduledExecutor()
-
-    @Deprecated("Replace with CSBackground")
-    fun scheduleAtFixedRateRunOnUI(delay: Long = 0, period: Long, function: Func) =
-        executor.backgroundRepeatRunOnUI(delay, period, function)
+//    @Deprecated("Replace with CSBackground")
+//    fun scheduleAtFixedRateRunOnUI(delay: Long = 0, period: Long, function: Func) =
+//        executor.backgroundRepeatRunOnUI(delay, period, function)
 
 //    @Deprecated("Replace with CSBackground")
 //    fun scheduleAtFixedRate(delay: Long = 0, period: Long, function: Func) =
@@ -28,4 +23,4 @@ object CSTimer {
 //    @Deprecated("Replace with CSBackground")
 //    fun scheduleNano(delay: Long = 0, function: Func) =
 //        executor.backgroundNano(delay, function)
-}
+//}
