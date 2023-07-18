@@ -3,7 +3,7 @@ package renetik.android.core.lang
 import renetik.android.core.kotlin.collections.deleteLast
 import renetik.android.core.kotlin.collections.hasItems
 import renetik.android.core.kotlin.collections.list
-import renetik.android.core.lang.CSMainHandler.postOnMain
+import renetik.android.core.lang.CSHandler.postOnMain
 
 class CSRunConsolidator(private val miliseconds: Int) {
 
