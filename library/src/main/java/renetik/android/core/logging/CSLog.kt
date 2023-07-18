@@ -5,7 +5,6 @@ import renetik.android.core.extensions.content.toast
 import renetik.android.core.kotlin.CSUnexpectedException
 import renetik.android.core.kotlin.primitives.leaveEndOfLength
 import renetik.android.core.kotlin.then
-import renetik.android.core.lang.CSEnvironment
 import renetik.android.core.lang.CSEnvironment.isDebug
 import renetik.android.core.lang.CSStringConstants.NewLine
 import renetik.android.core.logging.CSLogLevel.Debug
@@ -14,6 +13,7 @@ import renetik.android.core.logging.CSLogLevel.Info
 import renetik.android.core.logging.CSLogLevel.Warn
 import renetik.android.core.logging.CSLogMessage.Companion.Empty
 import renetik.android.core.logging.CSLogMessage.Companion.message
+import renetik.android.core.logging.CSLogMessage.Companion.traceMessage
 import java.lang.System.currentTimeMillis
 import java.lang.Thread.currentThread
 import java.text.DateFormat.getDateTimeInstance
@@ -52,7 +52,7 @@ object CSLog {
         then { logImpl(Warn) { message(throwable, function?.invoke()) } }
 
     fun logWarnTrace(function: () -> String) = then {
-        if (isDebug) logImpl(Warn) { CSLogMessage.traceMessage(function()) }
+        if (isDebug) logImpl(Warn) { traceMessage(function()) }
         else logImpl(Warn) { message(Throwable(), function.invoke()) }
     }
 
