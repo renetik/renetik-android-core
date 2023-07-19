@@ -1,7 +1,7 @@
 package renetik.android.core.lang
 
 import leakcanary.AppWatcher.objectWatcher
-import leakcanary.LeakCanary.config
+import leakcanary.LeakCanary
 import leakcanary.LeakCanary.showLeakDisplayActivityLauncherIcon
 import renetik.android.core.kotlin.then
 import renetik.android.core.lang.CSEnvironment.isTestRunner
@@ -21,7 +21,7 @@ object CSLeakCanary : CSLeakCanaryInterface {
 
     private fun updateConfiguration(isEnabled: Boolean) {
         if (isTestRunner) return
-        config = config.copy(dumpHeap = isEnabled)
+        LeakCanary.config = LeakCanary.config.copy(dumpHeap = isEnabled)
         showLeakDisplayActivityLauncherIcon(isEnabled)
     }
 }
