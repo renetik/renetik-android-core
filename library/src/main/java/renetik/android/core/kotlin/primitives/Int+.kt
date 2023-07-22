@@ -6,17 +6,15 @@ import renetik.android.core.lang.CSEnvironment.app
 import renetik.android.core.lang.CSTimeConstants.Minute
 import renetik.android.core.lang.CSTimeConstants.Second
 import java.lang.System.nanoTime
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
 inline val Int.Companion.Empty get() = MAX_VALUE
 
-fun Int.Companion.unique(length: Int = 9): Int {
-    val nanoTimeString = "${nanoTime()}"
-    val startIndex: Int = nanoTimeString.length - length
-    val uniqueInt: String = nanoTimeString.substring(startIndex, startIndex + length)
-    return uniqueInt.toInt()
-}
+private val counter = AtomicInteger(0)
+fun Int.Companion.unique(length: Int = 9): Int =
+    "${counter.incrementAndGet()}${nanoTime()}".substring(0, length).toInt()
 
 fun Int.Companion.random(min: Int = 0, max: Int = MAX_VALUE): Int {
     if (min >= max) throw IllegalArgumentException("max must be greater than min")
