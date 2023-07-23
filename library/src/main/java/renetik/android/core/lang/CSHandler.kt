@@ -19,7 +19,4 @@ object CSHandler {
 
     fun postOnMain(after: Int = 0, function: () -> Unit) =
         postOnMain(after.toLong(), function)
-
-    fun removePostedOnMain(function: () -> Unit) =
-        mainHandler.removeCallbacks(function)
 }

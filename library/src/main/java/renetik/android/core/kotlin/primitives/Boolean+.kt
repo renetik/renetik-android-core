@@ -20,10 +20,10 @@ inline fun <T : Boolean?> T.isFalse(function: Func) {
 }
 
 inline fun <T : Boolean?, R> T.ifTrueReturn(function: ReturnFunc<R>): R? =
-    if (isTrue)  function() else null
+    if (isTrue) function() else null
 
 inline fun <T : Boolean?, R> T.ifFalseReturn(function: ReturnFunc<R>): R? =
-    if (isFalse)  function() else null
+    if (isFalse) function() else null
 
 inline fun <T : Boolean?> T.ifTrue(function: Func): CSConditionalResult {
     if (isTrue) function()
