@@ -28,3 +28,5 @@ fun Rect.offsetToNewRight(value: Int) = offsetTo(value - width, top)
 fun Rect.offsetToNewTop(value: Int) = offsetTo(left, value)
 
 fun Rect.offsetToNewBottom(value: Int) = offsetTo(left, value - height)
+
+fun Rect.copy(): Rect = Rect(this)
