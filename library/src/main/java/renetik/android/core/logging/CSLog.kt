@@ -43,6 +43,11 @@ object CSLog {
     fun logInfo(throwable: Throwable?, function: (() -> String)? = null) =
         then { logImpl(Info) { message(throwable, function?.invoke()) } }
 
+    fun logInfoTrace(function: () -> String) = then {
+        if (isDebug) logImpl(Info) { traceMessage(function()) }
+        else logImpl(Info) { message(Throwable(), function.invoke()) }
+    }
+
     fun logWarn() = then { logImpl(Warn) { message("") } }
     fun logWarn(function: () -> String) = then {
         logImpl(Warn) { message(function()) }
