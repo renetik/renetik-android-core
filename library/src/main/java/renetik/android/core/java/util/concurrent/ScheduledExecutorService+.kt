@@ -3,6 +3,7 @@ package renetik.android.core.java.util.concurrent
 import androidx.annotation.WorkerThread
 import renetik.android.core.lang.catchAllError
 import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import java.util.concurrent.TimeUnit.NANOSECONDS
 
@@ -20,7 +21,7 @@ inline fun ScheduledExecutorService.backgroundRepeat(
 
 inline fun ScheduledExecutorService.backgroundRepeatNano(
     delay: Long = 0, period: Long, @WorkerThread crossinline function: () -> Unit,
-) = scheduleAtFixedRate({ catchAllError(function) }, delay, period, NANOSECONDS)
+): ScheduledFuture<*> = scheduleAtFixedRate({ catchAllError(function) }, delay, period, NANOSECONDS)
 
 //@Deprecated("Never proven this was good practice..")
 //fun ScheduledExecutorService.backgroundRepeatRunOnUI(
