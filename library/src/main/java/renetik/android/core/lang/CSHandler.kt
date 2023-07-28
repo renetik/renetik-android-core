@@ -1,22 +1,14 @@
 package renetik.android.core.lang
 
 import android.os.Handler
+import android.os.HandlerThread
 import android.os.Looper.getMainLooper
-import renetik.android.core.logging.CSLog.logWarn
 
 object CSHandler {
-    val mainHandler by lazy { Handler(getMainLooper()) }
-
-    fun postOnMain(function: () -> Unit) {
-        if (!mainHandler.post(function))
-            logWarn { "Runnable not run" }
+    val background: Handler by lazy {
+        HandlerThread("CSHandler background").run { start(); Handler(looper) }
     }
-
-    fun postOnMain(after: Long, function: () -> Unit) {
-        if (!mainHandler.postDelayed(function, after))
-            logWarn { "Runnable not run" }
+    val main by lazy {
+        Handler(getMainLooper())
     }
-
-    fun postOnMain(after: Int = 0, function: () -> Unit) =
-        postOnMain(after.toLong(), function)
 }

@@ -15,7 +15,7 @@ inline fun ScheduledExecutorService.backgroundNano(
     delay: Long = 0, @WorkerThread crossinline function: () -> Unit,
 ) = schedule({ catchAllError(function) }, delay, NANOSECONDS)!!
 
-inline fun ScheduledExecutorService.backgroundRepeat(
+inline fun ScheduledExecutorService.backgroundEach(
     delay: Long = 0, period: Long, @WorkerThread crossinline function: () -> Unit,
 ) = scheduleAtFixedRate({ catchAllError(function) }, delay, period, MILLISECONDS)!!
 
@@ -23,14 +23,9 @@ inline fun ScheduledExecutorService.backgroundRepeatNano(
     delay: Long = 0, period: Long, @WorkerThread crossinline function: () -> Unit,
 ): ScheduledFuture<*> = scheduleAtFixedRate({ catchAllError(function) }, delay, period, NANOSECONDS)
 
-//@Deprecated("Never proven this was good practice..")
-//fun ScheduledExecutorService.backgroundRepeatRunOnUI(
-//    delay: Long = 0, period: Long, @UiThread function: () -> Unit,
-//) = backgroundRepeat(delay, period) { postOnMain(function) }
-
-inline fun ScheduledExecutorService.backgroundRepeat(
+inline fun ScheduledExecutorService.backgroundEach(
     period: Long, @WorkerThread crossinline function: () -> Unit,
-) = backgroundRepeat(delay = period, period = period, function = function)
+) = backgroundEach(delay = period, period = period, function = function)
 
 inline fun ScheduledExecutorService.backgroundRepeatNano(
     period: Long, @WorkerThread crossinline function: () -> Unit,
