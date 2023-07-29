@@ -3,19 +3,19 @@ package renetik.android.core.lang.atomic
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-class CSAtomic(@Volatile private var value: Any) : ReadWriteProperty<Any?, Any> {
+class CSAtomic<T>(@Volatile private var value: T?) : ReadWriteProperty<Any?, T?> {
 
     override fun getValue(
         thisRef: Any?, property: KProperty<*>
-    ): Any = value
+    ): T? = value
 
     override fun setValue(
-        thisRef: Any?, property: KProperty<*>, value: Any
+        thisRef: Any?, property: KProperty<*>, value: T?
     ) {
         this.value = value
     }
 
     companion object {
-        fun atomic(value: Int) = CSAtomic(value)
+        fun <T> atomic(value: T? = null): CSAtomic<T> = CSAtomic(value)
     }
 }
