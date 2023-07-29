@@ -2,7 +2,6 @@ package renetik.android.core.kotlin.primitives
 
 import renetik.android.core.lang.CSConditionalResult
 import renetik.android.core.lang.Func
-import renetik.android.core.lang.ReturnFunc
 
 val Boolean.Companion.random get() = Int.random(0, 1) == 1
 
@@ -19,10 +18,12 @@ inline fun <T : Boolean?> T.isFalse(function: Func) {
     if (isFalse) function()
 }
 
-inline fun <T : Boolean?, R> T.ifTrueReturn(function: ReturnFunc<R>): R? =
+//TODO: Consider rename to ifTrue
+inline fun <T : Boolean?, R> T.ifTrueReturn(function: () -> R): R? =
     if (isTrue) function() else null
 
-inline fun <T : Boolean?, R> T.ifFalseReturn(function: ReturnFunc<R>): R? =
+//TODO: Consider rename to ifFalse
+inline fun <T : Boolean?, R> T.ifFalseReturn(function: () -> R): R? =
     if (isFalse) function() else null
 
 inline fun <T : Boolean?> T.ifTrue(function: Func): CSConditionalResult {
