@@ -1,5 +1,6 @@
 package renetik.android.core.kotlin.reflect
 
+import renetik.android.core.kotlin.unexpected
 import renetik.android.core.lang.lazy.CSLazyProperty
 import renetik.android.core.logging.CSLog.logWarnTrace
 import kotlin.reflect.KProperty0
@@ -17,6 +18,7 @@ val KProperty0<*>.isInitialized: Boolean
         }
     }
 
+@Suppress("UNCHECKED_CAST")
 val <T> KProperty0<T>.lazyValue: T?
     get() {
         isAccessible = true //for "Cannot obtain the delegate of a non-accessible property."
@@ -32,5 +34,5 @@ val <T> KProperty0<T>.lazyValue: T?
 fun KProperty0<*>.reset() {
     isAccessible = true //for "Cannot obtain the delegate of a non-accessible property."
     (getDelegate() as? CSLazyProperty<*>)?.reset()
-        ?: logWarnTrace { "No reset, not a CSLazyProperty" }
+        ?: unexpected("No reset, not a CSLazyProperty")
 }
