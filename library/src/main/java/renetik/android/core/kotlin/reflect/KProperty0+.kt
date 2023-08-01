@@ -13,7 +13,8 @@ val KProperty0<*>.isInitialized: Boolean
             is CSLazyProperty<*> -> delegate.isInitialized
             is Lazy<*> -> delegate.isInitialized()
             else -> {
-                logWarnTrace { "No isInitialized, Not a CSLazyProperty or Lazy" }; true
+                logWarnTrace { "No isInitialized, Not a CSLazyProperty or Lazy" }
+                true
             }
         }
     }
@@ -26,7 +27,8 @@ val <T> KProperty0<T>.lazyValue: T?
             is CSLazyProperty<*> -> delegate.value as? T
             is Lazy<*> -> if (delegate.isInitialized()) delegate.value as? T else null
             else -> {
-                logWarnTrace { "No isInitialized, Not a CSLazyProperty or Lazy" }; null
+                logWarnTrace { "No isInitialized, Not a CSLazyProperty or Lazy" }
+                null
             }
         }
     }
