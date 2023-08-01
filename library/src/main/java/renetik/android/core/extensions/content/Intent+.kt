@@ -24,10 +24,11 @@ val Intent.asString: String
         return string.toString()
     }
 
-
 fun Intent(context: Context, kClass: KClass<*>) = Intent(context, kClass.java)
 
 inline fun <reified T> Intent(context: Context) = Intent(context, T::class.java)
+inline fun <reified T> Intent(context: Context, action: String): Intent =
+    Intent<T>(context).also { it.action = action }
 
 inline fun <reified T> Intent() = Intent(app, T::class.java)
 

@@ -7,7 +7,7 @@ data class CSLayoutRes(@LayoutRes val id: Int) {
         fun layout(@LayoutRes id: Int) = CSLayoutRes(id)
 
         //@get:LayoutRes // TODO: make this check work
-        val Int.layout get() = CSLayoutRes(this)
+        inline val Int.layout get() = CSLayoutRes(this)
     }
 }
 
