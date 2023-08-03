@@ -3,12 +3,11 @@ package renetik.android.core.extensions.content
 import android.annotation.SuppressLint
 import android.app.NotificationManager
 import android.app.Service
-import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.content.Context.*
 import android.content.ContextWrapper.MIDI_SERVICE
 import android.content.Intent
+import android.content.ServiceConnection
 import android.location.LocationManager
 import android.media.AudioManager
 import android.media.midi.MidiManager
@@ -59,3 +58,6 @@ fun Context.stopService(serviceClass: Class<out Service>) =
 
 inline fun <reified T : Service> Context.stopService() =
     stopService(Intent(this, T::class.java))
+
+fun Context.unbind(connection: ServiceConnection): Result<Unit> =
+    runCatching { unbindService(connection) }.onFailure(::logInfo)
