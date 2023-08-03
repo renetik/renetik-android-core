@@ -3,8 +3,8 @@ package renetik.android.core.extensions.content
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import renetik.android.core.lang.CSEnvironment.app
 import kotlin.reflect.KClass
+import renetik.android.core.lang.CSEnvironment.app
 
 fun Intent.toOpenUrl(url: String) = apply {
     action = Intent.ACTION_VIEW
@@ -25,6 +25,8 @@ val Intent.asString: String
     }
 
 fun Intent(context: Context, kClass: KClass<*>) = Intent(context, kClass.java)
+fun Intent(context: Context, kClass: KClass<*>, action: String) =
+    Intent(context, kClass.java).also { it.action = action }
 
 inline fun <reified T> Intent(context: Context) = Intent(context, T::class.java)
 inline fun <reified T> Intent(context: Context, action: String): Intent =
