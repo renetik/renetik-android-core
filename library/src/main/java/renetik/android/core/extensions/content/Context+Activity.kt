@@ -18,6 +18,6 @@ fun <Activity : AppCompatActivity> Context.startActivity(
 ) {
     val intent = Intent(this, activityClass)
     for ((key, value) in extras) intent.putExtra(key, value)
-    intent.addFlags(FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK);
+    intent.addFlags(FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK)
     startActivity(intent)
 }
