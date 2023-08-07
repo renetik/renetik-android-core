@@ -1,8 +1,8 @@
 package renetik.android.core.lang.lazy
 
-import renetik.android.core.lang.atomic.CSAtomicBoolean.Companion.atomic
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
+import renetik.android.core.lang.atomic.CSAtomic.Companion.atomic
 
 class CSLazyVal<T>(
     private val onLoad: () -> T
