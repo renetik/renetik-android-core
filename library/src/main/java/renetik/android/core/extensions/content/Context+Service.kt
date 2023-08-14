@@ -15,6 +15,7 @@ import android.os.Build
 import android.os.PowerManager
 import android.view.inputmethod.InputMethodManager
 import androidx.core.location.LocationManagerCompat
+import kotlin.reflect.KClass
 import renetik.android.core.kotlin.className
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
@@ -42,7 +43,7 @@ fun Context.wakeLock(levelAndFlags: Int): PowerManager.WakeLock {
     return lock
 }
 
-fun Context.startService(serviceClass: Class<out Service>) =
+fun Context.startService(serviceClass: KClass<out Service>) =
     startService(Intent(this, serviceClass))
 
 inline fun <reified T : Service> Context.startService() =
@@ -53,7 +54,7 @@ inline fun <reified T : Service> Context.startForegroundService() =
         startForegroundService(Intent(this, T::class.java))
     else startService(Intent(this, T::class.java))
 
-fun Context.stopService(serviceClass: Class<out Service>) =
+fun Context.stopService(serviceClass: KClass<out Service>) =
     stopService(Intent(this, serviceClass))
 
 inline fun <reified T : Service> Context.stopService() =
