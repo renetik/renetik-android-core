@@ -25,16 +25,16 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat.getColor
-import renetik.android.core.R
-import renetik.android.core.kotlin.asString
-import renetik.android.core.kotlin.collections.list
-import renetik.android.core.kotlin.equalsAny
-import renetik.android.core.lang.*
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.InputStream
 import java.lang.Integer.MAX_VALUE
+import renetik.android.core.R
+import renetik.android.core.kotlin.asString
+import renetik.android.core.kotlin.collections.list
+import renetik.android.core.kotlin.equalsAny
+import renetik.android.core.lang.*
 
 class CSColorInt(@ColorInt val color: Int)
 
@@ -108,10 +108,14 @@ private fun Context.attributeValue(@AttrRes attribute: Int) =
     TypedValue().apply { theme.resolveAttribute(attribute, this, true) }
 
 @ColorInt
-fun Context.attributeColor(@AttrRes attribute: Int) =
+fun Context.attributeColor(@AttrRes attribute: Int): Int =
     attributeValue(attribute).data.apply {
         if (this == 0) throw NotFoundException()
     }
+
+@ColorInt
+fun Context.attributeColorOrNull(@AttrRes attribute: Int): Int? =
+    attributeValue(attribute).data.takeIf { it != 0 }
 
 fun Context.attributeDimensionPixel(@AttrRes attribute: Int, default: Int = 0): Int {
     val attributes = obtainStyledAttributes(intArrayOf(attribute))
