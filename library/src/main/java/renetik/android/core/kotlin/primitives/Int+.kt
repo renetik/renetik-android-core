@@ -9,6 +9,7 @@ import java.lang.System.nanoTime
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.absoluteValue
 import kotlin.random.Random
+import renetik.android.core.extensions.content.dpToPixelF
 
 inline val Int.Companion.Empty get() = MAX_VALUE
 
@@ -46,5 +47,6 @@ fun Int.update(
 }
 
 inline val Int.dp: Int get() = app.dpToPixel(this)
+inline val Int.dpf: Float get() = app.dpToPixelF(this)
 inline val Int.second: Int get() = this * Second
 inline val Int.minute: Int get() = this * Minute

@@ -1,11 +1,12 @@
 package renetik.android.core.kotlin.primitives
 
-import renetik.android.core.extensions.content.dpToPixelF
-import renetik.android.core.lang.CSEnvironment.app
 import java.math.RoundingMode
 import java.math.RoundingMode.CEILING
 import java.text.DecimalFormat
-import java.util.*
+import java.util.Locale
+import kotlin.math.roundToLong
+import renetik.android.core.extensions.content.dpToPixelF
+import renetik.android.core.lang.CSEnvironment.app
 
 val Float.Companion.Empty get() = MAX_VALUE
 val Float.isEmpty get() = this == Float.Empty
@@ -18,17 +19,23 @@ fun Float.ifSet(function: (Float) -> Unit) = apply {
     if (this.isSet) function(this)
 }
 
-fun Float.roundToStep(step: Float): Float = (this / step).toInt() * step
-fun Float.roundToStep(step: Double): Double = (this / step).toInt() * step
-fun Float.roundToStep(step: Int): Int = (this / step).toInt() * step
+fun Float.roundToStep(step: Float): Float = (this / step).roundToLong() * step
+fun Float.roundToStep(step: Double): Double = (this / step).roundToLong() * step
+fun Float.roundToStep(step: Int): Int = (this / step.toFloat()).toInt() * step
 
 fun Float.formatDecimal(n: Int): String {
 //    val prefix = if (this < 0) "-" else ""
     return "%.${n}f".format(Locale.ENGLISH, this)
 }
 
-fun Float.formatRoundDecimal(format: String = "#.##",
-                             mode: RoundingMode = CEILING): String {
+fun Float.removeToDecimal(n: Int): Float {
+    return formatDecimal(n).toFloat()
+}
+
+fun Float.formatRoundDecimal(
+    format: String = "#.##",
+    mode: RoundingMode = CEILING
+): String {
     val df = DecimalFormat(format)
     df.roundingMode = mode
     return df.format(this)
