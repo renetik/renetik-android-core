@@ -2,8 +2,11 @@ package renetik.android.core.kotlin.primitives
 
 import java.math.RoundingMode
 import java.math.RoundingMode.CEILING
+import java.math.RoundingMode.UP
 import java.text.DecimalFormat
 import java.util.Locale
+import kotlin.math.pow
+import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 import renetik.android.core.extensions.content.dpToPixelF
 import renetik.android.core.lang.CSEnvironment.app
@@ -23,6 +26,16 @@ fun Float.roundToStep(step: Float): Float = (this / step).roundToLong() * step
 fun Float.roundToStep(step: Double): Double = (this / step).roundToLong() * step
 fun Float.roundToStep(step: Int): Int = (this / step.toFloat()).toInt() * step
 
+fun Float.roundToDecimalPlaces(decimalPlaces: Int): Float {
+    val factor = 10.0.pow(decimalPlaces.toDouble())
+    return (this * factor).roundToInt() / factor.toFloat()
+}
+
+fun Float.roundToDecimal(decimalPlaces: Int, mode: RoundingMode = UP): Float =
+    formatRoundDecimal(
+        "#." + Array(decimalPlaces) { "#" }.joinToString(separator = ""), mode
+    ).toFloat()
+
 fun Float.formatDecimal(n: Int): String {
 //    val prefix = if (this < 0) "-" else ""
     return "%.${n}f".format(Locale.ENGLISH, this)
@@ -36,7 +49,7 @@ fun Float.formatRoundDecimal(
     format: String = "#.##",
     mode: RoundingMode = CEILING
 ): String {
-    val df = DecimalFormat(format)
+    val df = DecimalFormat(format) //TODO: this should be cached if used a lot..
     df.roundingMode = mode
     return df.format(this)
 }
