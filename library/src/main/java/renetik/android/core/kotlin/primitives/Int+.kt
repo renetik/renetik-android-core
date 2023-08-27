@@ -1,15 +1,15 @@
 package renetik.android.core.kotlin.primitives
 
-import renetik.android.core.extensions.content.dpToPixel
-import renetik.android.core.lang.ArgFunc
-import renetik.android.core.lang.CSEnvironment.app
-import renetik.android.core.lang.CSTimeConstants.Minute
-import renetik.android.core.lang.CSTimeConstants.Second
 import java.lang.System.nanoTime
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.absoluteValue
 import kotlin.random.Random
+import renetik.android.core.extensions.content.dpToPixel
 import renetik.android.core.extensions.content.dpToPixelF
+import renetik.android.core.lang.ArgFunc
+import renetik.android.core.lang.CSEnvironment.app
+import renetik.android.core.lang.CSTimeConstants.Minute
+import renetik.android.core.lang.CSTimeConstants.Second
 
 inline val Int.Companion.Empty get() = MAX_VALUE
 
@@ -50,3 +50,6 @@ inline val Int.dp: Int get() = app.dpToPixel(this)
 inline val Int.dpf: Float get() = app.dpToPixelF(this)
 inline val Int.second: Int get() = this * Second
 inline val Int.minute: Int get() = this * Minute
+
+fun Int.percentOf(size: Int): Float = (this * size / 100.0).toFloat()
+fun Int.toPercentOf(total: Int): Float = (this / total.toFloat() * 100).coerceIn(0f, 100f)

@@ -70,4 +70,7 @@ fun Float.max(maximum: Float) = if (this < maximum) this else maximum
 
 inline val Float.dp: Float get() = app.dpToPixelF(this)
 
+fun Float.percentOf(size: Float): Float = (this * size / 100.0).toFloat()
+fun Float.toPercentOf(total: Float): Float = (this / total * 100).coerceIn(0f, 100f)
+
 
