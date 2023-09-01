@@ -10,7 +10,6 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.NameNotFoundException
 import android.graphics.drawable.Drawable
-import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities.*
 import android.net.Uri
@@ -22,15 +21,15 @@ import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.StringRes
-import androidx.core.location.LocationManagerCompat
+import androidx.core.content.ContextCompat
+import java.security.MessageDigest
+import java.util.*
 import renetik.android.core.kotlin.primitives.isFlagSet
 import renetik.android.core.kotlin.primitives.isSet
 import renetik.android.core.lang.catchAllErrorReturnNull
 import renetik.android.core.lang.catchWarnReturnNull
 import renetik.android.core.lang.void
 import renetik.android.core.logging.CSLog.logWarn
-import java.security.MessageDigest
-import java.util.*
 
 val Context.isDebug get() = applicationInfo.flags isFlagSet FLAG_DEBUGGABLE
 
@@ -82,47 +81,45 @@ val Context.appKeyHash
         } else null
     }
 
-@Suppress("DEPRECATION") // Updated in API 33
 val Context.packageInfo
     get() = catchWarnReturnNull<PackageInfo, NameNotFoundException> {
         packageManager.getPackageInfo(packageName, 0)
     }
 
-fun BroadcastReceiver(function: (context: Context, intent: Intent) -> Unit) =
+inline fun BroadcastReceiver(crossinline function: (context: Context, intent: Intent) -> Unit) =
     object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) = function(context, intent)
     }
 
-fun Context.register(action: String, function: () -> void): BroadcastReceiver =
-    register(IntentFilter(action)) { _, _ -> function() }
+inline fun Context.register(
+    action: String, crossinline function: () -> void
+): BroadcastReceiver = register(IntentFilter(action)) { _, _ -> function() }
 
 fun Context.broadcastPendingIntent(actionId: String, flags: Int): PendingIntent =
     PendingIntent.getBroadcast(this, 0, Intent(actionId), flags)
 
-fun Context.register(
-    action: String,
-    function: (Intent, BroadcastReceiver) -> void
-): BroadcastReceiver =
-    register(IntentFilter(action), function)
+inline fun Context.register(
+    action: String, crossinline function: (Intent, BroadcastReceiver) -> void
+): BroadcastReceiver = register(IntentFilter(action), function)
 
-fun Context.register(
-    intent: IntentFilter,
-    function: (Intent, BroadcastReceiver) -> void
-): BroadcastReceiver {
-    val receiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) = function(intent, this)
-    }
-    registerReceiver(receiver, intent)
-    return receiver
-}
+inline fun Context.register(
+    intent: IntentFilter, crossinline function: (Intent, BroadcastReceiver) -> void
+): BroadcastReceiver = object : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) = function(intent, this)
+}.also { register(it, intent) }
+
+fun Context.register(intent: IntentFilter): Intent? = register(null, intent)
+
+fun Context.register(receiver: BroadcastReceiver?, intent: IntentFilter): Intent? =
+    ContextCompat.registerReceiver(this, receiver, intent, ContextCompat.RECEIVER_NOT_EXPORTED)
 
 fun Context.unregister(receiver: BroadcastReceiver) {
-    unregisterReceiver(receiver)
+    runCatching { unregisterReceiver(receiver) }.onFailure(::logWarn)
 }
 
 val Context.batteryPercent: Float
     get() {
-        val batteryStatus = registerReceiver(null, IntentFilter(ACTION_BATTERY_CHANGED))
+        val batteryStatus = register(IntentFilter(ACTION_BATTERY_CHANGED))
         val level = batteryStatus!!.getIntExtra(EXTRA_LEVEL, -1)
         val scale = batteryStatus.getIntExtra(EXTRA_SCALE, -1)
         return level / scale.toFloat()
