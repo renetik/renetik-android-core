@@ -1,6 +1,13 @@
 package renetik.android.core.lang
 
 object CSGuard {
+    inline fun <T1, R> guard(
+        p1: T1?,
+        condition: Boolean = true,
+        block: (T1) -> R
+    ): R? = if (p1 != null  && condition)
+        block(p1) else null
+
     inline fun <T1, T2, R> guard(
         p1: T1?, p2: T2?,
         condition: Boolean = true,
