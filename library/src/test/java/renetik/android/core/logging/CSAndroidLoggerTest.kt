@@ -16,7 +16,7 @@ class CSAndroidLoggerTest {
 
     var event: CSLogLevel? = null
     var message: String? = null
-    private val listener = { event: CSLogLevel, message: String ->
+    private val listener = { event: CSLogLevel, message: String, _: Throwable? ->
         this.event = event
         this.message = message
     }
