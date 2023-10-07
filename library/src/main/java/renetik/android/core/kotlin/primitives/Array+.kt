@@ -49,7 +49,7 @@ inline fun <reified T> Array<T>.extract(indexes: IntArray) = Array(indexes.size)
 
 inline fun <reified T> Array<out T>.toArray() = asList().toTypedArray()
 
-fun <T> Array<out T>.at(index: Int) = if (index in 0 until size) get(index) else null
+fun <T> Array<out T>.at(index: Int): T? = if (index in indices) get(index) else null
 
 inline fun <T> Array<T>.forEachReverse(action: (T) -> Unit) {
     var index = lastIndex

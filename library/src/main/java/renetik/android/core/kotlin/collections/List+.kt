@@ -90,11 +90,11 @@ inline fun <reified T> list(
     return List(size) { index -> create(index, previous, size).apply { previous = this } }
 }
 
-fun <T, A, B> combine(
+inline fun <T, A, B> combine(
     arrayA: Array<A>, arrayB: Array<B>, createItem: (A, B) -> T,
 ) = combine(arrayA.asList(), arrayB.asList(), createItem)
 
-fun <T, A, B> combine(
+inline fun <T, A, B> combine(
     collectionA: Collection<A>, collectionB: Collection<B>, createItem: (A, B) -> T,
 ) = list<T>(size = collectionA.size * collectionB.size).apply {
     for (a in collectionA) for (b in collectionB) add(createItem(a, b))
@@ -107,3 +107,10 @@ inline fun <T> List<T>.forEachReverse(action: (T) -> Unit) {
         index--
     }
 }
+
+inline val <reified T> List<T>.doubled
+    get() = List(size = size * 2) { index ->
+        val valueIndex = if (index < size) index
+        else index - size
+        this[valueIndex]
+    }
