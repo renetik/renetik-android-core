@@ -5,7 +5,7 @@ import android.os.HandlerThread
 import android.os.Looper.getMainLooper
 
 object CSHandler {
-    val background: Handler by lazy {
+    val threadHandler: Handler by lazy {
         HandlerThread("CSHandler background").run { start(); Handler(looper) }
     }
     val mainHandler by lazy {
