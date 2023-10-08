@@ -8,7 +8,7 @@ object CSHandler {
     val background: Handler by lazy {
         HandlerThread("CSHandler background").run { start(); Handler(looper) }
     }
-    val main by lazy {
+    val mainHandler by lazy {
         Handler(getMainLooper())
     }
 }
