@@ -11,8 +11,8 @@ inline fun <T : Any> T.then(function: (T) -> Unit): Unit = function(this)
 inline fun <T : Any> T.changeIf(condition: Boolean, function: (T) -> T) =
     if (condition) function(this) else this
 
-inline fun <T : Any> T.runIf(condition: Boolean, function: (T) -> Unit) = apply {
-    if (condition) function(this)
+inline fun <T : Any> T.alsoIf(condition: Boolean, function: (T) -> Unit) = also {
+    if (condition) function(it)
 }
 
 inline val <T : Any> T.className get() = this::class.simpleName
