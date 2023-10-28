@@ -2,6 +2,7 @@ package renetik.android.core.logging
 
 import android.util.Log
 import renetik.android.core.BuildConfig.LIBRARY_PACKAGE_NAME
+import renetik.android.core.kotlin.applyIf
 import renetik.android.core.kotlin.primitives.Space
 import renetik.android.core.kotlin.text.add
 import renetik.android.core.lang.CSEnvironment.isDebug
@@ -46,6 +47,10 @@ class CSAndroidLogger(
     }
 
     private fun Array<out Any?>.createMessage() = StringBuilder().also { builder ->
-        forEach { it?.let { builder.add(it).add(String.Space) } }
+        forEachIndexed { index, it ->
+            it?.toString()?.takeIf(String::isNotBlank)?.let {
+                builder.applyIf(index != 0) { add(String.Space) }.add(it)
+            }
+        }
     }
 }

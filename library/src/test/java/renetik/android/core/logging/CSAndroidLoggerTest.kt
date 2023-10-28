@@ -14,8 +14,8 @@ import renetik.android.core.logging.CSLogLevel.*
 @RunWith(RobolectricTestRunner::class)
 class CSAndroidLoggerTest {
 
-    var event: CSLogLevel? = null
-    var message: String? = null
+    private var event: CSLogLevel? = null
+    private var message: String? = null
     private val listener = { event: CSLogLevel, message: String, _: Throwable? ->
         this.event = event
         this.message = message
