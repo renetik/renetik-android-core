@@ -50,9 +50,7 @@ inline fun <reified T : Service> Context.startService() =
     startService(Intent(this, T::class.java))
 
 inline fun <reified T : Service> Context.startForegroundService() =
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        startForegroundService(Intent(this, T::class.java))
-    else startService(Intent(this, T::class.java))
+    startForegroundService(Intent(this, T::class.java))
 
 fun Context.stopService(serviceClass: KClass<out Service>) =
     stopService(Intent(this, serviceClass))
