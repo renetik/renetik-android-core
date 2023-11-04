@@ -1,7 +1,6 @@
 package renetik.android.core.lang.lazy
 
-interface CSLazyProperty<T> { // TODO: make implement Lazy<T>
-    val isInitialized: Boolean
-    val value: T?
+interface CSLazyProperty<T> : Lazy<T?> {
+    override val value: T?
     fun reset()
 }

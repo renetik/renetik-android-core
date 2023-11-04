@@ -2,12 +2,14 @@ package renetik.android.core.lang
 
 import org.junit.Assert
 import org.junit.Test
+import renetik.android.core.lang.lazy.CSLazyNullableVar
 import renetik.android.core.lang.lazy.CSLazyNullableVar.Companion.lazyNullableVar
 
-class CSNullableLazyVarTest {
+class CSLazyNullableVarTest {
     @Test
     fun testLazyNullableVar() {
-        var testVar: String? by lazyNullableVar { "initial" }
+        val lazyNullableVar: CSLazyNullableVar<String?> = lazyNullableVar { "initial" }
+        var testVar: String? by lazyNullableVar
         Assert.assertEquals("initial", testVar)
         testVar = "test"
         Assert.assertEquals("test", testVar)

@@ -8,22 +8,22 @@ class CSLazyVar<T>(
     private val onLoad: () -> T
 ) : ReadWriteProperty<Any?, T>, CSLazyProperty<T> {
 
-    override var isInitialized by atomic(false)
-        private set
+    private var _isInitialized by atomic(false)
+    override fun isInitialized(): Boolean = _isInitialized
 
     override var value: T? = null
 
     override fun reset() = synchronized(this) {
-        isInitialized = false
+        _isInitialized = false
         value = null
     }
 
     override fun getValue(
         thisRef: Any?, property: KProperty<*>
     ): T = synchronized(this) {
-        if (!isInitialized) {
+        if (!_isInitialized) {
             value = onLoad()
-            isInitialized = true
+            _isInitialized = true
         }
         return value!!
     }
@@ -31,7 +31,7 @@ class CSLazyVar<T>(
     override fun setValue(
         thisRef: Any?, property: KProperty<*>, value: T
     ) = synchronized(this) {
-        isInitialized = true
+        _isInitialized = true
         this.value = value
     }
 
