@@ -1,5 +1,7 @@
 package renetik.android.core.kotlin.primitives
 
+import renetik.android.core.extensions.content.dpToPixelF
+import renetik.android.core.lang.CSEnvironment.app
 import java.math.RoundingMode
 import java.math.RoundingMode.CEILING
 import java.math.RoundingMode.UP
@@ -8,8 +10,6 @@ import java.util.Locale
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
-import renetik.android.core.extensions.content.dpToPixelF
-import renetik.android.core.lang.CSEnvironment.app
 
 val Float.Companion.Empty get() = MAX_VALUE
 val Float.isEmpty get() = this == Float.Empty
@@ -31,10 +31,11 @@ fun Float.roundToDecimalPlaces(decimalPlaces: Int): Float {
     return (this * factor).roundToInt() / factor.toFloat()
 }
 
-fun Float.roundToDecimal(decimalPlaces: Int, mode: RoundingMode = UP): Float =
-    formatRoundDecimal(
-        "#." + Array(decimalPlaces) { "#" }.joinToString(separator = ""), mode
-    ).toFloat()
+fun Float.roundToDecimal(
+    decimalPlaces: Int, mode: RoundingMode = UP
+): Float = formatRoundDecimal(
+    "#." + Array(decimalPlaces) { "#" }.joinToString(separator = ""), mode
+).toFloat()
 
 fun Float.formatDecimal(n: Int): String {
 //    val prefix = if (this < 0) "-" else ""
@@ -48,11 +49,7 @@ fun Float.removeToDecimal(n: Int): Float {
 fun Float.formatRoundDecimal(
     format: String = "#.##",
     mode: RoundingMode = CEILING
-): String {
-    val df = DecimalFormat(format) //TODO: this should be cached if used a lot..
-    df.roundingMode = mode
-    return df.format(this)
-}
+): String = DecimalFormat(format).apply {roundingMode = mode  }.format(this)
 
 val Float.rest: Float
     get() = toString().let {

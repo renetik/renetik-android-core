@@ -14,9 +14,6 @@ fun Double.formatDecimal(n: Int): Double {
     return "%.${n}f".format(ENGLISH, this).toDouble()
 }
 
-fun Double.formatRoundDecimal(format: String = "#.##",
-                              mode: RoundingMode = CEILING): String {
-    val df = DecimalFormat(format)
-    df.roundingMode = mode
-    return df.format(this)
-}
+fun Double.formatRoundDecimal(
+    format: String = "#.##", mode: RoundingMode = CEILING
+): String = DecimalFormat(format).apply { roundingMode = mode }.format(this)
