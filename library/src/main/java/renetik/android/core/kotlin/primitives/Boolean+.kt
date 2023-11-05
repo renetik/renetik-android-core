@@ -1,14 +1,11 @@
 package renetik.android.core.kotlin.primitives
 
-import renetik.android.core.lang.CSConditionalResult
 import renetik.android.core.lang.Func
 
 val Boolean.Companion.random get() = Int.random(0, 1) == 1
 
 val Boolean?.isTrue: Boolean get() = this == true
 val Boolean?.isFalse: Boolean get() = this == false
-val Boolean?.isNotTrue: Boolean get() = this != true
-val Boolean?.isNotFalse: Boolean get() = this != false
 
 inline fun <T : Boolean?> T.isTrue(function: Func) {
     if (isTrue) function()
@@ -18,30 +15,8 @@ inline fun <T : Boolean?> T.isFalse(function: Func) {
     if (isFalse) function()
 }
 
-//TODO: Consider rename to ifTrue
-inline fun <T : Boolean?, R> T.ifTrueReturn(function: () -> R): R? =
+inline fun <T : Boolean?, R> T.ifTrue(function: () -> R): R? =
     if (isTrue) function() else null
 
-//TODO: Consider rename to ifFalse
-inline fun <T : Boolean?, R> T.ifFalseReturn(function: () -> R): R? =
+inline fun <T : Boolean?, R> T.ifFalse(function: () -> R): R? =
     if (isFalse) function() else null
-
-inline fun <T : Boolean?> T.ifTrue(function: Func): CSConditionalResult {
-    if (isTrue) function()
-    return CSConditionalResult(!isTrue)
-}
-
-inline fun <T : Boolean?> T.ifNotTrue(function: Func): CSConditionalResult {
-    if (isNotTrue) function()
-    return CSConditionalResult(!isNotTrue)
-}
-
-inline fun <T : Boolean?> T.ifFalse(function: Func): CSConditionalResult {
-    if (isFalse) function()
-    return CSConditionalResult(!isFalse)
-}
-
-inline fun <T : Boolean?> T.ifNotFalse(function: Func): CSConditionalResult {
-    if (isNotFalse) function()
-    return CSConditionalResult(!isNotFalse)
-}
