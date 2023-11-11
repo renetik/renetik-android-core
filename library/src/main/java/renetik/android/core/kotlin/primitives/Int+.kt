@@ -6,6 +6,8 @@ import kotlin.math.absoluteValue
 import kotlin.random.Random
 import renetik.android.core.extensions.content.dpToPixel
 import renetik.android.core.extensions.content.dpToPixelF
+import renetik.android.core.extensions.content.toDp
+import renetik.android.core.extensions.content.toDpF
 import renetik.android.core.lang.ArgFunc
 import renetik.android.core.lang.CSEnvironment.app
 import renetik.android.core.lang.CSTimeConstants.Minute
@@ -47,7 +49,9 @@ fun Int.update(
 }
 
 inline val Int.dp: Int get() = app.dpToPixel(this)
+inline val Int.px: Int get() = app.toDp(this)
 inline val Int.dpf: Float get() = app.dpToPixelF(this)
+inline val Int.pxf: Float get() = app.toDpF(this)
 inline val Int.second: Int get() = this * Second
 inline val Int.minute: Int get() = this * Minute
 
