@@ -4,7 +4,9 @@ import android.app.ActivityManager
 import android.app.Service
 import android.content.Context
 import android.content.ContextWrapper.ACTIVITY_SERVICE
-import android.content.res.Configuration.*
+import android.content.res.Configuration.ORIENTATION_PORTRAIT
+import android.content.res.Configuration.UI_MODE_NIGHT_MASK
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Resources.NotFoundException
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
@@ -16,25 +18,34 @@ import android.text.Spanned
 import android.util.DisplayMetrics
 import android.util.DisplayMetrics.DENSITY_DEFAULT
 import android.util.TypedValue
-import android.util.TypedValue.*
+import android.util.TypedValue.COMPLEX_UNIT_DIP
+import android.util.TypedValue.COMPLEX_UNIT_SP
+import android.util.TypedValue.applyDimension
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
-import androidx.appcompat.app.AppCompatDelegate.*
-import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+import androidx.appcompat.app.AppCompatDelegate.getDefaultNightMode
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.ContextCompat.getColor
+import renetik.android.core.R
+import renetik.android.core.kotlin.asString
+import renetik.android.core.kotlin.collections.list
+import renetik.android.core.kotlin.equalsAny
+import renetik.android.core.lang.catchAllWarn
+import renetik.android.core.lang.catchError
+import renetik.android.core.lang.catchErrorReturnNull
+import renetik.android.core.lang.catchWarnReturnNull
+import renetik.android.core.lang.tryAndFinally
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.InputStream
 import java.lang.Integer.MAX_VALUE
-import renetik.android.core.R
-import renetik.android.core.kotlin.asString
-import renetik.android.core.kotlin.collections.list
-import renetik.android.core.kotlin.equalsAny
-import renetik.android.core.lang.*
 
 class CSColorInt(@ColorInt val color: Int)
 
@@ -156,10 +167,8 @@ fun Context.attributeString(styleable: IntArray, styleableAttribute: Int): Strin
     return string.asString
 }
 
-fun Context.attributeResourceId(@AttrRes attribute: Int) =
-    attributeValue(attribute).resourceId.apply {
-        if (this == 0) throw NotFoundException()
-    }
+fun Context.attributeResourceId(@AttrRes attribute: Int) = attributeValue(attribute)
+    .resourceId.apply { if (this == 0) throw NotFoundException() }
 
 fun Context.assetsReadText(path: String) = assets.open(path).bufferedReader().use { it.readText() }
 
@@ -168,30 +177,27 @@ val Context.isLandscape get() = !isPortrait
 val Context.isTablet get() = resources.getBoolean(R.bool.cs_is_tablet)
 val Context.isPhone get() = !isTablet
 
-fun Context.drawable(@DrawableRes resource: Int) =
-    AppCompatResources.getDrawable(this, resource)!!.apply {
-        setBounds(0, 0, intrinsicWidth, intrinsicHeight)
+fun Context.drawable(@DrawableRes resource: Int) = getDrawable(this, resource)!!.apply {
+    setBounds(0, 0, intrinsicWidth, intrinsicHeight)
+}
+
+fun Drawable.createClear(): ColorDrawable = bounds.createClearDrawable()
+
+fun Rect.createClearDrawable(): ColorDrawable = ColorDrawable().also { it.bounds = this }
+
+val Context.isDarkMode: Boolean
+    get() = getDefaultNightMode().let {
+        if (it.equalsAny(MODE_NIGHT_FOLLOW_SYSTEM, MODE_NIGHT_UNSPECIFIED)) isSystemDarkMode
+        else it == MODE_NIGHT_YES
     }
-
-fun clearDrawable(drawable: Drawable) = clearDrawable(drawable.bounds)
-fun clearDrawable(bounds: Rect) = ColorDrawable().apply { this.bounds = bounds }
-
-val Context.isDarkMode
-    get() = if (getDefaultNightMode()
-            .equalsAny(MODE_NIGHT_FOLLOW_SYSTEM, MODE_NIGHT_UNSPECIFIED)
-    ) isSystemDarkMode
-    else getDefaultNightMode() == MODE_NIGHT_YES
 
 val Context.isSystemDarkMode
     get() = resources.configuration.uiMode and UI_MODE_NIGHT_MASK == UI_MODE_NIGHT_YES
 
-fun Context.isServiceRunning(serviceClass: Class<out Service>): Boolean {
-    val activityManager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
-    @Suppress("DEPRECATION")
-    for (running in activityManager.getRunningServices(MAX_VALUE))
-        if (serviceClass.name == running.service.className) return true
-    return false
-}
+@Suppress("DEPRECATION")
+fun Context.isServiceRunning(serviceClass: Class<out Service>): Boolean =
+    (getSystemService(ACTIVITY_SERVICE) as ActivityManager).getRunningServices(MAX_VALUE)
+        .any { serviceClass.name == it.service.className }
 
 val Context.externalFilesDir: File
     get() = getExternalFilesDir(null) ?: getExternalStorageDirectory()
