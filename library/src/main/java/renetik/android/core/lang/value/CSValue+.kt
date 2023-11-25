@@ -6,19 +6,25 @@ import renetik.android.core.kotlin.primitives.isFalse
 import renetik.android.core.lang.Func
 import renetik.android.core.lang.variable.CSVariable
 
-fun CSValue<Boolean>.isTrue() = value
+inline val CSValue<Boolean>.isTrue get() = value
 
-fun CSValue<Boolean>.isFalse() = !value
+inline val CSValue<Boolean>.isFalse get() = !value
+
+inline fun <R> CSValue<Boolean>.ifTrue(function: () -> R): R? =
+    if (isTrue) function() else null
+
+inline fun <R> CSValue<Boolean>.ifFalse(function: () -> R): R? =
+    if (isFalse) function() else null
 
 @JvmName("isTrueBooleanNullable")
 fun CSValue<Boolean?>.isTrue(): Boolean = value == true
 
-inline fun CSValue<Boolean>.ifTrue(function: Func) {
-    if (isTrue()) function()
+inline fun CSValue<Boolean>.isTrue(function: Func) {
+    if (isTrue) function()
 }
 
-inline fun CSValue<Boolean>.ifFalse(function: Func) {
-    if (isFalse()) function()
+inline fun CSValue<Boolean>.isFalse(function: Func) {
+    if (isFalse) function()
 }
 
 inline val CSValue<Int>.number get() = value
