@@ -11,7 +11,9 @@ import renetik.android.core.extensions.content.CSToastLength.ShortTime
 import renetik.android.core.lang.CSEnvironment.app
 
 object CSToast {
-    fun toast(@StringRes text: Int) = app.toast(app.getString(text))
+    fun toast(@StringRes text: Int, vararg formatArgs: Any) =
+        app.toast(app.getString(text, *formatArgs))
+
     fun toast(text: String) = app.toast(text)
     fun toast(text: String, time: CSToastLength = ShortTime) = app.toast(text, time)
 }
