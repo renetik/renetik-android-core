@@ -40,6 +40,7 @@ val <T> List<T>.last get() = at(lastIndex)
 fun <T> List<T>.at(index: Int): T? = if (index in indices) get(index) else null
 
 infix fun <T> List<T>.has(item: T): Boolean = contains(item)
+infix fun <T> List<T>.hasNot(item: T): Boolean = !contains(item)
 
 infix fun <T> List<T>.containsAny(items: Array<out T>): Boolean {
     items.forEach { if (contains(it)) return true }
