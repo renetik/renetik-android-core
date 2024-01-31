@@ -44,6 +44,6 @@ fun File.moveTo(file: File, overwrite: Boolean = true) {
 
 val File.itemCount: Int get() = list()?.size ?: 0
 
-fun File.with(extension: String): File {
-    return File(parentFile, "${nameWithoutExtension}.$extension")
+fun File.with(name: String? = null, extension: String? = null): File {
+    return File(parentFile, "${name ?: nameWithoutExtension}.${extension ?: this.extension}")
 }
