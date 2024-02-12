@@ -12,7 +12,7 @@ object CSStringConstants {
     const val NewLine = "\n"
     const val Space = " "
     const val `$` = "$"
-    const val UnsafeFileChars =  "|\\?*<\":>+[]/'"
+    const val UnsafeFileChars = "|\\?*<\":>+[]/'"
 }
 
 object CSDataConstants {
@@ -37,7 +37,8 @@ object CSTimeConstants {
     const val HalfMinute = Minute / 2
     const val Hour = 60 * Minute
     const val Day = 24 * Hour
-    const val MilliToNanoSecondMultiplier = 1000000
-    const val SecondNano = Second * MilliToNanoSecondMultiplier
-    fun Int.toNanosecond() = this * MilliToNanoSecondMultiplier
+    const val MilliToNanoSecond: Double = 1_000_000.0
+    const val MilliToNanoSecondInt: Int = 1_000_000
+    const val SecondNano = Second * MilliToNanoSecondInt
+    fun Int.toNanosecond() = this * MilliToNanoSecondInt
 }
