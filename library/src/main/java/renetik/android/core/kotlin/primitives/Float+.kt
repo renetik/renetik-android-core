@@ -32,7 +32,7 @@ fun Float.roundToDecimalPlaces(decimalPlaces: Int): Float {
 }
 
 fun Float.roundToDecimal(
-    decimalPlaces: Int, mode: RoundingMode = UP
+    decimalPlaces: Int, mode: RoundingMode = UP,
 ): Float = formatRoundDecimal(
     "#." + Array(decimalPlaces) { "#" }.joinToString(separator = ""), mode
 ).toFloat()
@@ -48,8 +48,8 @@ fun Float.removeToDecimal(n: Int): Float {
 
 fun Float.formatRoundDecimal(
     format: String = "#.##",
-    mode: RoundingMode = CEILING
-): String = DecimalFormat(format).apply {roundingMode = mode  }.format(this)
+    mode: RoundingMode = CEILING,
+): String = DecimalFormat(format).apply { roundingMode = mode }.format(this)
 
 val Float.rest: Float
     get() = toString().let {
@@ -68,6 +68,9 @@ fun Float.max(maximum: Float) = if (this < maximum) this else maximum
 inline val Float.dp: Float get() = app.dpToPixelF(this)
 
 fun Float.percentOf(size: Float): Float = (this * size / 100.0).toFloat()
+fun Float.percentOf(size: Int): Float = percentOf(size.toFloat())
+fun Float.percentOfInt(size: Int): Int = percentOf(size.toFloat()).toInt()
 fun Float.toPercentOf(total: Float): Float = (this / total * 100).coerceIn(0f, 100f)
+fun Float.toPercentOf(total: Int): Float = toPercentOf(total.toFloat())
 
 
