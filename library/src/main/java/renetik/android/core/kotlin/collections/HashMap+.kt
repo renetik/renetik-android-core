@@ -20,10 +20,13 @@ package renetik.android.core.kotlin.collections
 //    }
 //}
 
-fun <K, V> HashMap<K, V>.hasKey(key: K) = containsKey(key)
-fun <K, V> HashMap<K, V>.hasValue(value: V) = containsValue(value)
-fun <K, V> HashMap<K, V>.value(key: K) = get(key)
-fun <K, V> HashMap<K, V>.reload(map: Map<K, V>) {
-    clear()
-    putAll(map)
+fun <K, V> Map<K, V>.hasKey(key: K): Boolean = containsKey(key)
+fun <K, V> Map<K, V>.hasValue(value: V): Boolean = containsValue(value)
+fun <K, V> Map<K, V>.value(key: K): V? = get(key)
+fun <K, V> MutableMap<K, V>.put(pair: Pair<K, V>) = apply {
+    put(pair.first, pair.second)
+}
+
+fun <K, V> MutableMap<K, V>.reload(map: Map<K, V>) = apply {
+    clear(); putAll(map)
 }
