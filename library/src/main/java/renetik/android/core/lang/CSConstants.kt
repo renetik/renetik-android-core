@@ -40,5 +40,6 @@ object CSTimeConstants {
     const val MilliToNanoSecond: Double = 1_000_000.0
     const val MilliToNanoSecondInt: Int = 1_000_000
     const val SecondNano = Second * MilliToNanoSecondInt
-    fun Int.toNanosecond() = this * MilliToNanoSecondInt
+    fun Int.toNanosecond(): Int = this * MilliToNanoSecondInt
+    fun Double.toNanosecond(): Double = this * MilliToNanoSecond
 }
