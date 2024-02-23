@@ -66,6 +66,7 @@ fun Float.min(minimum: Float) = if (this > minimum) this else minimum
 fun Float.max(maximum: Float) = if (this < maximum) this else maximum
 
 inline val Float.dp: Float get() = app.dpToPixelF(this)
+inline val Float.dpf: Float get() = app.dpToPixelF(this)
 
 fun Float.percentOf(size: Float): Float = (this * size / 100.0).toFloat()
 fun Float.percentOf(size: Int): Float = percentOf(size.toFloat())
