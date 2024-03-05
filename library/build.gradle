@@ -2,5 +2,5 @@ rootProject.ext.namespace = 'renetik.android.core'
 if (rootProject.ext.is_renetik_library_module) apply from: '../library.gradle'
 else apply from: '../../library.gradle'
 dependencies {
-    b_leakcanaryImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
+    b_leakcanaryImplementation 'com.squareup.leakcanary:leakcanary-android:2.13'
 }
