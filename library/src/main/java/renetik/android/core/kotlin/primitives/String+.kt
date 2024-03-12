@@ -95,6 +95,7 @@ fun String.separateToString(vararg items: Any?): String {
 val String.lowerCased: String get() = lowercase(Locale.ROOT)
 val String.upperCased: String get() = uppercase(Locale.ROOT)
 val String.noAccents: String get() = removeAccents()
+val String.noNewLines: String get() = replace("/n", " ")
 
 private val nonSpacingCharactersRegex = "\\p{Mn}+".toRegex()
 // some used this in remove accents code instead

@@ -26,6 +26,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
@@ -49,7 +50,7 @@ import java.lang.Integer.MAX_VALUE
 
 class CSColorInt(@ColorInt val color: Int)
 
-fun Context.formatted(resId: Int): Spanned =
+fun Context.formatted(@StringRes resId: Int): Spanned =
     Html.fromHtml(
         getString(resId).replace("\n", "<br>")
             .replace("[B]", "<b>").replace("[/B]", "</b>"), 0
