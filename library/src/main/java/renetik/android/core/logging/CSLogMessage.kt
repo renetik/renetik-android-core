@@ -2,7 +2,7 @@ package renetik.android.core.logging
 
 import renetik.android.core.kotlin.primitives.Empty
 
-class CSLogMessage(val throwable: Throwable?, val message: String = "") {
+class CSLogMessage(val throwable: Throwable? = null, val message: String = "") {
     companion object {
         val Empty = CSLogMessage(null, String.Empty)
         fun traceMessage(message: Any? = String.Empty) = CSLogMessage(Throwable(), message.toString())

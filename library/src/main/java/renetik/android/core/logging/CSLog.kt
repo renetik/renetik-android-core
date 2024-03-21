@@ -71,6 +71,10 @@ object CSLog {
         then { logImpl(Error) { message(Throwable(), function.invoke()) } }
 
     fun Context.logDebugToast() = toast(Debug, logImpl(Debug) { message("") })
+
+    fun Context.logDebugStringToast(function: () -> String) =
+        toast(Debug, logImpl(Debug) { CSLogMessage(message = function()) })
+
     fun Context.logDebugToast(function: () -> CSLogMessage) =
         toast(Debug, logImpl(Debug, function))
 
