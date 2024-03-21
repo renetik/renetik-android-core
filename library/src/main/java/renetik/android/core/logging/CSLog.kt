@@ -32,7 +32,7 @@ object CSLog {
     fun logDebug() = then { logImpl(Debug) { message() } }
     fun logDebug(any: Any) = then { logImpl(Debug) { message(any) } }
     fun logDebug(function: () -> String) = then { logImpl(Debug) { message(function()) } }
-    fun logDebug(throwable: Throwable?, function: (() -> String)? = null) =
+    fun logDebug(throwable: Throwable, function: (() -> String)? = null) =
         then { logImpl(Debug) { message(throwable, function?.invoke()) } }
 
     fun logDebugTrace(function: (() -> String)? = null) =
@@ -41,7 +41,7 @@ object CSLog {
     fun logInfo() = then { logImpl(Info) { message("") } }
     fun logInfo(any: Any) = then { logImpl(Info) { message(any) } }
     fun logInfo(function: () -> String) = then { logImpl(Info) { message(function()) } }
-    fun logInfo(throwable: Throwable?, function: (() -> String)? = null) =
+    fun logInfo(throwable: Throwable, function: (() -> String)? = null) =
         then { logImpl(Info) { message(throwable, function?.invoke()) } }
 
     fun logInfoTrace(function: () -> String) = then {
@@ -50,11 +50,9 @@ object CSLog {
     }
 
     fun logWarn() = then { logImpl(Warn) { message("") } }
-    fun logWarn(function: () -> String) = then {
-        logImpl(Warn) { message(function()) }
-    }
-
-    fun logWarn(throwable: Throwable?, function: (() -> String)? = null) =
+    fun logWarn(any: Any) = then { logImpl(Warn) { message(any) } }
+    fun logWarn(function: () -> String) = then { logImpl(Warn) { message(function()) } }
+    fun logWarn(throwable: Throwable, function: (() -> String)? = null) =
         then { logImpl(Warn) { message(throwable, function?.invoke()) } }
 
     fun logWarnTrace(function: () -> String) = then {
@@ -64,7 +62,7 @@ object CSLog {
 
     fun logError() = then { logImpl(Error) { message("") } }
     fun logError(function: () -> String) = then { logImpl(Error) { message(function()) } }
-    fun logError(throwable: Throwable?, function: (() -> String)? = null) =
+    fun logError(throwable: Throwable, function: (() -> String)? = null) =
         then { logImpl(Error) { message(throwable, function?.invoke()) } }
 
     fun logErrorTrace(function: () -> String) =

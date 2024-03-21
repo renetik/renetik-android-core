@@ -47,7 +47,7 @@ inline fun <reified ExceptionType : Throwable, ReturnType> catchWarnReturn(
 }
 
 inline fun <ReturnType, reified ExceptionType : Throwable>
-    catchWarnReturn(onExceptionReturn: ReturnType, tryFunction: () -> ReturnType) =
+        catchWarnReturn(onExceptionReturn: ReturnType, tryFunction: () -> ReturnType) =
     catchWarnReturn<ExceptionType, ReturnType>(message = null, tryFunction) { onExceptionReturn }
 
 //inline fun <reified ExceptionType : Throwable> catchWarn(tryFunction: () -> Unit) =
@@ -60,12 +60,12 @@ inline fun <ReturnType> catchAllWarnReturn(
 inline fun catchAllWarn(tryFunction: () -> Unit) = catchAllWarnReturn(Unit, tryFunction)
 
 inline fun <ReturnType, reified ExceptionType : Throwable>
-    catchWarnReturnNull(tryFunction: () -> ReturnType): ReturnType? =
+        catchWarnReturnNull(tryFunction: () -> ReturnType): ReturnType? =
     catchWarnReturn<ExceptionType, ReturnType?>(message = null, tryFunction) { null }
 
 inline fun <ReturnType>
-    catchAllWarnReturnNull(message: String? = null, tryFunction: () -> ReturnType)
-    : ReturnType? = catchWarnReturn<Exception, ReturnType?>(message, tryFunction) { null }
+        catchAllWarnReturnNull(message: String? = null, tryFunction: () -> ReturnType)
+        : ReturnType? = catchWarnReturn<Exception, ReturnType?>(message, tryFunction) { null }
 
 inline fun <ReturnType, reified ExceptionType : Throwable> catchErrorReturn(
     tryFunction: () -> ReturnType, onExceptionReturn: (ExceptionType) -> ReturnType,
@@ -79,24 +79,24 @@ inline fun <ReturnType, reified ExceptionType : Throwable> catchErrorReturn(
 }
 
 inline fun <reified ExceptionType : Throwable, ReturnType>
-    catchErrorReturn(onExceptionReturn: ReturnType, tryFunction: () -> ReturnType) =
+        catchErrorReturn(onExceptionReturn: ReturnType, tryFunction: () -> ReturnType) =
     catchErrorReturn<ReturnType, ExceptionType>(tryFunction) { onExceptionReturn }
 
 inline fun <reified ExceptionType : Throwable> catchError(tryFunction: () -> Unit) =
     catchErrorReturn<ExceptionType, Unit>(Unit, tryFunction)
 
 inline fun <ReturnType>
-    catchAllErrorReturn(onExceptionReturn: ReturnType, tryFunction: () -> ReturnType) =
+        catchAllErrorReturn(onExceptionReturn: ReturnType, tryFunction: () -> ReturnType) =
     catchErrorReturn<ReturnType, Throwable>(tryFunction) { onExceptionReturn }
 
 inline fun catchAllError(tryFunction: () -> Unit) = catchAllErrorReturn(Unit, tryFunction)
 
 inline fun <reified ExceptionType : Throwable, ReturnType>
-    catchErrorReturnNull(tryFunction: () -> ReturnType): ReturnType? =
+        catchErrorReturnNull(tryFunction: () -> ReturnType): ReturnType? =
     catchErrorReturn<ExceptionType, ReturnType?>(null, tryFunction)
 
 inline fun <ReturnType> catchAllErrorReturnNull(tryFunction: () -> ReturnType)
-    : ReturnType? = catchErrorReturn<ReturnType?, Exception>(tryFunction) { null }
+        : ReturnType? = catchErrorReturn<ReturnType?, Exception>(tryFunction) { null }
 
 fun <ReturnType> tryAndFinally(tryFunction: () -> ReturnType, finally: () -> Unit): ReturnType {
     try {

@@ -2,16 +2,26 @@ package renetik.android.core.extensions.content
 
 import android.annotation.SuppressLint
 import android.app.PendingIntent
-import android.content.*
+import android.content.ActivityNotFoundException
+import android.content.BroadcastReceiver
+import android.content.ClipData
+import android.content.ComponentName
+import android.content.Context
 import android.content.ContextWrapper.CONNECTIVITY_SERVICE
+import android.content.Intent
 import android.content.Intent.ACTION_BATTERY_CHANGED
+import android.content.IntentFilter
 import android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.NameNotFoundException
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
-import android.net.NetworkCapabilities.*
+import android.net.NetworkCapabilities.TRANSPORT_BLUETOOTH
+import android.net.NetworkCapabilities.TRANSPORT_CELLULAR
+import android.net.NetworkCapabilities.TRANSPORT_ETHERNET
+import android.net.NetworkCapabilities.TRANSPORT_VPN
+import android.net.NetworkCapabilities.TRANSPORT_WIFI
 import android.net.Uri
 import android.os.BatteryManager.EXTRA_LEVEL
 import android.os.BatteryManager.EXTRA_SCALE
@@ -22,14 +32,14 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
-import java.security.MessageDigest
-import java.util.*
 import renetik.android.core.kotlin.primitives.isFlagSet
 import renetik.android.core.kotlin.primitives.isSet
 import renetik.android.core.lang.catchAllErrorReturnNull
 import renetik.android.core.lang.catchWarnReturnNull
 import renetik.android.core.lang.void
 import renetik.android.core.logging.CSLog.logWarn
+import java.security.MessageDigest
+import java.util.Locale
 
 val Context.isDebug get() = applicationInfo.flags isFlagSet FLAG_DEBUGGABLE
 
@@ -51,10 +61,10 @@ val Context.isNetworkConnected: Boolean
         return if (SDK_INT >= Q)
             manager.getNetworkCapabilities(manager.activeNetwork)?.let {
                 it.hasTransport(TRANSPORT_WIFI) ||
-                    it.hasTransport(TRANSPORT_CELLULAR) ||
-                    it.hasTransport(TRANSPORT_BLUETOOTH) ||
-                    it.hasTransport(TRANSPORT_ETHERNET) ||
-                    it.hasTransport(TRANSPORT_VPN)
+                        it.hasTransport(TRANSPORT_CELLULAR) ||
+                        it.hasTransport(TRANSPORT_BLUETOOTH) ||
+                        it.hasTransport(TRANSPORT_ETHERNET) ||
+                        it.hasTransport(TRANSPORT_VPN)
             } ?: false
         else
             @Suppress("DEPRECATION")
