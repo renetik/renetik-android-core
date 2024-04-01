@@ -8,6 +8,9 @@ import renetik.android.core.lang.variable.CSVariable
 
 inline val CSValue<Boolean>.isTrue get() = value
 
+@get:JvmName("CSValueBooleanOptionalIsTrue")
+inline val CSValue<Boolean>?.isTrue: Boolean get() = this?.value == true
+
 inline val CSValue<Boolean>.isFalse get() = !value
 
 inline fun <R> CSValue<Boolean>.ifTrue(function: () -> R): R? =
