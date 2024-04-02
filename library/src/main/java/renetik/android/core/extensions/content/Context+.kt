@@ -28,8 +28,6 @@ import android.os.BatteryManager.EXTRA_SCALE
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.Q
 import android.util.Base64
-import android.view.LayoutInflater
-import android.view.View
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import renetik.android.core.kotlin.primitives.isFlagSet
@@ -42,10 +40,6 @@ import java.security.MessageDigest
 import java.util.Locale
 
 val Context.isDebug get() = applicationInfo.flags isFlagSet FLAG_DEBUGGABLE
-
-@Suppress("UNCHECKED_CAST")
-fun <ViewType : View> Context.inflate(layoutId: Int) =
-    LayoutInflater.from(this).inflate(layoutId, null) as ViewType
 
 /**
  * If the item does not have an icon, the item's default icon is returned
