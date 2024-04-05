@@ -79,6 +79,7 @@ fun Context.openInputStream(uri: Uri) = catchErrorReturnNull<FileNotFoundExcepti
 }
 
 fun Context.resourceDimensionPx(@DimenRes id: Int) = resources.getDimension(id).toInt()
+fun Context.resourceDimension(@DimenRes id: Int) = resources.getDimension(id)
 
 fun Context.resourceStrings(id: Int) = catchWarnReturnNull<List<String>, NotFoundException> {
     list(*resources.getStringArray(id))
