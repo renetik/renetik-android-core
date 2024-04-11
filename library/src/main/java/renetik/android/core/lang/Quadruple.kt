@@ -26,3 +26,18 @@ data class Quintuple<out A, out B, out C, out D, out E>(
 
 infix fun <A, B, C, D, E> Quadruple<A, B, C, D>.to(that: E): Quintuple<A, B, C, D, E> =
     Quintuple(first, second, third, fourth, that)
+
+
+data class Sixtuple<out A, out B, out C, out D, out E, out F>(
+    val first: A,
+    val second: B,
+    val third: C,
+    val fourth: D,
+    val fifth: E,
+    val sixth: F
+) : Serializable {
+    override fun toString(): String = "($first, $second, $third, $fourth, $fifth, $sixth)"
+}
+
+infix fun <A, B, C, D, E, F> Quintuple<A, B, C, D, E>.to(that: F): Sixtuple<A, B, C, D, E, F> =
+    Sixtuple(first, second, third, fourth, fifth, that)
