@@ -34,6 +34,7 @@ import androidx.appcompat.app.AppCompatDelegate.getDefaultNightMode
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.ContextCompat.getColor
 import renetik.android.core.R
+import renetik.android.core.base.CSApplication
 import renetik.android.core.kotlin.asString
 import renetik.android.core.kotlin.collections.list
 import renetik.android.core.kotlin.equalsAny
@@ -79,6 +80,10 @@ fun Context.openInputStream(uri: Uri) = catchErrorReturnNull<FileNotFoundExcepti
 }
 
 fun Context.resourceDimensionPx(@DimenRes id: Int) = resources.getDimension(id).toInt()
+
+// TODO: Why I am not getting waring if used on regular Int ?
+//val @receiver:DimenRes Int.px get() = CSApplication.app.resourceDimensionPx(this)
+
 fun Context.resourceDimension(@DimenRes id: Int) = resources.getDimension(id)
 
 fun Context.resourceStrings(id: Int) = catchWarnReturnNull<List<String>, NotFoundException> {
