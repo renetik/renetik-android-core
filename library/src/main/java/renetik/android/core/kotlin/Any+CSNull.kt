@@ -1,8 +1,5 @@
 package renetik.android.core.kotlin
 
-import renetik.android.core.lang.ArgFunc
-import renetik.android.core.lang.CSConditionalResult
-import renetik.android.core.lang.Func
 import renetik.android.core.lang.variable.CSVariable
 
 fun isAnyNotNull(vararg items: Any?) = !isAllNull(*items)
@@ -32,16 +29,6 @@ fun <T : Any> T?.onNotNull(block: (T) -> Unit) {
 
 fun <T : Any, R> T?.isNull(block: () -> R): R? = if (this == null) block() else null
 fun <T : Any, R> T?.isNotNull(block: (T) -> R): R? = if (this != null) block(this) else null
-
-fun <T : Any> T?.ifNull(block: Func): CSConditionalResult {
-    if (this == null) block()
-    return CSConditionalResult(this != null)
-}
-
-fun <T : Any> T?.ifNotNull(block: ArgFunc<T>): CSConditionalResult {
-    if (this != null) block(this)
-    return CSConditionalResult(this == null)
-}
 
 val CSVariable<out Any?>.isNull get() = value.isNull
 val CSVariable<out Any?>.notNull get() = value.notNull

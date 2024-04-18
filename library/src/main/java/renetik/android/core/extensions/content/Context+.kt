@@ -34,7 +34,6 @@ import renetik.android.core.kotlin.primitives.isFlagSet
 import renetik.android.core.kotlin.primitives.isSet
 import renetik.android.core.lang.catchAllErrorReturnNull
 import renetik.android.core.lang.catchWarnReturnNull
-import renetik.android.core.lang.void
 import renetik.android.core.logging.CSLog.logWarn
 import java.security.MessageDigest
 import java.util.Locale
@@ -96,18 +95,18 @@ inline fun BroadcastReceiver(crossinline function: (context: Context, intent: In
     }
 
 inline fun Context.register(
-    action: String, crossinline function: () -> void
+    action: String, crossinline function: () -> Unit
 ): BroadcastReceiver = register(IntentFilter(action)) { _, _ -> function() }
 
 fun Context.broadcastPendingIntent(actionId: String, flags: Int): PendingIntent =
     PendingIntent.getBroadcast(this, 0, Intent(actionId), flags)
 
 inline fun Context.register(
-    action: String, crossinline function: (Intent, BroadcastReceiver) -> void
+    action: String, crossinline function: (Intent, BroadcastReceiver) -> Unit
 ): BroadcastReceiver = register(IntentFilter(action), function)
 
 inline fun Context.register(
-    intent: IntentFilter, crossinline function: (Intent, BroadcastReceiver) -> void
+    intent: IntentFilter, crossinline function: (Intent, BroadcastReceiver) -> Unit
 ): BroadcastReceiver = object : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) = function(intent, this)
 }.also { register(it, intent) }

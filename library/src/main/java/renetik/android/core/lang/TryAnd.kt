@@ -3,15 +3,15 @@ package renetik.android.core.lang
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logWarn
 
-inline fun <reified E : Throwable> catch(block: () -> void): Result<void> = try {
+inline fun <reified E : Throwable> catch(block: () -> Unit): Result<Unit> = try {
     Result.success(block())
 } catch (e: Throwable) {
     if (e is E) Result.failure(e) else throw e
 }
 
-inline fun catchAll(block: () -> void): Result<void> = catch<Throwable>(block)
+inline fun catchAll(block: () -> Unit): Result<Unit> = catch<Throwable>(block)
 
-inline fun <reified E : Throwable> catchWarn(block: () -> void): Result<void> = try {
+inline fun <reified E : Throwable> catchWarn(block: () -> Unit): Result<Unit> = try {
     Result.success(block())
 } catch (e: Throwable) {
     if (e is E) {

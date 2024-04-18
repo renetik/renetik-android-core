@@ -2,6 +2,7 @@ package renetik.android.core.java.lang
 
 import renetik.android.core.lang.catchAllWarnReturnNull
 
+@Suppress("DEPRECATION")
 fun <T> Class<T>.createInstance(): T? = catchAllWarnReturnNull { this.newInstance() }
 
 @Suppress("UNCHECKED_CAST")

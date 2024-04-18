@@ -1,11 +1,10 @@
 package renetik.android.core.logging
 
-import renetik.android.core.lang.void
 import renetik.android.core.logging.CSLogLevel.*
 
 class CSDummyLogger(
     override val level: CSLogLevel = Debug,
-    val listener: ((event: CSLogLevel, message: String) -> void)? = null)
+    val listener: ((event: CSLogLevel, message: String) -> Unit)? = null)
     : CSLogger {
     override fun debug(e: Throwable?, vararg values: Any?) {
         listener?.invoke(Debug, values.joinToString { "$it" })

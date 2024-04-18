@@ -5,7 +5,7 @@ interface CSArgFunc<Arg> {
 
     companion object {
         inline fun <Arg> func(
-            crossinline function: (Arg) -> void
+            crossinline function: (Arg) -> Unit
         ): CSArgFunc<Arg> = object : CSArgFunc<Arg> {
             override fun invoke(argument: Arg) = function(argument)
         }
