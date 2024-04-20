@@ -47,6 +47,8 @@ inline fun String.ifSet(function: (String) -> Unit) = apply {
     if (this.isSet) function(this)
 }
 
+infix fun String.ends(suffix: String) = endsWith(suffix)
+
 
 fun String.asLong() = catchWarnReturnNull<Long, NumberFormatException> { toLong() }
 fun String.asFloat() = catchWarnReturnNull<Float, NumberFormatException> { toFloat() }
