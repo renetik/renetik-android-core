@@ -44,10 +44,10 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
         if (!activityClass.isInstance(activity)) return
         if (this.activity?.isDestroyed == false ||
             this.activity?.isFinishing == false
-        ) logError {
+        ) logError(
             "activity should be destroyed or null, " +
-                "when new is created, in single activity application"
-        }
+                    "when new is created, in single activity application"
+        )
         @Suppress("UNCHECKED_CAST")
         this.activity = activity as ActivityType
     }

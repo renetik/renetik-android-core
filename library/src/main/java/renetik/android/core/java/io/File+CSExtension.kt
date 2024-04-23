@@ -47,3 +47,5 @@ val File.itemCount: Int get() = list()?.size ?: 0
 fun File.with(name: String? = null, extension: String? = null): File {
     return File(parentFile, "${name ?: nameWithoutExtension}.${extension ?: this.extension}")
 }
+
+val File.isJson: Boolean get() = extension == "json"
