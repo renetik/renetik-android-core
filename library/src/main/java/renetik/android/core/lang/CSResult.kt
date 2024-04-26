@@ -23,16 +23,12 @@ data class CSResult<Value>(
         if (state == Success) function(value!!)
         else CSResult(state, null, throwable = throwable, message = message)
 
-    suspend fun ifFailure(function: suspend (throwable: Throwable?) -> Unit) = apply {
-        if (state == Failure) function(throwable)
-    }
-
     suspend fun ifNotSuccess(function: suspend () -> Unit) = apply {
         if (state == Failure || state == Cancel) function()
     }
 
-    suspend fun ifFailure(function: suspend (Throwable?, String?) -> Unit) = apply {
-        if (state == Failure) function(throwable, message)
+    suspend fun ifFailure(function: suspend (Pair<Throwable?, String?>) -> Unit) = apply {
+        if (state == Failure) function(throwable to message)
     }
 
     suspend fun ifCancel(function: suspend () -> Unit) = apply {

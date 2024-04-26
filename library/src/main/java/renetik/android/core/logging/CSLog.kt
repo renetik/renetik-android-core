@@ -62,9 +62,12 @@ object CSLog {
     fun logError() = then { logImpl(Error) { message("") } }
     fun logError(message: String?) = then { logImpl(Error) { message(message) } }
     fun logError(function: () -> String) = then { logImpl(Error) { message(function()) } }
-    fun logError(throwable: Throwable) = then { logImpl(Error) { message(throwable) } }
+    fun logError(throwable: Throwable?) = then { logImpl(Error) { message(throwable) } }
     fun logError(throwable: Throwable?, message: String?) =
         then { logImpl(Error) { message(throwable, message) } }
+
+    fun logError(error: Pair<Throwable?, String?>) =
+        then { logImpl(Error) { message(error.first, error.second) } }
 
     fun logErrorTrace(function: () -> String) =
         then { logImpl(Error) { message(Throwable(), function.invoke()) } }
