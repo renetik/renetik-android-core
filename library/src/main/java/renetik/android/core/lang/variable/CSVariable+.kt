@@ -12,6 +12,10 @@ inline var CSVariable<String?>.string: String
         value = newValue
     }
 
+operator fun CSVariable<String>.plusAssign(value: String) {
+    this.value += value
+}
+
 fun CSVariable<Double>.value(value: Int) = apply { this.value = value.toDouble() }
 
 fun CSVariable<Float>.value(value: Number) = apply { this.value = value.toFloat() }
