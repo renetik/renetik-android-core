@@ -20,6 +20,17 @@ package renetik.android.core.kotlin.collections
 //    }
 //}
 
+inline fun <K, V> Map<out K, V>.contains(
+    predicate: (Map.Entry<K, V>) -> Boolean
+): Boolean = find(predicate) != null
+
+inline fun <K, V> Map<out K, V>.find(
+    predicate: (Map.Entry<K, V>) -> Boolean
+): Map.Entry<K, V>? {
+    for (entry in this) if (predicate(entry)) return entry
+    return null
+}
+
 fun <K, V> Map<K, V>.hasKey(key: K): Boolean = containsKey(key)
 fun <K, V> Map<K, V>.hasValue(value: V): Boolean = containsValue(value)
 fun <K, V> Map<K, V>.value(key: K): V? = get(key)

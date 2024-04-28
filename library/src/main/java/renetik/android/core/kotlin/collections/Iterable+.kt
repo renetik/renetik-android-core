@@ -1,5 +1,10 @@
 package renetik.android.core.kotlin.collections
 
+inline fun <T> Iterable<T>.find(predicate: (T) -> Boolean): T? =
+    firstOrNull(predicate)
+
+inline fun <T> Iterable<T>.contains(predicate: (T) -> Boolean): Boolean =
+    find(predicate) != null
 
 inline fun <T> Iterable<T>.forEachWithPrevious(function: (item: T, previous: T?) -> Unit) {
     var previous: T? = null
@@ -8,6 +13,3 @@ inline fun <T> Iterable<T>.forEachWithPrevious(function: (item: T, previous: T?)
         previous = item
     }
 }
-
-inline fun <T> Iterable<T>.contains(predicate: (T) -> Boolean): Boolean =
-    find(predicate) != null
