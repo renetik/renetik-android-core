@@ -5,8 +5,13 @@ object CSGuard {
         p1: T1?,
         condition: Boolean = true,
         block: (T1) -> R
-    ): R? = if (p1 != null  && condition)
+    ): R? = if (p1 != null && condition)
         block(p1) else null
+
+    inline fun <T1, T2, R> guard(
+        p1: T1?, p2: T2?,
+        block: (T1, T2) -> R
+    ): R? = guard(p1, p2, true, block)
 
     inline fun <T1, T2, R> guard(
         p1: T1?, p2: T2?,
