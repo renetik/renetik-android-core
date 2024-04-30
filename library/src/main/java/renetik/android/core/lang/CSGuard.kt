@@ -22,6 +22,11 @@ object CSGuard {
 
     inline fun <T1, T2, T3, R> guard(
         p1: T1?, p2: T2?, p3: T3?,
+        block: (T1, T2, T3) -> R
+    ): R? = guard(p1, p2, p3, true, block)
+
+    inline fun <T1, T2, T3, R> guard(
+        p1: T1?, p2: T2?, p3: T3?,
         condition: Boolean = true,
         block: (T1, T2, T3) -> R
     ): R? = if (p1 != null && p2 != null && p3 != null && condition)
