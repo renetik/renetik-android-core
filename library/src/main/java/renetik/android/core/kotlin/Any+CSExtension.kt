@@ -4,8 +4,13 @@ import renetik.android.core.lang.CSHasId
 
 inline fun <T : Any> T.then(function: (T) -> Unit): Unit = function(this)
 
-inline fun <T : Any> T.changeIf(condition: Boolean, function: (T) -> T) =
-    if (condition) function(this) else this
+inline fun <T : Any> T.changeIf(
+    condition: Boolean, function: (T) -> T
+) = if (condition) function(this) else this
+
+inline fun <T : Any> T.changeIf(
+    condition: (T) -> Boolean, change: (T) -> T
+): T = if (condition(this)) change(this) else this
 
 inline fun <T : Any> T.alsoIf(condition: Boolean, function: (T) -> Unit) =
     also { if (condition) function(it) }
