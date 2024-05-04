@@ -59,3 +59,4 @@ inline val Int.minute: Int get() = this * Minute
 
 fun Int.percentOf(size: Int): Float = (this * size / 100.0).toFloat()
 fun Int.toPercentOf(total: Int): Float = (this / total.toFloat() * 100).coerceIn(0f, 100f)
+fun Int.toPercentOfInt(total: Int): Int = toPercentOf(total).toInt()
