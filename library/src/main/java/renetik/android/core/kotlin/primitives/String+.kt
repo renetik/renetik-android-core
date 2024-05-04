@@ -1,3 +1,5 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package renetik.android.core.kotlin.primitives
 
 import renetik.android.core.kotlin.isNotNull
@@ -19,6 +21,10 @@ inline val String.Companion.Semicolon get() = CSStringConstants.Semicolon
 inline val String.Companion.Empty get() = CSStringConstants.Empty
 inline val String.Companion.Space get() = CSStringConstants.Space
 inline val String.Companion.unsafeFileChars: String get() = CSStringConstants.UnsafeFileChars
+
+inline fun String.Companion.formatted(
+    format: String, vararg args: Any?
+): String = String.format(Locale.getDefault(), format, *args)
 
 fun String.Companion.random(length: Int): String {
     val random = Random()

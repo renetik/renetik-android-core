@@ -5,6 +5,17 @@ import java.io.File
 import java.io.File.createTempFile
 import java.util.Date
 
+fun File.fileList(): List<File> = listFiles(File::isFile)?.toList() ?: emptyList()
+fun File.dirList(): List<File> = listFiles(File::isDirectory)?.toList() ?: emptyList()
+
+inline fun File.forEachFile(action: (File) -> Unit) {
+    listFiles(File::isFile)?.forEach(action)
+}
+
+inline fun File.forEachDir(action: (File) -> Unit) {
+    listFiles(File::isDirectory)?.forEach(action)
+}
+
 fun File.createFileAndDirs() = apply {
     parentFile?.mkdirs()
     createNewFile()
