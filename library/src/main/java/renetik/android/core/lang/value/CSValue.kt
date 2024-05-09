@@ -5,7 +5,7 @@ import kotlin.reflect.KProperty
 
 interface CSValue<T> : ReadOnlyProperty<Any?, T> {
     companion object {
-        fun <T> value(value: T) = object : CSSynchronizedValue<T> {
+        fun <T> value(value: T) = object : CSSafeValue<T> {
             override val value: T = value
         }
 
@@ -20,5 +20,3 @@ interface CSValue<T> : ReadOnlyProperty<Any?, T> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): T =
         synchronized(this) { value }
 }
-
-interface CSSynchronizedValue<T> : CSValue<T>
