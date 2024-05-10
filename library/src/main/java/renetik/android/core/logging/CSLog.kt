@@ -5,6 +5,7 @@ import renetik.android.core.extensions.content.toast
 import renetik.android.core.kotlin.CSUnexpectedException
 import renetik.android.core.kotlin.primitives.leaveEndOfLength
 import renetik.android.core.kotlin.then
+import renetik.android.core.kotlin.toShortString
 import renetik.android.core.lang.CSEnvironment.isDebug
 import renetik.android.core.lang.CSStringConstants.NewLine
 import renetik.android.core.logging.CSLogLevel.Debug
@@ -42,6 +43,9 @@ object CSLog {
     fun logInfo(function: () -> String) = then { logImpl(Info) { message(function()) } }
     fun logInfo(throwable: Throwable, function: (() -> String)? = null) =
         then { logImpl(Info) { message(throwable, function?.invoke()) } }
+
+    fun logInfoTrace(any: Any, skip: Int = 0, length: Int = 5) =
+        then { logImpl(Info) { message("$any\n" + Throwable().toShortString(skip, length)) } }
 
     fun logInfoTrace(function: () -> String) = then {
         if (isDebug) logImpl(Info) { traceMessage(function()) }
@@ -105,8 +109,8 @@ object CSLog {
     }
 
     private fun Context.toast(level: CSLogLevel, text: Array<Any?>?) {
-        if (logger.isEnabled(level)) toast(
-            "${text!![2]}".leaveEndOfLength(100).chunked(50).joinToString { "$it$NewLine" })
+        if (logger.isEnabled(level)) toast("${text!![2]}".leaveEndOfLength(100).chunked(50)
+            .joinToString { "$it$NewLine" })
     }
 
     private val timeFormat by lazy { getDateTimeInstance() }
