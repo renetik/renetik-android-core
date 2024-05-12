@@ -30,7 +30,7 @@ object CSLog {
     fun log(level: CSLogLevel, function: () -> CSLogMessage) = then { logImpl(level, function) }
 
     fun logDebug() = then { logImpl(Debug) { message() } }
-    fun logDebug(any: Any) = then { logImpl(Debug) { message(any) } }
+    fun logDebug(any: Any?) = then { logImpl(Debug) { message(any) } }
     fun logDebug(function: () -> String) = then { logImpl(Debug) { message(function()) } }
     fun logDebug(throwable: Throwable, function: (() -> String)? = null) =
         then { logImpl(Debug) { message(throwable, function?.invoke()) } }
@@ -39,12 +39,12 @@ object CSLog {
         then { logImpl(Debug) { message(Throwable(), function?.invoke()) } }
 
     fun logInfo() = then { logImpl(Info) { message("") } }
-    fun logInfo(any: Any) = then { logImpl(Info) { message(any) } }
+    fun logInfo(any: Any?) = then { logImpl(Info) { message(any) } }
     fun logInfo(function: () -> String) = then { logImpl(Info) { message(function()) } }
     fun logInfo(throwable: Throwable, function: (() -> String)? = null) =
         then { logImpl(Info) { message(throwable, function?.invoke()) } }
 
-    fun logInfoTrace(any: Any, skip: Int = 0, length: Int = 5) =
+    fun logInfoTrace(any: Any?, skip: Int = 0, length: Int = 5) =
         then { logImpl(Info) { message("$any\n" + Throwable().toShortString(skip, length)) } }
 
     fun logInfoTrace(function: () -> String) = then {
@@ -53,7 +53,7 @@ object CSLog {
     }
 
     fun logWarn() = then { logImpl(Warn) { message("") } }
-    fun logWarn(any: Any) = then { logImpl(Warn) { message(any) } }
+    fun logWarn(any: Any?) = then { logImpl(Warn) { message(any) } }
     fun logWarn(function: () -> String) = then { logImpl(Warn) { message(function()) } }
     fun logWarn(throwable: Throwable, function: (() -> String)? = null) =
         then { logImpl(Warn) { message(throwable, function?.invoke()) } }
