@@ -6,6 +6,7 @@ val Boolean.Companion.random get() = Int.random(0, 1) == 1
 
 val Boolean?.isTrue: Boolean get() = this == true
 val Boolean?.isFalse: Boolean get() = this == false
+val Boolean?.isFalseOrNull: Boolean get() = this == null || this == false
 
 inline fun <T : Boolean?> T.isTrue(function: Func) {
     if (isTrue) function()
