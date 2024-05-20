@@ -41,10 +41,12 @@ fun <T> Class<T>?.invoke(function: String, argument: T? = null): Any? =
     this?.getMethod(function)?.invoke(argument)
 
 fun Any.invokeFunction(name: String, argument: Any? = null): Any? = runCatching {
-    javaClass.getMethod(name).also { it.isAccessible = true }.invoke(this)
+    javaClass.getMethod(name).also { it.isAccessible = true }.let { method ->
+        argument?.let { method.invoke(this, it) } ?: method.invoke(this)
+    }
 }.getOrNull()
 
-fun <T> Any.invokeFunction(name: String, vararg argument: Any): Any? = runCatching {
+fun Any.invokeFunction(name: String, vararg argument: Any): Any? = runCatching {
     javaClass.getMethod(name).also { it.isAccessible = true }.invoke(this, argument)
 }.getOrNull()
 
