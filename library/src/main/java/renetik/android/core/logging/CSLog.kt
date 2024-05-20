@@ -44,7 +44,7 @@ object CSLog {
     fun logInfo(throwable: Throwable, function: (() -> String)? = null) =
         then { logImpl(Info) { message(throwable, function?.invoke()) } }
 
-    fun logInfoTrace(any: Any?, skip: Int = 0, length: Int = 5) =
+    fun logInfoTrace(any: Any? = null, skip: Int = 0, length: Int = 5) =
         then { logImpl(Info) { message("$any\n" + Throwable().toShortString(skip, length)) } }
 
     fun logInfoTrace(function: () -> String) = then {
