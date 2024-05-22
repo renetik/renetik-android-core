@@ -15,20 +15,27 @@ data class CSResult<Value>(
     val isSuccess get() = state == Success
 
     suspend fun ifSuccess(function: suspend (Value) -> Unit) = apply {
-        if (state == Success) function(value!!)
+        if (state == Success) runCatching { function(value!!) }
+            .onFailure { throwable = it }
     }
 
     @JvmName("onSuccessValueToResult")
     suspend fun <T> ifSuccess(function: suspend (Value) -> CSResult<T>): CSResult<T> =
-        if (state == Success) function(value!!)
-        else CSResult(state, null, throwable = throwable, message = message)
+        if (state == Success) {
+            runCatching { function(value!!) }.getOrNull()
+                ?: CSResult(state, null, throwable, message)
+        } else CSResult(state, null, throwable, message)
 
     suspend fun ifNotSuccess(function: suspend () -> Unit) = apply {
         if (state == Failure || state == Cancel) function()
     }
 
-    suspend fun ifFailure(function: suspend (Pair<Throwable?, String?>) -> Unit) = apply {
-        if (state == Failure) function(throwable to message)
+//    suspend fun ifFailure(function: suspend (Pair<Throwable?, String?>) -> Unit) = apply {
+//        if (state == Failure) function(throwable to message)
+//    }
+
+    suspend fun ifFailure(function: suspend (CSResult<Value>) -> Unit) = apply {
+        if (state == Failure) function(this)
     }
 
     suspend fun ifCancel(function: suspend () -> Unit) = apply {
