@@ -51,7 +51,7 @@ data class CSResult<Value>(
 
         fun <Value> cancel() = CSResult<Value>(Cancel, null)
 
-        fun <Value> failure(throwable: Throwable, message: String? = null) =
+        fun <Value> failure(throwable: Throwable? = null, message: String? = null) =
             CSResult<Value>(Failure, value = null, throwable = throwable, message = message)
 
         fun <Value> failure(message: String): CSResult<Value> =
