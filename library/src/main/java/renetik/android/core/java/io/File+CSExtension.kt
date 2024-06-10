@@ -1,6 +1,7 @@
 package renetik.android.core.java.io
 
 import renetik.android.core.java.util.format
+import renetik.android.core.java.util.now
 import java.io.File
 import java.io.File.createTempFile
 import java.util.Date
@@ -46,7 +47,7 @@ fun File.createDirs() = apply {
 
 fun File.createDatedFile(extension: String): File {
     mkdirs()
-    return createTempFile(Date().format("yyyy-MM-dd_HH-mm-ss"), ".$extension", this)
+    return createTempFile(now.format("yyyy-MM-dd_HH-mm-ss"), ".$extension", this)
 }
 
 fun File.readString() = if (exists()) readText() else null
