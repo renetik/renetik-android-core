@@ -1,10 +1,11 @@
 package renetik.android.core.lang.value
 
-import renetik.android.core.kotlin.primitives.Empty
 import renetik.android.core.kotlin.primitives.containsAll
-import renetik.android.core.kotlin.primitives.isFalse
 import renetik.android.core.lang.Func
 import renetik.android.core.lang.variable.CSVariable
+
+@get:JvmName("CSValueAnyIsEmpty")
+inline val CSValue<Any?>.isEmpty get() = value == null
 
 inline val CSValue<Boolean>.isTrue get() = value
 
@@ -35,26 +36,22 @@ inline val CSValue<Int>.next get() = value + 1
 inline val CSValue<Int>.previous get() = value - 1
 
 inline val CSValue<Float>.number get() = value
+inline val CSValue<Double>.number get() = value
 
 @get:JvmName("CSValueCharSequenceIsEmpty")
-val CSValue<out CharSequence>.isEmpty get() = value.isEmpty()
+inline val CSValue<out CharSequence>.isEmpty get() = value.isEmpty()
 
-@get:JvmName("CSValueAnyIsEmpty")
-val CSValue<Any?>.isEmpty get() = value == null
-
-fun CSValue<String>.contains(
+fun CSValue<out CharSequence>.contains(
     value: String,
     ignoreCase: Boolean = false
 ) = this.value.contains(value, ignoreCase)
 
-fun CSValue<String>.contains(
+fun CSValue<out CharSequence>.contains(
     property: CSVariable<String>,
     ignoreCase: Boolean = false
 ) = this.contains(property.value, ignoreCase)
 
-fun CSValue<String>.containsAll(
+fun CSValue<out CharSequence>.containsAll(
     words: List<String>,
     ignoreCase: Boolean = false
 ) = value.containsAll(words, ignoreCase)
-
-inline val CSValue<Double>.number get() = value
