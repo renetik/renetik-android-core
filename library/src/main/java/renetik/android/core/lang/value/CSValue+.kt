@@ -35,24 +35,12 @@ inline val CSValue<Int>.next get() = value + 1
 inline val CSValue<Int>.previous get() = value - 1
 
 inline val CSValue<Float>.number get() = value
-inline val CSValue<Float>.isSet get() = !isEmpty
-inline fun CSValue<Float>.ifEmpty(function: (CSValue<Float>) -> Unit) = apply {
-    if (isEmpty) function(this)
-}
 
-inline fun CSValue<Float>.ifSet(function: (CSValue<Float>) -> Unit) = apply {
-    if (this.isSet) function(this)
-}
+@get:JvmName("CSValueCharSequenceIsEmpty")
+val CSValue<out CharSequence>.isEmpty get() = value.isEmpty()
 
-//TODO:!!!!!!! REMOVE THIS ,, UNCLEAR USAGE ... EASY BUGS !!!
-val CSValue<*>.isEmpty
-    get() = when (val value = value) {
-        is CharSequence -> value.isEmpty()
-        is Int -> value == Int.Empty
-        is Float -> value == Float.Empty
-        is Boolean -> value.isFalse
-        else -> value == null
-    }
+@get:JvmName("CSValueAnyIsEmpty")
+val CSValue<Any?>.isEmpty get() = value == null
 
 fun CSValue<String>.contains(
     value: String,
