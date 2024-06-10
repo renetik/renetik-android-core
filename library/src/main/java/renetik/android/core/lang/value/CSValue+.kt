@@ -44,6 +44,7 @@ inline fun CSValue<Float>.ifSet(function: (CSValue<Float>) -> Unit) = apply {
     if (this.isSet) function(this)
 }
 
+//TODO:!!!!!!! REMOVE THIS ,, UNCLEAR USAGE ... EASY BUGS !!!
 val CSValue<*>.isEmpty
     get() = when (val value = value) {
         is CharSequence -> value.isEmpty()
