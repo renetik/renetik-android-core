@@ -35,7 +35,9 @@ fun String.Companion.random(length: Int): String {
     return String(text)
 }
 
-fun String.Companion.contains(string1: String?, string2: String?, ignoreCase: Boolean = false) =
+fun String.Companion.contains(
+    string1: String?, string2: String?, ignoreCase: Boolean = false
+) =
     if (string1 == null || string2 == null) false
     else string1.contains(string2, ignoreCase)
 
@@ -132,4 +134,4 @@ fun CharSequence.containsAll(words: List<String>, ignoreCase: Boolean = false): 
 
 fun String.count(string: String) = split(string).dropLastWhile { it.isEmpty() }.size - 1
 
-val String.asVertical: String get() = this.fold("") { acc, char -> "$acc$char\n" }.trim()
+val String.asVertical: String get() = fold("") { acc, char -> "$acc$char\n" }.dropLast(1)
