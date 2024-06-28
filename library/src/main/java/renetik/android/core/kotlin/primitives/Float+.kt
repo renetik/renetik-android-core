@@ -70,6 +70,7 @@ inline val Float.dpf: Float get() = app.dpToPixelF(this)
 
 fun Float.percentOf(size: Float): Float = (this * size / 100.0).toFloat()
 fun Float.percentOf(size: Int): Float = percentOf(size.toFloat())
+fun Float.percentOf(size: Long): Float = percentOf(size.toFloat())
 fun Float.percentOfInt(size: Float): Int = percentOf(size).toInt()
 fun Float.percentOfInt(size: Int): Int = percentOf(size.toFloat()).toInt()
 fun Float.toPercentOf(total: Float): Float = (this / total * 100).coerceIn(0f, 100f)
