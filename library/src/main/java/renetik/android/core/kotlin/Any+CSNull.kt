@@ -27,8 +27,8 @@ fun <T : Any> T?.onNotNull(block: (T) -> Unit) {
     if (this != null) block(this)
 }
 
-fun <T : Any, R> T?.isNull(block: () -> R): R? = if (this == null) block() else null
-fun <T : Any, R> T?.isNotNull(block: (T) -> R): R? = if (this != null) block(this) else null
+fun <T : Any, R> T?.ifNull(block: () -> R): R? = if (this == null) block() else null
+fun <T : Any, R> T?.ifNotNull(block: (T) -> R): R? = if (this != null) block(this) else null
 
 val CSVariable<out Any?>.isNull get() = value.isNull
 val CSVariable<out Any?>.notNull get() = value.notNull
