@@ -84,7 +84,7 @@ fun Context.resourceDimensionPx(@DimenRes id: Int) = resources.getDimension(id).
 // TODO: Why I am not getting waring if used on regular Int ?
 //val @receiver:DimenRes Int.px get() = CSApplication.app.resourceDimensionPx(this)
 
-fun Context.resourceDimension(@DimenRes id: Int) = resources.getDimension(id)
+fun Context.resourceDimension(@DimenRes id: Int): Float = resources.getDimension(id)
 
 fun Context.resourceStrings(id: Int) = catchWarnReturnNull<List<String>, NotFoundException> {
     list(*resources.getStringArray(id))
