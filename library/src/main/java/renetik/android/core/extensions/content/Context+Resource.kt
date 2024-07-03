@@ -34,7 +34,6 @@ import androidx.appcompat.app.AppCompatDelegate.getDefaultNightMode
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.ContextCompat.getColor
 import renetik.android.core.R
-import renetik.android.core.base.CSApplication
 import renetik.android.core.kotlin.asString
 import renetik.android.core.kotlin.collections.list
 import renetik.android.core.kotlin.equalsAny
@@ -75,20 +74,22 @@ fun Context.resourceBytes(id: Int) = catchAllWarn {
     }) { stream.close() }
 }
 
-fun Context.openInputStream(uri: Uri) = catchErrorReturnNull<FileNotFoundException, InputStream> {
-    return contentResolver.openInputStream(uri)
-}
+fun Context.openInputStream(uri: Uri) =
+    catchErrorReturnNull<FileNotFoundException, InputStream> {
+        return contentResolver.openInputStream(uri)
+    }
 
-fun Context.resourceDimensionPx(@DimenRes id: Int) = resources.getDimension(id).toInt()
+fun Context.dimensionPx(@DimenRes id: Int) = resources.getDimension(id).toInt()
 
 // TODO: Why I am not getting waring if used on regular Int ?
 //val @receiver:DimenRes Int.px get() = CSApplication.app.resourceDimensionPx(this)
 
 fun Context.resourceDimension(@DimenRes id: Int): Float = resources.getDimension(id)
 
-fun Context.resourceStrings(id: Int) = catchWarnReturnNull<List<String>, NotFoundException> {
-    list(*resources.getStringArray(id))
-}
+fun Context.resourceStrings(id: Int) =
+    catchWarnReturnNull<List<String>, NotFoundException> {
+        list(*resources.getStringArray(id))
+    }
 
 fun Context.resourceInts(id: Int) = catchError<NotFoundException> {
     list(resources.getIntArray(id).asList())
@@ -108,11 +109,15 @@ val Context.statusBarHeight
         else -> MEDIUM_DPI_STATUS_BAR_HEIGHT
     }
 
-fun Context.toDpF(pixel: Float) = pixel / (displayMetrics.densityDpi.toFloat() / DENSITY_DEFAULT)
+fun Context.toDpF(pixel: Float) =
+    pixel / (displayMetrics.densityDpi.toFloat() / DENSITY_DEFAULT)
+
 fun Context.toDpF(pixel: Int) = toDpF(pixel.toFloat())
 fun Context.toDp(pixel: Int) = toDpF(pixel).toInt()
 
-fun Context.dpToPixelF(dp: Float): Float = applyDimension(COMPLEX_UNIT_DIP, dp, displayMetrics)
+fun Context.dpToPixelF(dp: Float): Float =
+    applyDimension(COMPLEX_UNIT_DIP, dp, displayMetrics)
+
 fun Context.dpToPixelF(dp: Int): Float = dpToPixelF(dp.toFloat())
 fun Context.dpToPixel(dp: Float) = dpToPixelF(dp).toInt()
 fun Context.dpToPixel(dp: Int) = dpToPixelF(dp.toFloat()).toInt()
@@ -163,9 +168,11 @@ fun Context.attributeFloat(@AttrRes attribute: Int, default: Float = 0f): Float 
     return float
 }
 
-fun Context.attributeString(@AttrRes attribute: Int) = attributeValue(attribute).string.asString
+fun Context.attributeString(@AttrRes attribute: Int) =
+    attributeValue(attribute).string.asString
 
-fun Context.attributeString2(@AttrRes attribute: Int) = attributeString(intArrayOf(attribute), 0)
+fun Context.attributeString2(@AttrRes attribute: Int) =
+    attributeString(intArrayOf(attribute), 0)
 
 fun Context.attributeString(styleable: IntArray, styleableAttribute: Int): String {
     val attributes = obtainStyledAttributes(styleable)
@@ -177,7 +184,8 @@ fun Context.attributeString(styleable: IntArray, styleableAttribute: Int): Strin
 fun Context.attributeResourceId(@AttrRes attribute: Int) = attributeValue(attribute)
     .resourceId.apply { if (this == 0) throw NotFoundException() }
 
-fun Context.assetsReadText(path: String) = assets.open(path).bufferedReader().use { it.readText() }
+fun Context.assetsReadText(path: String) =
+    assets.open(path).bufferedReader().use { it.readText() }
 
 val Context.isPortrait get() = resources.configuration.orientation == ORIENTATION_PORTRAIT
 val Context.isLandscape get() = !isPortrait
@@ -194,7 +202,10 @@ fun Rect.createClearDrawable(): ColorDrawable = ColorDrawable().also { it.bounds
 
 val Context.isDarkMode: Boolean
     get() = getDefaultNightMode().let {
-        if (it.equalsAny(MODE_NIGHT_FOLLOW_SYSTEM, MODE_NIGHT_UNSPECIFIED)) isSystemDarkMode
+        if (it.equalsAny(
+                MODE_NIGHT_FOLLOW_SYSTEM, MODE_NIGHT_UNSPECIFIED
+            )
+        ) isSystemDarkMode
         else it == MODE_NIGHT_YES
     }
 
