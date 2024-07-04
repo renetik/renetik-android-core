@@ -79,19 +79,16 @@ fun Context.openInputStream(uri: Uri) =
         return contentResolver.openInputStream(uri)
     }
 
-fun Context.dimensionPx(@DimenRes id: Int) = resources.getDimension(id).toInt()
+fun Context.dimensionInt(@DimenRes id: Int) = resources.getDimension(id).toInt()
 
-// TODO: Why I am not getting waring if used on regular Int ?
-//val @receiver:DimenRes Int.px get() = CSApplication.app.resourceDimensionPx(this)
+fun Context.dimension(@DimenRes id: Int): Float = resources.getDimension(id)
 
-fun Context.resourceDimension(@DimenRes id: Int): Float = resources.getDimension(id)
-
-fun Context.resourceStrings(id: Int) =
+fun Context.strings(id: Int) =
     catchWarnReturnNull<List<String>, NotFoundException> {
         list(*resources.getStringArray(id))
     }
 
-fun Context.resourceInts(id: Int) = catchError<NotFoundException> {
+fun Context.ints(id: Int) = catchError<NotFoundException> {
     list(resources.getIntArray(id).asList())
 }
 
