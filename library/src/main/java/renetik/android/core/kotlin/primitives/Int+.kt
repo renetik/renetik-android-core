@@ -14,9 +14,6 @@ import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
-//TODO: Rename to uninitialized or remove ?
-inline val Int.Companion.Empty get() = MAX_VALUE
-
 private val counter = AtomicInteger(0)
 fun Int.Companion.unique(length: Int = 9): Int =
     "${counter.incrementAndGet()}${nanoTime()}".substring(0, length).toInt()
@@ -26,10 +23,6 @@ fun Int.Companion.random(min: Int = 0, max: Int = MAX_VALUE): Int {
     return Random.nextInt(max - min + 1) + min
 }
 
-//TODO: Remove es confusing
-inline val Int.isEmpty get() = this == Int.Empty
-//TODO: Remove es confusing
-inline val Int.isSet get() = !this.isEmpty
 fun Int.max(maximumValue: Int) = if (this < maximumValue) this else maximumValue
 fun Int.min(minimumValue: Int) = if (this > minimumValue) this else minimumValue
 
