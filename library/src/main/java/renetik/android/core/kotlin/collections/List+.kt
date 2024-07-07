@@ -2,6 +2,9 @@ package renetik.android.core.kotlin.collections
 
 import renetik.android.core.lang.CSList
 
+operator fun <T> List<T>.plus(element: T): MutableList<T> =
+    ArrayList<T>(size + 1).apply { add(element) }
+
 fun <T> List<T>.clone() = toList()
 
 fun <T> List<T>.mutable() = toMutableList()
@@ -65,7 +68,8 @@ infix fun <T> List<T>.isLast(item: T): Boolean = last === item
 
 infix fun <T> List<T>.isLastIndex(index: Int): Boolean = index == lastIndex
 
-infix fun <T> List<T>.join(list: List<T>): List<T> = toMutableList().apply { addAll(list) }
+infix fun <T> List<T>.join(list: List<T>): List<T> =
+    toMutableList().apply { addAll(list) }
 
 fun <T> list(block: (MutableList<T>.() -> Unit)? = null): CSList<T> =
     CSList<T>().apply { block?.invoke(this) }
