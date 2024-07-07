@@ -3,7 +3,7 @@ package renetik.android.core.kotlin.collections
 import renetik.android.core.lang.CSList
 
 operator fun <T> List<T>.plus(element: T): MutableList<T> =
-    ArrayList<T>(size + 1).apply { add(element) }
+    mutable().apply { add(element) }
 
 fun <T> List<T>.clone() = toList()
 
