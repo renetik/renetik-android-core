@@ -11,6 +11,7 @@ import renetik.android.core.lang.CSStringConstants.NewLine
 import renetik.android.core.logging.CSLogLevel.Debug
 import renetik.android.core.logging.CSLogLevel.Error
 import renetik.android.core.logging.CSLogLevel.Info
+import renetik.android.core.logging.CSLogLevel.Verbose
 import renetik.android.core.logging.CSLogLevel.Warn
 import renetik.android.core.logging.CSLogMessage.Companion.Empty
 import renetik.android.core.logging.CSLogMessage.Companion.message
@@ -27,7 +28,12 @@ object CSLog {
     }
 
     fun log(level: CSLogLevel) = then { logImpl(level) { message("") } }
-    fun log(level: CSLogLevel, function: () -> CSLogMessage) = then { logImpl(level, function) }
+    fun log(level: CSLogLevel, function: () -> CSLogMessage) =
+        then { logImpl(level, function) }
+
+    fun logVerbose(any: Any?) = then { logImpl(Verbose) { message(any) } }
+    fun logVerbose(function: () -> String) =
+        then { logImpl(Verbose) { message(function()) } }
 
     fun logDebug() = then { logImpl(Debug) { message() } }
     fun logDebug(any: Any?) = then { logImpl(Debug) { message(any) } }
@@ -45,7 +51,13 @@ object CSLog {
         then { logImpl(Info) { message(throwable, function?.invoke()) } }
 
     fun logInfoTrace(any: Any? = null, skip: Int = 0, length: Int = 5) =
-        then { logImpl(Info) { message("$any\n" + Throwable().toShortString(skip, length)) } }
+        then {
+            logImpl(Info) {
+                message(
+                    "$any\n" + Throwable().toShortString(skip, length)
+                )
+            }
+        }
 
     fun logInfoTrace(function: () -> String) = then {
         if (isDebug) logImpl(Info) { traceMessage(function()) }
@@ -81,22 +93,31 @@ object CSLog {
     fun Context.logDebugStringToast(function: () -> String) =
         toast(Debug, logImpl(Debug) { CSLogMessage(message = function()) })
 
-    fun Context.logDebugToast(function: () -> CSLogMessage) = toast(Debug, logImpl(Debug, function))
+    fun Context.logDebugToast(function: () -> CSLogMessage) =
+        toast(Debug, logImpl(Debug, function))
 
     fun Context.logInfoToast() = toast(Info, logImpl(Info) { message("") })
-    fun Context.logInfoToast(value: String) = toast(Info, logImpl(Info) { message(value) })
-    fun Context.logInfoToast(function: () -> CSLogMessage) = toast(Info, logImpl(Info, function))
+    fun Context.logInfoToast(value: String) =
+        toast(Info, logImpl(Info) { message(value) })
+
+    fun Context.logInfoToast(function: () -> CSLogMessage) =
+        toast(Info, logImpl(Info, function))
 
     fun Context.logWarnToast() = toast(Warn, logImpl(Warn) { message("") })
-    fun Context.logWarnToast(function: () -> CSLogMessage) = toast(Warn, logImpl(Warn, function))
+    fun Context.logWarnToast(function: () -> CSLogMessage) =
+        toast(Warn, logImpl(Warn, function))
 
     fun Context.logErrorToast() = toast(Error, logImpl(Error) { message("") })
-    fun Context.logErrorToast(function: () -> CSLogMessage) = toast(Error, logImpl(Error, function))
+    fun Context.logErrorToast(function: () -> CSLogMessage) =
+        toast(Error, logImpl(Error, function))
 
-    private fun logImpl(level: CSLogLevel, message: () -> CSLogMessage = { Empty }): Array<Any?>? {
+    private fun logImpl(
+        level: CSLogLevel, message: () -> CSLogMessage = { Empty }
+    ): Array<Any?>? {
         if (logger.isEnabled(level)) message().let {
             val text = createMessage(it.message)
             when (level) {
+                Verbose -> logger.verbose(it.throwable, *text)
                 Debug -> logger.debug(it.throwable, *text)
                 Info -> logger.info(it.throwable, *text)
                 Warn -> logger.warn(it.throwable, *text)
@@ -109,8 +130,9 @@ object CSLog {
     }
 
     private fun Context.toast(level: CSLogLevel, text: Array<Any?>?) {
-        if (logger.isEnabled(level)) toast("${text!![2]}".leaveEndOfLength(100).chunked(50)
-            .joinToString { "$it$NewLine" })
+        if (logger.isEnabled(level)) toast(
+            "${text!![2]}".leaveEndOfLength(100).chunked(50)
+                .joinToString { "$it$NewLine" })
     }
 
     private val timeFormat by lazy { getDateTimeInstance() }

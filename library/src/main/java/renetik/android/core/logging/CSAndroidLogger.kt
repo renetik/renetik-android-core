@@ -9,6 +9,7 @@ import renetik.android.core.lang.CSEnvironment.isDebug
 import renetik.android.core.logging.CSLogLevel.Debug
 import renetik.android.core.logging.CSLogLevel.Error
 import renetik.android.core.logging.CSLogLevel.Info
+import renetik.android.core.logging.CSLogLevel.Verbose
 import renetik.android.core.logging.CSLogLevel.Warn
 
 
@@ -17,6 +18,13 @@ class CSAndroidLogger(
     override val level: CSLogLevel = if (isDebug) Debug else Error,
     val listener: CSLogListener? = null
 ) : CSLogger {
+
+    override fun verbose(e: Throwable?, vararg values: Any?) {
+        if (isDisabled(Verbose)) return
+        val message = values.createMessage().toString()
+        Log.d(tag, message, e)
+        listener?.invoke(Debug, message, e)
+    }
 
     override fun debug(e: Throwable?, vararg values: Any?) {
         if (isDisabled(Debug)) return
