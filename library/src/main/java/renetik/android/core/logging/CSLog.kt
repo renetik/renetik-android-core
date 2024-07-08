@@ -31,7 +31,7 @@ object CSLog {
     fun log(level: CSLogLevel, function: () -> CSLogMessage) =
         then { logImpl(level, function) }
 
-    fun logVerbose(any: Any?) = then { logImpl(Verbose) { message(any) } }
+    fun logVerbose(any: Any? = null) = then { logImpl(Verbose) { message(any) } }
     fun logVerbose(function: () -> String) =
         then { logImpl(Verbose) { message(function()) } }
 
