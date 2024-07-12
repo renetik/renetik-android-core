@@ -3,6 +3,7 @@ package renetik.android.core.kotlin
 import renetik.android.core.lang.CSHasId
 
 inline fun <T : Any> T.then(function: (T) -> Unit): Unit = function(this)
+inline fun <T : Any> T.andThen(function: (T).() -> Unit): Unit = function(this)
 
 inline fun <T : Any> T.changeIf(
     condition: Boolean, function: (T) -> T
