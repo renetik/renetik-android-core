@@ -1,6 +1,6 @@
 package renetik.android.core.util
 
-import java.util.*
+import java.util.Locale
 
 object CSLocale {
 

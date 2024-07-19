@@ -2,12 +2,21 @@ package renetik.android.core.extensions.content
 
 import android.content.Context
 import android.content.ContextWrapper.WINDOW_SERVICE
-import android.content.res.Configuration.*
+import android.content.res.Configuration.ORIENTATION_LANDSCAPE
+import android.content.res.Configuration.ORIENTATION_PORTRAIT
+import android.content.res.Configuration.ORIENTATION_UNDEFINED
 import android.util.DisplayMetrics
 import android.view.Display
-import android.view.Surface.*
+import android.view.Surface.ROTATION_0
+import android.view.Surface.ROTATION_180
+import android.view.Surface.ROTATION_270
+import android.view.Surface.ROTATION_90
 import android.view.WindowManager
-import renetik.android.core.extensions.content.CSDisplayOrientation.*
+import renetik.android.core.extensions.content.CSDisplayOrientation.LandscapeLeft
+import renetik.android.core.extensions.content.CSDisplayOrientation.LandscapeRight
+import renetik.android.core.extensions.content.CSDisplayOrientation.Portrait
+import renetik.android.core.extensions.content.CSDisplayOrientation.Unknown
+import renetik.android.core.extensions.content.CSDisplayOrientation.UpsideDown
 import renetik.android.core.kotlin.equalsAny
 
 @Suppress("DEPRECATION")

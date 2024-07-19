@@ -12,7 +12,6 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
-import kotlin.time.Duration
 
 val currentTime get() = Date().time
 fun dateFromString(format: String, string: String) = catchError<ParseException> {

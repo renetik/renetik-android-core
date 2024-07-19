@@ -3,7 +3,9 @@
 package renetik.android.core.extensions.app
 
 import android.app.Activity
-import android.content.res.Configuration.*
+import android.content.res.Configuration.ORIENTATION_LANDSCAPE
+import android.content.res.Configuration.ORIENTATION_PORTRAIT
+import android.content.res.Configuration.ORIENTATION_SQUARE
 
 val Activity.isWindowLandscape get() = windowOrientation == ORIENTATION_LANDSCAPE
 

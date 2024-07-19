@@ -1,9 +1,10 @@
 package renetik.android.core.java.util
 
 import renetik.android.core.kotlin.asInt
-import java.util.*
+import java.util.Calendar
 import java.util.Calendar.HOUR_OF_DAY
 import java.util.Calendar.MINUTE
+import java.util.Date
 
 val calendar: Calendar get() = Calendar.getInstance()
 

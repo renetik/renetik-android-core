@@ -3,8 +3,8 @@ package renetik.android.core.extensions.content
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import kotlin.reflect.KClass
 import renetik.android.core.lang.CSEnvironment.app
+import kotlin.reflect.KClass
 
 fun Intent.toOpenUrl(url: String) = apply {
     action = Intent.ACTION_VIEW

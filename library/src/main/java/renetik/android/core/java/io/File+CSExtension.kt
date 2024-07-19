@@ -4,7 +4,6 @@ import renetik.android.core.java.util.format
 import renetik.android.core.java.util.now
 import java.io.File
 import java.io.File.createTempFile
-import java.util.Date
 
 fun File.fileList(): List<File> = listFiles(File::isFile)?.toList() ?: emptyList()
 fun File.dirList(): List<File> = listFiles(File::isDirectory)?.toList() ?: emptyList()

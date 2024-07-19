@@ -4,21 +4,23 @@ import android.annotation.SuppressLint
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
-import android.content.Context.*
+import android.content.Context.AUDIO_SERVICE
+import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Context.POWER_SERVICE
 import android.content.ContextWrapper.MIDI_SERVICE
 import android.content.Intent
 import android.content.ServiceConnection
 import android.location.LocationManager
 import android.media.AudioManager
 import android.media.midi.MidiManager
-import android.os.Build
 import android.os.PowerManager
 import android.view.inputmethod.InputMethodManager
 import androidx.core.location.LocationManagerCompat
-import kotlin.reflect.KClass
 import renetik.android.core.kotlin.className
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
+import kotlin.reflect.KClass
 
 val Context.inputService get() = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
 val Context.notifications get() = getSystemService(NOTIFICATION_SERVICE) as NotificationManager

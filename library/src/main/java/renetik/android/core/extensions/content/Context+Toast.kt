@@ -5,7 +5,6 @@ import android.content.Context
 import android.widget.Toast.LENGTH_LONG
 import android.widget.Toast.LENGTH_SHORT
 import android.widget.Toast.makeText
-import androidx.annotation.StringRes
 import renetik.android.core.extensions.content.CSToastLength.LongTime
 import renetik.android.core.extensions.content.CSToastLength.ShortTime
 import renetik.android.core.lang.CSEnvironment.app
