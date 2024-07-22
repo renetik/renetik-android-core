@@ -1,6 +1,7 @@
 package renetik.android.core.lang.value
 
 import renetik.android.core.kotlin.primitives.containsAll
+import renetik.android.core.kotlin.then
 import renetik.android.core.lang.Func
 import renetik.android.core.lang.variable.CSVariable
 
@@ -23,13 +24,13 @@ inline fun <R> CSValue<Boolean>.ifFalse(function: () -> R): R? =
 @JvmName("isTrueBooleanNullable")
 fun CSValue<Boolean?>.isTrue(): Boolean = value == true
 
-inline fun CSValue<Boolean>.isTrue(function: Func) {
-    if (isTrue) function()
-}
+inline fun CSValue<Boolean>.isTrue(function: Func) = then { if (isTrue) function() }
+inline fun CSValue<Boolean>.isFalse(function: Func) = then { if (isFalse) function() }
 
-inline fun CSValue<Boolean>.isFalse(function: Func) {
-    if (isFalse) function()
-}
+infix fun CSValue<Boolean>.and(second: Boolean): Boolean = value && second
+infix fun CSValue<Boolean>.or(second: Boolean): Boolean = value || second
+infix fun Boolean.and(second: CSValue<Boolean>): Boolean = this && second.value
+infix fun Boolean.or(second: CSValue<Boolean>): Boolean = this || second.value
 
 inline val CSValue<Int>.number get() = value
 inline val CSValue<Int>.next get() = value + 1
@@ -42,16 +43,13 @@ inline val CSValue<Double>.number get() = value
 inline val CSValue<out CharSequence>.isEmpty get() = value.isEmpty()
 
 fun CSValue<out CharSequence>.contains(
-    value: String,
-    ignoreCase: Boolean = false
+    value: String, ignoreCase: Boolean = false
 ) = this.value.contains(value, ignoreCase)
 
 fun CSValue<out CharSequence>.contains(
-    property: CSVariable<String>,
-    ignoreCase: Boolean = false
+    property: CSVariable<String>, ignoreCase: Boolean = false
 ) = this.contains(property.value, ignoreCase)
 
 fun CSValue<out CharSequence>.containsAll(
-    words: List<String>,
-    ignoreCase: Boolean = false
+    words: List<String>, ignoreCase: Boolean = false
 ) = value.containsAll(words, ignoreCase)
