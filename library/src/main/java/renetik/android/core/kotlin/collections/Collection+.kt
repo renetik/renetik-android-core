@@ -7,13 +7,15 @@ inline val Collection<*>.count get() = size
 
 inline val Collection<*>.hasItems get() = isNotEmpty()
 
-inline val Collection<*>.isEmpty get() = isEmpty()
-
 inline val Collection<*>.lastIndex get() = size - 1
 
 infix fun <T> Collection<T>.hasAll(items: List<T>): Boolean = containsAll(items)
-infix fun <T> Collection<T>.hasAll(items: Array<out T>): Boolean = containsAll(items.asList())
-infix fun <T> Collection<T>.hasAll(items: Iterable<T>): Boolean = containsAll(items.toList())
+infix fun <T> Collection<T>.hasAll(items: Array<out T>): Boolean =
+    containsAll(items.asList())
+
+infix fun <T> Collection<T>.hasAll(items: Iterable<T>): Boolean =
+    containsAll(items.toList())
+
 infix fun <T> Collection<T>.hasNot(element: T) = !contains(element)
 
 fun <T> Collection<T>.hasNot(vararg elements: T): Boolean {
