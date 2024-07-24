@@ -8,6 +8,9 @@ import renetik.android.core.lang.CSList
 fun <T> List<T>.add(element: T): MutableList<T> =
     mutable().apply { add(element) }
 
+fun <T> List<T>.add(index: Int, element: T): MutableList<T> =
+    mutable().apply { add(index, element) }
+
 fun <T> List<T>.clone() = toList()
 
 fun <T> List<T>.mutable() = toMutableList()
