@@ -1,7 +1,7 @@
 package renetik.android.core.lang
 
-interface CSArgFunc<Arg> {
-    operator fun invoke(argument: Arg)
+interface CSArgFunc<Arg> : ArgFunc<Arg> {
+    override operator fun invoke(argument: Arg)
 
     companion object {
         inline fun <Arg> func(
