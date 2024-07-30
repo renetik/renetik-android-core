@@ -30,6 +30,8 @@ import android.os.Build.VERSION_CODES.Q
 import android.util.Base64
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.RECEIVER_EXPORTED
+import androidx.core.content.ContextCompat.RECEIVER_NOT_EXPORTED
 import renetik.android.core.kotlin.primitives.isFlagSet
 import renetik.android.core.kotlin.primitives.isSet
 import renetik.android.core.lang.catchAllErrorReturnNull
@@ -45,7 +47,10 @@ val Context.isDebug get() = applicationInfo.flags isFlagSet FLAG_DEBUGGABLE
  * such as the default activity icon.
  */
 val Context.applicationIcon: Drawable get() = applicationInfo.loadIcon(packageManager)
-val Context.applicationLabel: String get() = "${applicationInfo.loadLabel(packageManager)}"
+val Context.applicationLabel: String
+    get() = "${
+        applicationInfo.loadLabel(packageManager)
+    }"
 val Context.applicationLogo: Drawable? get() = applicationInfo.loadLogo(packageManager)
 
 val Context.isNetworkConnected: Boolean
@@ -76,7 +81,8 @@ val Context.packageVersionCode
 val Context.appKeyHash
     @SuppressLint("PackageManagerGetSignatures")
     get() = catchAllErrorReturnNull {
-        val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+        val info =
+            packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
         if (info.signatures.isSet) {
             val messageDigest = MessageDigest.getInstance("SHA")
             messageDigest.update(info.signatures[0].toByteArray())
@@ -89,32 +95,39 @@ val Context.packageInfo
         packageManager.getPackageInfo(packageName, 0)
     }
 
-inline fun BroadcastReceiver(crossinline function: (context: Context, intent: Intent) -> Unit) =
+inline fun BroadcastReceiver(
+    crossinline function: (context: Context, intent: Intent) -> Unit) =
     object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) = function(context, intent)
+        override fun onReceive(context: Context, intent: Intent) =
+            function(context, intent)
     }
 
 inline fun Context.register(
-    action: String, crossinline function: () -> Unit
-): BroadcastReceiver = register(IntentFilter(action)) { _, _ -> function() }
+    action: String, exported: Boolean = false, crossinline function: () -> Unit
+): BroadcastReceiver = register(IntentFilter(action), exported) { _, _ -> function() }
+
 
 fun Context.broadcastPendingIntent(actionId: String, flags: Int): PendingIntent =
     PendingIntent.getBroadcast(this, 0, Intent(actionId), flags)
 
 inline fun Context.register(
     action: String, crossinline function: (Intent, BroadcastReceiver) -> Unit
-): BroadcastReceiver = register(IntentFilter(action), function)
+): BroadcastReceiver = register(IntentFilter(action), function = function)
 
 inline fun Context.register(
-    intent: IntentFilter, crossinline function: (Intent, BroadcastReceiver) -> Unit
+    intent: IntentFilter, exported: Boolean = false,
+    crossinline function: (Intent, BroadcastReceiver) -> Unit
 ): BroadcastReceiver = object : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) = function(intent, this)
-}.also { register(it, intent) }
+}.also { register(it, intent, exported) }
 
 fun Context.register(intent: IntentFilter): Intent? = register(null, intent)
 
-fun Context.register(receiver: BroadcastReceiver?, intent: IntentFilter): Intent? =
-    ContextCompat.registerReceiver(this, receiver, intent, ContextCompat.RECEIVER_NOT_EXPORTED)
+fun Context.register(
+    receiver: BroadcastReceiver?, intent: IntentFilter,
+    exported: Boolean = false): Intent? =
+    ContextCompat.registerReceiver(this, receiver, intent,
+        if (exported) RECEIVER_EXPORTED else RECEIVER_NOT_EXPORTED)
 
 fun Context.unregister(receiver: BroadcastReceiver) {
     runCatching { unregisterReceiver(receiver) }.onFailure(::logWarn)
@@ -159,7 +172,8 @@ fun Context.isPackageInstalled(packageName: String): Boolean = try {
     false
 }
 
-fun Context.goHome() = startActivity(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME))
+fun Context.goHome() =
+    startActivity(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME))
 
 fun Context.startApplication(packageName: String) {
     try {
@@ -188,7 +202,8 @@ private fun Context.launchComponent(packageName: String, name: String) {
 }
 
 private fun Context.showInMarket(packageName: String?) {
-    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName!!))
+    val intent =
+        Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName!!))
     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
     startActivity(intent)
 }
@@ -199,7 +214,8 @@ fun Context.startActivityForUri(
     startActivityForUriAndType(uri, null, onActivityNotFound)
 
 fun Context.startActivityForUriAndType(
-    uri: Uri, type: String?, onActivityNotFound: ((ActivityNotFoundException) -> Unit)? = null
+    uri: Uri, type: String?,
+    onActivityNotFound: ((ActivityNotFoundException) -> Unit)? = null
 ) {
     val intent = Intent(Intent.ACTION_VIEW)
     intent.setDataAndType(uri, type)
