@@ -26,11 +26,6 @@ data class CSColor(@ColorInt val color: Int) : CSHasId {
 
     fun toHex(): String = String.format("#%06X", (0xFFFFFF and color))
 
-
-    init {
-        BLACK
-    }
-
     companion object {
 
         val standard = listOf(
@@ -39,17 +34,22 @@ data class CSColor(@ColorInt val color: Int) : CSHasId {
         ).map(::CSColor)
 
 
-        fun generateLightColors(count: Int): List<Int> {
-            val colors = mutableListOf<Int>()
+        fun generateLightColors(count: Int) = mutableListOf<Int>().apply {
             for (i in 0 until count) {
-                val r = (200 + (Math.random() * 55)).toInt() // R between 200 and 255
-                val g = (200 + (Math.random() * 55)).toInt() // G between 200 and 255
-                val b = (200 + (Math.random() * 55)).toInt() // B between 200 and 255
-                val color = Color.rgb(r, g, b)
-                colors.add(color)
+                val r = (200 + (Math.random() * 55)).toInt()
+                val g = (200 + (Math.random() * 55)).toInt()
+                val b = (200 + (Math.random() * 55)).toInt()
+                this += Color.rgb(r, g, b)
             }
+        }
 
-            return colors
+        fun generateDarkColors(count: Int) = mutableListOf<Int>().apply {
+            for (i in 0 until count) {
+                val r = (0 + (Math.random() * 55)).toInt()
+                val g = (0 + (Math.random() * 55)).toInt()
+                val b = (0 + (Math.random() * 55)).toInt()
+                this += Color.rgb(r, g, b)
+            }
         }
 
         fun Context.colorRes(@ColorRes colorRes: Int) = CSColor(
