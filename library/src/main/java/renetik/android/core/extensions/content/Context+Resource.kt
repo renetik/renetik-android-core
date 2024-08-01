@@ -23,7 +23,6 @@ import android.util.TypedValue.COMPLEX_UNIT_SP
 import android.util.TypedValue.applyDimension
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
-import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -32,7 +31,6 @@ import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.appcompat.app.AppCompatDelegate.getDefaultNightMode
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
-import androidx.core.content.ContextCompat.getColor
 import renetik.android.core.R
 import renetik.android.core.kotlin.asString
 import renetik.android.core.kotlin.collections.list
@@ -48,16 +46,12 @@ import java.io.FileNotFoundException
 import java.io.InputStream
 import java.lang.Integer.MAX_VALUE
 
-class CSColorInt(@ColorInt val color: Int)
-
 fun Context.formatted(@StringRes resId: Int): Spanned =
     Html.fromHtml(
         getString(resId).replace("\n", "<br>")
             .replace("[B]", "<b>").replace("[/B]", "</b>"), 0
     )
 
-fun Context.color(@ColorRes color: Int) = CSColorInt(getColor(this, color))
-fun Context.colorInt(@ColorInt color: Int) = CSColorInt(color)
 
 fun Context.resourceBytes(id: Int) = catchAllWarn {
     val stream = resources.openRawResource(id)
