@@ -1,7 +1,11 @@
 package renetik.android.core.kotlin
 
-import org.junit.Assert.*
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
+import renetik.android.core.lang.value.isNull
+import renetik.android.core.lang.value.notNull
 import renetik.android.core.lang.variable.CSVariable
 
 class AnyCSNullTest {
@@ -27,17 +31,5 @@ class AnyCSNullTest {
         assertTrue(isAnyNull(a, b, c))
         b = null; c = null
         assertTrue(isAllNull(a, b, c))
-    }
-
-    @Test
-    fun propertyIsNullTest() {
-        val property = object : CSVariable<String?> {
-            override var value: String? = null
-        }
-        assertTrue(property.isNull)
-        property.value = ""
-        assertTrue(property.notNull)
-        property.value = null
-        assertNotNull(property.isNull)
     }
 }

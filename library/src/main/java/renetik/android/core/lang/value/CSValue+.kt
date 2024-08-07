@@ -5,8 +5,16 @@ import renetik.android.core.kotlin.then
 import renetik.android.core.lang.Func
 import renetik.android.core.lang.variable.CSVariable
 
-@get:JvmName("CSValueAnyIsEmpty")
-inline val CSValue<Any?>.isEmpty get() = value == null
+infix fun Any.equals(other: CSValue<*>): Boolean = this == other.value
+infix fun Any.equalsNot(other: CSValue<*>): Boolean = this != other.value
+infix fun CSValue<*>.equals(other: Any): Boolean = value == other
+infix fun CSValue<*>.equalsNot(other: Any): Boolean = value != other
+
+@get:JvmName("CSValueAnyIsEmpty") //TODO: Inline...
+inline val CSValue<Any?>.isEmpty get() = isNull
+
+inline val <T> CSValue<T?>.isNull get() = value == null
+inline val <T> CSValue<T?>.notNull get() = value != null
 
 inline val CSValue<Boolean>.isTrue get() = value
 

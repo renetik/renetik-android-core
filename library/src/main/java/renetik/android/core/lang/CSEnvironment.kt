@@ -14,7 +14,6 @@ import renetik.android.core.extensions.content.isDebug
 import renetik.android.core.kotlin.classExist
 import renetik.android.core.kotlin.createClass
 import renetik.android.core.kotlin.invoke
-import renetik.android.core.kotlin.isNull
 import renetik.android.core.lang.lazy.CSLazyVar.Companion.lazyVar
 import renetik.android.core.logging.CSLog.logWarn
 
@@ -33,9 +32,9 @@ object CSEnvironment {
 
     val activity: Activity?
         get() = (app as? CSApplication<*>)?.activity.also {
-            if (it.isNull) logWarn {
+            if (it == null) logWarn {
                 "This method of getting activity" +
-                    " depends on using CSApplication as base class for Application"
+                        " depends on using CSApplication as base class for Application"
             }
         }
 
