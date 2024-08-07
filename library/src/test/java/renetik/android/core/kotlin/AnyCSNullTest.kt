@@ -1,12 +1,8 @@
 package renetik.android.core.kotlin
 
 import org.junit.Assert.assertFalse
-import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import renetik.android.core.lang.value.isNull
-import renetik.android.core.lang.value.notNull
-import renetik.android.core.lang.variable.CSVariable
 
 class AnyCSNullTest {
     @Test
