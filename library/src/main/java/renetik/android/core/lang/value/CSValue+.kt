@@ -1,3 +1,5 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package renetik.android.core.lang.value
 
 import renetik.android.core.kotlin.primitives.containsAll
@@ -5,10 +7,10 @@ import renetik.android.core.kotlin.then
 import renetik.android.core.lang.Func
 import renetik.android.core.lang.variable.CSVariable
 
-infix fun Any.equals(other: CSValue<*>): Boolean = this == other.value
-infix fun Any.equalsNot(other: CSValue<*>): Boolean = this != other.value
-infix fun CSValue<*>.equals(other: Any): Boolean = value == other
-infix fun CSValue<*>.equalsNot(other: Any): Boolean = value != other
+inline infix fun Any.equals(other: CSValue<*>): Boolean = this == other.value
+inline infix fun Any.equalsNot(other: CSValue<*>): Boolean = this != other.value
+inline infix fun CSValue<*>.equals(other: Any): Boolean = value == other
+inline infix fun CSValue<*>.equalsNot(other: Any): Boolean = value != other
 
 inline val <T> CSValue<T?>.isNull get() = value == null
 inline val <T> CSValue<T?>.notNull get() = value != null

@@ -1,8 +1,12 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package renetik.android.core.lang.variable
 
 import renetik.android.core.kotlin.asString
 
-fun <T> CSVariable<T>.value(value: T) {
+inline infix fun <T> CSVariable<T>.assign(other: T) = value(other)
+
+inline fun <T> CSVariable<T>.value(value: T) {
     this.value = value
 }
 
