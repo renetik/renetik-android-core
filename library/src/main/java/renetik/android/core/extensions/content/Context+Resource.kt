@@ -73,8 +73,7 @@ fun Context.openInputStream(uri: Uri) =
         return contentResolver.openInputStream(uri)
     }
 
-fun Context.dimensionInt(@DimenRes id: Int) = resources.getDimension(id).toInt()
-
+fun Context.dimensionInt(@DimenRes id: Int) = dimension(id).toInt()
 fun Context.dimension(@DimenRes id: Int): Float = resources.getDimension(id)
 
 fun Context.strings(id: Int) =
