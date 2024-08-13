@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cs_direction_horizontal_from_start">From Left</string>
+    <string name="cs_direction_horizontal_from_end">From Right</string>
+    <string name="cs_direction_vertical_from_top">From Top</string>
+    <string name="cs_direction_vertical_from_bottom">From Bottom</string>
+</resources>

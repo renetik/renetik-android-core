@@ -3,7 +3,9 @@ package renetik.android.core.base
 import android.app.Activity
 import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
+import android.content.Context
 import android.os.Bundle
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import renetik.android.core.kotlin.notImplemented
 import renetik.android.core.lang.CSEnvironment
@@ -17,6 +19,12 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
 
     companion object {
         val app get() = CSEnvironment.app as CSApplication<*>
+
+        fun getString(@StringRes resId: Int): String =
+            app.localizationContext.getString(resId)
+
+        fun getString(@StringRes resId: Int, vararg formatArgs: Any?): String =
+            app.localizationContext.getString(resId, *formatArgs)
     }
 
     override fun onCreate() {
@@ -68,4 +76,6 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
     }
 
     open fun restart(): Unit = notImplemented()
+
+    open val localizationContext get():Context = this
 }

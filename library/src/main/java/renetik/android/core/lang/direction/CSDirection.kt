@@ -1,6 +1,8 @@
 package renetik.android.core.lang.direction
 
-sealed interface CSDirection {
+import renetik.android.core.lang.CSHasTitle
+
+sealed interface CSDirection : CSHasTitle {
     val isHorizontal: Boolean
 
     companion object {
