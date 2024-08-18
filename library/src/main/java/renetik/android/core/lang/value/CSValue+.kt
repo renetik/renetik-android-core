@@ -7,10 +7,10 @@ import renetik.android.core.kotlin.then
 import renetik.android.core.lang.Func
 import renetik.android.core.lang.variable.CSVariable
 
-inline infix fun Any.equals(other: CSValue<*>): Boolean = this == other.value
-inline infix fun Any.equalsNot(other: CSValue<*>): Boolean = this != other.value
-inline infix fun CSValue<*>.equals(other: Any): Boolean = value == other
-inline infix fun CSValue<*>.equalsNot(other: Any): Boolean = value != other
+inline infix fun <T> T.equals(other: CSValue<T>): Boolean = this == other.value
+inline infix fun <T> T.equalsNot(other: CSValue<T>): Boolean = this != other.value
+inline infix fun <T> CSValue<T>.equals(other: T): Boolean = value == other
+inline infix fun <T> CSValue<T>.equalsNot(other: T): Boolean = value != other
 
 inline val <T> CSValue<T?>.isNull get() = value == null
 inline val <T> CSValue<T?>.notNull get() = value != null
