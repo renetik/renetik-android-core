@@ -57,20 +57,20 @@ object CSEnvironment {
         (BRAND.startsWith("generic") && DEVICE.startsWith("generic")
             || FINGERPRINT.startsWith("generic")
             || FINGERPRINT.startsWith("unknown")
-            || HARDWARE.contains("goldfish")
-            || HARDWARE.contains("ranchu")
-            || MODEL.contains("google_sdk")
-            || MODEL.contains("Emulator")
-            || MODEL.contains("Android SDK built for x86")
-            || MANUFACTURER.contains("Genymotion")
-            || PRODUCT.contains("sdk_google")
-            || PRODUCT.contains("google_sdk")
-            || PRODUCT.contains("sdk")
-            || PRODUCT.contains("sdk_x86")
-            || PRODUCT.contains("sdk_gphone64_arm64")
-            || PRODUCT.contains("vbox86p")
-            || PRODUCT.contains("emulator")
-            || PRODUCT.contains("simulator")).apply {
+            || "goldfish" in HARDWARE
+            || "ranchu" in HARDWARE
+            || "google_sdk" in MODEL
+            || "Emulator" in MODEL
+            || "Android SDK built for x86" in MODEL
+            || "Genymotion" in MANUFACTURER
+            || "sdk_google" in PRODUCT
+            || "google_sdk" in PRODUCT
+            || "sdk" in PRODUCT
+            || "sdk_x86" in PRODUCT
+            || "sdk_gphone64_arm64" in PRODUCT
+            || "vbox86p" in PRODUCT
+            || "emulator" in PRODUCT
+            || "simulator" in PRODUCT).apply {
 //            if (isTrue) logDebug { message("Running in emulator") }
         }
     }

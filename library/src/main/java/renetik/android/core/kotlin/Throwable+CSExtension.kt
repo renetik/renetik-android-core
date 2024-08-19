@@ -9,7 +9,7 @@ val Throwable.rootCause: Throwable?
     get() {
         var throwable: Throwable? = this
         val list = ArrayList<Throwable>()
-        while (throwable != null && !list.contains(throwable)) {
+        while (throwable != null && throwable !in list) {
             list.add(throwable)
             throwable = throwable.cause
         }

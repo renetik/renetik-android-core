@@ -53,7 +53,7 @@ fun Float.formatRoundDecimal(
 
 val Float.rest: Float
     get() = toString().let {
-        if (it.contains(".")) {
+        if ("." in it) {
             val value = it.substringAfter(".")
             value.toInt() / value.length.toFloat()
         } else 0f
