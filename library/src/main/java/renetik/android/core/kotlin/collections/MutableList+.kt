@@ -6,6 +6,13 @@ import renetik.android.core.lang.catchAllWarnReturnNull
 
 fun <T> mutableListOf(size: Int): MutableList<T> = ArrayList(size)
 
+// Not sure if is good idea..
+operator fun <T> T.plus(other: T): MutableList<T> = mutableListOf(this, other)
+
+// Not sure if is good idea..
+operator fun <T> MutableList<T>.plus(other: T): MutableList<T> =
+    apply { add(other) }
+
 fun <T, ListType : MutableList<T>> ListType.put(item: T) =
     item.apply { add(item) }
 
