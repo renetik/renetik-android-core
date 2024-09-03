@@ -1,28 +1,12 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package renetik.android.core.kotlin
 
-fun Any?.equalsAny(vararg items: Any?): Boolean {
-    for (item in items) if (this == item) return true
-    return false
-}
+inline fun Any?.equalsAny(vararg items: Any?): Boolean = this in items
+inline infix fun Any?.equalsAny(items: Iterable<Any?>): Boolean = this in items
 
-infix fun Any?.equalsAny(items: Iterable<Any?>): Boolean {
-    for (item in items) if (this == item) return true
-    return false
-}
+inline fun Any?.equalsNone(vararg items: Any?): Boolean = this !in items
+inline infix fun Any?.equalsNone(items: Iterable<Any?>) = this !in items
 
-fun Any?.equalsNone(vararg items: Any?): Boolean {
-    for (item in items) if (this == item) return false
-    return true
-}
-
-infix fun Any?.equalsNone(items: Iterable<Any?>) = !equalsAny(items)
-
-fun Any?.equalsAll(vararg items: Any?): Boolean {
-    for (item in items) if (this != item) return false
-    return true
-}
-
-infix fun Any?.equalsAll(items: Iterable<Any?>): Boolean {
-    for (item in items) if (this != item) return false
-    return true
-}
+inline fun Any?.equalsAll(vararg items: Any?): Boolean = items.all { this == it }
+inline infix fun Any?.equalsAll(items: Iterable<Any?>): Boolean = items.all { this == it }
