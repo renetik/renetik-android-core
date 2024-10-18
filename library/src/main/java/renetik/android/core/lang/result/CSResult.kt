@@ -1,8 +1,8 @@
-package renetik.android.core.lang
+package renetik.android.core.lang.result
 
-import renetik.android.core.lang.CSResult.State.Cancel
-import renetik.android.core.lang.CSResult.State.Failure
-import renetik.android.core.lang.CSResult.State.Success
+import renetik.android.core.lang.result.CSResult.State.Cancel
+import renetik.android.core.lang.result.CSResult.State.Failure
+import renetik.android.core.lang.result.CSResult.State.Success
 
 data class CSResult<Value>(
     val state: State,
