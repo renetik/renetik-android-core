@@ -21,6 +21,9 @@ inline val String.Companion.Empty get() = CSStringConstants.Empty
 inline val String.Companion.Space get() = CSStringConstants.Space
 inline val String.Companion.unsafeFileChars: String get() = CSStringConstants.UnsafeFileChars
 
+fun String.plusIf(condition: Boolean, function: () -> String): String =
+    if (condition) this + function() else this
+
 inline fun String.Companion.formatted(
     format: String, vararg args: Any?
 ): String = String.format(Locale.getDefault(), format, *args)
