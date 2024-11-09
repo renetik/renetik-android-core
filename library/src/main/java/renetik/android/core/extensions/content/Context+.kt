@@ -77,18 +77,18 @@ val Context.packageVersionString
 val Context.packageVersionCode
     get() = packageInfo!!.versionCode
 
-@Suppress("DEPRECATION")
-val Context.appKeyHash
-    @SuppressLint("PackageManagerGetSignatures")
-    get() = catchAllErrorReturnNull {
-        val info =
-            packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
-        if (info.signatures.isSet) {
-            val messageDigest = MessageDigest.getInstance("SHA")
-            messageDigest.update(info.signatures[0].toByteArray())
-            Base64.encodeToString(messageDigest.digest(), Base64.DEFAULT)
-        } else null
-    }
+//@Suppress("DEPRECATION")
+//val Context.appKeyHash
+//    @SuppressLint("PackageManagerGetSignatures")
+//    get() = catchAllErrorReturnNull {
+//        val info =
+//            packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+//        if (info.signatures.isSet) {
+//            val messageDigest = MessageDigest.getInstance("SHA")
+//            messageDigest.update(info.signatures[0].toByteArray())
+//            Base64.encodeToString(messageDigest.digest(), Base64.DEFAULT)
+//        } else null
+//    }
 
 val Context.packageInfo
     get() = catchWarnReturnNull<PackageInfo, NameNotFoundException> {
