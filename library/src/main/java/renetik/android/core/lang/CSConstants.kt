@@ -6,6 +6,7 @@ object CSStringConstants {
     const val Empty = ""
 
     //    const val Ellipsize = "…"
+    val alphabet = ('A'..'Z').toList()
     const val Ellipsize = "..."
     const val Comma = ","
     const val Semicolon = ";"

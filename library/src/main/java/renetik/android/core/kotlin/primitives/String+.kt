@@ -14,6 +14,7 @@ import java.text.Normalizer
 import java.util.Locale
 import java.util.Random
 
+inline val String.Companion.alphabet get() = CSStringConstants.alphabet
 inline val String.Companion.NewLine get() = CSStringConstants.NewLine
 inline val String.Companion.Comma get() = CSStringConstants.Comma
 inline val String.Companion.Semicolon get() = CSStringConstants.Semicolon
