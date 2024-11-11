@@ -138,3 +138,10 @@ fun CharSequence.containsAll(words: List<String>, ignoreCase: Boolean = false): 
 fun String.count(string: String) = split(string).dropLastWhile { it.isEmpty() }.size - 1
 
 val String.asVertical: String get() = fold("") { acc, char -> "$acc$char\n" }.dropLast(1)
+
+fun Pair<String?, String?>.joinToString(
+    separator: CharSequence = ", ", prefix: CharSequence = "",
+    postfix: CharSequence = "", limit: Int = -1,
+    truncated: CharSequence = "...", transform: ((String?) -> CharSequence)? = null
+) = toList().filterNotNull()
+    .joinToString(separator, prefix, postfix, limit, truncated, transform)
