@@ -90,9 +90,6 @@ fun String.replace(strings: Iterable<String>, replacement: String): String {
 fun String.replace(strings: Array<String>, replacement: String) =
     replace(strings.asIterable(), replacement)
 
-fun String.ifNotEmpty(function: (String) -> String): String =
-    if(isNotEmpty()) function(this) else this
-
 fun String.leaveEndOfLength(length: Int): String {
     if (this.length > length) {
         val toCut = this.length - length
