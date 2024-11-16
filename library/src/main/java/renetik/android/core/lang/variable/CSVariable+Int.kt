@@ -1,8 +1,12 @@
 package renetik.android.core.lang.variable
 
-fun <T : CSVariable<Int>> T.increment(): T = apply { value++ }
+fun CSVariable<Int>.increment() {
+    value += 1
+}
 
-fun <T : CSVariable<Int>> T.decrement(): T = apply { value-- }
+fun CSVariable<Int>.decrement() {
+    value -= 1
+}
 
 operator fun CSVariable<Int>.minusAssign(value: Int) {
     this.value -= value
