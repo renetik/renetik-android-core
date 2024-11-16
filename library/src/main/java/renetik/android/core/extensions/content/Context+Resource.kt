@@ -26,11 +26,14 @@ import androidx.annotation.ColorInt
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.annotation.StyleRes
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.appcompat.app.AppCompatDelegate.getDefaultNightMode
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.core.content.res.getColorOrThrow
+import androidx.core.content.res.use
 import renetik.android.core.R
 import renetik.android.core.kotlin.asString
 import renetik.android.core.kotlin.collections.list
@@ -209,3 +212,9 @@ fun Context.isServiceRunning(serviceClass: Class<out Service>): Boolean =
 
 val Context.externalFilesDir: File
     get() = getExternalFilesDir(null) ?: getExternalStorageDirectory()
+
+@ColorInt
+fun Context.colorFromStyle(@StyleRes style: Int): Int? =
+    obtainStyledAttributes(style, intArrayOf(android.R.attr.textColor)).use {
+        runCatching { it.getColorOrThrow(0) }.getOrNull()
+    }
