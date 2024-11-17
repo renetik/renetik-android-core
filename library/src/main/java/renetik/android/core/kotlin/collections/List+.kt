@@ -5,15 +5,15 @@ import renetik.android.core.lang.CSList
 //operator fun <T> List<T>.plus(element: T): MutableList<T> =
 //    mutable().apply { add(element) }
 
-fun <T> List<T>.add(element: T): MutableList<T> =
+fun <T> List<T>.mutableAdd(element: T): MutableList<T> =
     mutable().apply { add(element) }
 
-fun <T> List<T>.add(index: Int, element: T): MutableList<T> =
+fun <T> List<T>.mutableAdd(index: Int, element: T): MutableList<T> =
     mutable().apply { add(index, element) }
 
-fun <T> List<T>.clone() = toList()
+fun <T> List<T>.clone(): List<T> = toList()
 
-fun <T> List<T>.mutable() = toMutableList()
+fun <T> List<T>.mutable(): MutableList<T> = toMutableList()
 
 fun <T> List<T>.mutable(
     add: T? = null, remove: T? = null,
