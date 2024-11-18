@@ -52,9 +52,11 @@ fun <T> List<T>.at(index: Int): T? = if (index in indices) get(index) else null
 
 //infix fun <T> List<T>.hasNot(item: T): Boolean = !contains(item)
 
+@JvmName("containsAnyVararg")
+fun <T> List<T>.containsAny(vararg items: T): Boolean = any { it in items }
+
 infix fun <T> List<T>.containsAny(items: Array<out T>): Boolean {
-    items.forEach { if (contains(it)) return true }
-    return false
+    return any { it in items }
 }
 
 infix fun <T> List<T>.containsAny(items: Iterable<T>): Boolean {
