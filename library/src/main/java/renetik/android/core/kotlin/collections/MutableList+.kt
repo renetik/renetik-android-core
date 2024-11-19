@@ -6,8 +6,6 @@ import renetik.android.core.lang.catchAllWarnReturnNull
 
 fun <T> mutableListOf(size: Int): MutableList<T> = ArrayList(size)
 
-inline infix fun <T> T.and(other: T): MutableList<T> = mutableListOf(this, other)
-
 operator fun <T> MutableList<T>.plus(other: T): MutableList<T> =
     apply { add(other) }
 

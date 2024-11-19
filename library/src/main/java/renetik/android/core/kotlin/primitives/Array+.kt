@@ -2,6 +2,11 @@ package renetik.android.core.kotlin.primitives
 
 import renetik.android.core.kotlin.asString
 
+inline infix fun <T> Array<T>.allIn(other: List<T>): Boolean = all { it in other }
+inline infix fun <T> Array<T>.anyIn(other: List<T>): Boolean = any { it in other }
+inline infix fun <T> Array<T>.noneIn(other: List<T>): Boolean = none { it in other }
+inline infix fun <reified T> T.and(other: T): Array<T> = arrayOf(this, other)
+
 inline fun <reified T> array(size: Int, default: T) = array(size) { _ -> default }
 inline fun <reified T> array(size: Int, noinline create: (index: Int) -> T) = Array(size, create)
 inline fun <reified T> array(size: Int, noinline create: (index: Int, size: Int) -> T) =

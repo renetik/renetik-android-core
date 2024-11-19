@@ -4,10 +4,6 @@ package renetik.android.core.kotlin.collections
 
 import renetik.android.core.lang.CSList
 
-inline infix fun <T> List<T>.allIn(other: List<T>): Boolean = all { it in other }
-inline infix fun <T> List<T>.anyIn(other: List<T>): Boolean = any { it in other }
-inline infix fun <T> List<T>.noneIn(other: List<T>): Boolean = none { it in other }
-
 inline fun <T> List<T>.mutableAdd(element: T): MutableList<T> =
     mutable().apply { add(element) }
 
