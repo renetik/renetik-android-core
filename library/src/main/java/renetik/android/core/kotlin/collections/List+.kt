@@ -50,33 +50,33 @@ fun <T> List<T>.at(index: Int): T? = if (index in indices) get(index) else null
 
 @JvmName("containsAnyVararg")
 fun <T> List<T>.containsAny(vararg items: T): Boolean =
-    any { it in items }
+    items.any { it in this }
 
 infix fun <T> List<T>.containsAny(items: Array<out T>): Boolean =
-    any { it in items }
+    items.any { it in this }
 
 infix fun <T> List<T>.containsAny(items: Iterable<T>): Boolean =
-    any { it in items }
+    items.any { it in this }
 
 @JvmName("containsAllVararg")
 fun <T> List<T>.containsAll(vararg items: T): Boolean =
-    all { it in items }
+    items.all { it in this }
 
 infix fun <T> List<T>.containsAll(items: Array<T>) =
-    all { it in items }
+    items.all { it in this }
 
 infix fun <T> List<T>.containsAll(items: Iterable<T>) =
-    all { it in items }
+    items.all { it in this }
 
 @JvmName("containsNoneVararg")
 fun <T> List<T>.containsNone(vararg items: T): Boolean =
-    none { it in items }
+    items.none { it in this }
 
 infix fun <T> List<T>.containsNone(items: Array<T>) =
-    none { it in items }
+    items.none { it in this }
 
 infix fun <T> List<T>.containsNone(items: Iterable<T>) =
-    none { it in items }
+    items.none { it in this }
 
 fun <T> List<T>.beforeLast() = this[lastIndex - 1]
 
