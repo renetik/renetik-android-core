@@ -48,28 +48,35 @@ val <T> List<T>.last get() = at(lastIndex)
 
 fun <T> List<T>.at(index: Int): T? = if (index in indices) get(index) else null
 
-//infix fun <T> List<T>.has(item: T): Boolean = contains(item)
-
-//infix fun <T> List<T>.hasNot(item: T): Boolean = !contains(item)
-
 @JvmName("containsAnyVararg")
-fun <T> List<T>.containsAny(vararg items: T): Boolean = any { it in items }
+fun <T> List<T>.containsAny(vararg items: T): Boolean =
+    any { it in items }
 
-infix fun <T> List<T>.containsAny(items: Array<out T>): Boolean {
-    return any { it in items }
-}
+infix fun <T> List<T>.containsAny(items: Array<out T>): Boolean =
+    any { it in items }
 
-infix fun <T> List<T>.containsAny(items: Iterable<T>): Boolean {
-    items.forEach { if (contains(it)) return true }
-    return false
-}
+infix fun <T> List<T>.containsAny(items: Iterable<T>): Boolean =
+    any { it in items }
 
-infix fun <T> List<T>.containsAll(items: Iterable<T>): Boolean {
-    items.forEach { if (!contains(it)) return false }
-    return true
-}
+@JvmName("containsAllVararg")
+fun <T> List<T>.containsAll(vararg items: T): Boolean =
+    all { it in items }
 
-infix fun <T> List<T>.containsNone(items: Iterable<T>) = !containsAny(items)
+infix fun <T> List<T>.containsAll(items: Array<T>) =
+    all { it in items }
+
+infix fun <T> List<T>.containsAll(items: Iterable<T>) =
+    all { it in items }
+
+@JvmName("containsNoneVararg")
+fun <T> List<T>.containsNone(vararg items: T): Boolean =
+    none { it in items }
+
+infix fun <T> List<T>.containsNone(items: Array<T>) =
+    none { it in items }
+
+infix fun <T> List<T>.containsNone(items: Iterable<T>) =
+    none { it in items }
 
 fun <T> List<T>.beforeLast() = this[lastIndex - 1]
 
