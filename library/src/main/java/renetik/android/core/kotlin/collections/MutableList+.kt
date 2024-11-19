@@ -1,4 +1,4 @@
-@file:Suppress("unused")
+@file:Suppress("unused", "NOTHING_TO_INLINE")
 
 package renetik.android.core.kotlin.collections
 
@@ -6,10 +6,8 @@ import renetik.android.core.lang.catchAllWarnReturnNull
 
 fun <T> mutableListOf(size: Int): MutableList<T> = ArrayList(size)
 
-// Not sure if is good idea..
-operator fun <T> T.plus(other: T): MutableList<T> = mutableListOf(this, other)
+inline infix fun <T> T.and(other: T): MutableList<T> = mutableListOf(this, other)
 
-// Not sure if is good idea..
 operator fun <T> MutableList<T>.plus(other: T): MutableList<T> =
     apply { add(other) }
 
