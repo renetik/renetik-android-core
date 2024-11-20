@@ -9,6 +9,10 @@ inline fun <T : Any> T.changeIf(
     condition: Boolean, function: (T) -> T
 ) = if (condition) function(this) else this
 
+inline fun <T : Any, P : Any> T.changeIfNotNull(
+    parameter: P?, function: (T, P) -> T
+) = if (parameter != null) function(this, parameter) else this
+
 inline fun <T : Any> T.changeIf(
     condition: (T) -> Boolean, change: (T) -> T
 ): T = if (condition(this)) change(this) else this
