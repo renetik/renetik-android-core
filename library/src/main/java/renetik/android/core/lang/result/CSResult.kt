@@ -13,6 +13,7 @@ data class CSResult<Value>(
     enum class State { Success, Cancel, Failure; }
 
     val isSuccess get() = state == Success
+    val isFailure get() = state == Failure
 
     suspend fun ifSuccess(function: suspend (Value) -> Unit) = apply {
         if (state == Success) runCatching { function(value!!) }
@@ -20,7 +21,7 @@ data class CSResult<Value>(
     }
 
     @JvmName("onSuccessValueToResult")
-    suspend fun <T> ifSuccess(function: suspend (Value) -> CSResult<T>): CSResult<T> =
+    suspend fun <T> ifSuccessReturn(function: suspend (Value) -> CSResult<T>): CSResult<T> =
         if (state == Success) {
             runCatching { function(value!!) }.getOrNull()
                 ?: CSResult(state, null, throwable, message)
