@@ -18,6 +18,10 @@ inline fun <T : Any> T.changeIf(
     condition: (T) -> Boolean, change: (T) -> T
 ): T = if (condition(this)) change(this) else this
 
+inline fun <T : Any> T.changeIfNullable(
+    condition: (T) -> Boolean, change: (T) -> T?
+): T? = if (condition(this)) change(this) else this
+
 inline fun <T : Any> T.alsoIf(condition: Boolean, function: (T) -> Unit) =
     also { if (condition) function(it) }
 
