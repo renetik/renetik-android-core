@@ -31,10 +31,6 @@ data class CSResult<Value>(
         if (state == Failure || state == Cancel) function()
     }
 
-//    suspend fun ifFailure(function: suspend (Pair<Throwable?, String?>) -> Unit) = apply {
-//        if (state == Failure) function(throwable to message)
-//    }
-
     suspend fun ifFailure(function: suspend (CSResult<Value>) -> Unit) = apply {
         if (state == Failure) function(this)
     }
