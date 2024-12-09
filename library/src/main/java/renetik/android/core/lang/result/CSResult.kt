@@ -1,5 +1,6 @@
 package renetik.android.core.lang.result
 
+import kotlinx.coroutines.CoroutineDispatcher
 import renetik.android.core.lang.result.CSResult.State.Cancel
 import renetik.android.core.lang.result.CSResult.State.Failure
 import renetik.android.core.lang.result.CSResult.State.Success
@@ -18,6 +19,14 @@ data class CSResult<Value>(
     suspend fun ifSuccess(function: suspend (Value) -> Unit) = apply {
         if (state == Success) runCatching { function(value!!) }
             .onFailure { throwable = it }
+    }
+
+    suspend fun ifSuccess(
+        dispatcher: CoroutineDispatcher,
+        function: suspend (Value) -> Unit) = apply {
+        if (state == Success) runCatching {
+            dispatcher.context { function(value!!) }
+        }.onFailure { throwable = it }
     }
 
     @JvmName("onSuccessValueToResult")
