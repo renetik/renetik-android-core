@@ -2,6 +2,8 @@ package renetik.android.core.kotlin.primitives
 
 import renetik.android.core.kotlin.asString
 
+val emptyFloatArray = floatArrayOf()
+
 inline infix fun <T> Array<T>.allIn(other: List<T>): Boolean = all { it in other }
 inline infix fun <T> Array<T>.anyIn(other: List<T>): Boolean = any { it in other }
 inline infix fun <T> Array<T>.noneIn(other: List<T>): Boolean = none { it in other }
