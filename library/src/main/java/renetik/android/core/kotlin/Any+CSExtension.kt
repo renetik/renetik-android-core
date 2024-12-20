@@ -6,6 +6,7 @@ inline fun <T : Any> T.invoke(function: () -> Unit): T = apply { function() }
 inline fun <T : Any> T.then(function: (T) -> Unit): Unit = function(this)
 inline fun <T : Any> T.use(function: (T).() -> Unit): Unit = function(this)
 
+//TODO: Could be named letIf ?
 inline fun <T : Any> T.changeIf(
     condition: Boolean, function: (T) -> T
 ) = if (condition) function(this) else this
