@@ -65,3 +65,16 @@ fun File.with(name: String? = null, extension: String? = null): File {
 }
 
 val File.isJson: Boolean get() = extension == "json"
+
+fun File.fileList(depth: Int): List<File> {
+    val files = mutableListOf<File>()
+    fun recurse(currentDirectory: File, currentDepth: Int) {
+        if (currentDepth > depth || !currentDirectory.isDirectory) return
+        currentDirectory.listFiles()?.forEach { file ->
+            if (file.isFile) files.add(file)
+            else if (file.isDirectory) recurse(file, currentDepth + 1)
+        }
+    }
+    recurse(this, 0)
+    return files
+}
