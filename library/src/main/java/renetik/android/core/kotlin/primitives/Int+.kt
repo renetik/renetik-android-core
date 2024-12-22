@@ -56,3 +56,14 @@ inline val Int.minute: Int get() = this * Minute
 fun Int.percentOf(size: Int): Float = (this * size / 100.0).toFloat()
 fun Int.toPercentOf(total: Int): Float = (this / total.toFloat() * 100).coerceIn(0f, 100f)
 fun Int.toPercentOfInt(total: Int): Int = toPercentOf(total).toInt()
+
+fun Int.nextPowerOfTwo(): Int {
+    if (this <= 0) return 1
+    return if (this and (this - 1) == 0) this
+    else Integer.highestOneBit(this) shl 1
+}
+
+fun Int.nearestPowerOfTwo(): Int {
+    if (this <= 0) return 1
+    return Integer.highestOneBit(this)
+}
