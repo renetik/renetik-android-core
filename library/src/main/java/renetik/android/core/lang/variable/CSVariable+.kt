@@ -6,6 +6,8 @@ import renetik.android.core.kotlin.asString
 
 inline infix fun <T> CSVariable<T>.assign(other: T) = value(other)
 
+inline infix fun <T> CSVariable<T>?.assign(other: T) = this?.value(other)
+
 inline fun <T> CSVariable<T>.value(value: T) {
     this.value = value
 }
