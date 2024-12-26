@@ -78,6 +78,8 @@ fun Context.openInputStream(uri: Uri) =
 
 fun Context.dimensionInt(@DimenRes id: Int) = dimension(id).toInt()
 fun Context.dimension(@DimenRes id: Int): Float = resources.getDimension(id)
+fun Context.dimensionPx(@DimenRes id: Int): Int = resources.getDimensionPixelSize(id)
+fun Context.dimensionPxFloat(@DimenRes id: Int): Float = resources.getDimensionPixelSize(id).toFloat()
 
 fun Context.strings(id: Int) =
     catchWarnReturnNull<List<String>, NotFoundException> {
