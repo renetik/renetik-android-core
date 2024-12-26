@@ -5,8 +5,9 @@ import renetik.android.core.java.util.now
 import java.io.File
 import java.io.File.createTempFile
 
-fun File.fileList(): List<File> = listFiles(File::isFile)?.toList() ?: emptyList()
-fun File.dirList(): List<File> = listFiles(File::isDirectory)?.toList() ?: emptyList()
+fun File.items(): List<File> = listFiles()?.toList() ?: emptyList()
+fun File.files(): List<File> = listFiles(File::isFile)?.toList() ?: emptyList()
+fun File.dirs(): List<File> = listFiles(File::isDirectory)?.toList() ?: emptyList()
 
 inline fun File.forEachFile(action: (File) -> Unit) {
     listFiles(File::isFile)?.forEach(action)
