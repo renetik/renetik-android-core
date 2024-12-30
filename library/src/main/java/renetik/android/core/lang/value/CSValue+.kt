@@ -8,6 +8,7 @@ import renetik.android.core.lang.Func
 import renetik.android.core.lang.variable.CSVariable
 
 inline infix fun <T> T.equals(other: T): Boolean = this == other //TODO move..
+inline infix fun <T> T.equalsNot(other: T): Boolean = this != other //TODO move..
 
 inline infix fun <T> T.equals(other: CSValue<T>): Boolean = this == other.value
 inline infix fun <T> T.equalsNot(other: CSValue<T>): Boolean = this != other.value
