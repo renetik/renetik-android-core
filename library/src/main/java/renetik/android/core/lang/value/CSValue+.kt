@@ -18,7 +18,7 @@ inline infix fun <T> CSValue<T>.equalsNot(other: T): Boolean = value != other
 inline val <T> CSValue<T?>.isNull get() = value == null
 inline val <T> CSValue<T?>.notNull get() = value != null
 
-inline val CSValue<Boolean>.isTrue get() = value
+inline val CSValue<Boolean>.isTrue: Boolean get() = value
 
 @get:JvmName("CSValueBooleanOptionalIsTrue")
 inline val CSValue<Boolean>?.isTrue: Boolean get() = this?.value == true
