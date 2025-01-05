@@ -137,7 +137,7 @@ fun CharSequence.containsAll(words: List<String>, ignoreCase: Boolean = false): 
 
 fun String.count(string: String) = split(string).dropLastWhile { it.isEmpty() }.size - 1
 
-val String.asVertical: String get() = fold("") { acc, char -> "$acc$char\n" }.dropLast(1)
+fun String.vertical(): String = fold("") { acc, char -> "$acc$char\n" }.dropLast(1)
 
 fun Pair<String?, String?>.joinToString(
     separator: CharSequence = ", ", prefix: CharSequence = "",
