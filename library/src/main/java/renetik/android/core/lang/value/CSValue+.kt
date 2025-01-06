@@ -23,6 +23,9 @@ inline val CSValue<Boolean>.isTrue: Boolean get() = value
 @get:JvmName("CSValueBooleanOptionalIsTrue")
 inline val CSValue<Boolean>?.isTrue: Boolean get() = this?.value == true
 
+@get:JvmName("CSValueOptionalBooleanIsTrue")
+inline val CSValue<Boolean?>.isTrue: Boolean get() = this.value == true
+
 inline val CSValue<Boolean>.isFalse get() = !value
 
 inline fun <R> CSValue<Boolean>.ifTrue(function: () -> R): R? =
