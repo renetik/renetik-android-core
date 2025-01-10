@@ -3,10 +3,13 @@
 package renetik.android.core.lang.variable
 
 import renetik.android.core.kotlin.asString
+import renetik.android.core.lang.value.CSValue
 
 inline infix fun <T> CSVariable<T>.assign(other: T) = value(other)
 
 inline infix fun <T> CSVariable<T>?.assign(other: T) = this?.value(other)
+
+inline infix fun <T> CSVariable<T>?.assign(other: CSValue<T>) = this?.value(other.value)
 
 inline fun <T> CSVariable<T>.value(value: T) {
     this.value = value
