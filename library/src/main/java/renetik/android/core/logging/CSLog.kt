@@ -20,6 +20,7 @@ import java.lang.System.currentTimeMillis
 import java.lang.Thread.currentThread
 import java.text.DateFormat.getDateTimeInstance
 
+//TODO: inline all
 object CSLog {
     var logger: CSLogger = CSPrintLogger()
 
