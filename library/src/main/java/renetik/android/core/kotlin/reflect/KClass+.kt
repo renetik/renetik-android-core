@@ -5,7 +5,7 @@ import kotlin.reflect.KClass
 import kotlin.reflect.full.createInstance
 import kotlin.reflect.full.primaryConstructor
 
-fun <T : Any> KClass<T>.createInstance() = catchAllWarnReturnNull {
+fun <T : Any> KClass<T>.createInstance(): T? = catchAllWarnReturnNull {
     createInstance()
 }
 
