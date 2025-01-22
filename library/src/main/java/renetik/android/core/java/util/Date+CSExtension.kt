@@ -13,7 +13,8 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-val currentTime get() = Date().time
+val currentTime: Long get() = Date().time
+
 fun dateFromString(format: String, string: String) = catchError<ParseException> {
     SimpleDateFormat(format, Locale.US).parse("" + string)
 }
