@@ -6,7 +6,7 @@ import java.util.concurrent.TimeoutException
 import kotlin.time.Duration
 
 object CSCoroutines {
-    suspend fun waitForCondition(
+    suspend fun waitFor(
         timeout: Duration,
         message: String = "Condition not met within $timeout",
         condition: () -> Boolean
