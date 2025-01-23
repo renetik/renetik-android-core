@@ -23,3 +23,8 @@ fun FloatArray.rotate(offset: Int, start: Int = 0, end: Int = size) {
     arraycopy(array2, 0, this, start, array2.size)
     arraycopy(array1, 0, this, start + array2.size, array1.size)
 }
+
+fun Pair<FloatArray, FloatArray>.rotate(offset: Int, start: Int = 0) {
+    first.rotate(offset, start)
+    second.rotate(offset, start)
+}
