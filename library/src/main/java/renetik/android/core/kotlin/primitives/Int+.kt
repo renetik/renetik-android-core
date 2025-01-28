@@ -14,6 +14,10 @@ import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
+operator fun Int.minus(other: Int?): Int = this - (other ?: 0)
+operator fun Int.plus(other: Int?): Int = this + (other ?: 0)
+
+
 private val counter = AtomicInteger(0)
 fun Int.Companion.unique(length: Int = 9): Int =
     "${counter.incrementAndGet()}${nanoTime()}".substring(0, length).toInt()
