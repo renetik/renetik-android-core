@@ -4,6 +4,10 @@ import renetik.android.core.kotlin.asString
 
 val emptyFloatArray = floatArrayOf()
 
+fun <T> Array<T?>.remove(index: Int) = this[index]?.also { this[index] = null }
+fun <T> Array<out T?>.forEachSet(action: (T) -> Unit) = forEach { it?.also(action) }
+fun <T> Array<T?>.clear() = indices.forEach { this[it] = null }
+
 inline infix fun <T> Array<T>.allIn(other: List<T>): Boolean = all { it in other }
 inline infix fun <T> Array<T>.anyIn(other: List<T>): Boolean = any { it in other }
 inline infix fun <T> Array<T>.noneIn(other: List<T>): Boolean = none { it in other }

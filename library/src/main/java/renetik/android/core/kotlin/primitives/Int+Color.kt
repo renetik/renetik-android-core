@@ -19,6 +19,8 @@ val @receiver:ColorInt Int.darken
 
 fun @receiver:ColorInt Int.setAlpha(alpha: Float): Int {
     require(alpha in 0.0..1.0) { "Alpha must be between 0.0 and 1.0" }
-    val alphaInt = (alpha * 255).toInt() and 0xFF
+    val alphaInt = (alpha * 255).alphaInt and 0xFF
     return (this and 0x00FFFFFF) or (alphaInt shl 24)
 }
+
+val Float.alphaInt: Int get() = (this * 255).toInt()
