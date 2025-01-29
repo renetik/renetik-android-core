@@ -38,9 +38,9 @@ object CSTimeConstants {
     const val HalfMinute = Minute / 2
     const val Hour = 60 * Minute
     const val Day = 24 * Hour
-    const val MilliToNanoSecond: Double = 1_000_000.0
-    const val MilliToNanoSecondInt: Int = 1_000_000
-    const val SecondNano = Second * MilliToNanoSecondInt
-    fun Int.toNanosecond(): Int = this * MilliToNanoSecondInt
-    fun Double.toNanosecond(): Double = this * MilliToNanoSecond
+    const val MilliToNano: Double = 1_000_000.0
+    const val MilliToNanoInt: Int = 1_000_000
+    const val SecondNano = Second * MilliToNanoInt
+    fun Int.toNanosecond(): Int = this * MilliToNanoInt
+    fun Double.toNanosecond(): Double = this * MilliToNano
 }
