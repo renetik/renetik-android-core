@@ -145,3 +145,8 @@ fun Pair<String?, String?>.joinToString(
     truncated: CharSequence = "...", transform: ((String?) -> CharSequence)? = null
 ) = toList().filterNotNull()
     .joinToString(separator, prefix, postfix, limit, truncated, transform)
+
+fun String.splitInTwo(): Pair<String, String> {
+    val mid = (this.length + 1) / 2
+    return this.substring(0, mid) to this.substring(mid)
+}
