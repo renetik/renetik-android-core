@@ -1,6 +1,5 @@
 package renetik.android.core.extensions.content
 
-import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.ActivityNotFoundException
 import android.content.BroadcastReceiver
@@ -13,7 +12,6 @@ import android.content.Intent.ACTION_BATTERY_CHANGED
 import android.content.IntentFilter
 import android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE
 import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.content.pm.PackageManager.NameNotFoundException
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
@@ -27,17 +25,13 @@ import android.os.BatteryManager.EXTRA_LEVEL
 import android.os.BatteryManager.EXTRA_SCALE
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.Q
-import android.util.Base64
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.RECEIVER_EXPORTED
 import androidx.core.content.ContextCompat.RECEIVER_NOT_EXPORTED
 import renetik.android.core.kotlin.primitives.isFlagSet
-import renetik.android.core.kotlin.primitives.isSet
-import renetik.android.core.lang.catchAllErrorReturnNull
 import renetik.android.core.lang.catchWarnReturnNull
 import renetik.android.core.logging.CSLog.logWarn
-import java.security.MessageDigest
 import java.util.Locale
 
 val Context.isDebug get() = applicationInfo.flags isFlagSet FLAG_DEBUGGABLE
