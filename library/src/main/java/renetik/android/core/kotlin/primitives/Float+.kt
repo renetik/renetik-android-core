@@ -1,6 +1,9 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package renetik.android.core.kotlin.primitives
 
 import renetik.android.core.extensions.content.dpToPixelF
+import renetik.android.core.kotlin.ranges.size
 import renetik.android.core.lang.CSEnvironment.app
 import java.math.RoundingMode
 import java.math.RoundingMode.CEILING
@@ -26,32 +29,32 @@ fun Float.roundToStep(step: Float): Float = (this / step).roundToLong() * step
 fun Float.roundToStep(step: Double): Double = (this / step).roundToLong() * step
 fun Float.roundToStep(step: Int): Int = (this / step.toFloat()).toInt() * step
 
-fun Float.roundToDecimalPlaces(decimalPlaces: Int): Float {
+inline fun Float.roundToDecimalPlaces(decimalPlaces: Int): Float {
     val factor = 10.0.pow(decimalPlaces.toDouble())
     return (this * factor).roundToInt() / factor.toFloat()
 }
 
-fun Float.roundToDecimal(
+inline fun Float.roundToDecimal(
     decimalPlaces: Int, mode: RoundingMode = UP,
 ): Float = formatRoundDecimal(
     "#." + Array(decimalPlaces) { "#" }.joinToString(separator = ""), mode
 ).toFloat()
 
-fun Float.formatDecimal(n: Int): String {
+inline fun Float.formatDecimal(n: Int): String {
 //    val prefix = if (this < 0) "-" else ""
     return "%.${n}f".format(Locale.ENGLISH, this)
 }
 
-fun Float.removeToDecimal(n: Int): Float {
+inline fun Float.removeToDecimal(n: Int): Float {
     return formatDecimal(n).toFloat()
 }
 
-fun Float.formatRoundDecimal(
+inline fun Float.formatRoundDecimal(
     format: String = "#.##",
     mode: RoundingMode = CEILING,
 ): String = DecimalFormat(format).apply { roundingMode = mode }.format(this)
 
-val Float.rest: Float
+inline val Float.rest: Float
     get() = toString().let {
         if ("." in it) {
             val value = it.substringAfter(".")
@@ -59,21 +62,25 @@ val Float.rest: Float
         } else 0f
     }
 
-fun Float.rest(value: Int): Float =
+inline fun Float.rest(value: Int): Float =
     if (value > 0) this % value else this
 
-fun Float.min(minimum: Float) = if (this > minimum) this else minimum
-fun Float.max(maximum: Float) = if (this < maximum) this else maximum
+inline fun Float.min(minimum: Float) = if (this > minimum) this else minimum
+inline fun Float.max(maximum: Float) = if (this < maximum) this else maximum
 
 inline val Float.dp: Float get() = app.dpToPixelF(this)
 inline val Float.dpf: Float get() = app.dpToPixelF(this)
 
-fun Float.percentOf(size: Float): Float = (this * size / 100.0).toFloat()
-fun Float.percentOf(size: Int): Float = percentOf(size.toFloat())
-fun Float.percentOf(size: Long): Float = percentOf(size.toFloat())
-fun Float.percentOfInt(size: Float): Int = percentOf(size).toInt()
-fun Float.percentOfInt(size: Int): Int = percentOf(size.toFloat()).toInt()
-fun Float.toPercentOf(total: Float): Float = (this / total * 100).coerceIn(0f, 100f)
-fun Float.toPercentOf(total: Int): Float = toPercentOf(total.toFloat())
+inline fun Float.percentOf(range: ClosedFloatingPointRange<Float>): Float =
+    range.start + percentOf(range.size)
+
+inline fun Float.percentOf(size: Float): Float = (this * size / 100.0).toFloat()
+inline fun Float.percentOf(size: Int): Float = percentOf(size.toFloat())
+inline fun Float.percentOf(size: Long): Float = percentOf(size.toFloat())
+inline fun Float.percentOfInt(size: Float): Int = percentOf(size).toInt()
+inline fun Float.percentOfInt(size: Int): Int = percentOf(size.toFloat()).toInt()
+
+inline fun Float.toPercentOf(total: Float): Float = (this / total * 100).coerceIn(0f, 100f)
+inline fun Float.toPercentOf(total: Int): Float = toPercentOf(total.toFloat())
 
 
