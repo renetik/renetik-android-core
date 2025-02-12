@@ -4,7 +4,7 @@ val ClosedRange<Float>.size: Float get() = endInclusive - start
 val ClosedRange<Float>.first: Float get() = start
 val ClosedRange<Float>.last: Float get() = endInclusive
 
-val ClosedRange<Int>.size: Int get() = endInclusive - start
+val ClosedRange<Int>.size: Int get() = endInclusive - first
 val ClosedRange<Int>.first: Int get() = start
 val ClosedRange<Int>.last: Int get() = endInclusive
 

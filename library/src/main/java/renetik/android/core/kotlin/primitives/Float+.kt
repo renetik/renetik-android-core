@@ -3,7 +3,6 @@
 package renetik.android.core.kotlin.primitives
 
 import renetik.android.core.extensions.content.dpToPixelF
-import renetik.android.core.kotlin.ranges.size
 import renetik.android.core.lang.CSEnvironment.app
 import java.math.RoundingMode
 import java.math.RoundingMode.CEILING
@@ -70,17 +69,3 @@ inline fun Float.max(maximum: Float) = if (this < maximum) this else maximum
 
 inline val Float.dp: Float get() = app.dpToPixelF(this)
 inline val Float.dpf: Float get() = app.dpToPixelF(this)
-
-inline fun Float.percentOf(range: ClosedFloatingPointRange<Float>): Float =
-    range.start + percentOf(range.size)
-
-inline fun Float.percentOf(size: Float): Float = (this * size / 100.0).toFloat()
-inline fun Float.percentOf(size: Int): Float = percentOf(size.toFloat())
-inline fun Float.percentOf(size: Long): Float = percentOf(size.toFloat())
-inline fun Float.percentOfInt(size: Float): Int = percentOf(size).toInt()
-inline fun Float.percentOfInt(size: Int): Int = percentOf(size.toFloat()).toInt()
-
-inline fun Float.toPercentOf(total: Float): Float = (this / total * 100).coerceIn(0f, 100f)
-inline fun Float.toPercentOf(total: Int): Float = toPercentOf(total.toFloat())
-
-

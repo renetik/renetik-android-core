@@ -59,11 +59,6 @@ inline val Int.pxf: Float get() = app.toDpF(this)
 inline val Int.second: Int get() = this * Second
 inline val Int.minute: Int get() = this * Minute
 
-inline fun Int.percentOf(size: Int): Float = (this * size / 100.0).toFloat()
-inline fun Int.toPercentOf(total: Float): Float = (this / total * 100).coerceIn(0f, 100f)
-inline fun Int.toPercentOf(total: Int): Float = toPercentOf(total.toFloat())
-inline fun Int.toPercentOfInt(total: Int): Int = toPercentOf(total).toInt()
-
 inline fun Int.nextPowerOfTwo(): Int {
     if (this <= 0) return 1
     return if (this and (this - 1) == 0) this
