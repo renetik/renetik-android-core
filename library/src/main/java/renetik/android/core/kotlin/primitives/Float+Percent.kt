@@ -17,6 +17,7 @@ inline fun Float.percentOf(range: ClosedRange<Float>): Float {
     return range.first + percentOf(size)
 }
 
+@JvmName("percentOfRangeInt")
 inline fun Float.percentOf(range: ClosedRange<Int>): Float {
     val size = range.size.takeIf { it > 0 } ?: return 0f
     return range.first + percentOf(size)
