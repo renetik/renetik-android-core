@@ -1,3 +1,5 @@
+@file:JvmName("CSLog")
+
 package renetik.android.core.logging
 
 import android.content.Context
@@ -36,18 +38,33 @@ object CSLog {
     fun logVerbose(function: () -> String) =
         then { logImpl(Verbose) { message(function()) } }
 
+    @JvmStatic
     fun logDebug() = then { logImpl(Debug) { message() } }
+
+    @JvmStatic
     fun logDebug(any: Any?) = then { logImpl(Debug) { message(any) } }
+
+    @JvmStatic
     fun logDebug(function: () -> String) = then { logImpl(Debug) { message(function()) } }
+
+    @JvmStatic
     fun logDebug(throwable: Throwable, function: (() -> String)? = null) =
         then { logImpl(Debug) { message(throwable, function?.invoke()) } }
 
+    @JvmStatic
     fun logDebugTrace(function: (() -> String)? = null) =
         then { logImpl(Debug) { message(Throwable(), function?.invoke()) } }
 
+    @JvmStatic
     fun logInfo() = then { logImpl(Info) { message("") } }
+
+    @JvmStatic
     fun logInfo(any: Any?) = then { logImpl(Info) { message(any) } }
+
+    @JvmStatic
     fun logInfo(function: () -> String) = then { logImpl(Info) { message(function()) } }
+
+    @JvmStatic
     fun logInfo(throwable: Throwable, function: (() -> String)? = null) =
         then { logImpl(Info) { message(throwable, function?.invoke()) } }
 
