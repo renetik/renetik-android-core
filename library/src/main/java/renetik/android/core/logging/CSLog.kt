@@ -68,7 +68,7 @@ object CSLog {
     fun logWarn() = then { logImpl(Warn) { message("") } }
     fun logWarn(any: Any?) = then { logImpl(Warn) { message(any) } }
     fun logWarn(function: () -> String) = then { logImpl(Warn) { message(function()) } }
-    fun logWarn(throwable: Throwable, function: (() -> String)? = null) =
+    fun logWarn(throwable: Throwable?, function: (() -> String)? = null) =
         then { logImpl(Warn) { message(throwable, function?.invoke()) } }
 
     fun logWarnTrace(function: () -> String) = then {
