@@ -4,7 +4,7 @@ import android.content.Context
 import java.io.File
 import java.util.UUID
 
-fun Context.createTempFile() = File.createTempFile(applicationLabel, null, cacheDir)
+fun Context.createTempFile(): File = File.createTempFile(applicationLabel, null, cacheDir)
 
 fun Context.createTempFolder(): File {
     val uniqueName = "temp_folder_${UUID.randomUUID()}"
