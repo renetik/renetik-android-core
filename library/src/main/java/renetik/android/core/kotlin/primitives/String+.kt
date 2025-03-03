@@ -9,7 +9,6 @@ import renetik.android.core.kotlin.text.reload
 import renetik.android.core.lang.CSStringConstants
 import renetik.android.core.lang.catchWarnReturn
 import renetik.android.core.lang.catchWarnReturnNull
-import java.nio.charset.StandardCharsets
 import java.text.Normalizer
 import java.util.Locale
 import java.util.Random
@@ -119,23 +118,10 @@ fun String.removeAccents(): String {
         .replace(nonSpacingCharactersRegex, "")
 }
 
-fun String.toMaxBytesSize(length: Int): String {
-    val nameBytes = toByteArray(StandardCharsets.UTF_8)
-    return if (nameBytes.size > length) {
-        val bytes = ByteArray(length)
-        System.arraycopy(nameBytes, 0, bytes, 0, length)
-        String(bytes, StandardCharsets.UTF_8)
-    } else this
-}
-
-fun String.maxLengthOf(count: Int) = if (length > count) substring(0 until 10) else this
-
 fun CharSequence.containsAll(words: List<String>, ignoreCase: Boolean = false): Boolean {
     for (word in words) if (!contains(word, ignoreCase)) return false
     return true
 }
-
-fun String.count(string: String) = split(string).dropLastWhile { it.isEmpty() }.size - 1
 
 fun String.vertical(): String = fold("") { acc, char -> "$acc$char\n" }.dropLast(1)
 
