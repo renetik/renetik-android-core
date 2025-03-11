@@ -21,17 +21,19 @@ inline fun <T> List<T>.mutable(
     remove?.let { remove(element = it) }
 }
 
-inline val <T> List<T>.first get() = at(0)
-inline val <T> List<T>.second get() = at(1)
-inline val <T> List<T>.third get() = at(2)
+inline val <T> List<T>.first: T? get() = at(0)
+inline val <T> List<T>.second: T? get() = at(1)
+inline val <T> List<T>.third: T? get() = at(2)
+inline val <T> List<T>.beforeLast: T? get() = at(lastIndex - 1)
+inline val <T> List<T>.last: T? get() = at(lastIndex)
 
-inline fun <T> List<T>.first() = this[0]
-inline fun <T> List<T>.second() = this[1]
-inline fun <T> List<T>.third() = this[2]
-inline fun <T> List<T>.fourth() = this[3]
-inline fun <T> List<T>.fifth() = this[4]
-inline fun <T> List<T>.sixth() = this[5]
-inline fun <T> List<T>.seventh() = this[6]
+inline fun <T> List<T>.first(): T = this[0]
+inline fun <T> List<T>.second(): T = this[1]
+inline fun <T> List<T>.third(): T = this[2]
+inline fun <T> List<T>.fourth(): T = this[3]
+inline fun <T> List<T>.fifth(): T = this[4]
+inline fun <T> List<T>.sixth(): T = this[5]
+inline fun <T> List<T>.seventh(): T = this[6]
 
 inline fun <T> List<T>.one() = this[0]
 inline fun <T> List<T>.two() = this[1]
@@ -41,9 +43,6 @@ inline fun <T> List<T>.five() = this[4]
 inline fun <T> List<T>.six() = this[5]
 inline fun <T> List<T>.seven() = this[6]
 
-inline val <T> List<T>.beforeLast get() = at(lastIndex - 1)
-
-inline val <T> List<T>.last get() = at(lastIndex)
 
 inline fun <T> List<T>.at(index: Int): T? = if (index in indices) get(index) else null
 
