@@ -9,6 +9,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import renetik.android.core.kotlin.notImplemented
 import renetik.android.core.lang.CSEnvironment
+import renetik.android.core.lang.Func
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
@@ -75,7 +76,7 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
         if (this.activity == activity) this.activity = null
     }
 
-    open fun restart(): Unit = notImplemented()
+    open fun restart(onShutdown: Func? = null): Unit = notImplemented()
 
     open val localizationContext get():Context = this
 }
