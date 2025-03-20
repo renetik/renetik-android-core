@@ -64,8 +64,8 @@ inline val Float.rest: Float
 inline fun Float.rest(value: Int): Float =
     if (value > 0) this % value else this
 
-inline fun Float.min(minimum: Float) = if (this > minimum) this else minimum
-inline fun Float.max(maximum: Float) = if (this < maximum) this else maximum
+inline fun Float.min(minimum: Float) = coerceAtLeast(minimum)
+inline fun Float.max(maximum: Float) = coerceAtMost(maximum)
 
 inline val Float.dp: Float get() = app.dpToPixelF(this)
 inline val Float.dpf: Float get() = app.dpToPixelF(this)
