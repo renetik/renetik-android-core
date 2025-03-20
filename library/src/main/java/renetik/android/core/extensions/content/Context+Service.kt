@@ -22,14 +22,14 @@ import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
 import kotlin.reflect.KClass
 
-val Context.inputService get() = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-val Context.notifications get() = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-val Context.audioManager get() = getSystemService(AUDIO_SERVICE) as AudioManager
+inline fun <reified T> Context.service(name: String) = getSystemService(name) as T
+val Context.inputService get():InputMethodManager = service(INPUT_METHOD_SERVICE)
+val Context.notifications get():NotificationManager = service(NOTIFICATION_SERVICE)
+val Context.audioManager get():AudioManager = service(AUDIO_SERVICE)
 
 val Context.locationManager get() = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 val Context.isLocationEnabled: Boolean
-    get() =
-        LocationManagerCompat.isLocationEnabled(locationManager)
+    get() = LocationManagerCompat.isLocationEnabled(locationManager)
 
 val Context.midiManager: MidiManager? get() = getSystemService(MIDI_SERVICE) as? MidiManager
 val Context.isMidiSupported: Boolean get() = midiManager != null
