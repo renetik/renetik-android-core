@@ -1,4 +1,4 @@
-package renetik.android.core.lang
+package renetik.android.core.lang.tuples
 
 import java.io.Serializable
 
