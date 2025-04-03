@@ -2,7 +2,7 @@ package renetik.android.core.lang.tuples
 
 import java.io.Serializable
 
-data class Quadruple<out A, out B, out C, out D>(
+data class CSQuadruple<out A, out B, out C, out D>(
     val first: A,
     val second: B,
     val third: C,
@@ -11,10 +11,10 @@ data class Quadruple<out A, out B, out C, out D>(
     override fun toString(): String = "($first, $second, $third, $fourth)"
 }
 
-infix fun <A, B, C, D> Triple<A, B, C>.to(that: D): Quadruple<A, B, C, D> =
-    Quadruple(first, second, third, that)
+infix fun <A, B, C, D> Triple<A, B, C>.to(that: D): CSQuadruple<A, B, C, D> =
+    CSQuadruple(first, second, third, that)
 
-data class Quintuple<out A, out B, out C, out D, out E>(
+data class CSQuintuple<out A, out B, out C, out D, out E>(
     val first: A,
     val second: B,
     val third: C,
@@ -24,11 +24,11 @@ data class Quintuple<out A, out B, out C, out D, out E>(
     override fun toString(): String = "($first, $second, $third, $fourth, $fifth)"
 }
 
-infix fun <A, B, C, D, E> Quadruple<A, B, C, D>.to(that: E): Quintuple<A, B, C, D, E> =
-    Quintuple(first, second, third, fourth, that)
+infix fun <A, B, C, D, E> CSQuadruple<A, B, C, D>.to(that: E): CSQuintuple<A, B, C, D, E> =
+    CSQuintuple(first, second, third, fourth, that)
 
 
-data class Sixtuple<out A, out B, out C, out D, out E, out F>(
+data class CSSixtuple<out A, out B, out C, out D, out E, out F>(
     val first: A,
     val second: B,
     val third: C,
@@ -39,10 +39,10 @@ data class Sixtuple<out A, out B, out C, out D, out E, out F>(
     override fun toString(): String = "($first, $second, $third, $fourth, $fifth, $sixth)"
 }
 
-infix fun <A, B, C, D, E, F> Quintuple<A, B, C, D, E>.to(that: F): Sixtuple<A, B, C, D, E, F> =
-    Sixtuple(first, second, third, fourth, fifth, that)
+infix fun <A, B, C, D, E, F> CSQuintuple<A, B, C, D, E>.to(that: F): CSSixtuple<A, B, C, D, E, F> =
+    CSSixtuple(first, second, third, fourth, fifth, that)
 
-data class Seventuple<out A, out B, out C, out D, out E, out F, out G>(
+data class CSSeventuple<out A, out B, out C, out D, out E, out F, out G>(
     val first: A,
     val second: B,
     val third: C,
@@ -54,6 +54,6 @@ data class Seventuple<out A, out B, out C, out D, out E, out F, out G>(
     override fun toString(): String = "($first, $second, $third, $fourth, $fifth, $sixth, $seventh)"
 }
 
-infix fun <A, B, C, D, E, F, G> Sixtuple<A, B, C, D, E, F>.to(that: G)
-        : Seventuple<A, B, C, D, E, F, G> =
-    Seventuple(first, second, third, fourth, fifth, sixth, that)
+infix fun <A, B, C, D, E, F, G> CSSixtuple<A, B, C, D, E, F>.to(that: G)
+        : CSSeventuple<A, B, C, D, E, F, G> =
+    CSSeventuple(first, second, third, fourth, fifth, sixth, that)
