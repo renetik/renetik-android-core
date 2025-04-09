@@ -32,6 +32,7 @@ import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.appcompat.app.AppCompatDelegate.getDefaultNightMode
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.getColorOrThrow
 import androidx.core.content.res.use
 import renetik.android.core.R
@@ -130,6 +131,9 @@ fun Context.attributeColor(@AttrRes attribute: Int): Int =
     attributeValue(attribute).data.apply {
         if (this == 0) throw NotFoundException()
     }
+
+fun Context.attributeDrawable(@AttrRes attribute: Int): Drawable? =
+    attributeValue(attribute).let { ContextCompat.getDrawable(this, it.resourceId) }
 
 @ColorInt
 fun Context.attributeColorOrNull(@AttrRes attribute: Int): Int? =
