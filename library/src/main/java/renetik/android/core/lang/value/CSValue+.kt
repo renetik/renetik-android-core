@@ -42,6 +42,7 @@ inline fun CSValue<Boolean>.isFalse(function: Func) = then { if (isFalse) functi
 
 infix fun CSValue<Boolean>.and(second: Boolean): Boolean = value && second
 infix fun CSValue<Boolean>.or(second: Boolean): Boolean = value || second
+infix fun CSValue<Boolean>.or(second: CSValue<Boolean>): Boolean = value || second.value
 infix fun Boolean.and(second: CSValue<Boolean>): Boolean = this && second.value
 infix fun Boolean.or(second: CSValue<Boolean>): Boolean = this || second.value
 
