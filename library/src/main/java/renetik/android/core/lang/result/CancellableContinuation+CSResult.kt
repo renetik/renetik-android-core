@@ -9,7 +9,7 @@ fun <Value> CancellableContinuation<CSResult<Value>>.canceled() =
     resumeWith(Result.success(CSResult.cancel()))
 
 fun <Value> CancellableContinuation<CSResult<Value>>.failure(
-    throwable: Throwable, message: String
+    throwable: Throwable, message: String?
 ) = resumeWith(Result.success(CSResult.failure(throwable, message)))
 
 fun <Value> CancellableContinuation<CSResult<Value>>.failure(throwable: Throwable) =
