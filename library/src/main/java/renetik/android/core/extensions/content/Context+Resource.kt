@@ -190,6 +190,7 @@ val Context.isPortrait get() = resources.configuration.orientation == ORIENTATIO
 val Context.isLandscape get() = !isPortrait
 val Context.isTablet get() = resources.getBoolean(R.bool.cs_is_tablet)
 val Context.isPhone get() = !isTablet
+val Context.isScreenWide get() = isTablet || isLandscape
 
 fun Context.drawable(@DrawableRes resource: Int) = getDrawable(this, resource)!!.apply {
     setBounds(0, 0, intrinsicWidth, intrinsicHeight)
