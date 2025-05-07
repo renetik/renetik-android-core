@@ -1,17 +1,18 @@
 package renetik.android.core.extensions.content.res
 
 import android.content.res.AssetManager
-import renetik.android.core.logging.CSLog.logWarn
+import renetik.android.core.logging.CSLog.logError
 import java.io.File
 
 fun AssetManager.copyContentsToDir(
     path: String, targetDir: File,
     overwrite: Boolean = false, recurse: Boolean = false
 ) {
-    if (!targetDir.exists() || !targetDir.isDirectory) {
-        logWarn("targetDir don't exist or os file")
+    if (targetDir.exists() && targetDir.isFile) {
+        logError("targetDir is file")
         return
     }
+    targetDir.mkdirs()
     val children = list(path) ?: emptyArray()
     for (name in children) {
         val assetPath = if (path.isEmpty()) name else "$path/$name"
