@@ -4,7 +4,7 @@ import android.content.res.AssetManager
 import renetik.android.core.logging.CSLog.logError
 import java.io.File
 
-fun AssetManager.copyContentsToDir(
+fun AssetManager.copyPathToDir(
     path: String, targetDir: File,
     overwrite: Boolean = true, recurse: Boolean = true
 ) {
@@ -19,7 +19,7 @@ fun AssetManager.copyContentsToDir(
         val dest = File(targetDir, name)
         if (isDir(assetPath)) {
             if (overwrite || !dest.exists()) dest.mkdirs()
-            if (recurse) copyContentsToDir(assetPath, dest, overwrite, recurse)
+            if (recurse) copyPathToDir(assetPath, dest, overwrite, recurse)
         } else if (overwrite || !dest.exists()) {
             dest.parentFile?.mkdirs()
             open(assetPath).use { input ->
@@ -33,11 +33,3 @@ fun AssetManager.copyContentsToDir(
 
 fun AssetManager.isDir(path: String): Boolean =
     runCatching { list(path)?.isNotEmpty() == true }.getOrDefault(false)
-
-fun AssetManager.copyFileToDir(
-    assetPath: String, folder: File,
-    overwrite: Boolean = false
-) = copyContentsToDir(
-    path = assetPath.substringBeforeLast('/'),
-    targetDir = folder, overwrite = overwrite, recurse = false
-)
