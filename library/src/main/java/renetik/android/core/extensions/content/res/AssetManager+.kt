@@ -6,7 +6,7 @@ import java.io.File
 
 fun AssetManager.copyContentsToDir(
     path: String, targetDir: File,
-    overwrite: Boolean = false, recurse: Boolean = false
+    overwrite: Boolean = false, recurse: Boolean = true
 ) {
     if (targetDir.exists() && targetDir.isFile) {
         logError("targetDir is file")
