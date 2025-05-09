@@ -2,6 +2,9 @@ package renetik.android.core.lang.result
 
 import kotlinx.coroutines.CancellableContinuation
 
+fun CancellableContinuation<CSResult<Unit>>.success() =
+    resumeWith(Result.success(CSResult.success(Unit)))
+
 fun <Value> CancellableContinuation<CSResult<Value>>.success(value: Value) =
     resumeWith(Result.success(CSResult.success(value)))
 
