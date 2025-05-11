@@ -6,7 +6,7 @@ import java.io.File
 
 fun AssetManager.copyPathToDir(
     item: String, targetDir: File,
-    overwrite: Boolean = true, recurse: Boolean = true
+    overwrite: Boolean = true
 ) {
     val item = item.trimEnd('/')
     if (targetDir.exists() && targetDir.isFile) {
@@ -25,7 +25,7 @@ fun AssetManager.copyPathToDir(
         val dest = File(targetDir, name)
         if (isDir(path)) {
             if (overwrite || !dest.exists()) dest.mkdirs()
-            if (recurse) copyPathToDir(path, dest, overwrite, recurse)
+            copyPathToDir(path, dest, overwrite)
         } else if (overwrite || !dest.exists()) copyFile(path, dest)
     }
 }
@@ -41,7 +41,6 @@ private fun AssetManager.copyFile(path: String, dest: File) {
 
 fun AssetManager.isFile(path: String): Boolean =
     path.isNotEmpty() &&
-    runCatching { open(path).close(); true }.getOrDefault(false)
+            runCatching { open(path).close(); true }.getOrDefault(false)
 
-fun AssetManager.isDir(path: String): Boolean =
-    runCatching { list(path) != null }.getOrDefault(false)
+fun AssetManager.isDir(path: String): Boolean = !isFile(path)
