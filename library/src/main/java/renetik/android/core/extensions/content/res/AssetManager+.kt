@@ -5,31 +5,43 @@ import renetik.android.core.logging.CSLog.logError
 import java.io.File
 
 fun AssetManager.copyPathToDir(
-    path: String, targetDir: File,
+    item: String, targetDir: File,
     overwrite: Boolean = true, recurse: Boolean = true
 ) {
+    val item = item.trimEnd('/')
     if (targetDir.exists() && targetDir.isFile) {
         logError("targetDir is file")
         return
     }
     targetDir.mkdirs()
-    val children = list(path) ?: emptyArray()
-    for (name in children) {
-        val assetPath = if (path.isEmpty()) name else "$path/$name"
+    if (isFile(item)) {
+        val name = item.substringAfterLast('/')
         val dest = File(targetDir, name)
-        if (isDir(assetPath)) {
+        if (overwrite || !dest.exists()) copyFile(item, dest)
+        return
+    }
+    list(item)?.forEach { name ->
+        val path = if (item.isEmpty()) name else "$item/$name"
+        val dest = File(targetDir, name)
+        if (isDir(path)) {
             if (overwrite || !dest.exists()) dest.mkdirs()
-            if (recurse) copyPathToDir(assetPath, dest, overwrite, recurse)
-        } else if (overwrite || !dest.exists()) {
-            dest.parentFile?.mkdirs()
-            open(assetPath).use { input ->
-                dest.outputStream().use { output ->
-                    input.copyTo(output)
-                }
-            }
+            if (recurse) copyPathToDir(path, dest, overwrite, recurse)
+        } else if (overwrite || !dest.exists()) copyFile(path, dest)
+    }
+}
+
+private fun AssetManager.copyFile(path: String, dest: File) {
+    dest.parentFile?.mkdirs()
+    open(path).use { input ->
+        dest.outputStream().use { output ->
+            input.copyTo(output)
         }
     }
 }
 
+fun AssetManager.isFile(path: String): Boolean =
+    path.isNotEmpty() &&
+    runCatching { open(path).close(); true }.getOrDefault(false)
+
 fun AssetManager.isDir(path: String): Boolean =
-    runCatching { list(path)?.isNotEmpty() == true }.getOrDefault(false)
+    runCatching { list(path) != null }.getOrDefault(false)
