@@ -32,6 +32,6 @@ class CSUnsupportedException(message: String? = "") : CSException(message) {
     }
 }
 
-fun exception(message: String? = "") = CSException(message)
+fun exception(message: String? = null) = CSException(message)
 open class CSException(message: String? = "") : RuntimeException(message)
 
