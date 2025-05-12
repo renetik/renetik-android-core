@@ -14,6 +14,9 @@ inline infix fun <T> T.equals(other: CSValue<T>): Boolean = this == other.value
 inline infix fun <T> T.equalsNot(other: CSValue<T>): Boolean = this != other.value
 inline infix fun <T> CSValue<T>.equals(other: T): Boolean = value == other
 inline infix fun <T> CSValue<T>.equalsNot(other: T): Boolean = value != other
+//TODO!!! rename rest to no match java equals
+inline infix fun <T> CSValue<T>.equal(other: CSValue<T>): Boolean = value == other.value
+inline infix fun <T> CSValue<T>.equalNot(other: CSValue<T>): Boolean = value != other.value
 
 inline val <T> CSValue<T?>.isNull get() = value == null
 inline val <T> CSValue<T?>.notNull get() = value != null
