@@ -1,6 +1,7 @@
 package renetik.android.core.extensions.content.res
 
 import android.content.res.AssetManager
+import renetik.android.core.kotlin.unexpected
 import renetik.android.core.logging.CSLog.logError
 import java.io.File
 
@@ -10,8 +11,8 @@ fun AssetManager.copyPathToDir(
 ) {
     val item = item.trimEnd('/')
     if (targetDir.exists() && targetDir.isFile) {
-        logError("targetDir is file")
-        return
+        logError("targetDir:$targetDir is file")
+        unexpected()
     }
     targetDir.mkdirs()
     if (isFile(item)) {
