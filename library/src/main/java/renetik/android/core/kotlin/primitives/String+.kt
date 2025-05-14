@@ -2,6 +2,7 @@
 
 package renetik.android.core.kotlin.primitives
 
+import android.util.Patterns.EMAIL_ADDRESS
 import renetik.android.core.kotlin.text.StringBuilder
 import renetik.android.core.kotlin.text.add
 import renetik.android.core.kotlin.text.deleteLast
@@ -138,3 +139,6 @@ fun String.splitInTwo(): Pair<String, String> {
     val mid = (this.length + 1) / 2
     return this.substring(0, mid) to this.substring(mid)
 }
+
+fun String?.isValidEmail(): Boolean =
+    !isNullOrEmpty() && EMAIL_ADDRESS.matcher(this).matches()
