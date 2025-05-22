@@ -21,6 +21,7 @@ import android.util.TypedValue
 import android.util.TypedValue.COMPLEX_UNIT_DIP
 import android.util.TypedValue.COMPLEX_UNIT_SP
 import android.util.TypedValue.applyDimension
+import android.view.ContextThemeWrapper
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.DimenRes
@@ -80,7 +81,8 @@ fun Context.openInputStream(uri: Uri) =
 fun Context.dimensionInt(@DimenRes id: Int) = dimension(id).toInt()
 fun Context.dimension(@DimenRes id: Int): Float = resources.getDimension(id)
 fun Context.dimensionPx(@DimenRes id: Int): Int = resources.getDimensionPixelSize(id)
-fun Context.dimensionPxFloat(@DimenRes id: Int): Float = resources.getDimensionPixelSize(id).toFloat()
+fun Context.dimensionPxFloat(@DimenRes id: Int): Float =
+    resources.getDimensionPixelSize(id).toFloat()
 
 fun Context.strings(id: Int) =
     catchWarnReturnNull<List<String>, NotFoundException> {
@@ -125,6 +127,10 @@ fun Context.spToPixel(sp: Int) = dpToPixelF(sp.toFloat()).toInt()
 
 private fun Context.attributeValue(@AttrRes attribute: Int) =
     TypedValue().apply { theme.resolveAttribute(attribute, this, true) }
+
+@ColorInt
+fun Context.themeAttributeColor(theme: Int, attribute: Int): Int =
+    ContextThemeWrapper(this, theme).attributeColor(attribute)
 
 @ColorInt
 fun Context.attributeColor(@AttrRes attribute: Int): Int =
