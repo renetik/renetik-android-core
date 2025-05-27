@@ -103,6 +103,9 @@ object CSLog {
     fun logErrorTrace(function: () -> String) =
         then { logImpl(Error) { message(Throwable(), function.invoke()) } }
 
+    fun Context.logDebugToast(value: String) =
+        toast(Debug, logImpl(Debug) { message(value) })
+
     fun Context.logDebugToast() = toast(Debug, logImpl(Debug) { message("") })
 
     fun Context.logDebugStringToast(function: () -> String) =
