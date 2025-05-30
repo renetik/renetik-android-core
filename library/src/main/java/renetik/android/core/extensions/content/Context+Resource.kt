@@ -36,14 +36,10 @@ import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.getColorOrThrow
 import androidx.core.content.res.use
-import renetik.android.core.R
 import renetik.android.core.kotlin.asString
-import renetik.android.core.kotlin.collections.list
 import renetik.android.core.kotlin.equalsAny
 import renetik.android.core.lang.catchAllWarn
-import renetik.android.core.lang.catchError
 import renetik.android.core.lang.catchErrorReturnNull
-import renetik.android.core.lang.catchWarnReturnNull
 import renetik.android.core.lang.tryAndFinally
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -84,14 +80,8 @@ fun Context.dimensionPx(@DimenRes id: Int): Int = resources.getDimensionPixelSiz
 fun Context.dimensionPxFloat(@DimenRes id: Int): Float =
     resources.getDimensionPixelSize(id).toFloat()
 
-fun Context.strings(id: Int) =
-    catchWarnReturnNull<List<String>, NotFoundException> {
-        list(*resources.getStringArray(id))
-    }
-
-fun Context.ints(id: Int) = catchError<NotFoundException> {
-    list(resources.getIntArray(id).asList())
-}
+fun Context.strings(id: Int) = resources.getStringArray(id).toList()
+fun Context.ints(id: Int): List<Int> = resources.getIntArray(id).toList()
 
 val Context.displayMetrics get():DisplayMetrics = resources.displayMetrics
 
