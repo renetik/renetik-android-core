@@ -5,6 +5,8 @@ import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
 import android.content.Context
 import android.os.Bundle
+import android.os.Process.killProcess
+import android.os.Process.myPid
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import renetik.android.core.kotlin.notImplemented
@@ -14,6 +16,7 @@ import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
 import kotlin.reflect.KClass
+import kotlin.system.exitProcess
 
 abstract class CSApplication<ActivityType : AppCompatActivity>
     : Application(), ActivityLifecycleCallbacks {
@@ -77,6 +80,11 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
     }
 
     open fun restart(onShutdown: Func? = null): Unit = notImplemented()
+
+    open fun exit() {
+        killProcess(myPid())
+        exitProcess(0)
+    }
 
     open val localizationContext get():Context = this
 }
