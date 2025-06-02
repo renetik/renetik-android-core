@@ -8,7 +8,7 @@ import java.math.RoundingMode
 import java.math.RoundingMode.CEILING
 import java.math.RoundingMode.UP
 import java.text.DecimalFormat
-import java.util.Locale
+import kotlin.Float.Companion.MAX_VALUE
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
@@ -40,8 +40,15 @@ inline fun Float.roundToDecimal(
 ).toFloat()
 
 inline fun Float.formatDecimal(n: Int): String {
-//    val prefix = if (this < 0) "-" else ""
-    return "%.${n}f".format(Locale.ENGLISH, this)
+    return "%.${n}f".format(this)
+}
+
+//fun Float.roundTo(decimals: Int): Float =
+//    formatDecimal(decimals).toFloat()
+
+fun Float.roundTo(decimals: Int): Float {
+    val factor = 10f.pow(decimals)
+    return (this * factor).roundToInt() / factor
 }
 
 inline fun Float.removeToDecimal(n: Int): Float {
