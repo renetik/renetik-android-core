@@ -17,7 +17,7 @@ inline fun File.forEachDir(action: (File) -> Unit) {
     listFiles(File::isDirectory)?.forEach(action)
 }
 
-fun File.recreateFileAndDirs() = apply {
+fun File.recreateFile() = apply {
     delete()
     createFileAndDirs()
 }
