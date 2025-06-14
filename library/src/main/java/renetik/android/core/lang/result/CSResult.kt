@@ -33,8 +33,8 @@ data class CSResult<Value>(
     suspend fun <T> ifSuccessReturn(function: suspend (Value) -> CSResult<T>): CSResult<T> =
         if (state == Success) {
             runCatching { function(value!!) }.getOrNull()
-                ?: CSResult(state, null, throwable, message)
-        } else CSResult(state, null, throwable, message)
+                ?: CSResult(Failure, null, throwable, message)
+        } else CSResult(Failure, null, throwable, message)
 
     suspend fun ifNotSuccess(function: suspend () -> Unit) = apply {
         if (state == Failure || state == Cancel) function()
