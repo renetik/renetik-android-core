@@ -37,6 +37,7 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
         registerActivityLifecycleCallbacks(this)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onLowMemory() {
         super.onLowMemory()
         logWarn { "onLowMemory" }
