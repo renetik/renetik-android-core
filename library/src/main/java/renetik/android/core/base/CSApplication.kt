@@ -10,6 +10,7 @@ import android.os.Process.myPid
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import renetik.android.core.kotlin.notImplemented
+import renetik.android.core.kotlin.primitives.isTrue
 import renetik.android.core.lang.CSEnvironment
 import renetik.android.core.lang.Func
 import renetik.android.core.logging.CSLog.logError
@@ -34,7 +35,18 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
     override fun onCreate() {
         super.onCreate()
         CSEnvironment.app = this
+        registerDefaultUncaughtExceptionHandler()
         registerActivityLifecycleCallbacks(this)
+    }
+
+    private fun registerDefaultUncaughtExceptionHandler() {
+        val defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
+        Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
+            val isNotAttachedError = throwable is IllegalArgumentException
+                    && throwable.message?.contains("not attached to window manager").isTrue
+            if (isNotAttachedError) logError(throwable, "Ignored window removal exception")
+            else defaultHandler?.uncaughtException(thread, throwable)
+        }
     }
 
     @Deprecated("Deprecated in Java")
