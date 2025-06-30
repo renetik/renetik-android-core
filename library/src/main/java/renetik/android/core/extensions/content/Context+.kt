@@ -29,6 +29,7 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.RECEIVER_EXPORTED
 import androidx.core.content.ContextCompat.RECEIVER_NOT_EXPORTED
+import androidx.core.net.toUri
 import renetik.android.core.kotlin.primitives.isFlagSet
 import renetik.android.core.lang.catchWarnReturnNull
 import renetik.android.core.logging.CSLog.logWarn
@@ -225,5 +226,9 @@ fun Context.startActivityForUriAndType(
     }
 }
 
-fun Context.openUrl(url: String) =
-    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+fun Context.openUrl(url: String, errorMessage: String) {
+    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    if (intent.resolveActivity(packageManager) != null) startActivity(intent)
+    else toast(errorMessage)
+}
