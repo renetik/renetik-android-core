@@ -2,6 +2,7 @@ package renetik.android.core.java.io
 
 import renetik.android.core.java.util.format
 import renetik.android.core.java.util.now
+import renetik.android.core.logging.CSLog.logError
 import java.io.File
 import java.io.File.createTempFile
 
@@ -34,6 +35,19 @@ fun File.createFileDirs() = apply {
 fun File.write(text: String) = apply {
     createFileAndDirs()
     writeText(text)
+}
+
+fun File.writeAtomic(text: String) {
+    createFileAndDirs()
+    val tmp = File(parentFile, "$name.tmp")
+    tmp.bufferedWriter().use { writer ->
+        writer.write(text)
+        writer.flush()
+    }
+    if (!tmp.renameTo(this)) {
+        tmp.delete()
+        logError("Could not rename ${tmp.path} to ${this.path}")
+    }
 }
 
 fun File.recreateDirs() = apply {
