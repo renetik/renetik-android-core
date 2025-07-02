@@ -95,6 +95,7 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
     open fun restart(onShutdown: Func? = null): Unit = notImplemented()
 
     open fun exit() {
+        logInfo()
         killProcess(myPid())
         exitProcess(0)
     }
