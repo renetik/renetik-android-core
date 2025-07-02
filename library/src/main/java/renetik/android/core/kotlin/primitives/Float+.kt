@@ -8,7 +8,6 @@ import java.math.RoundingMode
 import java.math.RoundingMode.CEILING
 import java.math.RoundingMode.UP
 import java.text.DecimalFormat
-import kotlin.Float.Companion.MAX_VALUE
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
@@ -73,6 +72,9 @@ inline fun Float.rest(value: Int): Float =
 
 inline fun Float.min(minimum: Float) = coerceAtLeast(minimum)
 inline fun Float.max(maximum: Float) = coerceAtMost(maximum)
+inline fun Float.coerceTo(range: ClosedFloatingPointRange<Float>) =
+    min(range.start).max(range.endInclusive)
+
 
 inline val Float.dp: Float get() = app.dpToPixelF(this)
 inline val Float.dpf: Float get() = app.dpToPixelF(this)
