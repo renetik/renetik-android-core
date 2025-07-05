@@ -4,6 +4,7 @@ import java.math.RoundingMode
 import java.math.RoundingMode.CEILING
 import java.text.DecimalFormat
 import java.util.Locale.ENGLISH
+import kotlin.math.pow
 
 val Double.Companion.Empty get() = MAX_VALUE
 fun Double.roundToStep(step: Double): Double = (this / step).toInt() * step
@@ -17,3 +18,5 @@ fun Double.formatDecimal(n: Int): Double {
 fun Double.formatRoundDecimal(
     format: String = "#.##", mode: RoundingMode = CEILING
 ): String = DecimalFormat(format).apply { roundingMode = mode }.format(this)
+
+fun Double.pow(exponent: Int): Double = this.pow(exponent.toDouble())

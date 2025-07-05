@@ -69,3 +69,24 @@ inline fun Int.nearestPowerOfTwo(): Int {
     if (this <= 0) return 1
     return Integer.highestOneBit(this)
 }
+
+/**
+ * Integer exponentiation.
+ * @param exponent must be ≥ 0
+ * @return this raised to the given exponent
+ * @throws IllegalArgumentException if exponent is negative
+ */
+fun Int.pow(exponent: Int): Int {
+    require(exponent >= 0) { "Exponent must be non-negative, was $exponent" }
+    var result = 1
+    var base = this
+    var exp = exponent
+    while (exp > 0) {
+        if (exp and 1 == 1) {
+            result *= base
+        }
+        base *= base
+        exp = exp shr 1
+    }
+    return result
+}
