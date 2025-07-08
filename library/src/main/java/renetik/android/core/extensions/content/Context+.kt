@@ -226,9 +226,12 @@ fun Context.startActivityForUriAndType(
     }
 }
 
-fun Context.openUrl(url: String, errorMessage: String) {
+fun Context.openUrl(url: String, errorMessage: String? = null) {
     val intent = Intent(Intent.ACTION_VIEW, url.toUri())
     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     if (intent.resolveActivity(packageManager) != null) startActivity(intent)
-    else toast(errorMessage)
+    else {
+        errorMessage?.also(::toast)
+        logWarn("Activity not found for url: $url")
+    }
 }
