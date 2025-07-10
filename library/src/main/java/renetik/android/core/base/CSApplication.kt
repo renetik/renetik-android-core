@@ -103,13 +103,15 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
 
     open fun hardRestart() {
         logInfo()
-        val intent = packageManager.getLaunchIntentForPackage(packageName)
-        if (intent == null) {
+        val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
+        if (launchIntent == null) {
             logWarn()
             killProcess(myPid())
             exitProcess(1)
         } else {
-            startActivity(Intent.makeRestartActivityTask(intent.component))
+            val intent = Intent.makeRestartActivityTask(launchIntent.component)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
             killProcess(myPid())
             exitProcess(0)
         }
