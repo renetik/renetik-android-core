@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Process.killProcess
 import android.os.Process.myPid
@@ -98,6 +99,20 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
         logInfo()
         killProcess(myPid())
         exitProcess(0)
+    }
+
+    open fun hardRestart() {
+        logInfo()
+        val intent = packageManager.getLaunchIntentForPackage(packageName)
+        if (intent == null) {
+            logWarn()
+            killProcess(myPid())
+            exitProcess(1)
+        } else {
+            startActivity(Intent.makeRestartActivityTask(intent.component))
+            killProcess(myPid())
+            exitProcess(0)
+        }
     }
 
     open val localizationContext get():Context = this
