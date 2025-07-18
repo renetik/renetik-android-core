@@ -196,20 +196,15 @@ private fun Context.launchComponent(packageName: String, name: String) {
     startActivity(intent)
 }
 
-private fun Context.showInMarket(packageName: String?) {
-    val intent =
-        Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName!!))
-    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-    startActivity(intent)
-}
+private fun Context.showInMarket(packageName: String?) =
+    openUrl("market://details?id=" + packageName!!)
 
 fun Context.startActivityForUri(
     uri: Uri, onActivityNotFound: ((ActivityNotFoundException) -> Unit)? = null
-) =
-    startActivityForUriAndType(uri, null, onActivityNotFound)
+) = startActivityForUriAndType(uri, null, onActivityNotFound)
 
 fun Context.startActivityForUriAndType(
-    uri: Uri, type: String?,
+    uri: Uri, type: String? = null,
     onActivityNotFound: ((ActivityNotFoundException) -> Unit)? = null
 ) {
     val intent = Intent(Intent.ACTION_VIEW)
