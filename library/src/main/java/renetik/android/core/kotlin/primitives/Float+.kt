@@ -13,6 +13,7 @@ import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
 val Float.Companion.Empty get() = MAX_VALUE
+val Float.isWhole: Boolean get() = this % 1.0 == 0.0
 val Float.isEmpty get() = this == Float.Empty
 val Float.isSet get() = !this.isEmpty
 fun Float.ifEmpty(function: (Float) -> Unit) = apply {

@@ -6,6 +6,7 @@ import java.text.DecimalFormat
 import java.util.Locale.ENGLISH
 import kotlin.math.pow
 
+val Double.isWhole: Boolean get() = this % 1.0 == 0.0
 val Double.Companion.Empty get() = MAX_VALUE
 fun Double.roundToStep(step: Double): Double = (this / step).toInt() * step
 
