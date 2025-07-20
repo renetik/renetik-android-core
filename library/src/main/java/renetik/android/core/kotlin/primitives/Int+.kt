@@ -59,6 +59,9 @@ inline val Int.pxf: Float get() = app.toDpF(this)
 inline val Int.second: Int get() = this * Second
 inline val Int.minute: Int get() = this * Minute
 
+inline fun Int.isPowerOfTwo(): Boolean =
+    this > 0 && (this and (this - 1)) == 0
+
 inline fun Int.nextPowerOfTwo(): Int {
     if (this <= 0) return 1
     return if (this and (this - 1) == 0) this
