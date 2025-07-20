@@ -10,15 +10,15 @@ object CSGuard {
 
     inline fun <T1, T2, R> guard(
         p1: T1?, p2: T2?,
-        block: (T1, T2) -> R
+        block: (Pair<T1, T2>) -> R
     ): R? = guard(p1, p2, true, block)
 
     inline fun <T1, T2, R> guard(
         p1: T1?, p2: T2?,
         condition: Boolean = true,
-        block: (T1, T2) -> R
+        block: (Pair<T1, T2>) -> R
     ): R? = if (p1 != null && p2 != null && condition)
-        block(p1, p2) else null
+        block(p1 to p2) else null
 
     inline fun <T1, T2, T3, R> guard(
         p1: T1?, p2: T2?, p3: T3?,
