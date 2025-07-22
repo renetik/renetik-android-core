@@ -23,11 +23,10 @@ fun <T> Collection<T>.hasNot(vararg elements: T): Boolean {
     return true
 }
 
-fun <T> Collection<T>.index(item: T): Int? =
-    indexOf(item).let { if (it == -1) null else it }
+fun <T> Collection<T>.index(item: T): Int? = indexOf(item).takeIf { it >= 0 }
 
 fun <T> Collection<T>.firstIndex(predicate: (T) -> Boolean): Int? =
-    indexOfFirst(predicate).let { if (it == -1) null else it }
+    indexOfFirst(predicate).takeIf { it >= 0 }
 
 fun <T> Collection<T>.lastIndex(predicate: (T) -> Boolean): Int? =
-    indexOfLast(predicate).let { if (it == -1) null else it }
+    indexOfLast(predicate).takeIf { it >= 0 }

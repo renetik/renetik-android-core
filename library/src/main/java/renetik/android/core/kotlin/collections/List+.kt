@@ -133,3 +133,6 @@ inline val <reified T> List<T>.doubled
         else index - size
         this[valueIndex]
     }
+
+fun <T> List<T>.swap(first: Int, second: Int): List<T> =
+    mutable().apply { swap(first, second) }
