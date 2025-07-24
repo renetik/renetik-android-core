@@ -127,6 +127,7 @@ fun CharSequence.containsAll(words: List<String>, ignoreCase: Boolean = false): 
 }
 
 fun String.vertical(): String = fold("") { acc, char -> "$acc$char\n" }.dropLast(1)
+fun String.noBreakSpace(): String = replace(' ', '\u00A0')
 
 fun Pair<String?, String?>.joinToString(
     separator: CharSequence = ", ", prefix: CharSequence = "",
