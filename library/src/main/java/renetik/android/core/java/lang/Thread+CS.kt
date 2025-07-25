@@ -1,8 +1,8 @@
 package renetik.android.core.java.lang
 
-import android.os.Looper.getMainLooper
+import android.os.Looper
 import java.lang.Thread.currentThread
 
-val Thread.isMain get() = getMainLooper().thread == this
-
-val isThreadMain get() = getMainLooper().thread == currentThread()
+private val mainThread: Thread = Looper.getMainLooper().thread
+val Thread.isMain get() = mainThread == this
+val isThreadMain get() = mainThread == currentThread()
