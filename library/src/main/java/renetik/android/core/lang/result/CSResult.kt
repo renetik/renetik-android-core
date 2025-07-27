@@ -32,8 +32,9 @@ data class CSResult<Value>(
     @JvmName("onSuccessValueToResult")
     suspend fun <T> ifSuccessReturn(function: suspend (Value) -> CSResult<T>): CSResult<T> =
         if (state == Success) {
-            runCatching { function(value!!) }.getOrNull()
-                ?: CSResult(Failure, null, throwable, message)
+            val result = runCatching { function(value!!) }
+                .onFailure { throwable = it }.getOrNull()
+            result ?: CSResult(Failure, null, throwable, message)
         } else CSResult(Failure, null, throwable, message)
 
     suspend fun ifNotSuccess(function: suspend () -> Unit) = apply {
