@@ -29,7 +29,9 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.RECEIVER_EXPORTED
 import androidx.core.content.ContextCompat.RECEIVER_NOT_EXPORTED
+import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import androidx.core.net.toUri
+import renetik.android.core.kotlin.collections.list
 import renetik.android.core.kotlin.primitives.isFlagSet
 import renetik.android.core.lang.catchWarnReturnNull
 import renetik.android.core.logging.CSLog.logWarn
@@ -230,3 +232,20 @@ fun Context.openUrl(url: String, errorMessage: String? = null) {
         logWarn("Activity not found for url: $url")
     }
 }
+
+fun Context.getDeniedPermissions(permissions: List<String>): Array<String> {
+    val deniedPermissions = list<String>()
+    for (permission in permissions)
+        if (!isPermissionGranted(permission)) deniedPermissions.add(permission)
+    return deniedPermissions.toTypedArray()
+}
+
+fun Context.isPermissionGranted(permission: String): Boolean {
+    return ContextCompat.checkSelfPermission(this, permission) == PERMISSION_GRANTED
+}
+
+fun Context.isPermissionsGranted(vararg permissions: String): Boolean =
+    permissions.all { isPermissionGranted(it) }
+
+fun Context.isPermissionsGranted(permissions: Iterable<String>): Boolean =
+    permissions.all { isPermissionGranted(it) }
