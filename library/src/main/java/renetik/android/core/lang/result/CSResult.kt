@@ -25,7 +25,7 @@ data class CSResult<Value>(
         dispatcher: CoroutineDispatcher,
         function: suspend (Value) -> Unit) = apply {
         if (state == Success) runCatching {
-            dispatcher.context { function(value!!) }
+            dispatcher { function(value!!) }
         }.onFailure { throwable = it }
     }
 

@@ -25,7 +25,7 @@ object CSEnvironment {
         }.onFailure(::logWarn).getOrElse {
             throw Exception(
                 "Getting Application from ActivityThread failed, " +
-                    "consider setting it manually."
+                        "consider setting it manually."
             )
         }
     }
@@ -55,22 +55,22 @@ object CSEnvironment {
 
     val isEmulator: Boolean by lazy {
         (BRAND.startsWith("generic") && DEVICE.startsWith("generic")
-            || FINGERPRINT.startsWith("generic")
-            || FINGERPRINT.startsWith("unknown")
-            || "goldfish" in HARDWARE
-            || "ranchu" in HARDWARE
-            || "google_sdk" in MODEL
-            || "Emulator" in MODEL
-            || "Android SDK built for x86" in MODEL
-            || "Genymotion" in MANUFACTURER
-            || "sdk_google" in PRODUCT
-            || "google_sdk" in PRODUCT
-            || "sdk" in PRODUCT
-            || "sdk_x86" in PRODUCT
-            || "sdk_gphone64_arm64" in PRODUCT
-            || "vbox86p" in PRODUCT
-            || "emulator" in PRODUCT
-            || "simulator" in PRODUCT).apply {
+                || FINGERPRINT.startsWith("generic")
+                || FINGERPRINT.startsWith("unknown")
+                || "goldfish" in HARDWARE
+                || "ranchu" in HARDWARE
+                || "google_sdk" in MODEL
+                || "Emulator" in MODEL
+                || "Android SDK built for x86" in MODEL
+                || "Genymotion" in MANUFACTURER
+                || "sdk_google" in PRODUCT
+                || "google_sdk" in PRODUCT
+                || "sdk" in PRODUCT
+                || "sdk_x86" in PRODUCT
+                || "sdk_gphone64_arm64" in PRODUCT
+                || "vbox86p" in PRODUCT
+                || "emulator" in PRODUCT
+                || "simulator" in PRODUCT).apply {
 //            if (isTrue) logDebug { message("Running in emulator") }
         }
     }
