@@ -24,6 +24,10 @@ inline val CSValue<Boolean?>.isTrue: Boolean
 inline val CSValue<Boolean>.isFalse: Boolean
     get() = !value
 
+@get:JvmName("CSValueBooleanOptionalIsFalse")
+inline val CSValue<Boolean>?.isFalse: Boolean
+    get() = this?.value == false
+
 //─────────────────────────────────────────
 // Null-safe isTrue() for CSValue<Boolean?>
 //─────────────────────────────────────────
