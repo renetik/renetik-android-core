@@ -29,8 +29,9 @@ inline fun Int.Companion.random(min: Int = 0, max: Int = MAX_VALUE): Int {
     return Random.nextInt(max - min + 1) + min
 }
 
-inline fun Int.max(maximumValue: Int) = if (this < maximumValue) this else maximumValue
-inline fun Int.min(minimumValue: Int) = if (this > minimumValue) this else minimumValue
+//TODO: Inline
+inline fun Int.max(maximumValue: Int) = coerceAtMost(maximumValue)
+inline fun Int.min(minimumValue: Int) = coerceAtLeast(minimumValue)
 
 inline infix fun Int.isFlagSet(bitwise: Int) = bitwise and this != 0
 inline infix fun Int.isFlagNotSet(bitwise: Int) = !this.isFlagSet(bitwise)
