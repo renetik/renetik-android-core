@@ -16,28 +16,28 @@ import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
-operator fun Int.minus(other: Int?): Int = this - (other ?: 0)
-operator fun Int.plus(other: Int?): Int = this + (other ?: 0)
+inline operator fun Int.minus(other: Int?): Int = this - (other ?: 0)
+inline operator fun Int.plus(other: Int?): Int = this + (other ?: 0)
 
 
 private val counter = AtomicInteger(0)
 fun Int.Companion.unique(length: Int = 9): Int =
     "${counter.incrementAndGet()}${nanoTime()}".substring(0, length).toInt()
 
-fun Int.Companion.random(min: Int = 0, max: Int = MAX_VALUE): Int {
+inline fun Int.Companion.random(min: Int = 0, max: Int = MAX_VALUE): Int {
     if (min >= max) throw IllegalArgumentException("max must be greater than min")
     return Random.nextInt(max - min + 1) + min
 }
 
-fun Int.max(maximumValue: Int) = if (this < maximumValue) this else maximumValue
-fun Int.min(minimumValue: Int) = if (this > minimumValue) this else minimumValue
+inline fun Int.max(maximumValue: Int) = if (this < maximumValue) this else maximumValue
+inline fun Int.min(minimumValue: Int) = if (this > minimumValue) this else minimumValue
 
-infix fun Int.isFlagSet(bitwise: Int) = bitwise and this != 0
-infix fun Int.isFlagNotSet(bitwise: Int) = !this.isFlagSet(bitwise)
+inline infix fun Int.isFlagSet(bitwise: Int) = bitwise and this != 0
+inline infix fun Int.isFlagNotSet(bitwise: Int) = !this.isFlagSet(bitwise)
 
-val Int.isFirstIndex get() = this == 0
-val Int.asIndex get() = this - 1
-fun Int.isLastIndex(index: Int) = index == this - 1
+inline val Int.isFirstIndex get() = this == 0
+inline val Int.asIndex get() = this - 1
+inline fun Int.isLastIndex(index: Int) = index == this - 1
 
 inline val Int.isEven: Boolean get() = this % 2 == 0
 inline val Int.isOdd: Boolean get() = !isEven
@@ -79,7 +79,7 @@ inline fun Int.nearestPowerOfTwo(): Int {
  * @return this raised to the given exponent
  * @throws IllegalArgumentException if exponent is negative
  */
-fun Int.pow(exponent: Int): Int {
+inline fun Int.pow(exponent: Int): Int {
     require(exponent >= 0) { "Exponent must be non-negative, was $exponent" }
     var result = 1
     var base = this
