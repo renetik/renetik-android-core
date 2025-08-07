@@ -8,6 +8,7 @@ import java.math.RoundingMode
 import java.math.RoundingMode.CEILING
 import java.math.RoundingMode.UP
 import java.text.DecimalFormat
+import kotlin.math.ceil
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
@@ -71,6 +72,7 @@ inline val Float.rest: Float
 inline fun Float.rest(value: Int): Float =
     if (value > 0) this % value else this
 
+inline fun Float.ceil(): Int = ceil(this).toInt()
 inline fun Float.min(minimum: Float) = coerceAtLeast(minimum)
 inline fun Float.max(maximum: Float) = coerceAtMost(maximum)
 inline fun Float.coerceTo(range: ClosedFloatingPointRange<Float>) =
