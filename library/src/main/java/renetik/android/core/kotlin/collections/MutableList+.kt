@@ -42,7 +42,7 @@ fun <T, ListType : MutableList<T>> ListType.replace(item: T, index: Int) =
 fun <T, ListType : MutableList<T>> ListType.set(item: T, index: Int) =
     item.apply { set(index, item) }
 
-fun <T, ListType : MutableList<T>> ListType.reload(values: Iterable<T>) =
+infix fun <T, ListType : MutableList<T>> ListType.reload(values: Iterable<T>) =
     deleteAll().putAll(values)
 
 fun <T, ListType : MutableList<T>> ListType.delete(item: T): T =
