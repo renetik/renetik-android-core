@@ -14,6 +14,7 @@ import renetik.android.core.kotlin.notImplemented
 import renetik.android.core.kotlin.primitives.isTrue
 import renetik.android.core.lang.CSEnvironment
 import renetik.android.core.lang.Func
+import renetik.android.core.lang.variable.CSWeakVariable.Companion.weak
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
@@ -63,7 +64,7 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
 
     abstract val activityClass: KClass<out ActivityType>
 
-    var activity: ActivityType? = null
+    var activity: ActivityType? by weak()
         protected set
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
