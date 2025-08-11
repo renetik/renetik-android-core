@@ -39,4 +39,8 @@ object CSLeakCanary : CSLeakCanaryInterface {
         )
         showLeakDisplayActivityLauncherIcon(isEnabled)
     }
+
+    init {
+        updateConfiguration(isEnabled)
+    }
 }
