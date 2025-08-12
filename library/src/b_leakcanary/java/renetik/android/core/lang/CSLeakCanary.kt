@@ -11,8 +11,8 @@ import shark.ObjectInspector
 import shark.ReferencePattern.InstanceFieldPattern
 import shark.ReferencePattern.StaticFieldPattern
 
-val CLASS_PREFIXES = listOf("renetik.android.")
-val FIELD_CANDIDATES = listOf("id", "key", "name", "title", "parent")
+val CLASS_PREFIXES = listOf("renetik.android.", "com.renetik.")
+val FIELD_CANDIDATES = listOf("id", "key", "name", "title", "parent", "text")
 val objectInspector = ObjectInspector { reporter ->
     val heapObject = reporter.heapObject
     val instance = heapObject.asInstance ?: return@ObjectInspector
