@@ -12,32 +12,49 @@ import shark.ReferencePattern.InstanceFieldPattern
 import shark.ReferencePattern.StaticFieldPattern
 
 val CLASS_PREFIXES = listOf("renetik.android.", "com.renetik.")
-val FIELD_CANDIDATES = listOf("id", "key", "name", "title", "parent", "text")
+val FIELD_CANDIDATES = listOf("id", "key", "name", "title", "text")
+val REF_FIELDS = listOf("parent", "preset")
+
 val objectInspector = ObjectInspector { reporter ->
     val heapObject = reporter.heapObject
     val instance = heapObject.asInstance ?: return@ObjectInspector
     val instanceClassName = instance.instanceClassName
     if (!CLASS_PREFIXES.any { instanceClassName.startsWith(it) }) return@ObjectInspector
-    val found = mutableListOf<String>()
-    FIELD_CANDIDATES.forEach { fieldName ->
-        runCatching {
-            val heapField = instance[instanceClassName, fieldName] ?: return@forEach
-            val heapFieldString = heapField.value.readAsJavaString()
-            if (!heapFieldString.isNullOrBlank()) found.add("$fieldName=$heapFieldString")
-        }
-    }
-    listOf("parent").forEach { referenceField ->
-        runCatching {
-            val reference = instance[instanceClassName, referenceField]
-                ?.value?.asObject?.asInstance
-            if (reference != null) FIELD_CANDIDATES.forEach { candidate ->
-                val heapField = reference[reference.instanceClassName, candidate]
-                val heapFieldString = heapField?.value?.readAsJavaString()
-                if (!heapFieldString.isNullOrBlank())
-                    found.add("$referenceField.$candidate=$heapFieldString")
+    val found = mutableSetOf<String>()
+    // 1) Primary: scan all instance fields (covers fields declared on superclasses)
+    runCatching {
+        instance.readFields().forEach { f ->
+            val name = f.name
+            if (name in FIELD_CANDIDATES) {
+                val s = runCatching { f.value.readAsJavaString() }.getOrNull()
+                if (!s.isNullOrBlank()) found.add("$name=$s")
             }
         }
     }
+    // 2) Secondary: explicit per-class field lookup (keeps your old approach as fallback)
+    if (found.isEmpty()) {
+        FIELD_CANDIDATES.forEach { fieldName ->
+            runCatching {
+                val hf = instance[instanceClassName, fieldName] ?: return@runCatching
+                val s = hf.value.readAsJavaString()
+                if (!s.isNullOrBlank()) found.add("$fieldName=$s")
+            }
+        }
+    }
+    // 3) Tertiary: follow one-level refs and inspect their instance fields (preset/parent/owner)
+    REF_FIELDS.forEach { refField ->
+        runCatching {
+            val ref = instance[instanceClassName, refField]?.value?.asObject?.asInstance
+            ref?.readFields()?.forEach { field ->
+                val fieldName = field.name
+                if (fieldName in FIELD_CANDIDATES) {
+                    val s = runCatching { field.value.readAsJavaString() }.getOrNull()
+                    if (!s.isNullOrBlank()) found.add("$refField.$fieldName=$s")
+                }
+            }
+        }
+    }
+    // attach labels
     if (found.isNotEmpty()) found.forEach { reporter.labels.add(it) }
 }
 
