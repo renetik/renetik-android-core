@@ -168,6 +168,7 @@ infix fun CSValue<Boolean>?.or(second: Boolean?): Boolean =
 infix fun Boolean.and(boolean: CSValue<Boolean>) =
     this && boolean.value
 
+
 // Boolean · CSValue<Boolean?>
 @JvmName("and_CSValueOfNullableBoolean")
 infix fun Boolean.and(boolean: CSValue<Boolean?>) =
