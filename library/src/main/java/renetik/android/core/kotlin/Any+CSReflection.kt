@@ -22,9 +22,6 @@ fun <T> createClass(className: String): Class<T>? = runCatching {
     Class.forName(className) as? Class<T>
 }.onFailure(::logWarn).getOrNull()
 
-inline fun <reified T> createInstance(): T? =
-    T::class.java.createInstance()
-
 fun classExist(name: String): Boolean = runCatching {
     Class.forName(name); true
 }.getOrDefault(false)
