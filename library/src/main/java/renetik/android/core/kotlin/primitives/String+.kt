@@ -13,6 +13,7 @@ import renetik.android.core.lang.catchWarnReturnNull
 import java.text.Normalizer
 import java.util.Locale
 import java.util.Random
+import kotlin.text.ifEmpty
 
 inline val String.Companion.alphabet get() = CSStringConstants.alphabet
 inline val String.Companion.NewLine get() = CSStringConstants.NewLine
@@ -143,3 +144,8 @@ fun String.splitInTwo(): Pair<String, String> {
 
 fun String?.isValidEmail(): Boolean =
     !isNullOrEmpty() && EMAIL_ADDRESS.matcher(this).matches()
+
+private val ILLEGAL_FILENAME_CHARS = Regex("[\\x00-\\x1F\\\\/:*?\"<>|]")
+fun String.sanitizeForFile(default: String, max: Int = 200): String = this
+    .replace(ILLEGAL_FILENAME_CHARS, " ").replace(Regex("\\s+"), " ").trim()
+    .take(max).trimEnd { c -> c == '.' || c == ' ' }.ifEmpty { default }
