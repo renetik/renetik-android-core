@@ -100,6 +100,8 @@ object CSLog {
     fun logError(throwable: Throwable?, message: String?) =
         then { logImpl(Error) { message(throwable, message) } }
 
+    fun logErrorTrace() = then { logImpl(Error) { message(Throwable()) } }
+
     fun logErrorTrace(function: () -> String) =
         then { logImpl(Error) { message(Throwable(), function.invoke()) } }
 
