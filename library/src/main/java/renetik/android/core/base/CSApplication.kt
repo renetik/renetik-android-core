@@ -5,30 +5,34 @@ import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
-import android.os.Process.killProcess
-import android.os.Process.myPid
+import android.view.WindowManager
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import renetik.android.core.extensions.content.CSToast.toast
+import renetik.android.core.kotlin.findCause
 import renetik.android.core.kotlin.notImplemented
 import renetik.android.core.kotlin.primitives.isTrue
+import renetik.android.core.kotlin.unexpected
 import renetik.android.core.lang.CSEnvironment
+import renetik.android.core.lang.CSHandler.mainHandler
+import renetik.android.core.lang.CSLang.exit
 import renetik.android.core.lang.Func
+import renetik.android.core.lang.send
 import renetik.android.core.lang.variable.CSWeakVariable.Companion.weak
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
 import kotlin.reflect.KClass
-import kotlin.system.exitProcess
 
-abstract class CSApplication<ActivityType : AppCompatActivity>
-    : Application(), ActivityLifecycleCallbacks {
+abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
+    ActivityLifecycleCallbacks {
 
     companion object {
         val app get() = CSEnvironment.app as CSApplication<*>
 
-        fun getString(@StringRes resId: Int): String =
-            app.localizationContext.getString(resId)
+        fun getString(@StringRes resId: Int): String = app.localizationContext.getString(resId)
 
         fun getString(@StringRes resId: Int, vararg formatArgs: Any?): String =
             app.localizationContext.getString(resId, *formatArgs)
@@ -44,15 +48,31 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
     private fun registerDefaultUncaughtExceptionHandler() {
         val defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
-            val isNotAttachedError = throwable is IllegalArgumentException
-                    && throwable.message?.contains("not attached to window manager").isTrue
-            if (isNotAttachedError) logError(throwable, "Ignored window removal exception")
-            else defaultHandler?.uncaughtException(thread, throwable)
+            when {
+                throwable.isNotAttachedError() ->
+                    logError(throwable, "Ignored window removal exception")
+                throwable.isIncrementalInstallMissingResource() -> {
+                    toast("App installation is corrupted."); exit(status = 0)
+                }
+                else -> defaultHandler?.uncaughtException(thread, throwable)
+            }
         }
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onLowMemory() {
+    private fun Throwable.isNotAttachedError(): Boolean = findCause {
+        (it is IllegalArgumentException && message?.contains("not attached to window manager").isTrue)
+                || (it is WindowManager.BadTokenException)
+    }
+
+    private fun Throwable.isIncrementalInstallMissingResource(): Boolean = findCause {
+        (it as? Resources.NotFoundException)?.message.let { message ->
+            message?.contains("not fully present", ignoreCase = true).isTrue ||
+                    message?.contains("file not fully present", ignoreCase = true).isTrue ||
+                    message?.contains("incremental", ignoreCase = true).isTrue
+        }
+    }
+
+    @Deprecated("Deprecated in Java") override fun onLowMemory() {
         super.onLowMemory()
         logWarn { "onLowMemory" }
     }
@@ -69,12 +89,8 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         if (!activityClass.isInstance(activity)) return
-        if (this.activity?.isDestroyed == false ||
-            this.activity?.isFinishing == false
-        ) logError(
-            "activity should be destroyed or null, " +
-                    "when new is created, in single activity application"
-        )
+        if (this.activity?.isDestroyed == false || this.activity?.isFinishing == false)
+            logError("activity should be destroyed or null, " + "when new is created, in single activity application")
         @Suppress("UNCHECKED_CAST")
         this.activity = activity as ActivityType
     }
@@ -98,8 +114,7 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
 
     open fun exit() {
         logInfo()
-        killProcess(myPid())
-        exitProcess(0)
+        exit(status = 0)
     }
 
     open fun hardRestart() {
@@ -107,13 +122,11 @@ abstract class CSApplication<ActivityType : AppCompatActivity>
         val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
         if (launchIntent == null) {
             logWarn()
-            killProcess(myPid())
-            exitProcess(1)
+            exit(status = 1)
         } else {
             val intent = Intent.makeRestartActivityTask(launchIntent.component)
             startActivity(intent)
-            killProcess(myPid())
-            exitProcess(0)
+            exit(status = 0)
         }
     }
 
