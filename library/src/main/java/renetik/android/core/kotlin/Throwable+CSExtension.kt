@@ -3,6 +3,15 @@ package renetik.android.core.kotlin
 import java.io.PrintWriter
 import java.io.StringWriter
 
+fun Throwable.findCause(predicate: (Throwable) -> Boolean): Boolean {
+    var cur: Throwable? = this
+    while (cur != null) {
+        if (predicate(cur)) return true
+        cur = cur.cause
+    }
+    return false
+}
+
 val Throwable.rootCauseMessage get() = rootCause?.message
 
 val Throwable.rootCause: Throwable?
