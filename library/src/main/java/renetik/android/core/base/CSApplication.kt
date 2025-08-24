@@ -14,16 +14,14 @@ import renetik.android.core.extensions.content.CSToast.toast
 import renetik.android.core.kotlin.findCause
 import renetik.android.core.kotlin.notImplemented
 import renetik.android.core.kotlin.primitives.isTrue
-import renetik.android.core.kotlin.unexpected
 import renetik.android.core.lang.CSEnvironment
-import renetik.android.core.lang.CSHandler.mainHandler
 import renetik.android.core.lang.CSLang.exit
 import renetik.android.core.lang.Func
-import renetik.android.core.lang.send
 import renetik.android.core.lang.variable.CSWeakVariable.Companion.weak
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
+import java.lang.Thread.sleep
 import kotlin.reflect.KClass
 
 abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
@@ -52,7 +50,7 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
                 throwable.isNotAttachedError() ->
                     logError(throwable, "Ignored window removal exception")
                 throwable.isIncrementalInstallMissingResource() -> {
-                    toast("App installation is corrupted."); exit(status = 0)
+                    toast("App installation is corrupted."); sleep(500); exit(status = 1)
                 }
                 else -> defaultHandler?.uncaughtException(thread, throwable)
             }
