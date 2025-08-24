@@ -157,7 +157,7 @@ object CSLog {
 
     private val timeFormat by lazy { getDateTimeInstance() }
 
-    fun createMessage(message: Any?) = Array(3) {
+    private fun createMessage(message: Any?) = Array(3) {
         when (it) {
             0 -> timeFormat.format(currentTimeMillis())
             1 -> getTraceLine()
