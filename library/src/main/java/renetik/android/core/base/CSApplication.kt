@@ -47,6 +47,7 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
         val defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
             when {
+                throwable.isNotAttachedError() -> logWarn("Ignored dead system exception")
                 throwable.isNotAttachedError() ->
                     logError(throwable, "Ignored window removal exception")
                 throwable.isIncrementalInstallMissingResource() -> {
@@ -55,6 +56,10 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
                 else -> defaultHandler?.uncaughtException(thread, throwable)
             }
         }
+    }
+
+    private fun Throwable.isSystemDead(): Boolean = findCause {
+        (it is android.os.DeadSystemException || it::class.java.simpleName == "DeadSystemRuntimeException")
     }
 
     private fun Throwable.isNotAttachedError(): Boolean = findCause {
