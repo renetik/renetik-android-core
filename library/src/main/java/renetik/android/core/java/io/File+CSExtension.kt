@@ -93,3 +93,7 @@ fun File.fileList(depth: Int): List<File> {
     recurse(this, 0)
     return files
 }
+
+fun File.deleteAll() = apply {
+    if (exists()) if (isDirectory) deleteRecursively() else delete()
+}
