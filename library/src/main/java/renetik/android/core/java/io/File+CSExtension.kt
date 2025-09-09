@@ -1,7 +1,9 @@
 package renetik.android.core.java.io
 
+import renetik.android.core.java.lang.isThreadMain
 import renetik.android.core.java.util.format
 import renetik.android.core.java.util.now
+import renetik.android.core.logging.CSLog.logDebug
 import renetik.android.core.logging.CSLog.logError
 import java.io.File
 import java.io.File.createTempFile
@@ -64,7 +66,11 @@ fun File.createDatedFile(extension: String): File {
     return createTempFile(now.format("yyyy-MM-dd_HH-mm-ss"), ".$extension", this)
 }
 
-fun File.readString() = if (exists()) readText() else null
+fun File.readString(): String? {
+    if (isThreadMain)
+        logDebug("load called on UI thread")
+    return if (exists()) readText() else null
+}
 
 val File.isDirEmpty get() = list()?.isEmpty() ?: !exists()
 
