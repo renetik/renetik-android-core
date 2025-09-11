@@ -30,10 +30,10 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
     companion object {
         val app get() = CSEnvironment.app as CSApplication<*>
 
-        fun getString(@StringRes resId: Int): String = app.localizationContext.getString(resId)
+        fun getString(@StringRes resId: Int): String = app.languageContext.getString(resId)
 
         fun getString(@StringRes resId: Int, vararg formatArgs: Any?): String =
-            app.localizationContext.getString(resId, *formatArgs)
+            app.languageContext.getString(resId, *formatArgs)
     }
 
     override fun onCreate() {
@@ -133,5 +133,5 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
         }
     }
 
-    open val localizationContext get():Context = this
+    open val languageContext get():Context = this
 }
