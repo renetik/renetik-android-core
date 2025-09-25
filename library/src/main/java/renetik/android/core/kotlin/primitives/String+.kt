@@ -13,7 +13,6 @@ import renetik.android.core.lang.catchWarnReturnNull
 import java.text.Normalizer
 import java.util.Locale
 import java.util.Random
-import kotlin.text.ifEmpty
 
 inline val String.Companion.alphabet get() = CSStringConstants.alphabet
 inline val String.Companion.NewLine get() = CSStringConstants.NewLine
@@ -50,12 +49,9 @@ fun String.Companion.contains(
 fun String.Companion.range(start: Int, endInclusive: Int): List<String> =
     IntRange(start, endInclusive).map { "$it" }
 
-inline val String?.isEmpty get() = this?.trim()?.isEmpty() ?: true
-inline val String?.isSet get() = !this.isEmpty
+inline val String?.isBlank get() = this?.isBlank() ?: true
+inline val String?.isSet get() = !this.isBlank
 inline val String?.setOrNull get() = if (isSet) this else null
-inline fun String.ifEmpty(function: (String) -> Unit) = apply {
-    if (this.isEmpty) function(this)
-}
 
 inline fun String.ifSet(function: (String) -> Unit) = apply {
     if (this.isSet) function(this)
@@ -148,4 +144,4 @@ fun String?.isValidEmail(): Boolean =
 private val ILLEGAL_FILENAME_CHARS = Regex("[\\x00-\\x1F\\\\/:*?\"<>|]")
 fun String.sanitizeForFile(default: String, max: Int = 200): String = this
     .replace(ILLEGAL_FILENAME_CHARS, " ").replace(Regex("\\s+"), " ").trim()
-    .take(max).trimEnd { c -> c == '.' || c == ' ' }.ifEmpty { default }
+    .take(max).trimEnd { c -> c == '.' || c == ' ' }.ifBlank { default }
