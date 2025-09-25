@@ -47,7 +47,7 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
         val defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
             when {
-                throwable.isNotAttachedError() -> logWarn("Ignored dead system exception")
+                throwable.isSystemDead() -> logWarn("Ignored dead system exception")
                 throwable.isNotAttachedError() ->
                     logError(throwable, "Ignored window removal exception")
                 throwable.isIncrementalInstallMissingResource() -> {
