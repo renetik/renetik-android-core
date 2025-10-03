@@ -19,10 +19,11 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import renetik.android.core.lang.CSHasId
+import androidx.core.graphics.toColorInt
 
 data class CSColor(@ColorInt val color: Int) : CSHasId {
 
-    constructor(hex: String) : this(parseColor(hex))
+    constructor(hex: String) : this(hex.toColorInt())
 
     fun toHex(): String = String.format("#%06X", (0xFFFFFF and color))
 
