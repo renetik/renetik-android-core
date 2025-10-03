@@ -7,6 +7,9 @@ import renetik.android.core.logging.CSLog.logDebug
 import renetik.android.core.logging.CSLog.logError
 import java.io.File
 import java.io.File.createTempFile
+import java.nio.file.AtomicMoveNotSupportedException
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 
 fun File.items(): List<File> = listFiles()?.toList() ?: emptyList()
 fun File.files(): List<File> = listFiles(File::isFile)?.toList() ?: emptyList()
@@ -102,4 +105,19 @@ fun File.fileList(depth: Int): List<File> {
 
 fun File.deleteAll() = apply {
     if (exists()) if (isDirectory) deleteRecursively() else delete()
+}
+
+fun File.atomicMove(output: File) {
+    try {
+        Files.move(toPath(),
+            output.toPath(),
+            StandardCopyOption.ATOMIC_MOVE,
+            StandardCopyOption.REPLACE_EXISTING)
+    } catch (e: AtomicMoveNotSupportedException) {
+        Files.move(toPath(), output.toPath(), StandardCopyOption.REPLACE_EXISTING)
+    }
+}
+
+fun File.safeDelete() {
+    runCatching { deleteRecursively() }
 }
