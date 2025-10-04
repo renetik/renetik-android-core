@@ -161,7 +161,6 @@ fun Context.createContextForLocale(locale: Locale): Context {
 
 val Context.isPlayStoreInstalled get() = isPackageInstalled("com.android.vending")
 
-@Suppress("DEPRECATION")
 fun Context.isPackageInstalled(packageName: String): Boolean = try {
     packageManager.getPackageInfo(packageName, 0)
     true
@@ -177,7 +176,6 @@ fun Context.startApplication(packageName: String) {
         val intent = Intent("android.intent.action.MAIN")
         intent.addCategory("android.intent.category.LAUNCHER")
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-        @Suppress("DEPRECATION")
         val resolveInfoList = packageManager.queryIntentActivities(intent, 0)
         for (info in resolveInfoList)
             if (info.activityInfo.packageName.equals(packageName, ignoreCase = true)) {
