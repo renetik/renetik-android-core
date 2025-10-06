@@ -6,11 +6,11 @@ inline fun <T : Any> T.then(function: (T) -> Unit): Unit = function(this)
 
 //TODO: Could be named letIf ?
 inline fun <T : Any> T.changeIf(
-    condition: Boolean, function: (T) -> T
+    condition: Boolean, function: (T).() -> T
 ) = if (condition) function(this) else this
 
 inline fun <T : Any, P : Any> T.changeIfNotNull(
-    parameter: P?, function: (T, P) -> T
+    parameter: P?, function: (T).(P) -> T
 ) = if (parameter != null) function(this, parameter) else this
 
 inline fun <T : Any> T.changeIf(
