@@ -23,4 +23,4 @@ fun @receiver:ColorInt Int.setAlpha(alpha: Float): Int {
     return (this and 0x00FFFFFF) or (alphaInt shl 24)
 }
 
-val Float.alphaInt: Int get() = (this * 255).toInt()
+val Float.alphaInt: Int get() = (coerceIn(0f, 1f) * 255).toInt()

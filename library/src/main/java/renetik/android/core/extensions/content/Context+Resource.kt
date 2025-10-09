@@ -24,6 +24,7 @@ import android.util.TypedValue.applyDimension
 import android.view.ContextThemeWrapper
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -121,6 +122,9 @@ private fun Context.attributeValue(@AttrRes attribute: Int) =
 @ColorInt
 fun Context.themeAttributeColor(theme: Int, attribute: Int): Int =
     ContextThemeWrapper(this, theme).attributeColor(attribute)
+
+@ColorInt
+fun Context.resourceColor(@ColorRes resource: Int): Int = getColor(resource)
 
 @ColorInt
 fun Context.attributeColor(@AttrRes attribute: Int): Int =
