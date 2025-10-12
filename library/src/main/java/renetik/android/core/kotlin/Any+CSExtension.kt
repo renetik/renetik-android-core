@@ -4,9 +4,12 @@ import renetik.android.core.lang.CSHasId
 
 inline fun <T : Any> T.then(function: (T) -> Unit): Unit = function(this)
 
-//TODO: Could be named letIf ?
 inline fun <T : Any> T.changeIf(
     condition: Boolean, function: (T).() -> T
+) = if (condition) function(this) else this
+
+inline fun <T : Any> T.letIf(
+    condition: Boolean, function: (T) -> T
 ) = if (condition) function(this) else this
 
 inline fun <T : Any, P : Any> T.changeIfNotNull(
