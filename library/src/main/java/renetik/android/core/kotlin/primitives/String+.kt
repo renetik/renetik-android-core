@@ -138,6 +138,12 @@ fun String.splitInTwo(): Pair<String, String> {
     return this.substring(0, mid) to this.substring(mid)
 }
 
+fun String.splitInTwo(separator: String): Pair<String, String?> {
+    val index = indexOf(separator)
+    return if (index == -1) this to null
+    else substring(0, index) to substring(index + separator.length)
+}
+
 fun String?.isValidEmail(): Boolean =
     !isNullOrEmpty() && EMAIL_ADDRESS.matcher(this).matches()
 
