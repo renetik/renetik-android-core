@@ -113,8 +113,6 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
         if (this.activity == activity) this.activity = null
     }
 
-    open fun restart(onShutdown: Func? = null): Unit = notImplemented()
-
     open fun exit() {
         logInfo()
         exit(status = 0)
