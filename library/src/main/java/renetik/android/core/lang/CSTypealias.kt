@@ -1,6 +1,7 @@
 package renetik.android.core.lang
 
 typealias Func = () -> Unit
+typealias SuspendFunc = suspend () -> Unit
 typealias ArgFunc<Arg> = (Arg) -> Unit
 typealias ArgArgFunc<Arg1, Arg2> = (Arg1, Arg2) -> Unit
 typealias ReturnFunc<Return> = () -> Return
