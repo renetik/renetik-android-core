@@ -1,6 +1,6 @@
 package renetik.android.core.kotlin.primitives
 
-import renetik.android.core.lang.Func
+import renetik.android.core.lang.Fun
 
 val Boolean.Companion.random get() = Int.random(0, 1) == 1
 
@@ -13,11 +13,11 @@ infix fun Boolean?.or(boolean: Boolean) = isTrue || boolean
 infix fun Boolean.and(boolean: Boolean?) = isTrue && boolean.isTrue
 infix fun Boolean?.and(boolean: Boolean) = isTrue && boolean
 
-inline fun <T : Boolean?> T.isTrue(function: Func) {
+inline fun <T : Boolean?> T.isTrue(function: Fun) {
     if (isTrue) function()
 }
 
-inline fun <T : Boolean?> T.isFalse(function: Func) {
+inline fun <T : Boolean?> T.isFalse(function: Fun) {
     if (isFalse) function()
 }
 

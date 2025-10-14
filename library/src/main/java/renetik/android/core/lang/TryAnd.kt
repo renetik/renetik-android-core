@@ -106,9 +106,9 @@ fun <ReturnType> tryAndFinally(tryFunction: () -> ReturnType, finally: () -> Uni
     }
 }
 
-inline fun <reified ExceptionType : Throwable> catchIgnore(tryFunction: Func) = try {
+inline fun <reified ExceptionType : Throwable> catchIgnore(tryFunction: Fun) = try {
     tryFunction()
 } catch (e: Throwable) {
 }
 
-inline fun catchAllIgnore(tryFunction: Func) = catchIgnore<Throwable>(tryFunction)
+inline fun catchAllIgnore(tryFunction: Fun) = catchIgnore<Throwable>(tryFunction)

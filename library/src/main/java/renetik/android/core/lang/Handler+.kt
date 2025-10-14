@@ -3,7 +3,7 @@ package renetik.android.core.lang
 import android.os.Handler
 import kotlin.time.Duration
 
-fun Handler.send(function: Func) {
+fun Handler.send(function: Fun) {
     post(function)
 }
 

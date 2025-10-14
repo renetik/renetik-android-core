@@ -4,7 +4,7 @@ package renetik.android.core.lang.value
 
 import renetik.android.core.kotlin.primitives.isTrue
 import renetik.android.core.kotlin.then
-import renetik.android.core.lang.Func
+import renetik.android.core.lang.Fun
 
 //─────────────────────────────────────────
 // Properties: isTrue / isFalse
@@ -45,10 +45,10 @@ inline fun <R> CSValue<Boolean>.ifTrue(function: () -> R): R? =
 inline fun <R> CSValue<Boolean>.ifFalse(function: () -> R): R? =
     if (isFalse) function() else null
 
-inline fun CSValue<Boolean>.isTrue(function: Func) =
+inline fun CSValue<Boolean>.isTrue(function: Fun) =
     then { if (isTrue) function() }
 
-inline fun CSValue<Boolean>.isFalse(function: Func) =
+inline fun CSValue<Boolean>.isFalse(function: Fun) =
     then { if (isFalse) function() }
 
 //─────────────────────────────────────────

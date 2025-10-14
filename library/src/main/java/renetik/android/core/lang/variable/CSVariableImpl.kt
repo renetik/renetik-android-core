@@ -1,11 +1,11 @@
 package renetik.android.core.lang.variable
 
-import renetik.android.core.lang.ArgFunc
+import renetik.android.core.lang.ArgFun
 import kotlin.reflect.KProperty
 
 class CSVariableImpl<T>(
     override var value: T,
-    val onChange: ArgFunc<T>? = null
+    val onChange: ArgFun<T>? = null
 ) : CSVariable<T> {
 
     fun apply() = apply { onChange?.invoke(value) }

@@ -7,7 +7,7 @@ import renetik.android.core.extensions.content.dpToPixelF
 import renetik.android.core.extensions.content.spToPixelF
 import renetik.android.core.extensions.content.toDp
 import renetik.android.core.extensions.content.toDpF
-import renetik.android.core.lang.ArgFunc
+import renetik.android.core.lang.ArgFun
 import renetik.android.core.lang.CSEnvironment.app
 import renetik.android.core.lang.CSTimeConstants.Minute
 import renetik.android.core.lang.CSTimeConstants.Second
@@ -44,7 +44,7 @@ inline val Int.isEven: Boolean get() = this % 2 == 0
 inline val Int.isOdd: Boolean get() = !isEven
 
 fun Int.update(
-    newCount: Int, onAdd: ArgFunc<Int>? = null, onRemove: ArgFunc<Int>? = null,
+    newCount: Int, onAdd: ArgFun<Int>? = null, onRemove: ArgFun<Int>? = null,
 ) {
     val lastIndex = this - 1
     val difference = newCount - this

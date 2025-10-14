@@ -1,6 +1,6 @@
 package renetik.android.core.lang.variable
 
-import renetik.android.core.lang.ArgFunc
+import renetik.android.core.lang.ArgFun
 import renetik.android.core.lang.value.CSValue
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -10,13 +10,13 @@ interface CSVariable<T> : CSValue<T>, ReadWriteProperty<Any?, T> {
     fun getAndSet(newValue: T): T = value.also { this.value = newValue }
 
     companion object {
-        fun <T> variable(value: T, onChange: ArgFunc<T>? = null): CSVariable<T> =
+        fun <T> variable(value: T, onChange: ArgFun<T>? = null): CSVariable<T> =
             CSVariableImpl(value, onChange)
 
-        fun <T> variableNull(value: T? = null, onChange: ArgFunc<T?>? = null): CSVariable<T?> =
+        fun <T> variableNull(value: T? = null, onChange: ArgFun<T?>? = null): CSVariable<T?> =
             variable(value, onChange)
 
-        fun <T> variable(onChange: ArgFunc<T>? = null): CSVariable<T> = CSLateVariableImpl(onChange)
+        fun <T> variable(onChange: ArgFun<T>? = null): CSVariable<T> = CSLateVariableImpl(onChange)
 
         fun <T> variable(from: () -> T, to: (T) -> Unit): CSVariable<T> =
             CSVariableComputed(from, to)
