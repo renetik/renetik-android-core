@@ -61,4 +61,4 @@ inline fun <reified T : Service> Context.stopService() =
     stopService(Intent(this, T::class.java))
 
 fun Context.unbind(connection: ServiceConnection): Result<Unit> =
-    runCatching { unbindService(connection) }.onFailure(::logInfo)
+    runCatching { unbindService(connection) }
