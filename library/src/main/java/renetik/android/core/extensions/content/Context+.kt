@@ -222,13 +222,20 @@ fun Context.startActivityForUriAndType(
 }
 
 fun Context.openUrl(url: String, errorMessage: String? = null) {
-    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+    var intent = Intent(Intent.ACTION_VIEW, url.toUri())
     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-    if (intent.resolveActivity(packageManager) != null) startActivity(intent)
-    else {
+    fun startChooser() = try {
+        intent = Intent.createChooser(intent, null)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+    } catch (e: Exception) {
         errorMessage?.also(::toast)
-        logWarn("Activity not found for url: $url")
+        logWarn(e) { "Failed to open url: $url" }
     }
+    runCatching {
+        if (intent.resolveActivity(packageManager) != null) startActivity(intent)
+        else startChooser()
+    }.onFailure { startChooser() }
 }
 
 fun Context.getDeniedPermissions(permissions: List<String>): Array<String> {
