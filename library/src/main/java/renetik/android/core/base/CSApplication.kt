@@ -12,11 +12,9 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import renetik.android.core.extensions.content.CSToast.toast
 import renetik.android.core.kotlin.findCause
-import renetik.android.core.kotlin.notImplemented
 import renetik.android.core.kotlin.primitives.isTrue
 import renetik.android.core.lang.CSEnvironment
 import renetik.android.core.lang.CSLang.exit
-import renetik.android.core.lang.Func
 import renetik.android.core.lang.variable.CSWeakVariable.Companion.weak
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
@@ -90,13 +88,15 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
     var activity: ActivityType? by weak()
         protected set
 
-    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+    final override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         if (!activityClass.isInstance(activity)) return
         if (this.activity?.isDestroyed == false || this.activity?.isFinishing == false)
             logError("activity should be destroyed or null, " + "when new is created, in single activity application")
-        @Suppress("UNCHECKED_CAST")
-        this.activity = activity as ActivityType
+        @Suppress("UNCHECKED_CAST") (activity as ActivityType)
+            .also { this.activity = it; onActivityCreated(it) }
     }
+
+    open fun onActivityCreated(activity: ActivityType) = Unit
 
     override fun onActivityStarted(activity: Activity) = Unit
 
