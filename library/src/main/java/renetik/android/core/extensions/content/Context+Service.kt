@@ -60,5 +60,7 @@ fun Context.stopService(serviceClass: KClass<out Service>) =
 inline fun <reified T : Service> Context.stopService() =
     stopService(Intent(this, T::class.java))
 
-fun Context.unbind(connection: ServiceConnection): Result<Unit> =
+fun Context.unbind(connection: ServiceConnection) {
     runCatching { unbindService(connection) }
+}
+
