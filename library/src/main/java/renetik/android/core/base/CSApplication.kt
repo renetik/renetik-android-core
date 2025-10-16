@@ -20,7 +20,9 @@ import renetik.android.core.lang.variable.CSWeakVariable.Companion.weak
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
+import java.lang.Runtime.getRuntime
 import java.lang.Thread.sleep
+import kotlin.math.max
 import kotlin.reflect.KClass
 
 abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
@@ -34,9 +36,9 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
         fun getString(@StringRes resId: Int, vararg formatArgs: Any?): String =
             app.languageContext.getString(resId, *formatArgs)
     }
-
+    val cores = getRuntime().availableProcessors()
+    val Default = Dispatchers.Default.limitedParallelism(max(1, cores - 1))
     val IO = Dispatchers.IO.limitedParallelism(5)
-    val Default = Dispatchers.Default.limitedParallelism(5)
 
     override fun onCreate() {
         super.onCreate()
