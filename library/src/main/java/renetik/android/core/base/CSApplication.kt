@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.Dispatchers
 import renetik.android.core.extensions.content.CSToast.toast
 import renetik.android.core.kotlin.findCause
 import renetik.android.core.kotlin.primitives.isTrue
@@ -34,6 +35,9 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
             app.languageContext.getString(resId, *formatArgs)
     }
 
+    val IO = Dispatchers.IO.limitedParallelism(5)
+    val Default = Dispatchers.Default.limitedParallelism(5)
+
     override fun onCreate() {
         super.onCreate()
         CSEnvironment.app = this
@@ -48,9 +52,11 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
                 throwable.isSystemDead() -> logWarn("Ignored dead system exception")
                 throwable.isNotAttachedError() ->
                     logError(throwable, "Ignored window removal exception")
+
                 throwable.isIncrementalInstallMissingResource() -> {
                     toast("App installation is corrupted."); sleep(500); exit(status = 1)
                 }
+
                 else -> defaultHandler?.uncaughtException(thread, throwable)
             }
         }
@@ -73,7 +79,8 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
         }
     }
 
-    @Deprecated("Deprecated in Java") override fun onLowMemory() {
+    @Deprecated("Deprecated in Java")
+    override fun onLowMemory() {
         super.onLowMemory()
         logWarn { "onLowMemory" }
     }
