@@ -3,6 +3,7 @@
 package renetik.android.core.kotlin.primitives
 
 import android.util.Patterns.EMAIL_ADDRESS
+import renetik.android.core.kotlin.changeIf
 import renetik.android.core.kotlin.text.StringBuilder
 import renetik.android.core.kotlin.text.add
 import renetik.android.core.kotlin.text.deleteLast
@@ -151,3 +152,6 @@ private val ILLEGAL_FILENAME_CHARS = Regex("[\\x00-\\x1F\\\\/:*?\"<>|]")
 fun String.sanitizeForFile(default: String, max: Int = 200): String = this
     .replace(ILLEGAL_FILENAME_CHARS, " ").replace(Regex("\\s+"), " ").trim()
     .take(max).trimEnd { c -> c == '.' || c == ' ' }.ifBlank { default }
+
+val String.titleCased: String
+    get() = if (isEmpty()) this else replaceFirstChar(Char::uppercaseChar)
