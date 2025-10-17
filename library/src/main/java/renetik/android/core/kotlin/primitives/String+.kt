@@ -3,7 +3,6 @@
 package renetik.android.core.kotlin.primitives
 
 import android.util.Patterns.EMAIL_ADDRESS
-import renetik.android.core.kotlin.changeIf
 import renetik.android.core.kotlin.text.StringBuilder
 import renetik.android.core.kotlin.text.add
 import renetik.android.core.kotlin.text.deleteLast
@@ -154,4 +153,5 @@ fun String.sanitizeForFile(default: String, max: Int = 200): String = this
     .take(max).trimEnd { c -> c == '.' || c == ' ' }.ifBlank { default }
 
 val String.titleCased: String
-    get() = if (isEmpty()) this else replaceFirstChar(Char::uppercaseChar)
+    get() = if (isEmpty()) this else split(" ")
+        .joinToString(" ") { it.replaceFirstChar(Char::titlecase) }
