@@ -39,6 +39,7 @@ object CSEnvironment {
         }
 
     val isDebug by lazy { app.isDebug }
+    val isCoroutinesDebug = true
 
     val isRelease by lazy { !isDebug }
 

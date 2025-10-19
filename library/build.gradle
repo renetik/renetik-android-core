@@ -5,6 +5,7 @@ android {
     buildFeatures { buildConfig true }
 }
 dependencies {
+    debugImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.10.2"
     testApi project(':renetik-android-testing')
     b_leakcanaryImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
 }
