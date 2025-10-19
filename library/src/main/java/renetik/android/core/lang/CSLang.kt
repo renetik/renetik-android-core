@@ -2,6 +2,7 @@ package renetik.android.core.lang
 
 import android.os.Process.killProcess
 import android.os.Process.myPid
+import renetik.android.core.lang.CSLang.ExitStatus.OK
 import renetik.android.core.logging.CSLog.logInfo
 import kotlin.system.exitProcess
 import kotlin.system.measureNanoTime
@@ -16,9 +17,13 @@ object CSLang {
         return value
     }
 
-    fun exit(status:Int = 0) {
+    enum class ExitStatus(val code: Int) {
+        OK(0), Error(1)
+    }
+
+    fun exit(status: ExitStatus = OK) {
         killProcess(myPid())
-        exitProcess(0)
+        exitProcess(status.code)
     }
 }
 

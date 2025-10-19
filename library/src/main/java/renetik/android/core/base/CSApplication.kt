@@ -15,6 +15,8 @@ import renetik.android.core.extensions.content.CSToast.toast
 import renetik.android.core.kotlin.findCause
 import renetik.android.core.kotlin.primitives.isTrue
 import renetik.android.core.lang.CSEnvironment
+import renetik.android.core.lang.CSLang.ExitStatus.Error
+import renetik.android.core.lang.CSLang.ExitStatus.OK
 import renetik.android.core.lang.CSLang.exit
 import renetik.android.core.lang.variable.CSWeakVariable.Companion.weak
 import renetik.android.core.logging.CSLog.logError
@@ -61,7 +63,7 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
                     logError(throwable, "Ignored window removal exception")
 
                 throwable.isIncrementalInstallMissingResource() -> {
-                    toast("App installation is corrupted."); sleep(500); exit(status = 1)
+                    toast("App installation is corrupted."); sleep(500); exit(Error)
                 }
 
                 else -> defaultHandler?.uncaughtException(thread, throwable)
@@ -129,7 +131,7 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
 
     open suspend fun exit() {
         logInfo("Application Exit")
-        exit(status = 0)
+        exit(OK)
     }
 
     open suspend fun hardRestart() {
@@ -137,11 +139,11 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
         val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
         if (launchIntent == null) {
             logWarn()
-            exit(status = 1)
+            exit(Error)
         } else {
             val intent = Intent.makeRestartActivityTask(launchIntent.component)
             startActivity(intent)
-            exit(status = 0)
+            exit(OK)
         }
     }
 
