@@ -15,8 +15,6 @@ import renetik.android.core.extensions.content.CSToast.toast
 import renetik.android.core.kotlin.findCause
 import renetik.android.core.kotlin.primitives.isTrue
 import renetik.android.core.lang.CSEnvironment
-import renetik.android.core.lang.CSEnvironment.isCoroutinesDebug
-import renetik.android.core.lang.CSEnvironment.isDebug
 import renetik.android.core.lang.CSLang.exit
 import renetik.android.core.lang.variable.CSWeakVariable.Companion.weak
 import renetik.android.core.logging.CSLog.logError
@@ -37,6 +35,10 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
 
         fun getString(@StringRes resId: Int, vararg formatArgs: Any?): String =
             app.languageContext.getString(resId, *formatArgs)
+
+        init {
+            System.setProperty("kotlinx.coroutines.debug", "on")
+        }
     }
 
     val cores = getRuntime().availableProcessors()
@@ -47,7 +49,6 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
         super.onCreate()
         CSEnvironment.app = this
         registerDefaultUncaughtExceptionHandler()
-        if (isDebug && isCoroutinesDebug) kotlinx.coroutines.debug.DebugProbes.install()
         registerActivityLifecycleCallbacks(this)
     }
 
