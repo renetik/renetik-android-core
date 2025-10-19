@@ -14,7 +14,7 @@ import java.util.concurrent.CancellationException
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
-val mainScope: CoroutineScope = MainScope()
+var mainScope: CoroutineScope = MainScope()
 
 suspend fun coroutinesShutDown(timeout: Duration = 5.seconds) {
     val job = mainScope.coroutineContext[Job] ?: return
