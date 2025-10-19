@@ -36,6 +36,7 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
         fun getString(@StringRes resId: Int, vararg formatArgs: Any?): String =
             app.languageContext.getString(resId, *formatArgs)
     }
+
     val cores = getRuntime().availableProcessors()
     val Default = Dispatchers.Default.limitedParallelism(max(1, cores - 1))
     val IO = Dispatchers.IO.limitedParallelism(5)
@@ -122,13 +123,13 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
         if (this.activity == activity) this.activity = null
     }
 
-    open fun exit() {
-        logInfo()
+    open suspend fun exit() {
+        logInfo("Application Exit")
         exit(status = 0)
     }
 
-    open fun hardRestart() {
-        logInfo()
+    open suspend fun hardRestart() {
+        logInfo("Application Restart")
         val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
         if (launchIntent == null) {
             logWarn()
