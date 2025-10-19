@@ -129,12 +129,12 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
         if (this.activity == activity) this.activity = null
     }
 
-    open suspend fun exit() {
+    open fun exit() {
         logInfo("Application Exit")
         exit(OK)
     }
 
-    open suspend fun hardRestart() {
+    open fun hardRestart() {
         logInfo("Application Restart")
         val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
         if (launchIntent == null) {
