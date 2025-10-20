@@ -8,8 +8,6 @@ import kotlin.system.exitProcess
 import kotlin.system.measureNanoTime
 
 object CSLang {
-    val EmptyFunc = {}
-
     fun <T> measureAndLog(title: String, func: () -> T): T {
         var value by notNull<T>()
         val elapsedMs = measureNanoTime { value = func() } / 1_000_000
@@ -27,9 +25,5 @@ object CSLang {
     }
 }
 
-typealias CSFloatRange = ClosedFloatingPointRange<Float>
-
 inline fun <T : Any, R> synchronized(lock: T, block: (T) -> R): R =
     kotlin.synchronized(lock) { block(lock) }
-
-inline fun invoke(block: () -> Unit): Unit = block()
