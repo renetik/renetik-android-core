@@ -134,18 +134,5 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
         exit(OK)
     }
 
-    open fun hardRestart() {
-        logInfo("Application Restart")
-        val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
-        if (launchIntent == null) {
-            logWarn()
-            exit(Error)
-        } else {
-            val intent = Intent.makeRestartActivityTask(launchIntent.component)
-            startActivity(intent)
-            exit(OK)
-        }
-    }
-
     open val languageContext get():Context = this
 }
