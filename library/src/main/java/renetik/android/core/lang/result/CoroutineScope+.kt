@@ -1,12 +1,10 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
-
 package renetik.android.core.lang.result
 
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.job
 import kotlinx.coroutines.withTimeoutOrNull
 import renetik.android.core.lang.CSEnvironment.isCoroutinesDebug
 import renetik.android.core.logging.CSLog.logWarn
@@ -17,24 +15,21 @@ import kotlin.time.Duration.Companion.seconds
 var mainScope: CoroutineScope = MainScope()
 
 suspend fun coroutinesShutDown(timeout: Duration = 5.seconds) {
-    val job = mainScope.coroutineContext[Job] ?: return
+    val job = mainScope.coroutineContext.job
     job.cancel(CancellationException("MainScope Shutdown"))
     withTimeoutOrNull(timeout) { job.join() } ?: run {
         logWarn("Timeout waiting for mainScope coroutines to finish")
-        if (isCoroutinesDebug) {
-            job.dumpJobTree("MainScopeDump: ")
-        }
+        if (isCoroutinesDebug) job.dumpJobTree()
     }
 }
 
-fun Job.dumpJobTree(logPrefix: String = "") {
-    fun dump(job: Job, indent: String) {
-        val ctxName = (job as? CoroutineScope)?.coroutineContext
-            ?.get(CoroutineName)?.name ?: job.toString()
-        val state = "active=${job.isActive} completed=${job.isCompleted}" +
-                " cancelled=${job.isCancelled}"
-        logWarn("$logPrefix$indent$ctxName — $state")
-        for (child in job.children) dump(child, "$indent  ")
+fun Job.dumpJobTree() {
+    fun Job.dump(indent: String) {
+        val name = (this as? CoroutineScope)?.coroutineContext
+            ?.get(CoroutineName)?.name ?: toString()
+        val state = "active=${isActive} completed=${isCompleted} cancelled=${isCancelled}"
+        logWarn("MainScope Job: $indent$name — $state")
+        for (child in children) child.dump("$indent  ")
     }
-    dump(this, "")
+    dump("")
 }
