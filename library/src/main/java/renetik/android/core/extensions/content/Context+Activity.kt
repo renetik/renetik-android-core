@@ -9,14 +9,14 @@ import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
 import androidx.appcompat.app.AppCompatActivity
 import kotlin.reflect.KClass
 
-inline fun <reified Activity : AppCompatActivity> Context.startActivity(
+inline fun <reified Activity : AppCompatActivity> Context.startNewActivity(
     extras: Map<String, String> = emptyMap(), options: Bundle? = null
 ) {
     val activityClass: KClass<Activity> = Activity::class
-    startActivity(activityClass, extras, options)
+    startNewActivity(activityClass, extras, options)
 }
 
-fun <Activity : AppCompatActivity> Context.startActivity(
+fun <Activity : AppCompatActivity> Context.startNewActivity(
     activityClass: KClass<out Activity>,
     extras: Map<String, String> = emptyMap(), options: Bundle? = null
 ) {
