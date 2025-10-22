@@ -11,10 +11,7 @@ import kotlin.reflect.KClass
 
 inline fun <reified Activity : AppCompatActivity> Context.startNewActivity(
     extras: Map<String, String> = emptyMap(), options: Bundle? = null
-) {
-    val activityClass: KClass<Activity> = Activity::class
-    startNewActivity(activityClass, extras, options)
-}
+) = startNewActivity(Activity::class, extras, options)
 
 fun <Activity : AppCompatActivity> Context.startNewActivity(
     activityClass: KClass<out Activity>,
@@ -23,6 +20,19 @@ fun <Activity : AppCompatActivity> Context.startNewActivity(
     val intent = Intent(this, activityClass)
     for ((key, value) in extras) intent.putExtra(key, value)
     intent.addFlags(FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK)
+    startActivity(intent, options)
+}
+
+inline fun <reified Activity : AppCompatActivity> Context.startActivity(
+    extras: Map<String, String> = emptyMap(), options: Bundle? = null
+) = startActivity(Activity::class, extras, options)
+
+fun <Activity : AppCompatActivity> Context.startActivity(
+    activityClass: KClass<out Activity>,
+    extras: Map<String, String> = emptyMap(), options: Bundle? = null
+) {
+    val intent = Intent(this, activityClass)
+    for ((key, value) in extras) intent.putExtra(key, value)
     startActivity(intent, options)
 }
 
