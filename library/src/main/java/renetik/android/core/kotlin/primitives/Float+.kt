@@ -4,6 +4,7 @@ package renetik.android.core.kotlin.primitives
 
 import renetik.android.core.extensions.content.dpToPixelF
 import renetik.android.core.lang.CSEnvironment.app
+import renetik.android.core.lang.value.CSValue
 import java.math.RoundingMode
 import java.math.RoundingMode.CEILING
 import java.math.RoundingMode.UP
@@ -71,6 +72,9 @@ inline val Float.rest: Float
 
 inline fun Float.rest(value: Int): Float =
     if (value > 0) this % value else this
+
+inline fun Float.rest(value: CSValue<Int>): Float = rest(value.value)
+inline fun CSValue<Float>.rest(value: CSValue<Int>): Float = this.value.rest(value.value)
 
 inline fun Float.ceil(): Int = ceil(this).toInt()
 inline fun Float.min(minimum: Float) = coerceAtLeast(minimum)
