@@ -43,3 +43,11 @@ operator fun CSVariable<Float?>.plusAssign(value: Float) {
     this.value = this.value?.let { it + value }
 }
 
+inline operator fun CSVariable<Float>.timesAssign(other: Float) {
+    value *= other
+}
+
+inline operator fun CSVariable<Float>.divAssign(other: Float) {
+    value /= other
+}
+
