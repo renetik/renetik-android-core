@@ -11,6 +11,7 @@ inline operator fun CSValue<Int>.plus(value: Float): Float = this.value + value
 inline operator fun Int.minus(value: CSValue<Int>): Int = this - value.value
 inline operator fun Int.minus(value: CSValue<Float>): Float = this - value.value
 inline operator fun CSValue<Int>.minus(value: Int): Int = this.value - value
+inline operator fun CSValue<Float>.minus(value: Int): Float = this.value - value
 inline operator fun CSValue<Int>.minus(value: Float): Float = this.value - value
 inline operator fun CSValue<Int>.minus(value: CSValue<Int>): Int = this.value - value.value
 
@@ -26,6 +27,17 @@ inline operator fun Int.div(value: CSValue<Float>): Float = this / value.value
 inline operator fun CSValue<Int>.div(value: Int): Int = this.value / value
 inline operator fun CSValue<Int>.div(value: Float): Float = this.value / value
 
-inline operator fun CSValue<Int>.compareTo(value: Int): Int = this.value.compareTo(value)
+inline operator fun CSValue<Int>.compareTo(value: Int): Int =
+    this.value.compareTo(value)
+
 inline operator fun CSValue<Int>.compareTo(value: CSValue<Int>): Int =
     this.value.compareTo(value.value)
+
+@JvmName("CSValueFloatCompareToInt")
+inline operator fun CSValue<Float>.compareTo(value: Int): Int =
+    this.value.compareTo(value)
+
+@JvmName("CSValueFloatCompareToCSValueInt")
+inline operator fun CSValue<Float>.compareTo(value: CSValue<Int>): Int =
+    this.value.compareTo(value.value)
+
