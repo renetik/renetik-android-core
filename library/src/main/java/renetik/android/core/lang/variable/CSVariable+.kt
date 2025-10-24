@@ -16,9 +16,6 @@ inline infix fun <T> CSVariable<T>?.assign(other: CSValue<T>) {
 
 inline fun <T> CSVariable<T?>.clear() = assign(null)
 
-fun CSVariable<Double>.value(value: Int) = apply { this.value = value.toDouble() }
-fun CSVariable<Float>.value(value: Number) = apply { this.value = value.toFloat() }
-
 operator fun CSVariable<Float?>.plusAssign(value: Float) {
     this.value = this.value?.let { it + value }
 }
