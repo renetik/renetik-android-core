@@ -4,10 +4,16 @@ val <T : Enum<*>> CSListValuesVariable<T>.isLast get() = values.lastIndex == val
 
 val <T : Enum<*>> CSListValuesVariable<T>.next: T get() = values[value.ordinal + 1]
 
-fun <T : Enum<*>> CSListValuesVariable<T>.next() = value(next)
+fun <T : Enum<*>> CSListValuesVariable<T>.next() {
+    assign(next)
+}
 
 val <T : Enum<*>> CSListValuesVariable<T>.previous: T get() = values[value.ordinal - 1]
 
-fun <T : Enum<*>> CSListValuesVariable<T>.previous() = value(previous)
+fun <T : Enum<*>> CSListValuesVariable<T>.previous() {
+    assign(previous)
+}
 
-fun <T> CSListValuesVariable<T>.value(index: Int) = value(values[index])
+fun <T> CSListValuesVariable<T>.value(index: Int) {
+    assign(values[index])
+}
