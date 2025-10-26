@@ -4,7 +4,6 @@ import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.job
 import kotlinx.coroutines.withTimeoutOrNull
 import renetik.android.core.base.CSApplication
@@ -27,7 +26,6 @@ fun CoroutineScope.createSupervisorChild(): CoroutineScope {
 @Suppress("SuspendFunctionOnCoroutineScope")
 suspend fun CoroutineScope.shutDown(timeout: Duration = 5.seconds) {
     logInfo("CoroutineScope shutDown")
-    delay(10.seconds)
     val job = coroutineContext.job
     job.cancel(CancellationException("MainScope Shutdown"))
     withTimeoutOrNull(timeout) { job.join() } ?: run {
