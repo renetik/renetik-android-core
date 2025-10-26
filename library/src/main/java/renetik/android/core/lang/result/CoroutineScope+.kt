@@ -6,7 +6,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.job
 import kotlinx.coroutines.withTimeoutOrNull
-import renetik.android.core.base.CSApplication
+import renetik.android.core.base.CSApplication.Companion.app
 import renetik.android.core.lang.CSEnvironment.isCoroutinesDebug
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
@@ -15,8 +15,7 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 var mainScope: CoroutineScope = createMainScope()
-
-fun createMainScope() = CSApplication.app.scope.createSupervisorChild()
+fun createMainScope() = app.scope.createSupervisorChild()
 
 fun CoroutineScope.createSupervisorChild(): CoroutineScope {
     val job = coroutineContext[Job] ?: error("scope lacks Job")
