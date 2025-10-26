@@ -7,13 +7,13 @@ import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
-fun ExecutorService.shutdownAndWait(second: Int = 10) {
+fun ExecutorService.shutdownAndWait(second: Int = 5) {
     shutdown()
     awaitTermination(second.toLong(), TimeUnit.SECONDS)
 }
 
 suspend fun ExecutorService.shutdownWaiting(
-    timeout: Duration = 10.seconds
+    timeout: Duration = 5.seconds
 ): Boolean = app.IO {
     shutdown()
     awaitTermination(timeout.inWholeMilliseconds, TimeUnit.MILLISECONDS)
