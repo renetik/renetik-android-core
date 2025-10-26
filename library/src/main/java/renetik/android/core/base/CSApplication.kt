@@ -4,13 +4,13 @@ import android.app.Activity
 import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
 import android.content.Context
-import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
 import renetik.android.core.extensions.content.CSToast.toast
 import renetik.android.core.kotlin.findCause
 import renetik.android.core.kotlin.primitives.isTrue
@@ -43,6 +43,7 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
         }
     }
 
+    val scope = MainScope()
     val cores = getRuntime().availableProcessors()
     val Default = Dispatchers.Default.limitedParallelism(max(1, cores - 1))
     val IO = Dispatchers.IO.limitedParallelism(5)

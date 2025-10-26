@@ -3,9 +3,10 @@ package renetik.android.core.lang.result
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.job
 import kotlinx.coroutines.withTimeoutOrNull
+import renetik.android.core.base.CSApplication
 import renetik.android.core.lang.CSEnvironment.isCoroutinesDebug
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
@@ -13,11 +14,19 @@ import java.util.concurrent.CancellationException
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
-var mainScope: CoroutineScope = MainScope()
+var mainScope: CoroutineScope = createMainScope()
 
-suspend fun coroutinesShutDown(timeout: Duration = 5.seconds) {
+fun createMainScope() = CSApplication.app.scope.createSupervisorChild()
+
+fun CoroutineScope.createSupervisorChild(): CoroutineScope {
+    val job = coroutineContext[Job] ?: error("scope lacks Job")
+    return CoroutineScope(coroutineContext + SupervisorJob(parent = job))
+}
+
+@Suppress("SuspendFunctionOnCoroutineScope")
+suspend fun CoroutineScope.shutDown(timeout: Duration = 5.seconds) {
     logInfo()
-    val job = mainScope.coroutineContext.job
+    val job = coroutineContext.job
     job.cancel(CancellationException("MainScope Shutdown"))
     withTimeoutOrNull(timeout) { job.join() } ?: run {
         logWarn("Timeout waiting for mainScope coroutines to finish")
