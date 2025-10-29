@@ -33,7 +33,6 @@ import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import androidx.core.net.toUri
 import renetik.android.core.kotlin.collections.list
 import renetik.android.core.kotlin.primitives.isFlagSet
-import renetik.android.core.lang.catchWarnReturnNull
 import renetik.android.core.logging.CSLog.logWarn
 import java.util.Locale
 
@@ -88,9 +87,9 @@ val Context.packageVersionCode
 //    }
 
 val Context.packageInfo
-    get() = catchWarnReturnNull<PackageInfo, NameNotFoundException> {
+    get() = runCatching<PackageInfo> {
         packageManager.getPackageInfo(packageName, 0)
-    }
+    }.onFailure(::logWarn).getOrNull()
 
 inline fun BroadcastReceiver(
     crossinline function: (context: Context, intent: Intent) -> Unit) =

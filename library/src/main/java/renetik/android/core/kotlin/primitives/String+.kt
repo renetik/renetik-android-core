@@ -9,7 +9,7 @@ import renetik.android.core.kotlin.text.deleteLast
 import renetik.android.core.kotlin.text.reload
 import renetik.android.core.lang.CSStringConstants
 import renetik.android.core.lang.catchWarnReturn
-import renetik.android.core.lang.catchWarnReturnNull
+import renetik.android.core.logging.CSLog.logWarn
 import java.text.Normalizer
 import java.util.Locale
 import java.util.Random
@@ -60,10 +60,10 @@ inline fun String.ifSet(function: (String) -> Unit) = apply {
 infix fun String.ends(suffix: String) = endsWith(suffix)
 
 
-fun String.asLong() = catchWarnReturnNull<Long, NumberFormatException> { toLong() }
-fun String.asFloat() = catchWarnReturnNull<Float, NumberFormatException> { toFloat() }
-fun String.asDouble() = catchWarnReturnNull<Double, NumberFormatException> { toDouble() }
-fun String.asInt() = catchWarnReturnNull<Int, NumberFormatException> { toInt() }
+fun String.asLong() = runCatching<Long> { toLong() }.onFailure(::logWarn).getOrNull()
+fun String.asFloat() = runCatching<Float> { toFloat() }.onFailure(::logWarn).getOrNull()
+fun String.asDouble() = runCatching<Double> { toDouble() }.onFailure(::logWarn).getOrNull()
+fun String.asInt() = runCatching<Int> { toInt() }.onFailure(::logWarn).getOrNull()
 fun String.asDouble(default: Double) =
     catchWarnReturn<Double, NumberFormatException>(default) { toDouble() }
 
