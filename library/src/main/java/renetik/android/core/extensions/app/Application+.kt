@@ -7,6 +7,7 @@ import renetik.android.core.lang.CSLang.exit
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.core.logging.CSLog.logWarn
 
+@Deprecated("Unreliable")
 fun Application.exitStart() {
     logInfo("Application Restart")
     val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
