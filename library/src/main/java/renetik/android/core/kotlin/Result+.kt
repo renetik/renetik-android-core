@@ -9,3 +9,6 @@ inline fun <reified T : Throwable> Result<*>.onFailureOf(onFailure: (T) -> Unit)
 }
 
 inline fun Result<*>.throwCancellation() = onFailureOf<CancellationException> { throw it }
+
+inline fun <R, T : R> Result<T>.getOrDefault(function: () -> R): R =
+    getOrNull() ?: function()
