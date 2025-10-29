@@ -61,7 +61,7 @@ inline fun catchAllWarn(tryFunction: () -> Unit) = catchAllWarnReturn(Unit, tryF
 
 inline fun <ReturnType, reified ExceptionType : Throwable>
         catchWarnReturnNull(tryFunction: () -> ReturnType): ReturnType? =
-    catchWarnReturn<ExceptionType, ReturnType?>(message = null, tryFunction) { null }
+    runCatching(tryFunction).onFailure(::logWarn).getOrNull()
 
 inline fun <ReturnType>
         catchAllWarnReturnNull(message: String? = null, tryFunction: () -> ReturnType)
