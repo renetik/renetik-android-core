@@ -9,9 +9,6 @@ inline fun <T> List<T>.mutableAdd(index: Int, element: T): MutableList<T> =
     mutable().apply { add(index, element) }
 
 inline fun <T> List<T>.clone(): List<T> = toList()
-
-inline fun <T> Collection<T>.mutable(): MutableList<T> = toMutableList()
-
 inline val <T> List<T>.first: T? get() = at(0)
 inline val <T> List<T>.second: T? get() = at(1)
 inline val <T> List<T>.third: T? get() = at(2)

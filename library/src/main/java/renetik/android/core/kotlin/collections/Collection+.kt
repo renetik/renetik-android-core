@@ -1,3 +1,5 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package renetik.android.core.kotlin.collections
 
 
@@ -30,3 +32,5 @@ fun <T> Collection<T>.firstIndex(predicate: (T) -> Boolean): Int? =
 
 fun <T> Collection<T>.lastIndex(predicate: (T) -> Boolean): Int? =
     indexOfLast(predicate).takeIf { it >= 0 }
+
+inline fun <T> Collection<T>.mutable(): MutableList<T> = toMutableList()
