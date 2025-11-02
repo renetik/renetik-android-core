@@ -32,12 +32,9 @@ fun AssetManager.copyPathToDir(
 }
 
 private fun AssetManager.copyFile(path: String, dest: File) {
-    dest.parentFile?.mkdirs()
-    open(path).use { input ->
-        dest.outputStream().use { output ->
-            input.copyTo(output)
-        }
-    }
+    if (dest.isDirectory) dest.deleteRecursively()
+    else dest.parentFile?.mkdirs()
+    open(path).use { input -> dest.outputStream().use(input::copyTo) }
 }
 
 fun AssetManager.isFile(path: String): Boolean =
