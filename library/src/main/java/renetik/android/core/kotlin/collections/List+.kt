@@ -84,7 +84,6 @@ inline infix fun <T> List<T>.join(list: List<T>): List<T> =
     toMutableList().apply { addAll(list) }
 
 inline fun <T> list(size: Int): MutableList<T> = ArrayList(size)
-inline fun <T> list(vararg items: T): MutableList<T> = mutableListOf(*items)
 inline fun <T> list(items: Iterable<T>): MutableList<T> = mutableListOf<T>().putAll(items)
 inline fun <T> list(items: Collection<T>): MutableList<T> = mutableListOf<T>().putAll(items)
 
