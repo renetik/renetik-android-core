@@ -89,8 +89,7 @@ fun <T> list(block: (MutableList<T>.() -> Unit)? = null): CSList<T> =
     CSList<T>().apply { block?.invoke(this) }
 
 inline fun <T> list(size: Int): MutableList<T> = ArrayList(size)
-inline fun <T> listOfNulls(size: Int) = list<T?>(size, null)
-inline fun <T> list(size: Int, default: T) = MutableList(size) { default }
+inline fun <T> listOfNulls(size: Int) = MutableList<T?>(size) { null }
 inline fun <T> list(size: Int, init: (index: Int) -> T) = MutableList(size, init)
 inline fun <T> list(vararg items: T): MutableList<T> = mutableListOf(*items)
 inline fun <T> list(items: Iterable<T>): MutableList<T> = list<T>().putAll(items)
