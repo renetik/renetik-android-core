@@ -10,14 +10,7 @@ inline fun <T> List<T>.mutableAdd(index: Int, element: T): MutableList<T> =
 
 inline fun <T> List<T>.clone(): List<T> = toList()
 
-inline fun <T> List<T>.mutable(): MutableList<T> = toMutableList()
-
-inline fun <T> List<T>.mutable(
-    add: T? = null, remove: T? = null,
-) = mutable().apply {
-    add?.let { add(element = it) }
-    remove?.let { remove(element = it) }
-}
+inline fun <T, C : Collection<T>> C.mutable(): MutableList<T> = toMutableList()
 
 inline val <T> List<T>.first: T? get() = at(0)
 inline val <T> List<T>.second: T? get() = at(1)
@@ -83,7 +76,7 @@ inline infix fun <T> List<T>.isLastIndex(index: Int): Boolean = index == lastInd
 inline infix fun <T> List<T>.join(list: List<T>): List<T> =
     toMutableList().apply { addAll(list) }
 
-inline fun <T> list(items: Collection<T>): MutableList<T> = mutableListOf<T>().putAll(items)
+inline fun <T> list(items: Collection<T>): MutableList<T> = items.mutable()
 
 @JvmName("listItemsArray")
 inline fun <T> list(items: Array<out T>): MutableList<T> = mutableListOf<T>().putAll(*items)
