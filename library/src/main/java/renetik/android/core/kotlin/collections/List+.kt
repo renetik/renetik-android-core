@@ -31,7 +31,6 @@ inline fun <T> List<T>.five() = this[4]
 inline fun <T> List<T>.six() = this[5]
 inline fun <T> List<T>.seven() = this[6]
 
-
 inline fun <T> List<T>.at(index: Int): T? = if (index in indices) get(index) else null
 
 @JvmName("containsAnyVararg")
@@ -72,12 +71,6 @@ inline infix fun <T> List<T>.isLastIndex(index: Int): Boolean = index == lastInd
 
 inline infix fun <T> List<T>.join(list: List<T>): List<T> =
     toMutableList().apply { addAll(list) }
-
-@JvmName("listItemsArray")
-inline fun <T> list(items: Array<out T>): MutableList<T> = mutableListOf<T>().putAll(*items)
-inline fun <T> list(vararg items: Iterable<T>): MutableList<T> = mutableListOf<T>().also {
-    for (iterable in items) it.addAll(iterable)
-}
 
 inline fun <reified T> list(
     size: Int, create: (index: Int, previous: T?, size: Int) -> T,
