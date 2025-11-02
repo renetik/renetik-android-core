@@ -72,11 +72,11 @@ inline infix fun <T> List<T>.isLastIndex(index: Int): Boolean = index == lastInd
 inline infix fun <T> List<T>.join(list: List<T>): List<T> =
     toMutableList().apply { addAll(list) }
 
-inline fun <reified T> list(
-    size: Int, create: (index: Int, previous: T?, size: Int) -> T,
+inline fun <reified T> listOf(
+    size: Int, create: (index: Int, previous: T?) -> T,
 ): List<T> {
     var previous: T? = null
-    return List(size) { index -> create(index, previous, size).apply { previous = this } }
+    return List(size) { index -> create(index, previous).apply { previous = this } }
 }
 
 inline fun <T, A, B> combine(
