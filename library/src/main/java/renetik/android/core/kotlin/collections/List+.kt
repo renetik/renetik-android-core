@@ -89,8 +89,6 @@ fun <T> list(block: (MutableList<T>.() -> Unit)? = null): CSList<T> =
     CSList<T>().apply { block?.invoke(this) }
 
 inline fun <T> list(size: Int): MutableList<T> = ArrayList(size)
-inline fun <T> listOfNulls(size: Int) = MutableList<T?>(size) { null }
-inline fun <T> list(size: Int, init: (index: Int) -> T) = MutableList(size, init)
 inline fun <T> list(vararg items: T): MutableList<T> = mutableListOf(*items)
 inline fun <T> list(items: Iterable<T>): MutableList<T> = list<T>().putAll(items)
 inline fun <T> list(items: Collection<T>): MutableList<T> = CSList(items)
@@ -114,7 +112,7 @@ inline fun <T, A, B> combine(
 
 inline fun <T, A, B> combine(
     collectionA: Collection<A>, collectionB: Collection<B>, createItem: (A, B) -> T,
-) = list<T>(size = collectionA.size * collectionB.size).apply {
+) = mutableListOf<T>(size = collectionA.size * collectionB.size).apply {
     for (a in collectionA) for (b in collectionB) add(createItem(a, b))
 }
 
