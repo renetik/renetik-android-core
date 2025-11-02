@@ -58,7 +58,7 @@ fun <T> MutableList<T>.removeRange(fromIndex: Int): List<T> =
     catchAllWarnReturnNull { rangeFrom(fromIndex) }?.let {
         removeAll(it)
         return it
-    } ?: let { return list() }
+    } ?: let { return mutableListOf() }
 
 inline fun <T> MutableList<T>.delete(filter: (T) -> Boolean) = deleteFirst(filter)
 

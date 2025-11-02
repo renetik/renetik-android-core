@@ -83,17 +83,14 @@ inline infix fun <T> List<T>.isLastIndex(index: Int): Boolean = index == lastInd
 inline infix fun <T> List<T>.join(list: List<T>): List<T> =
     toMutableList().apply { addAll(list) }
 
-fun <T> list(block: (MutableList<T>.() -> Unit)? = null): MutableList<T> =
-    mutableListOf<T>().apply { block?.invoke(this) }
-
 inline fun <T> list(size: Int): MutableList<T> = ArrayList(size)
 inline fun <T> list(vararg items: T): MutableList<T> = mutableListOf(*items)
-inline fun <T> list(items: Iterable<T>): MutableList<T> = list<T>().putAll(items)
-inline fun <T> list(items: Collection<T>): MutableList<T> = list<T>().putAll(items)
+inline fun <T> list(items: Iterable<T>): MutableList<T> = mutableListOf<T>().putAll(items)
+inline fun <T> list(items: Collection<T>): MutableList<T> = mutableListOf<T>().putAll(items)
 
 @JvmName("listItemsArray")
-inline fun <T> list(items: Array<out T>): MutableList<T> = list<T>().putAll(*items)
-inline fun <T> list(vararg items: Iterable<T>): MutableList<T> = list<T>().also {
+inline fun <T> list(items: Array<out T>): MutableList<T> = mutableListOf<T>().putAll(*items)
+inline fun <T> list(vararg items: Iterable<T>): MutableList<T> = mutableListOf<T>().also {
     for (iterable in items) it.addAll(iterable)
 }
 

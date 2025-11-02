@@ -31,7 +31,6 @@ import androidx.core.content.ContextCompat.RECEIVER_EXPORTED
 import androidx.core.content.ContextCompat.RECEIVER_NOT_EXPORTED
 import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import androidx.core.net.toUri
-import renetik.android.core.kotlin.collections.list
 import renetik.android.core.kotlin.primitives.isFlagSet
 import renetik.android.core.logging.CSLog.logWarn
 import java.util.Locale
@@ -238,7 +237,7 @@ fun Context.openUrl(url: String, errorMessage: String? = null) {
 }
 
 fun Context.getDeniedPermissions(permissions: List<String>): Array<String> {
-    val deniedPermissions = list<String>()
+    val deniedPermissions = mutableListOf<String>()
     for (permission in permissions)
         if (!isPermissionGranted(permission)) deniedPermissions.add(permission)
     return deniedPermissions.toTypedArray()

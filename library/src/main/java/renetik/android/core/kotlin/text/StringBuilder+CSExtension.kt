@@ -1,6 +1,5 @@
 package renetik.android.core.kotlin.text
 
-import renetik.android.core.kotlin.collections.list
 import renetik.android.core.kotlin.primitives.NewLine
 import renetik.android.core.kotlin.primitives.Space
 import renetik.android.core.kotlin.primitives.lowerCased
@@ -46,13 +45,13 @@ fun StringBuilder.replaceEnd(string: String) = apply {
 }
 
 fun StringBuilder.split(regex: String): List<StringBuilder> {
-    val split = list<StringBuilder>()
+    val split = mutableListOf<StringBuilder>()
     for (string in toString().split(regex.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
-        split.add(StringBuilder(string))
+        split += StringBuilder(string)
     return split
 }
 
-fun StringBuilder.trim() = apply { reload(toString().trim { it <= ' ' }) }
+fun StringBuilder.trim() = apply { reload(toString().trim()) }
 
 fun StringBuilder.reload(text: CharSequence) = apply {
     clear()
