@@ -76,8 +76,6 @@ inline infix fun <T> List<T>.isLastIndex(index: Int): Boolean = index == lastInd
 inline infix fun <T> List<T>.join(list: List<T>): List<T> =
     toMutableList().apply { addAll(list) }
 
-inline fun <T> list(items: Collection<T>): MutableList<T> = items.mutable()
-
 @JvmName("listItemsArray")
 inline fun <T> list(items: Array<out T>): MutableList<T> = mutableListOf<T>().putAll(*items)
 inline fun <T> list(vararg items: Iterable<T>): MutableList<T> = mutableListOf<T>().also {

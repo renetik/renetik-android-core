@@ -105,7 +105,7 @@ inline fun <T, R : Comparable<R>> MutableList<T>.sortedWith(
 fun <T> MutableList<T>.rangeFrom(index: Int): MutableList<T> = range(index, size)
 fun <T> MutableList<T>.rangeTo(index: Int): MutableList<T> = range(0, index)
 fun <T> MutableList<T>.range(fromIndex: Int, toIndex: Int): MutableList<T> =
-    list(subList(fromIndex, toIndex))
+    subList(fromIndex, toIndex)
 
 fun <T> MutableList<T>.swap(first: Int, second: Int) {
     val tmp = this[first]

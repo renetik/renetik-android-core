@@ -1,9 +1,9 @@
 package renetik.android.core.kotlin.collections
 
-fun <T> List<T>.rangeFrom(index: Int): List<T> = list(subList(index, size))
-fun <T> List<T>.rangeTo(toIndex: Int): List<T> = list(subList(0, toIndex))
+fun <T> List<T>.rangeFrom(index: Int): List<T> = subList(index, size)
+fun <T> List<T>.rangeTo(toIndex: Int): List<T> = subList(0, toIndex)
 fun <T> List<T>.range(fromIndex: Int, toIndex: Int): List<T> =
-    list(subList(fromIndex, toIndex))
+    subList(fromIndex, toIndex)
 
 fun <T> List<T>.rangeFrom(from: (T) -> Boolean): List<T> {
     val indexOfFirst = indexOfFirst(from)
