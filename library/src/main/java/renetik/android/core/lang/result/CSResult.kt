@@ -29,7 +29,6 @@ data class CSResult<Value>(
         }.onFailure { throwable = it }
     }
 
-    @JvmName("onSuccessValueToResult")
     suspend fun <T> ifSuccessReturn(function: suspend (Value) -> CSResult<T>): CSResult<T> =
         if (state == Success) {
             val result = runCatching { function(value!!) }
