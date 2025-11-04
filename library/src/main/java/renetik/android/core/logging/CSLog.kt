@@ -60,6 +60,8 @@ object CSLog {
 
     @JvmStatic
     fun logInfo(any: Any?) = then { logImpl(Info) { message(any) } }
+    fun logInfo(throwable: Throwable, message: String) =
+        then { logImpl(Info) { message(throwable, message) } }
 
     @JvmStatic
     fun logInfo(function: () -> String) = then { logImpl(Info) { message(function()) } }
