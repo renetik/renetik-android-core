@@ -1,9 +1,10 @@
+@file:OptIn(ExperimentalCoroutinesApi::class)
+
 package renetik.android.core.base
 
 import android.app.Activity
 import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
-import android.content.ComponentCallbacks2
 import android.content.Context
 import android.content.res.Resources
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.view.WindowManager
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.MainScope
 import renetik.android.core.extensions.content.CSToast.toast
 import renetik.android.core.kotlin.findCause
@@ -96,16 +98,17 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
         logWarn { "onLowMemory" }
     }
 
+    @Suppress("DEPRECATION")
     override fun onTrimMemory(level: Int) {
         super.onTrimMemory(level)
         val levelName = when (level) {
-            ComponentCallbacks2.TRIM_MEMORY_COMPLETE -> "TRIM_MEMORY_COMPLETE (app in background, system critically low)"
-            ComponentCallbacks2.TRIM_MEMORY_MODERATE -> "TRIM_MEMORY_MODERATE (app in background, system moderately low)"
-            ComponentCallbacks2.TRIM_MEMORY_BACKGROUND -> "TRIM_MEMORY_BACKGROUND (app in background, can release memory)"
-            ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN -> "TRIM_MEMORY_UI_HIDDEN (UI hidden, release UI resources)"
-            ComponentCallbacks2.TRIM_MEMORY_RUNNING_CRITICAL -> "TRIM_MEMORY_RUNNING_CRITICAL (foreground, system critically low)"
-            ComponentCallbacks2.TRIM_MEMORY_RUNNING_LOW -> "TRIM_MEMORY_RUNNING_LOW (foreground, system low)"
-            ComponentCallbacks2.TRIM_MEMORY_RUNNING_MODERATE -> "TRIM_MEMORY_RUNNING_MODERATE (foreground, system moderately low)"
+            TRIM_MEMORY_COMPLETE -> "TRIM_MEMORY_COMPLETE (app in background, system critically low)"
+            TRIM_MEMORY_MODERATE -> "TRIM_MEMORY_MODERATE (app in background, system moderately low)"
+            TRIM_MEMORY_BACKGROUND -> "TRIM_MEMORY_BACKGROUND (app in background, can release memory)"
+            TRIM_MEMORY_UI_HIDDEN -> "TRIM_MEMORY_UI_HIDDEN (UI hidden, release UI resources)"
+            TRIM_MEMORY_RUNNING_CRITICAL -> "TRIM_MEMORY_RUNNING_CRITICAL (foreground, system critically low)"
+            TRIM_MEMORY_RUNNING_LOW -> "TRIM_MEMORY_RUNNING_LOW (foreground, system low)"
+            TRIM_MEMORY_RUNNING_MODERATE -> "TRIM_MEMORY_RUNNING_MODERATE (foreground, system moderately low)"
             else -> "UNKNOWN ($level)"
         }
         logWarn { "onTrimMemory $levelName" }
