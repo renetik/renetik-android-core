@@ -7,9 +7,10 @@ import renetik.android.core.lang.result.CSResult.State.Success
 
 data class CSResult<Value>(
     val state: State,
-    val value: Value?,
+    val value: Value? = null,
     var throwable: Throwable? = null,
-    var message: String? = null
+    var message: String? = null,
+    var code: Int? = null,
 ) {
     enum class State { Success, Cancel, Failure; }
 
@@ -18,7 +19,7 @@ data class CSResult<Value>(
     val isCancel get() = state == Cancel
 
     suspend fun ifSuccess(function: suspend (Value) -> Unit): CSResult<Value> {
-        if (state == Success) {
+        if (isSuccess) {
             val result = runCatching { function(value!!) }
             if (result.isFailure)
                 return CSResult(Failure, null, result.exceptionOrNull(), null)
@@ -28,42 +29,45 @@ data class CSResult<Value>(
 
     suspend fun ifSuccess(
         dispatcher: CoroutineDispatcher,
-        function: suspend (Value) -> Unit) = apply {
-        if (state == Success) runCatching {
+        function: suspend (Value) -> Unit
+    ) = apply {
+        if (isSuccess) runCatching {
             dispatcher { function(value!!) }
         }.onFailure { throwable = it }
     }
 
     suspend fun <T> ifSuccessReturn(function: suspend (Value) -> CSResult<T>): CSResult<T> =
-        if (state == Success) runCatching { function(value!!) }
+        if (isSuccess) runCatching { function(value!!) }
             .getOrElse { CSResult(Failure, null, it, message) }
         else CSResult(state, null, throwable, message)
 
     suspend fun ifNotSuccess(function: suspend () -> Unit) = apply {
-        if (state == Failure || state == Cancel) function()
+        if (isFailure || isCancel) function()
     }
 
     suspend fun ifFailure(function: suspend (CSResult<Value>) -> Unit) = apply {
-        if (state == Failure) function(this)
+        if (isFailure) function(this)
     }
 
     suspend fun ifCancel(function: suspend () -> Unit) = apply {
-        if (state == Cancel) function()
+        if (isCancel) function()
     }
 
     companion object {
         val success: CSResult<Unit> = CSResult(Success, Unit)
-
-        fun <Value> success(value: Value) = CSResult(Success, value)
-
+        val failure: CSResult<Unit> = CSResult(Failure, Unit)
         val cancel: CSResult<Unit> = CSResult(Cancel, Unit)
 
-        fun <Value> cancel() = CSResult<Value>(Cancel, null)
+        fun <Value> success(value: Value) = CSResult(Success, value)
+        fun <Value> cancel() = CSResult<Value>(Cancel)
 
         fun <Value> failure(throwable: Throwable? = null, message: String? = null) =
-            CSResult<Value>(Failure, value = null, throwable = throwable, message = message)
+            CSResult<Value>(Failure, throwable = throwable, message = message)
 
         fun <Value> failure(message: String): CSResult<Value> =
-            CSResult(Failure, value = null, message = message)
+            CSResult(Failure, message = message)
+
+        fun <Value> failure(code: Int, message: String? = null): CSResult<Value> =
+            CSResult(Failure, code = code)
     }
 }
