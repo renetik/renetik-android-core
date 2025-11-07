@@ -30,10 +30,13 @@ data class CSResult<Value>(
             .getOrElse { failure(it) }
         else this
 
+
+    //TODO: can be renamed to ifSuccess ?
     suspend inline fun <T> ifSuccessReturn(
         crossinline function: suspend (Value) -> CSResult<T>
     ): CSResult<T> = ifSuccessReturn(EmptyDispatcher, function)
 
+    //TODO: can be renamed to ifSuccess ?
     suspend inline fun <T> ifSuccessReturn(
         dispatcher: CoroutineDispatcher,
         crossinline function: suspend (Value) -> CSResult<T>

@@ -13,3 +13,6 @@ inline fun <T> Iterable<T>.forEachWithPrevious(function: (item: T, previous: T?)
         previous = item
     }
 }
+
+inline fun <reified T> Iterable<*>.firstOfType(): T? =
+    firstOrNull { it is T } as? T
