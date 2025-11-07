@@ -40,7 +40,7 @@ data class CSResult<Value>(
     ): CSResult<T> =
         if (isSuccess) runCatching { dispatcher { function(value!!) } }
             .getOrElse { failure(it) }
-        else CSResult(state, null, throwable, message, code)
+        else failure(throwable, message, code)
 
     suspend inline fun ifNotSuccess(
         crossinline function: suspend () -> Unit
@@ -83,8 +83,13 @@ data class CSResult<Value>(
         fun <Value> success(value: Value) = CSResult(Success, value)
         fun <Value> cancel() = CSResult<Value>(Cancel)
 
-        fun <Value> failure(throwable: Throwable? = null, message: String? = null) =
-            CSResult<Value>(Failure, throwable = throwable, message = message)
+        fun <Value> failure(
+            throwable: Throwable? = null,
+            message: String? = null, code: Int? = null
+        ) = CSResult<Value>(
+            Failure, throwable = throwable,
+            message = message, code = code
+        )
 
         fun <Value> failure(message: String): CSResult<Value> =
             CSResult(Failure, message = message)
