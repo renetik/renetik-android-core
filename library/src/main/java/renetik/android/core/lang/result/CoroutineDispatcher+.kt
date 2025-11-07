@@ -6,6 +6,11 @@ import kotlinx.coroutines.ExecutorCoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.newSingleThreadContext
+import kotlin.coroutines.CoroutineContext
+
+object EmptyDispatcher : CoroutineDispatcher() {
+    override fun dispatch(context: CoroutineContext, block: Runnable) = block.run()
+}
 
 @OptIn(ExperimentalStdlibApi::class)
 suspend fun currentDispatcher(): CoroutineDispatcher? =

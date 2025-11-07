@@ -9,8 +9,8 @@ data class CSResult<Value>(
     val state: State,
     val value: Value? = null,
     var throwable: Throwable? = null,
-    var message: String? = null,
-    var code: Int? = null,
+    val message: String? = null,
+    val code: Int? = null,
 ) {
     enum class State { Success, Cancel, Failure; }
 
@@ -18,39 +18,61 @@ data class CSResult<Value>(
     val isFailure get() = state == Failure
     val isCancel get() = state == Cancel
 
-    suspend fun ifSuccess(function: suspend (Value) -> Unit): CSResult<Value> {
-        if (isSuccess) {
-            val result = runCatching { function(value!!) }
-            if (result.isFailure)
-                return CSResult(Failure, null, result.exceptionOrNull(), null)
-        }
-        return this
-    }
+    suspend inline fun ifSuccess(
+        crossinline function: suspend (Value) -> Unit
+    ): CSResult<Value> = ifSuccess(EmptyDispatcher, function)
 
-    suspend fun ifSuccess(
+    suspend inline fun ifSuccess(
         dispatcher: CoroutineDispatcher,
-        function: suspend (Value) -> Unit
+        crossinline function: suspend (Value) -> Unit
+    ): CSResult<Value> =
+        if (isSuccess) runCatching { dispatcher { function(value!!); this } }
+            .getOrElse { failure(it) }
+        else this
+
+    suspend inline fun <T> ifSuccessReturn(
+        crossinline function: suspend (Value) -> CSResult<T>
+    ): CSResult<T> = ifSuccessReturn(EmptyDispatcher, function)
+
+    suspend inline fun <T> ifSuccessReturn(
+        dispatcher: CoroutineDispatcher,
+        crossinline function: suspend (Value) -> CSResult<T>
+    ): CSResult<T> =
+        if (isSuccess) runCatching { dispatcher { function(value!!) } }
+            .getOrElse { failure(it) }
+        else CSResult(state, null, throwable, message, code)
+
+    suspend inline fun ifNotSuccess(
+        crossinline function: suspend () -> Unit
+    ): CSResult<Value> = ifNotSuccess(EmptyDispatcher, function)
+
+    suspend inline fun ifNotSuccess(
+        dispatcher: CoroutineDispatcher,
+        crossinline function: suspend () -> Unit
+    ): CSResult<Value> = apply {
+        if (isFailure || isCancel) dispatcher { function() }
+    }
+
+    suspend inline fun ifFailure(
+        crossinline function: suspend (CSResult<Value>) -> Unit
+    ): CSResult<Value> = ifFailure(EmptyDispatcher, function)
+
+    suspend inline fun ifFailure(
+        dispatcher: CoroutineDispatcher,
+        crossinline function: suspend (CSResult<Value>) -> Unit
+    ): CSResult<Value> = apply {
+        if (isFailure) dispatcher { function(this) }
+    }
+
+    suspend inline fun ifCancel(
+        crossinline function: suspend () -> Unit
+    ) = ifCancel(EmptyDispatcher, function)
+
+    suspend inline fun ifCancel(
+        dispatcher: CoroutineDispatcher,
+        crossinline function: suspend () -> Unit
     ) = apply {
-        if (isSuccess) runCatching {
-            dispatcher { function(value!!) }
-        }.onFailure { throwable = it }
-    }
-
-    suspend fun <T> ifSuccessReturn(function: suspend (Value) -> CSResult<T>): CSResult<T> =
-        if (isSuccess) runCatching { function(value!!) }
-            .getOrElse { CSResult(Failure, null, it, message) }
-        else CSResult(state, null, throwable, message)
-
-    suspend fun ifNotSuccess(function: suspend () -> Unit) = apply {
-        if (isFailure || isCancel) function()
-    }
-
-    suspend fun ifFailure(function: suspend (CSResult<Value>) -> Unit) = apply {
-        if (isFailure) function(this)
-    }
-
-    suspend fun ifCancel(function: suspend () -> Unit) = apply {
-        if (isCancel) function()
+        if (isCancel) dispatcher { function() }
     }
 
     companion object {
@@ -68,6 +90,6 @@ data class CSResult<Value>(
             CSResult(Failure, message = message)
 
         fun <Value> failure(code: Int, message: String? = null): CSResult<Value> =
-            CSResult(Failure, code = code)
+            CSResult(Failure, code = code, message = message)
     }
 }
