@@ -7,7 +7,7 @@ suspend inline operator fun <T> CoroutineContext.invoke(
     crossinline block: suspend () -> T
 ): T = withContext(this) { block() }
 
-//@JvmName("CoroutineContextNullInvoke") Not useful really
-//suspend inline operator fun <T> CoroutineContext?.invoke(
-//    crossinline block: suspend () -> T
-//): T = this?.let { this.invoke { block() } } ?: block()
+@JvmName("CoroutineContextNullInvoke")
+suspend inline operator fun <T> CoroutineContext?.invoke(
+    crossinline block: suspend () -> T
+): T = this?.let {  withContext(this) { block() } } ?: block()

@@ -20,10 +20,10 @@ data class CSResult<Value>(
 
     suspend inline fun ifSuccess(
         crossinline function: suspend (Value) -> Unit
-    ): CSResult<Value> = ifSuccess(EmptyDispatcher, function)
+    ): CSResult<Value> = ifSuccess(null, function)
 
     suspend inline fun ifSuccess(
-        dispatcher: CoroutineDispatcher,
+        dispatcher: CoroutineDispatcher?,
         crossinline function: suspend (Value) -> Unit
     ): CSResult<Value> =
         if (isSuccess) runCatching { dispatcher { function(value!!); this } }
@@ -34,11 +34,11 @@ data class CSResult<Value>(
     //TODO: can be renamed to ifSuccess ?
     suspend inline fun <T> ifSuccessReturn(
         crossinline function: suspend (Value) -> CSResult<T>
-    ): CSResult<T> = ifSuccessReturn(EmptyDispatcher, function)
+    ): CSResult<T> = ifSuccessReturn(null, function)
 
     //TODO: can be renamed to ifSuccess ?
     suspend inline fun <T> ifSuccessReturn(
-        dispatcher: CoroutineDispatcher,
+        dispatcher: CoroutineDispatcher?,
         crossinline function: suspend (Value) -> CSResult<T>
     ): CSResult<T> =
         if (isSuccess) runCatching { dispatcher { function(value!!) } }
@@ -47,10 +47,10 @@ data class CSResult<Value>(
 
     suspend inline fun ifNotSuccess(
         crossinline function: suspend () -> Unit
-    ): CSResult<Value> = ifNotSuccess(EmptyDispatcher, function)
+    ): CSResult<Value> = ifNotSuccess(null, function)
 
     suspend inline fun ifNotSuccess(
-        dispatcher: CoroutineDispatcher,
+        dispatcher: CoroutineDispatcher?,
         crossinline function: suspend () -> Unit
     ): CSResult<Value> = apply {
         if (isFailure || isCancel) dispatcher { function() }
@@ -58,10 +58,10 @@ data class CSResult<Value>(
 
     suspend inline fun ifFailure(
         crossinline function: suspend (CSResult<Value>) -> Unit
-    ): CSResult<Value> = ifFailure(EmptyDispatcher, function)
+    ): CSResult<Value> = ifFailure(null, function)
 
     suspend inline fun ifFailure(
-        dispatcher: CoroutineDispatcher,
+        dispatcher: CoroutineDispatcher?,
         crossinline function: suspend (CSResult<Value>) -> Unit
     ): CSResult<Value> = apply {
         if (isFailure) dispatcher { function(this) }
@@ -69,10 +69,10 @@ data class CSResult<Value>(
 
     suspend inline fun ifCancel(
         crossinline function: suspend () -> Unit
-    ) = ifCancel(EmptyDispatcher, function)
+    ) = ifCancel(null, function)
 
     suspend inline fun ifCancel(
-        dispatcher: CoroutineDispatcher,
+        dispatcher: CoroutineDispatcher?,
         crossinline function: suspend () -> Unit
     ) = apply {
         if (isCancel) dispatcher { function() }

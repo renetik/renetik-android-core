@@ -9,6 +9,7 @@ import kotlinx.coroutines.newSingleThreadContext
 import kotlin.coroutines.CoroutineContext
 
 object EmptyDispatcher : CoroutineDispatcher() {
+    override fun isDispatchNeeded(context: CoroutineContext): Boolean = false
     override fun dispatch(context: CoroutineContext, block: Runnable) = block.run()
 }
 
