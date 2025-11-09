@@ -43,7 +43,8 @@ data class CSResult<Value>(
     ): CSResult<T> =
         if (isSuccess) runCatching { dispatcher { function(value!!) } }
             .getOrElse { failure(it) }
-        else failure(throwable, message, code)
+        else CSResult(state, throwable = throwable,
+            message = message, code = code)
 
     suspend inline fun ifNotSuccess(
         crossinline function: suspend () -> Unit
