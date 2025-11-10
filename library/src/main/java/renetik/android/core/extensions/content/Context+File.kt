@@ -10,6 +10,7 @@ fun Context.temporaryFile(extension: String? = null): File =
 fun Context.temporaryFolder(): File {
     val uniqueName = "temp_folder_${UUID.randomUUID()}"
     val tempFolder = File(cacheDir, uniqueName)
-    if (!tempFolder.exists()) tempFolder.mkdir()
+    tempFolder.deleteRecursively()
+    tempFolder.mkdirs()
     return tempFolder
 }
