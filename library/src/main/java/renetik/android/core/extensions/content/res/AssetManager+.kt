@@ -1,6 +1,7 @@
 package renetik.android.core.extensions.content.res
 
 import android.content.res.AssetManager
+import renetik.android.core.java.io.deleteAll
 import renetik.android.core.kotlin.unexpected
 import renetik.android.core.logging.CSLog.logError
 import java.io.File
@@ -32,8 +33,11 @@ fun AssetManager.copyPathToDir(
 }
 
 private fun AssetManager.copyFile(path: String, dest: File) {
-    if (dest.isDirectory) dest.deleteRecursively()
-    else dest.parentFile?.mkdirs()
+    if (dest.exists()) {
+        dest.deleteAll()
+        if (dest.exists()) logError("Failed to delete $dest")
+    }
+    dest.parentFile?.mkdirs()
     open(path).use { input -> dest.outputStream().use(input::copyTo) }
 }
 
@@ -41,4 +45,5 @@ fun AssetManager.isFile(path: String): Boolean =
     path.isNotEmpty() &&
             runCatching { open(path).close(); true }.getOrDefault(false)
 
-fun AssetManager.isDir(path: String): Boolean = !isFile(path)
+fun AssetManager.isDir(path: String): Boolean =
+    runCatching { list(path)?.isNotEmpty() == true }.getOrDefault(false)
