@@ -155,3 +155,6 @@ fun String.sanitizeForFile(default: String, max: Int = 200): String = this
 val String.titleCased: String
     get() = if (isEmpty()) this else split(" ")
         .joinToString(" ") { it.replaceFirstChar(Char::titlecase) }
+
+val String.sentenceCased: String
+    get() = if (isEmpty()) this else lowerCased.replaceFirstChar(Char::uppercase)
