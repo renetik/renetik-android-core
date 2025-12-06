@@ -38,6 +38,9 @@ inline operator fun CSValue<Long>.plus(value: CSValue<Long>): Long = value.value
 @JvmName("csValueLongDivFloat")
 inline operator fun CSValue<Long>.div(value: Float): Float = value / value
 
+@JvmName("csValueLongDivDouble")
+inline operator fun CSValue<Long>.div(value: Double): Double = value / value
+
 @JvmName("intMinusCSValueInt")
 inline operator fun Int.minus(value: CSValue<Int>): Int = this - value.value
 
