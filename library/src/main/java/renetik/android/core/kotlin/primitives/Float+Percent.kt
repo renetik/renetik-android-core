@@ -4,10 +4,10 @@ package renetik.android.core.kotlin.primitives
 
 import renetik.android.core.kotlin.ranges.first
 import renetik.android.core.kotlin.ranges.size
-import kotlin.math.abs
 
 inline fun Float.percentOf(size: Float): Float = this * size / 100f
 inline fun Float.percentOf(size: Int): Float = percentOf(size.toFloat())
+inline fun Float?.percentOf(size: Int): Float? = this?.percentOf(size.toFloat())
 inline fun Float.percentOf(size: Long): Float = percentOf(size.toFloat())
 inline fun Float.percentOfInt(size: Float): Int = percentOf(size).toInt()
 inline fun Float.percentOfInt(size: Int): Int = percentOf(size.toFloat()).toInt()
