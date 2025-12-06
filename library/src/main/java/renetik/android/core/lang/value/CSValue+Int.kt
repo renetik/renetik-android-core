@@ -2,8 +2,6 @@
 
 package renetik.android.core.lang.value
 
-import kotlin.jvm.JvmName
-
 @JvmName("intPlusCSValueInt")
 inline operator fun Int.plus(value: CSValue<Int>): Int = this + value.value
 
@@ -67,6 +65,7 @@ inline operator fun Int.times(value: CSValue<Double>): Double = this * value.val
 
 inline operator fun CSValue<Int>.times(value: Int): Int = this.value * value
 inline operator fun CSValue<Int>.times(value: Float): Float = this.value * value
+inline operator fun Float.times(value: CSValue<Int>): Float = this * value.value
 
 @JvmName("csValueIntTimesCSValueInt")
 inline operator fun CSValue<Int>.times(value: CSValue<Int>): Int = this.value * value.value
