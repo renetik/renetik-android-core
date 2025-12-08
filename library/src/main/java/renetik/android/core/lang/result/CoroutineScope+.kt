@@ -17,10 +17,8 @@ import kotlin.time.Duration.Companion.seconds
 var mainScope: CoroutineScope = createMainScope()
 fun createMainScope() = app.scope.createSupervisorChild()
 
-fun CoroutineScope.createSupervisorChild(): CoroutineScope {
-    val job = coroutineContext[Job] ?: error("scope lacks Job")
-    return CoroutineScope(coroutineContext + SupervisorJob(parent = job))
-}
+fun CoroutineScope.createSupervisorChild() = CoroutineScope(coroutineContext +
+        SupervisorJob(parent = coroutineContext.job))
 
 @Suppress("SuspendFunctionOnCoroutineScope")
 suspend fun CoroutineScope.shutDown(timeout: Duration = 5.seconds) {
