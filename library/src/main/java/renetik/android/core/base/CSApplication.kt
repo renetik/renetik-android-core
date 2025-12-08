@@ -15,12 +15,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.MainScope
 import renetik.android.core.extensions.content.CSToast.toast
+import renetik.android.core.kotlin.className
 import renetik.android.core.kotlin.findCause
 import renetik.android.core.kotlin.primitives.isTrue
 import renetik.android.core.lang.CSEnvironment
 import renetik.android.core.lang.CSLang.ExitStatus.Error
 import renetik.android.core.lang.CSLang.ExitStatus.OK
 import renetik.android.core.lang.CSLang.exit
+import renetik.android.core.lang.result.named
 import renetik.android.core.lang.variable.CSWeakVariable.Companion.weak
 import renetik.android.core.logging.CSLog.logError
 import renetik.android.core.logging.CSLog.logInfo
@@ -47,12 +49,11 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
     }
 
     val scope = MainScope()
-    val cores = getRuntime().availableProcessors()
+    private val cores = getRuntime().availableProcessors()
     val Default = Dispatchers.Default.limitedParallelism(max(1, cores - 1))
-
-    //            CoroutineName("$className Default")
+        .named("$className Default")
     val IO = Dispatchers.IO.limitedParallelism(5)
-//            CoroutineName("$className IO")
+        .named("$className IO")
 
     override fun onCreate() {
         super.onCreate()

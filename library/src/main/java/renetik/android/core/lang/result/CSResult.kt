@@ -1,9 +1,9 @@
 package renetik.android.core.lang.result
 
-import kotlinx.coroutines.CoroutineDispatcher
 import renetik.android.core.lang.result.CSResult.State.Cancel
 import renetik.android.core.lang.result.CSResult.State.Failure
 import renetik.android.core.lang.result.CSResult.State.Success
+import kotlin.coroutines.CoroutineContext
 
 data class CSResult<Value>(
     val state: State,
@@ -23,7 +23,7 @@ data class CSResult<Value>(
     ): CSResult<Value> = ifSuccess(null, function)
 
     suspend inline fun ifSuccess(
-        dispatcher: CoroutineDispatcher?,
+        dispatcher: CoroutineContext?,
         crossinline function: suspend (Value) -> Unit
     ): CSResult<Value> =
         if (isSuccess) runCatching { dispatcher { function(value!!); this } }
@@ -35,7 +35,7 @@ data class CSResult<Value>(
     ): CSResult<T> = ifSuccessReturn(null, function)
 
     suspend inline fun <T> ifSuccessReturn(
-        dispatcher: CoroutineDispatcher?,
+        dispatcher: CoroutineContext?,
         crossinline function: suspend (Value) -> CSResult<T>
     ): CSResult<T> =
         if (isSuccess) runCatching { dispatcher { function(value!!) } }
@@ -48,7 +48,7 @@ data class CSResult<Value>(
     ): CSResult<Value> = ifNotSuccess(null, function)
 
     suspend inline fun ifNotSuccess(
-        dispatcher: CoroutineDispatcher?,
+        dispatcher: CoroutineContext?,
         crossinline function: suspend () -> Unit
     ): CSResult<Value> = apply {
         if (isFailure || isCancel) dispatcher { function() }
@@ -59,7 +59,7 @@ data class CSResult<Value>(
     ): CSResult<Value> = ifFailure(null, function)
 
     suspend inline fun ifFailure(
-        dispatcher: CoroutineDispatcher?,
+        dispatcher: CoroutineContext?,
         crossinline function: suspend (CSResult<Value>) -> Unit
     ): CSResult<Value> = apply {
         if (isFailure) dispatcher { function(this) }
@@ -70,7 +70,7 @@ data class CSResult<Value>(
     ) = ifCancel(null, function)
 
     suspend inline fun ifCancel(
-        dispatcher: CoroutineDispatcher?,
+        dispatcher: CoroutineContext?,
         crossinline function: suspend () -> Unit
     ) = apply {
         if (isCancel) dispatcher { function() }
