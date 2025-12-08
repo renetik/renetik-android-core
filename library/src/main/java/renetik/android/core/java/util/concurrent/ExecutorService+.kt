@@ -1,7 +1,7 @@
 package renetik.android.core.java.util.concurrent
 
-import kotlinx.coroutines.invoke
 import renetik.android.core.base.CSApplication.Companion.app
+import renetik.android.core.lang.result.invoke
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration

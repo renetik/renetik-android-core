@@ -49,7 +49,10 @@ abstract class CSApplication<ActivityType : AppCompatActivity> : Application(),
     val scope = MainScope()
     val cores = getRuntime().availableProcessors()
     val Default = Dispatchers.Default.limitedParallelism(max(1, cores - 1))
+
+    //            CoroutineName("$className Default")
     val IO = Dispatchers.IO.limitedParallelism(5)
+//            CoroutineName("$className IO")
 
     override fun onCreate() {
         super.onCreate()
