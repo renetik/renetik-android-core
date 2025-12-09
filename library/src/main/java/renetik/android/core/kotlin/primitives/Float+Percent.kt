@@ -23,11 +23,10 @@ inline fun Float.percentOf(range: ClosedRange<Int>): Float {
     return range.first + percentOf(size)
 }
 
-inline fun Float.toPercentOf(total: Float): Float {
-    if (total == 0f) return 0f
-    if (this <= 0f) return 0f
-    if (this >= total) return 100f
-    return (this / total * 100)
+fun Float.toPercentOf(total: Float): Float = when {
+    total <= 0f || this <= 0f -> 0f
+    this >= total -> 100f
+    else -> this / total * 100f
 }
 
 inline fun Float.toPercentOf(total: Int): Float = toPercentOf(total.toFloat())
