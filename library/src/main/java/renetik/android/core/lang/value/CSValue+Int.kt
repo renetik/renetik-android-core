@@ -41,6 +41,9 @@ inline operator fun CSValue<Long>.div(value: Float): Float = this.value / value
 @JvmName("csValueLongDivDouble")
 inline operator fun CSValue<Long>.div(value: Double): Double = this.value / value
 
+@JvmName("csValueFloatDivDouble")
+inline operator fun CSValue<Float>.div(value: Double): Double = this.value / value
+
 @JvmName("intMinusCSValueInt")
 inline operator fun Int.minus(value: CSValue<Int>): Int = this - value.value
 
