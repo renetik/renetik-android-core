@@ -26,6 +26,9 @@ inline operator fun CSValue<Int>.plus(value: Float): Float = this.value + value
 @JvmName("longPlusCSValueLong")
 inline operator fun Long.plus(value: CSValue<Long>): Long = this + value.value
 
+@JvmName("longPlusCSValueDouble")
+inline operator fun Long.plus(value: CSValue<Double>): Double = this + value.value
+
 @JvmName("longPlusCSValueInt")
 inline operator fun Long.plus(value: CSValue<Int>): Long = this + value.value
 
