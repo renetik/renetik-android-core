@@ -93,6 +93,9 @@ inline operator fun CSValue<Int>.div(value: Int): Int = this.value / value
 @JvmName("csValueIntDivFloat")
 inline operator fun CSValue<Int>.div(value: Float): Float = this.value / value
 
+@JvmName("csValueIntDivDouble")
+inline operator fun CSValue<Int>.div(value: Double): Double = this.value / value
+
 inline operator fun CSValue<Int>.compareTo(value: Int): Int =
     this.value.compareTo(value)
 
