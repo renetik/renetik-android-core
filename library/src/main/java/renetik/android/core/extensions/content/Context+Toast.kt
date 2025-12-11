@@ -12,7 +12,8 @@ import renetik.android.core.lang.CSHandler.mainHandler
 import renetik.android.core.lang.send
 
 object CSToast {
-    fun toast(text: String) = app.toast(text)
+    fun toast(text: String) =
+        app.toast(text)
     fun toast(text: String, time: CSToastTime = LongTime) =
         app.toast(text, time)
 }
