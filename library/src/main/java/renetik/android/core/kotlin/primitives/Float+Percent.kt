@@ -4,6 +4,7 @@ package renetik.android.core.kotlin.primitives
 
 import renetik.android.core.kotlin.ranges.first
 import renetik.android.core.kotlin.ranges.size
+import kotlin.math.roundToInt
 
 inline fun Float.percentOf(size: Float): Float = this * size / 100f
 inline fun Float?.percentOf(size: Float): Float? = this?.percentOf(size)
@@ -33,3 +34,4 @@ fun Float.toPercentOf(total: Float): Float = when {
 inline fun Float.toPercentOf(total: Int): Float = toPercentOf(total.toFloat())
 inline fun Float.toPercentOf(range: ClosedRange<Float>): Float =
     (this - range.first).toPercentOf(range.size)
+inline fun Float.toPercentOfInt(total: Int): Int = toPercentOf(total).roundToInt()
