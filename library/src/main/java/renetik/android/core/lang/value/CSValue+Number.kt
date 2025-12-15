@@ -102,6 +102,9 @@ inline operator fun CSValue<Int>.div(value: Double): Double = this.value / value
 inline operator fun CSValue<Int>.compareTo(value: Int): Int =
     this.value.compareTo(value)
 
+inline operator fun Int.compareTo(value: CSValue<Int>): Int =
+    this.compareTo(value.value)
+
 inline operator fun CSValue<Int>.compareTo(value: CSValue<Int>): Int =
     this.value.compareTo(value.value)
 
