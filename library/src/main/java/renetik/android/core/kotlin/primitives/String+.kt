@@ -104,8 +104,8 @@ fun String.separateToString(vararg items: Any?): String {
     return text.toString()
 }
 
-val String.lowerCased: String get() = lowercase(Locale.ROOT)
-val String.upperCased: String get() = uppercase(Locale.ROOT)
+val String.lowerCased: String get() = lowercase()
+val String.upperCased: String get() = uppercase()
 val String.noAccents: String get() = removeAccents()
 val String.noNewLines: String get() = replace("/n", " ")
 
@@ -118,10 +118,17 @@ fun String.removeAccents(): String {
         .replace(nonSpacingCharactersRegex, "")
 }
 
-fun CharSequence.containsAll(words: List<String>, ignoreCase: Boolean = false): Boolean {
-    for (word in words) if (!contains(word, ignoreCase)) return false
-    return true
-}
+fun CharSequence.containsAll(words: List<String>, ignoreCase: Boolean = false): Boolean =
+    words.all { contains(it, ignoreCase) }
+
+fun CharSequence.containsAll(vararg words: String, ignoreCase: Boolean = false): Boolean =
+    words.all { contains(it, ignoreCase) }
+
+fun CharSequence.containsAny(words: List<String>, ignoreCase: Boolean = false): Boolean =
+    words.any { contains(it, ignoreCase) }
+
+fun CharSequence.containsAny(vararg words: String, ignoreCase: Boolean = false): Boolean =
+    words.any { contains(it, ignoreCase) }
 
 fun String.vertical(): String = fold("") { acc, char -> "$acc$char\n" }.dropLast(1)
 fun String.noBreakSpace(): String = replace(' ', '\u00A0')
