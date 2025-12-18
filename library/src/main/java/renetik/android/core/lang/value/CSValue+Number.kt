@@ -77,6 +77,10 @@ inline operator fun CSValue<Int>.times(value: Float): Float = this.value * value
 
 @JvmName("csValueFloatTimesFloat")
 inline operator fun CSValue<Float>.times(value: Float): Float = this.value * value
+
+@JvmName("csValueFloatTimesInt")
+inline operator fun CSValue<Float>.times(value: Int): Float = this.value * value
+
 inline operator fun Float.times(value: CSValue<Int>): Float = this * value.value
 
 @JvmName("csValueIntTimesCSValueInt")
