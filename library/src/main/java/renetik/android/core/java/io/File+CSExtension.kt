@@ -5,11 +5,14 @@ import renetik.android.core.java.util.format
 import renetik.android.core.java.util.now
 import renetik.android.core.logging.CSLog.logDebug
 import renetik.android.core.logging.CSLog.logError
+import renetik.android.core.logging.CSLog.logWarn
 import java.io.File
 import java.io.File.createTempFile
 import java.nio.file.AtomicMoveNotSupportedException
 import java.nio.file.Files
-import java.nio.file.StandardCopyOption
+import java.nio.file.StandardCopyOption.ATOMIC_MOVE
+import java.nio.file.StandardCopyOption.REPLACE_EXISTING
+import kotlin.io.path.exists
 
 fun File.items(): List<File> = listFiles()?.toList() ?: emptyList()
 fun File.files(): List<File> = listFiles(File::isFile)?.toList() ?: emptyList()
@@ -107,15 +110,29 @@ fun File.deleteAll() = apply {
     if (exists()) if (isDirectory) deleteRecursively() else delete()
 }
 
-fun File.atomicMove(output: File) {
-    try {
-        Files.move(toPath(),
-            output.toPath(),
-            StandardCopyOption.ATOMIC_MOVE,
-            StandardCopyOption.REPLACE_EXISTING)
-    } catch (e: AtomicMoveNotSupportedException) {
-        Files.move(toPath(), output.toPath(), StandardCopyOption.REPLACE_EXISTING)
-    }
+fun File.atomicMove(output: File): Boolean {
+    val path = toPath()
+    if (!path.exists()) return false
+    runCatching {
+        try {
+            Files.move(path, output.toPath(), ATOMIC_MOVE, REPLACE_EXISTING)
+            return true
+        } catch (e: AtomicMoveNotSupportedException) {
+            Files.move(path, output.toPath(), REPLACE_EXISTING)
+            return true
+        }
+    }.onFailure(::logWarn)
+    return false
+}
+
+fun File.copy(output: File): Boolean {
+    val path = toPath()
+    if (!path.exists()) return false
+    runCatching {
+        Files.copy(path, output.toPath(), REPLACE_EXISTING)
+        return true
+    }.onFailure(::logWarn)
+    return false
 }
 
 fun File.safeDelete() {
