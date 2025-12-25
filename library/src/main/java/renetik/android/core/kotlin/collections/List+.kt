@@ -106,3 +106,8 @@ inline val <reified T> List<T>.doubled
 
 fun <T> List<T>.swap(first: Int, second: Int): List<T> =
     mutable().apply { swap(first, second) }
+
+fun List<Int>.flipRange(count: Int): List<Int> {
+    val toFlip = filter { it in 0 until count }.asReversed().iterator()
+    return map { if (it in 0 until count) toFlip.next() else it }
+}

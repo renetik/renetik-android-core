@@ -112,3 +112,13 @@ fun <T> MutableList<T>.swap(first: Int, second: Int) {
     this[first] = this[second]
     this[second] = tmp
 }
+
+fun MutableList<Int>.flipRangeInPlace(count: Int) {
+    val values = filter { it in 0 until count }.asReversed()
+    var idx = 0
+    for (i in indices) {
+        if (this[i] in 0 until count) {
+            this[i] = values[idx++]
+        }
+    }
+}
