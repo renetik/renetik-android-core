@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
-
 package renetik.android.core.base
 
 import android.app.Activity
@@ -12,7 +10,6 @@ import android.view.WindowManager
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.MainScope
 import renetik.android.core.extensions.content.CSToast.toast
 import renetik.android.core.kotlin.className
