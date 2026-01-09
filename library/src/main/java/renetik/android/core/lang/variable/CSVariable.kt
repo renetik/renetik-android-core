@@ -33,7 +33,8 @@ interface CSVariable<T> : CSValue<T>, ReadWriteProperty<Any?, T> {
 
     override var value: T
 
-    override fun getValue(thisRef: Any?, property: KProperty<*>): T = synchronized(this) { value }
+    override fun getValue(thisRef: Any?, property: KProperty<*>): T =
+        synchronized(this) { value }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) =
         synchronized(this) { this.value = value }

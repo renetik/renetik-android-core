@@ -17,6 +17,5 @@ interface CSValue<T> : ReadOnlyProperty<Any?, T> {
 
     val value: T
 
-    override fun getValue(thisRef: Any?, property: KProperty<*>): T =
-        synchronized(this) { value }
+    override fun getValue(thisRef: Any?, property: KProperty<*>): T = value
 }
