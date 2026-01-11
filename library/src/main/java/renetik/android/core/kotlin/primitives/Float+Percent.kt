@@ -35,3 +35,10 @@ inline fun Float.toPercentOf(total: Int): Float = toPercentOf(total.toFloat())
 inline fun Float.toPercentOf(range: ClosedRange<Float>): Float =
     (this - range.first).toPercentOf(range.size)
 inline fun Float.toPercentOfInt(total: Int): Int = toPercentOf(total).roundToInt()
+
+inline fun Float.toPercentOfDouble(total: Int): Double = toPercentOfDouble(total.toDouble())
+inline fun Float.toPercentOfDouble(total: Double): Double = when {
+    total <= 0f || this <= 0f -> 0.0
+    this >= total -> 100.0
+    else -> this / total * 100.0
+}

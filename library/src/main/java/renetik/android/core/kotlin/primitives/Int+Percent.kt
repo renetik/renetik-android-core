@@ -19,7 +19,15 @@ inline fun Int.toPercentOf(total: Float): Float {
     return (this / total * 100)
 }
 
+inline fun Int.toPercentOf(total: Double): Double {
+    if (total == 0.0) return 0.0
+    if (this <= 0f) return 0.0
+    if (this >= total) return 100.0
+    return (this / total * 100.0)
+}
+
 inline fun Int.toPercentOf(total: Int): Float = toPercentOf(total.toFloat())
+inline fun Int.toPercentOfDouble(total: Int): Double = toPercentOf(total.toDouble())
 inline fun Int.toPercentOfInt(total: Int): Int = toPercentOf(total).roundToInt()
 
 inline fun Int.toPercentOf(range: ClosedRange<Int>): Float =
