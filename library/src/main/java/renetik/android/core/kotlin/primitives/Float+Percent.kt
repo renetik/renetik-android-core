@@ -25,7 +25,7 @@ inline fun Float.percentOf(range: ClosedRange<Int>): Float {
     return range.first + percentOf(size)
 }
 
-fun Float.toPercentOf(total: Float): Float = when {
+inline fun Float.toPercentOf(total: Float): Float = when {
     total <= 0f || this <= 0f -> 0f
     this >= total -> 100f
     else -> this / total * 100f
