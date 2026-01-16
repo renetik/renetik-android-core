@@ -17,6 +17,12 @@ fun <T> Any.setPrivateField(name: String, fieldValue: T) = runCatching {
     field.set(this, fieldValue)
 }.onFailure(::logWarn)
 
+fun setStaticField(type: KClass<*>, name: String, value: Any?) = runCatching {
+    val field = type.java.getDeclaredField(name)
+    field.isAccessible = true
+    field.set(null, value)
+}.onFailure(::logWarn)
+
 @Suppress("UNCHECKED_CAST")
 fun <T> createClass(className: String): Class<T>? = runCatching {
     Class.forName(className) as? Class<T>
