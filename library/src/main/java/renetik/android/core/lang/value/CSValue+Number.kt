@@ -50,6 +50,9 @@ inline operator fun CSValue<Float>.div(value: Double): Double = this.value / val
 @JvmName("intMinusCSValueInt")
 inline operator fun Int.minus(value: CSValue<Int>): Int = this - value.value
 
+@JvmName("floatMinusCSValueFloat")
+inline operator fun Float.minus(value: CSValue<Float>): Float = this - value.value
+
 @JvmName("intMinusCSValueFloat")
 inline operator fun Int.minus(value: CSValue<Float>): Float = this - value.value
 
