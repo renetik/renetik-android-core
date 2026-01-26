@@ -8,6 +8,6 @@ dependencies {
     // Fixes: Cannot access 'androidx.navigationevent.NavigationEventDispatcherOwner' in Android Studio editor.
     implementation "androidx.navigationevent:navigationevent:1.0.1"
 
-    testApi project(':renetik-android-testing')
+    testImplementation project(':renetik-android-testing')
     b_leakcanaryImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
 }
