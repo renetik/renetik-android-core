@@ -13,6 +13,8 @@ inline infix fun <T> T.equalNot(other: CSValue<T>): Boolean = this != other.valu
 inline infix fun <T> CSValue<T>.equal(other: T): Boolean = value == other
 inline infix fun <T> CSValue<T>.equalNot(other: T): Boolean = value != other
 
+inline fun <T> CSValue<T>.equalAny(vararg items: T?): Boolean = value in items
+
 @JvmName("equalNotNullable")
 inline infix fun <T> CSValue<T>.equalNot(other: T?): Boolean = value != other
 inline infix fun <T> CSValue<T>.equal(other: CSValue<T>): Boolean = value == other.value
