@@ -1,12 +1,20 @@
 package renetik.android.core.lang.variable
 
-fun CSVariable<Boolean>.setTrue() = run { this.value = true }
-fun CSVariable<Boolean>.setFalse() = run { this.value = false }
-fun CSVariable<Boolean>.toggle() = apply { value = !value }
+fun CSVariable<Boolean>.setTrue() {
+    this.value = true
+}
 
-fun CSSafeVariable<Boolean>.toggle() = apply {
+fun CSVariable<Boolean>.setFalse() {
+    this.value = false
+}
+
+fun CSVariable<Boolean>.toggle() {
+    value = !value
+}
+
+fun CSSafeVariable<Boolean>.toggle() {
     while (true) {
         val current = value
-        if (compareAndSet(current, !current)) return@apply
+        if (compareAndSet(current, !current)) return
     }
 }
