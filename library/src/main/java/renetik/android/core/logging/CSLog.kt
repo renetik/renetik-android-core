@@ -184,6 +184,35 @@ object CSLog {
     }
 
     // -----------------------------------------------------------------------
+    // FAST LOGGING (Zero Allocation / No Side Effects)
+    // -----------------------------------------------------------------------
+
+    @JvmStatic
+    inline fun logVerboseFast(crossinline function: () -> String) {
+        if (logger.isEnabled(Verbose)) logger.verbose(null, function())
+    }
+
+    @JvmStatic
+    inline fun logDebugFast(crossinline function: () -> String) {
+        if (logger.isEnabled(Debug)) logger.debug(null, function())
+    }
+
+    @JvmStatic
+    inline fun logInfoFast(crossinline function: () -> String) {
+        if (logger.isEnabled(Info)) logger.info(null, function())
+    }
+
+    @JvmStatic
+    inline fun logWarnFast(crossinline function: () -> String) {
+        if (logger.isEnabled(Warn)) logger.warn(null, function())
+    }
+
+    @JvmStatic
+    inline fun logErrorFast(crossinline function: () -> String) {
+        if (logger.isEnabled(Error)) logger.error(null, function())
+    }
+
+    // -----------------------------------------------------------------------
     // INTERNAL IMPLEMENTATION (The Anchor)
     // -----------------------------------------------------------------------
 

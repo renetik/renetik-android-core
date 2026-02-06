@@ -12,7 +12,6 @@ import renetik.android.core.logging.CSLogLevel.Info
 import renetik.android.core.logging.CSLogLevel.Verbose
 import renetik.android.core.logging.CSLogLevel.Warn
 
-
 class CSAndroidLogger(
     val tag: String = LIBRARY_PACKAGE_NAME,
     override val level: CSLogLevel = if (isDebug) Debug else Error,
@@ -54,10 +53,16 @@ class CSAndroidLogger(
         listener?.invoke(Error, message, e)
     }
 
-    private fun Array<out Any?>.createMessage() = StringBuilder().also { builder ->
-        forEachIndexed { index, it ->
-            it?.toString()?.takeIf(String::isNotBlank)?.let {
-                builder.applyIf(index != 0) { add(String.Space) }.add(it)
+    private fun Array<out Any?>.createMessage(): CharSequence {
+        if (size == 1) {
+            val single = this[0]
+            if (single is String) return single
+        }
+        return StringBuilder().also { builder ->
+            forEachIndexed { index, it ->
+                it?.toString()?.takeIf(String::isNotBlank)?.let {
+                    builder.applyIf(index != 0) { add(String.Space) }.add(it)
+                }
             }
         }
     }
