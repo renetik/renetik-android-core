@@ -14,10 +14,11 @@ import renetik.android.core.logging.CSLogLevel.Verbose
 import renetik.android.core.logging.CSLogLevel.Warn
 import renetik.android.core.logging.CSLogMessage.Companion.message
 import renetik.android.core.logging.CSLogMessage.Companion.traceMessage
-import java.lang.System.currentTimeMillis
 import java.lang.Thread.currentThread
-import java.text.DateFormat
-import java.text.DateFormat.getDateTimeInstance
+import java.time.Instant
+import java.time.ZoneId.systemDefault
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle.MEDIUM
 
 object CSLog {
     var logger: CSLogger = CSPrintLogger()
@@ -227,7 +228,7 @@ object CSLog {
      */
     @PublishedApi @AnyThread
     internal fun printLog(level: CSLogLevel, msg: CSLogMessage): Array<String?> {
-        val time = dateFormat.format(currentTimeMillis())
+        val time = dateTimeFormatter.format(Instant.now())
         val values = if (isTraceLineEnabled) arrayOf(time, getTraceLine(), msg.message)
         else arrayOf(time, msg.message)
         when (level) {
@@ -241,7 +242,8 @@ object CSLog {
         return values
     }
 
-    private val dateFormat: DateFormat = getDateTimeInstance()
+    private val dateTimeFormatter = DateTimeFormatter
+        .ofLocalizedDateTime(MEDIUM).withZone(systemDefault())
 
     /**
      * The first frame that isn't CSLog is the caller.
