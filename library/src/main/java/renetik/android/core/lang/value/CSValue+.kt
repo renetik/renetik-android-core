@@ -6,7 +6,6 @@ import renetik.android.core.kotlin.primitives.containsAll
 import renetik.android.core.lang.value.CSValue.Companion.value
 import renetik.android.core.lang.variable.CSVariable
 
-inline infix fun <T> T.equal(other: T): Boolean = this == other
 inline infix fun <T> T?.equalOrNull(other: T): Boolean = this == null || this == other
 inline infix fun <T> T.equal(other: CSValue<T>): Boolean = this == other.value
 inline infix fun <T> T.equalNot(other: CSValue<T>): Boolean = this != other.value
