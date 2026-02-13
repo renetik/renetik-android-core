@@ -243,7 +243,7 @@ object CSLog {
     }
 
     private val dateTimeFormatter = DateTimeFormatter
-        .ofLocalizedDateTime(MEDIUM).withZone(systemDefault())
+        .ofPattern("yyyy-MM-dd HH:mm:ss").withZone(systemDefault())
 
     /**
      * The first frame that isn't CSLog is the caller.
