@@ -18,7 +18,6 @@ import java.lang.Thread.currentThread
 import java.time.Instant
 import java.time.ZoneId.systemDefault
 import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle.MEDIUM
 
 object CSLog {
     var logger: CSLogger = CSPrintLogger()
@@ -194,27 +193,27 @@ object CSLog {
     // FAST LOGGING (Zero Allocation / No Side Effects)
     // -----------------------------------------------------------------------
     @AnyThread @JvmStatic
-    inline fun logVerboseFast(crossinline function: () -> String) {
+    inline fun logVerboseFast(crossinline function: () -> String? = { null }) {
         if (logger.isEnabled(Verbose)) logger.verbose(null, function())
     }
 
     @AnyThread @JvmStatic
-    inline fun logDebugFast(crossinline function: () -> String) {
+    inline fun logDebugFast(crossinline function: () -> String? = { null }) {
         if (logger.isEnabled(Debug)) logger.debug(null, function())
     }
 
     @AnyThread @JvmStatic
-    inline fun logInfoFast(crossinline function: () -> String) {
+    inline fun logInfoFast(crossinline function: () -> String? = { null }) {
         if (logger.isEnabled(Info)) logger.info(null, function())
     }
 
     @AnyThread @JvmStatic
-    inline fun logWarnFast(crossinline function: () -> String) {
+    inline fun logWarnFast(crossinline function: () -> String? = { null }) {
         if (logger.isEnabled(Warn)) logger.warn(null, function())
     }
 
     @AnyThread @JvmStatic
-    inline fun logErrorFast(crossinline function: () -> String) {
+    inline fun logErrorFast(crossinline function: () -> String? = { null }) {
         if (logger.isEnabled(Error)) logger.error(null, function())
     }
 
