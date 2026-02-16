@@ -193,27 +193,27 @@ object CSLog {
     // FAST LOGGING (Zero Allocation / No Side Effects)
     // -----------------------------------------------------------------------
     @AnyThread @JvmStatic
-    inline fun logVerboseFast(crossinline function: () -> String? = { null }) {
+    inline fun logVerboseFast(crossinline function: () -> String) {
         if (logger.isEnabled(Verbose)) logger.verbose(null, function())
     }
 
     @AnyThread @JvmStatic
-    inline fun logDebugFast(crossinline function: () -> String? = { null }) {
+    inline fun logDebugFast(crossinline function: () -> String) {
         if (logger.isEnabled(Debug)) logger.debug(null, function())
     }
 
     @AnyThread @JvmStatic
-    inline fun logInfoFast(crossinline function: () -> String? = { null }) {
+    inline fun logInfoFast(crossinline function: () -> String) {
         if (logger.isEnabled(Info)) logger.info(null, function())
     }
 
     @AnyThread @JvmStatic
-    inline fun logWarnFast(crossinline function: () -> String? = { null }) {
+    inline fun logWarnFast(crossinline function: () -> String) {
         if (logger.isEnabled(Warn)) logger.warn(null, function())
     }
 
     @AnyThread @JvmStatic
-    inline fun logErrorFast(crossinline function: () -> String? = { null }) {
+    inline fun logErrorFast(crossinline function: () -> String) {
         if (logger.isEnabled(Error)) logger.error(null, function())
     }
 
