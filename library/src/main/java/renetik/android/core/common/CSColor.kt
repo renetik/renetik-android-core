@@ -20,14 +20,17 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import renetik.android.core.lang.CSHasId
 import androidx.core.graphics.toColorInt
+import renetik.android.core.common.CSColor.`<no name provided>`.toHex
 
 data class CSColor(@ColorInt val color: Int) : CSHasId {
 
     constructor(hex: String) : this(hex.toColorInt())
 
-    fun toHex(): String = String.format("#%06X", (0xFFFFFF and color))
+    fun toHex(): String = color.toHex()
 
     companion object {
+
+        fun Int.toHex(): String = String.format("#%06X", this and 0xFFFFFF)
 
         val standard = listOf(
             BLACK, DKGRAY, GRAY, LTGRAY, WHITE, RED, GREEN,
