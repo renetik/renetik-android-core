@@ -14,13 +14,11 @@ import android.graphics.Color.RED
 import android.graphics.Color.TRANSPARENT
 import android.graphics.Color.WHITE
 import android.graphics.Color.YELLOW
-import android.graphics.Color.parseColor
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
-import renetik.android.core.lang.CSHasId
 import androidx.core.graphics.toColorInt
-import renetik.android.core.common.CSColor.`<no name provided>`.toHex
+import renetik.android.core.lang.CSHasId
 
 data class CSColor(@ColorInt val color: Int) : CSHasId {
 
