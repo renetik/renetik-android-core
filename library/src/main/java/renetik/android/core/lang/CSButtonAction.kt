@@ -1,3 +1,7 @@
 package renetik.android.core.lang
 
-data class CSButtonAction(val title: String, val onClick: () -> Unit)
+import renetik.android.core.base.CSApplication.Companion.getString
+
+data class CSButtonAction(val title: String, val onClick: () -> Unit) {
+    constructor(title: Int, onClick: () -> Unit) : this(getString(title), onClick)
+}
