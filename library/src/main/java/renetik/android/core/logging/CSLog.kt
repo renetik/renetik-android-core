@@ -5,9 +5,6 @@ package renetik.android.core.logging
 
 import androidx.annotation.AnyThread
 import renetik.android.core.kotlin.CSUnexpectedException
-import renetik.android.core.kotlin.applyIf
-import renetik.android.core.kotlin.primitives.Space
-import renetik.android.core.kotlin.text.add
 import renetik.android.core.kotlin.toShortString
 import renetik.android.core.lang.CSEnvironment.isDebug
 import renetik.android.core.logging.CSLogLevel.Debug
@@ -241,9 +238,12 @@ object CSLog {
     @PublishedApi @AnyThread
     internal fun printLog(level: CSLogLevel, msg: CSLogMessage) {
         val time = dateTimeFormatter.format(Instant.now())
-        val values = if (isTraceLineEnabled) arrayOf(time, getTraceLine(), msg.message)
-        else arrayOf(time, msg.message)
-        val message = values.createMessage()
+        val message = if (isTraceLineEnabled) {
+            if (msg.message.isNotBlank()) "$time ${traceLine()} ${msg.message}"
+            else "$time ${traceLine()}"
+        } else {
+            if (msg.message.isNotBlank()) "$time ${msg.message}" else time
+        }
         when (level) {
             Verbose -> logger.verbose(msg.throwable, message)
             Debug -> logger.debug(msg.throwable, message)
@@ -254,27 +254,13 @@ object CSLog {
         }
     }
 
-    private fun Array<out Any?>.createMessage(): String {
-        if (size == 1) {
-            val single = this[0]
-            if (single is String) return single
-        }
-        return StringBuilder().also { builder ->
-            forEachIndexed { index, it ->
-                it?.toString()?.takeIf(String::isNotBlank)?.let {
-                    builder.applyIf(index != 0) { add(String.Space) }.add(it)
-                }
-            }
-        }.toString()
-    }
-
     private val dateTimeFormatter = DateTimeFormatter
         .ofPattern("yyyy-MM-dd HH:mm:ss").withZone(systemDefault())
 
     /**
      * The first frame that isn't CSLog is the caller.
      */
-    private fun getTraceLine(): String {
+    private fun traceLine(): String {
         val stackTrace = currentThread().stackTrace
         val logClassName = CSLog::class.java.name
         for (index in stackTrace.indices) {
