@@ -239,11 +239,11 @@ object CSLog {
      * It will always appear in the stack trace, allowing us to find the caller reliably.
      */
     @PublishedApi @AnyThread
-    internal fun printLog(level: CSLogLevel, msg: CSLogMessage): Array<String?> {
+    internal fun printLog(level: CSLogLevel, msg: CSLogMessage) {
         val time = dateTimeFormatter.format(Instant.now())
         val values = if (isTraceLineEnabled) arrayOf(time, getTraceLine(), msg.message)
         else arrayOf(time, msg.message)
-        val message  = values.createMessage()
+        val message = values.createMessage()
         when (level) {
             Verbose -> logger.verbose(msg.throwable, message)
             Debug -> logger.debug(msg.throwable, message)
@@ -252,7 +252,6 @@ object CSLog {
             Error -> logger.error(msg.throwable, message)
             else -> CSUnexpectedException.unexpected()
         }
-        return values
     }
 
     private fun Array<out Any?>.createMessage(): String {
