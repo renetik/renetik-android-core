@@ -6,7 +6,6 @@ import renetik.android.core.logging.CSLog.init
 import renetik.android.core.logging.CSLog.logDebug
 import renetik.android.core.logging.CSLog.logWarn
 import renetik.android.core.logging.CSLogLevel.*
-import renetik.android.core.logging.CSLogMessage.Companion.message
 
 class CSDummyLoggerTest {
     var event: CSLogLevel? = null

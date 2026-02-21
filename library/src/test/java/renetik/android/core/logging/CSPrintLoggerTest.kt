@@ -8,7 +8,6 @@ import renetik.android.core.logging.CSLog.logWarn
 import renetik.android.core.logging.CSLogLevel.Debug
 import renetik.android.core.logging.CSLogLevel.Info
 import renetik.android.core.logging.CSLogLevel.Warn
-import renetik.android.core.logging.CSLogMessage.Companion.message
 
 class CSPrintLoggerTest {
     @Test

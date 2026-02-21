@@ -6,14 +6,11 @@ package renetik.android.core.logging
 import androidx.annotation.AnyThread
 import renetik.android.core.kotlin.CSUnexpectedException
 import renetik.android.core.kotlin.toShortString
-import renetik.android.core.lang.CSEnvironment.isDebug
 import renetik.android.core.logging.CSLogLevel.Debug
 import renetik.android.core.logging.CSLogLevel.Error
 import renetik.android.core.logging.CSLogLevel.Info
 import renetik.android.core.logging.CSLogLevel.Verbose
 import renetik.android.core.logging.CSLogLevel.Warn
-import renetik.android.core.logging.CSLogMessage.Companion.message
-import renetik.android.core.logging.CSLogMessage.Companion.traceMessage
 import java.lang.Thread.currentThread
 import java.time.Instant
 import java.time.ZoneId.systemDefault
@@ -35,158 +32,153 @@ object CSLog {
     // INLINE WRAPPERS (Zero Allocation)
     // -----------------------------------------------------------------------
     @AnyThread
-    inline fun log(level: CSLogLevel, crossinline function: () -> CSLogMessage) {
-        if (logger.isEnabled(level)) printLog(level, function())
+    inline fun log(level: CSLogLevel, crossinline function: () -> Any?) {
+        if (logger.isEnabled(level)) log(level, null, function())
+    }
+
+    @AnyThread
+    inline fun log(level: CSLogLevel, message: Any? = null) {
+        if (logger.isEnabled(level)) log(level, null, message)
     }
 
     @AnyThread @JvmStatic
-    inline fun logVerbose(any: Any? = null) {
-        if (logger.isEnabled(Verbose)) printLog(Verbose, message(any))
+    inline fun logVerbose(message: Any? = null) {
+        if (logger.isEnabled(Verbose)) log(Verbose, null, message)
     }
 
     @AnyThread @JvmStatic
     inline fun logVerbose(crossinline function: () -> String) {
-        if (logger.isEnabled(Verbose)) printLog(Verbose, message(function()))
+        if (logger.isEnabled(Verbose)) log(Verbose, null, function())
     }
 
     @AnyThread @JvmStatic
     inline fun logDebug(crossinline function: () -> String) {
-        if (logger.isEnabled(Debug)) printLog(Debug, message(function()))
+        if (logger.isEnabled(Debug)) log(Debug, null, function())
     }
 
     @AnyThread @JvmStatic
-    inline fun logDebug(any: Any?) {
-        if (logger.isEnabled(Debug)) printLog(Debug, message(any))
-    }
-
-    @AnyThread @JvmStatic
-    fun logDebug() {
-        if (logger.isEnabled(Debug)) printLog(Debug, message())
+    inline fun logDebug(message: Any? = null) {
+        if (logger.isEnabled(Debug)) log(Debug, null, message)
     }
 
     @AnyThread @JvmStatic
     inline fun logDebug(throwable: Throwable, crossinline function: (() -> String)) {
-        if (logger.isEnabled(Debug)) printLog(Debug, message(throwable, function()))
+        if (logger.isEnabled(Debug)) log(Debug, throwable, function())
     }
 
     @AnyThread @JvmStatic
     inline fun logDebug(throwable: Throwable) {
-        if (logger.isEnabled(Debug)) printLog(Debug,
-            message(throwable))
+        if (logger.isEnabled(Debug)) log(Debug, throwable, "")
     }
 
     @AnyThread @JvmStatic
     inline fun logDebugTrace(noinline function: (() -> String)? = null) {
-        if (logger.isEnabled(Debug)) printLog(Debug,
-            message(Throwable(), function?.invoke()))
+        if (logger.isEnabled(Debug)) log(Debug, Throwable(), function?.invoke())
     }
 
     @AnyThread @JvmStatic
     inline fun logInfo() {
-        if (logger.isEnabled(Info)) printLog(Info, message(""))
+        if (logger.isEnabled(Info)) log(Info, null, "")
     }
 
     @AnyThread @JvmStatic
-    inline fun logInfo(any: Any?) {
-        if (logger.isEnabled(Info)) printLog(Info, message(any))
+    inline fun logInfo(message: Any?) {
+        if (logger.isEnabled(Info)) log(Info, null, message)
     }
 
     @AnyThread @JvmStatic
     inline fun logInfo(crossinline function: () -> String) {
-        if (logger.isEnabled(Info)) printLog(Info, message(function()))
+        if (logger.isEnabled(Info)) log(Info, null, function())
     }
 
     @AnyThread @JvmStatic
     inline fun logInfo(throwable: Throwable, message: String) {
-        if (logger.isEnabled(Info)) printLog(Info, message(throwable, message))
+        if (logger.isEnabled(Info)) log(Info, throwable, message)
     }
 
     @AnyThread @JvmStatic
     inline fun logInfo(throwable: Throwable, noinline function: (() -> String)? = null) {
-        if (logger.isEnabled(Info)) printLog(Info, message(throwable, function?.invoke()))
+        if (logger.isEnabled(Info)) log(Info, throwable, function?.invoke())
     }
 
-    @AnyThread @JvmStatic
-    inline fun logInfoTrace(any: Any? = null, skip: Int = 0, length: Int = 5) {
+    inline fun logInfoTrace(message: Any? = null, skip: Int = 0, length: Int = 5) {
         if (logger.isEnabled(Info)) {
-            printLog(Info, message("$any\n" + Throwable().toShortString(skip, length)))
+            log(Info, null, "$message\n" + Throwable().toShortString(skip, length))
         }
     }
 
     @AnyThread @JvmStatic
     inline fun logInfoTrace(crossinline function: () -> String) {
         if (logger.isEnabled(Info)) {
-            if (isDebug) printLog(Info, traceMessage(function()))
-            else printLog(Info, message(Throwable(), function()))
+            log(Info, Throwable(), function())
         }
     }
 
     @AnyThread @JvmStatic
     inline fun logWarn() {
-        if (logger.isEnabled(Warn)) printLog(Warn, message(""))
+        if (logger.isEnabled(Warn)) log(Warn, null, "")
     }
 
     @AnyThread @JvmStatic
-    inline fun logWarn(any: Any?) {
-        if (logger.isEnabled(Warn)) printLog(Warn, message(any))
+    inline fun logWarn(message: Any?) {
+        if (logger.isEnabled(Warn)) log(Warn, null, message)
     }
 
     @AnyThread @JvmStatic
     inline fun logWarn(crossinline function: () -> String) {
-        if (logger.isEnabled(Warn)) printLog(Warn, message(function()))
+        if (logger.isEnabled(Warn)) log(Warn, null, function())
     }
 
     @AnyThread @JvmStatic
     inline fun logWarn(throwable: Throwable?, noinline function: (() -> String)? = null) {
-        if (logger.isEnabled(Warn)) printLog(Warn, message(throwable, function?.invoke()))
+        if (logger.isEnabled(Warn)) log(Warn, throwable, function?.invoke())
     }
 
     @AnyThread @JvmStatic
     inline fun logWarn(throwable: Throwable?, message: String?) {
-        if (logger.isEnabled(Warn)) printLog(Warn, message(throwable, message))
+        if (logger.isEnabled(Warn)) log(Warn, throwable, message)
     }
 
     @AnyThread @JvmStatic
     inline fun logWarnTrace(crossinline function: () -> String) {
         if (logger.isEnabled(Warn)) {
-            if (isDebug) printLog(Warn, traceMessage(function()))
-            else printLog(Warn, message(Throwable(), function()))
+            log(Warn, Throwable(), function())
         }
     }
 
     @AnyThread @JvmStatic
     inline fun logError() {
-        if (logger.isEnabled(Error)) printLog(Error, message(""))
+        if (logger.isEnabled(Error)) log(Error, null, "")
     }
 
     @AnyThread @JvmStatic
     inline fun logError(message: String?) {
-        if (logger.isEnabled(Error)) printLog(Error, message(message))
+        if (logger.isEnabled(Error)) log(Error, null, message)
     }
 
     @AnyThread @JvmStatic
     inline fun logError(crossinline function: () -> String) {
-        if (logger.isEnabled(Error)) printLog(Error, message(function()))
+        if (logger.isEnabled(Error)) log(Error, null, function())
     }
 
     @AnyThread @JvmStatic
     inline fun logError(throwable: Throwable?) {
-        if (logger.isEnabled(Error)) printLog(Error, message(throwable))
+        if (logger.isEnabled(Error)) log(Error, throwable, "")
     }
 
     @AnyThread @JvmStatic
     inline fun logError(throwable: Throwable?, message: String?) {
-        if (logger.isEnabled(Error)) printLog(Error, message(throwable, message))
+        if (logger.isEnabled(Error)) log(Error, throwable, message)
     }
 
     @AnyThread @JvmStatic
     inline fun logErrorTrace() {
-        if (logger.isEnabled(Error)) printLog(Error, message(Throwable()))
+        if (logger.isEnabled(Error)) log(Error, Throwable(), "")
     }
 
     @AnyThread @JvmStatic
     inline fun logErrorTrace(crossinline function: () -> String) {
-        if (logger.isEnabled(Error)) printLog(Error, message(Throwable(), function()))
+        if (logger.isEnabled(Error)) log(Error, Throwable(), function())
     }
 
     // -----------------------------------------------------------------------
@@ -241,23 +233,26 @@ object CSLog {
      * It will always appear in the stack trace, allowing us to find the caller reliably.
      */
     @PublishedApi @AnyThread
-    internal fun printLog(level: CSLogLevel, msg: CSLogMessage) {
+    internal fun log(level: CSLogLevel, throwable: Throwable? = null, message: Any? = "") {
         val time = dateTimeFormatter.format(Instant.now())
-        val message = if (isTraceLineEnabled) {
-            if (msg.message.isNotBlank()) "$time ${traceLine()} ${msg.message}"
-            else "$time ${traceLine()}"
-        } else {
-            if (msg.message.isNotBlank()) "$time ${msg.message}" else time
-        }
+        val text = createMessage(message?.toString() ?: "", time)
         when (level) {
-            Verbose -> logger.verbose(msg.throwable, message)
-            Debug -> logger.debug(msg.throwable, message)
-            Info -> logger.info(msg.throwable, message)
-            Warn -> logger.warn(msg.throwable, message)
-            Error -> logger.error(msg.throwable, message)
+            Verbose -> logger.verbose(throwable, text)
+            Debug -> logger.debug(throwable, text)
+            Info -> logger.info(throwable, text)
+            Warn -> logger.warn(throwable, text)
+            Error -> logger.error(throwable, text)
             else -> CSUnexpectedException.unexpected()
         }
     }
+
+    private inline fun createMessage(text: String, time: String): String? =
+        if (isTraceLineEnabled) {
+            if (text.isNotBlank()) "$time ${traceLine()} $text"
+            else "$time ${traceLine()}"
+        } else {
+            if (text.isNotBlank()) "$time $text" else time
+        }
 
     private val dateTimeFormatter = DateTimeFormatter
         .ofPattern("yyyy-MM-dd HH:mm:ss").withZone(systemDefault())
