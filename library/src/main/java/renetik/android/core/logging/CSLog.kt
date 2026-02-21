@@ -223,6 +223,11 @@ object CSLog {
     }
 
     @AnyThread @JvmStatic
+    inline fun logWarnFast(ex: Throwable, message: String) {
+        if (logger.isEnabled(Warn)) logger.warn(ex, null)
+    }
+
+    @AnyThread @JvmStatic
     inline fun logErrorFast(crossinline function: () -> String) {
         if (logger.isEnabled(Error)) logger.error(null, function())
     }
