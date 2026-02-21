@@ -5,6 +5,9 @@ package renetik.android.core.logging
 
 import androidx.annotation.AnyThread
 import renetik.android.core.kotlin.CSUnexpectedException
+import renetik.android.core.kotlin.applyIf
+import renetik.android.core.kotlin.primitives.Space
+import renetik.android.core.kotlin.text.add
 import renetik.android.core.kotlin.toShortString
 import renetik.android.core.lang.CSEnvironment.isDebug
 import renetik.android.core.logging.CSLogLevel.Debug
@@ -218,6 +221,11 @@ object CSLog {
     }
 
     @AnyThread @JvmStatic
+    inline fun logWarnFast(ex: Throwable) {
+        if (logger.isEnabled(Warn)) logger.warn(ex, null)
+    }
+
+    @AnyThread @JvmStatic
     inline fun logErrorFast(crossinline function: () -> String) {
         if (logger.isEnabled(Error)) logger.error(null, function())
     }
@@ -235,15 +243,30 @@ object CSLog {
         val time = dateTimeFormatter.format(Instant.now())
         val values = if (isTraceLineEnabled) arrayOf(time, getTraceLine(), msg.message)
         else arrayOf(time, msg.message)
+        val message  = values.createMessage()
         when (level) {
-            Verbose -> logger.verbose(msg.throwable, *values)
-            Debug -> logger.debug(msg.throwable, *values)
-            Info -> logger.info(msg.throwable, *values)
-            Warn -> logger.warn(msg.throwable, *values)
-            Error -> logger.error(msg.throwable, *values)
+            Verbose -> logger.verbose(msg.throwable, message)
+            Debug -> logger.debug(msg.throwable, message)
+            Info -> logger.info(msg.throwable, message)
+            Warn -> logger.warn(msg.throwable, message)
+            Error -> logger.error(msg.throwable, message)
             else -> CSUnexpectedException.unexpected()
         }
         return values
+    }
+
+    private fun Array<out Any?>.createMessage(): String {
+        if (size == 1) {
+            val single = this[0]
+            if (single is String) return single
+        }
+        return StringBuilder().also { builder ->
+            forEachIndexed { index, it ->
+                it?.toString()?.takeIf(String::isNotBlank)?.let {
+                    builder.applyIf(index != 0) { add(String.Space) }.add(it)
+                }
+            }
+        }.toString()
     }
 
     private val dateTimeFormatter = DateTimeFormatter

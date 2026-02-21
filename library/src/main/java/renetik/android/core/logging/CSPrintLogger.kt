@@ -16,48 +16,33 @@ class CSPrintLogger(
     val listener: CSLogListener? = null
 ) : CSLogger {
 
-    override fun verbose(e: Throwable?, vararg values: Any?) {
-        val message = createMessage(*values)
+    override fun verbose(e: Throwable?, message: String?) {
         println("$Debug: $name: $message $e ${e?.asTraceString ?: ""}")
         println(createPrintMessage(Debug, message, e))
         listener?.invoke(Debug, message.toString(), e)
     }
 
-    override fun debug(e: Throwable?, vararg values: Any?) {
-        val message = createMessage(*values)
+    override fun debug(e: Throwable?, message: String?) {
         println(createPrintMessage(Debug, message, e))
         listener?.invoke(Debug, message.toString(), e)
     }
 
-    override fun info(e: Throwable?, vararg values: Any?) {
-        val message = createMessage(*values)
+    override fun info(e: Throwable?, message: String?) {
         println(createPrintMessage(Info, message, e))
         listener?.invoke(Info, message.toString(), e)
     }
 
-    override fun warn(e: Throwable?, vararg values: Any?) {
-        val message = createMessage(*values)
+    override fun warn(e: Throwable?, message: String?) {
         println(createPrintMessage(Warn, message, e))
         listener?.invoke(Warn, message.toString(), e)
     }
 
-    override fun error(e: Throwable?, vararg values: Any?) {
-        val message = createMessage(*values)
+    override fun error(e: Throwable?, message: String?) {
         println(createPrintMessage(Error, message, e))
         listener?.invoke(Error, message.toString(), e)
     }
 
     private fun createPrintMessage(
-        level: CSLogLevel, message: CharSequence, e: Throwable?
+        level: CSLogLevel, message: String?, e: Throwable?
     ): String = "$level: $name: $message $e ${e?.asTraceString ?: ""}"
-
-    private fun createMessage(vararg values: Any?): CharSequence {
-        if (values.size == 1) {
-            val single = values[0]
-            if (single is String) return single
-        }
-        return StringBuilder().apply {
-            values.forEach { it?.let { add(it).add(String.Space) } }
-        }.deleteLast(String.Space.length)
-    }
 }

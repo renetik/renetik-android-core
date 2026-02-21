@@ -18,52 +18,35 @@ class CSAndroidLogger(
     val listener: CSLogListener? = null
 ) : CSLogger {
 
-    override fun verbose(e: Throwable?, vararg values: Any?) {
+    override fun verbose(e: Throwable?, message: String?) {
         if (isDisabled(Verbose)) return
-        val message = values.createMessage().toString()
         Log.d(tag, message, e)
         listener?.invoke(Debug, message, e)
     }
 
-    override fun debug(e: Throwable?, vararg values: Any?) {
+    override fun debug(e: Throwable?, message: String?) {
         if (isDisabled(Debug)) return
-        val message = values.createMessage().toString()
         Log.d(tag, message, e)
         listener?.invoke(Debug, message, e)
     }
 
-    override fun info(e: Throwable?, vararg values: Any?) {
+    override fun info(e: Throwable?, message: String?) {
         if (isDisabled(Info)) return
-        val message = values.createMessage().toString()
         Log.i(tag, message, e)
         listener?.invoke(Info, message, e)
     }
 
-    override fun warn(e: Throwable?, vararg values: Any?) {
+    override fun warn(e: Throwable?, message: String?) {
         if (isDisabled(Warn)) return
-        val message = values.createMessage().toString()
         Log.w(tag, message, e)
         listener?.invoke(Warn, message, e)
     }
 
-    override fun error(e: Throwable?, vararg values: Any?) {
+    override fun error(e: Throwable?, message: String?) {
         if (isDisabled(Error)) return
-        val message = values.createMessage().toString()
         Log.e(tag, message, e)
         listener?.invoke(Error, message, e)
     }
 
-    private fun Array<out Any?>.createMessage(): CharSequence {
-        if (size == 1) {
-            val single = this[0]
-            if (single is String) return single
-        }
-        return StringBuilder().also { builder ->
-            forEachIndexed { index, it ->
-                it?.toString()?.takeIf(String::isNotBlank)?.let {
-                    builder.applyIf(index != 0) { add(String.Space) }.add(it)
-                }
-            }
-        }
-    }
+
 }
