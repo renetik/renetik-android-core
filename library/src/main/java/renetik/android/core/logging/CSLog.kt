@@ -200,6 +200,11 @@ object CSLog {
     }
 
     @AnyThread @JvmStatic
+    inline fun logInfoFast(message: String) {
+        if (logger.isEnabled(Info)) logger.info(null, message)
+    }
+
+    @AnyThread @JvmStatic
     inline fun logWarnFast(crossinline function: () -> String) {
         if (logger.isEnabled(Warn)) logger.warn(null, function())
     }
