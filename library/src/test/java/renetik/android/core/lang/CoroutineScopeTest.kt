@@ -18,19 +18,23 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import renetik.android.core.base.TestCSApplication
+import renetik.android.core.lang.result.createMainScope
 import renetik.android.core.lang.result.mainScope
 import renetik.android.core.logging.CSLog.logInfo
 import renetik.android.testing.CSAssert.assert
-import renetik.android.testing.TestApplication
 import kotlin.time.Duration.Companion.milliseconds
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(RobolectricTestRunner::class)
-@Config(application = TestApplication::class)
+@Config(application = TestCSApplication::class)
 class CoroutineScopeTest {
 
     @Before
-    fun setUp() = Dispatchers.setMain(StandardTestDispatcher())
+    fun setUp() {
+        Dispatchers.setMain(StandardTestDispatcher())
+        mainScope = createMainScope()
+    }
 
     @After
     fun tearDown() = Dispatchers.resetMain()

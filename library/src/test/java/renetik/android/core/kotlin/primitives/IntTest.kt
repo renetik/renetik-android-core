@@ -8,16 +8,15 @@ class IntTest {
 
     @Test
     fun unique() {
-        val value1 = Int.unique(9)
-        val value2 = Int.unique(9)
-        val value3 = Int.unique(9)
-        val value4 = Int.unique(9)
+        val value1 = Int.unique()
+        val value2 = Int.unique()
+        val value3 = Int.unique()
+        val value4 = Int.unique()
         assertNotEquals(value1, value2)
         assertNotEquals(value2, value3)
         assertNotEquals(value3, value4)
-        assertEquals(9, value1.toString().length)
-        assertEquals(9, value2.toString().length)
-        assertEquals(9, value3.toString().length)
-        assertEquals(9, value4.toString().length)
+        assertEquals(value1 + 1, value2)
+        assertEquals(value2 + 1, value3)
+        assertEquals(value3 + 1, value4)
     }
 }

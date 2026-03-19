@@ -5,7 +5,9 @@ import org.junit.Test
 import renetik.android.core.logging.CSLog.init
 import renetik.android.core.logging.CSLog.logDebug
 import renetik.android.core.logging.CSLog.logWarn
-import renetik.android.core.logging.CSLogLevel.*
+import renetik.android.core.logging.CSLogLevel.Debug
+import renetik.android.core.logging.CSLogLevel.Info
+import renetik.android.core.logging.CSLogLevel.Warn
 
 class CSDummyLoggerTest {
     var event: CSLogLevel? = null
@@ -18,28 +20,30 @@ class CSDummyLoggerTest {
 
     @Test
     fun logWithListener() {
-        init(CSDummyLogger { event, message ->
+        init(logger = CSDummyLogger { event, message ->
             this.event = event
             this.message = message
-        })
+        }, isTraceLineEnabled = false)
         logWarn { "test" }
         Assert.assertEquals(Warn, event)
-//        Assert.assertTrue(message!!.endsWith("test"))
+        Assert.assertTrue(message!!.endsWith(" test"))
     }
 
     @Test
     fun isDebug() {
-        val listener = { event: CSLogLevel, message: String ->
+        val listener = { event: CSLogLevel, message: String? ->
             this.event = event
             this.message = message
         }
-        init(CSDummyLogger(level = Info, listener))
+        init(logger = CSDummyLogger(level = Info, listener = listener),
+            isTraceLineEnabled = false)
         logDebug { "test" }
         Assert.assertNull(event)
 
-        init(CSDummyLogger(level = Debug, listener))
+        init(logger = CSDummyLogger(level = Debug, listener = listener),
+            isTraceLineEnabled = false)
         logDebug { "test2" }
         Assert.assertEquals(Debug, event)
-//        Assert.assertTrue(message!!.endsWith("test2"))
+        Assert.assertTrue(message!!.endsWith(" test2"))
     }
 }
