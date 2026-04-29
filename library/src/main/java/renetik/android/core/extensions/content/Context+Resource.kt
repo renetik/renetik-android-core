@@ -1,5 +1,6 @@
 package renetik.android.core.extensions.content
 
+import android.R
 import android.app.ActivityManager
 import android.app.Service
 import android.content.Context
@@ -70,7 +71,7 @@ fun Context.resourceBytes(id: Int) = catchAllWarn {
     }) { stream.close() }
 }
 
-fun Context.openInputStream(uri: Uri) =
+fun Context.openInputStream(uri: Uri): InputStream? =
     catchErrorReturnNull<FileNotFoundException, InputStream> {
         return contentResolver.openInputStream(uri)
     }
@@ -222,6 +223,6 @@ val Context.externalFilesDir: File
 
 @ColorInt
 fun Context.colorFromStyle(@StyleRes style: Int): Int? =
-    obtainStyledAttributes(style, intArrayOf(android.R.attr.textColor)).use {
+    obtainStyledAttributes(style, intArrayOf(R.attr.textColor)).use {
         runCatching { it.getColorOrThrow(0) }.getOrNull()
     }
