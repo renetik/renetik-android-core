@@ -9,9 +9,9 @@ import kotlin.math.roundToInt
 inline fun Int.percentOf(size: Int): Float = (this * size / 100.0).toFloat()
 inline fun Int.percentOf(size: Float): Float = this * size / 100f
 inline fun Int.percentOf(size: Double): Double = this * size / 100.0
-inline fun Int.percentOfInt(size: Int): Int = percentOf(size).roundToInt()
-inline fun Int.percentOfInt(size: Float): Int = percentOf(size).roundToInt()
-inline fun Int.percentOfInt(size: Double): Int = percentOf(size).roundToInt()
+inline fun Int.percentOfInt(size: Int): Int = percentOf(size).toInt()
+inline fun Int.percentOfInt(size: Float): Int = percentOf(size).toInt()
+inline fun Int.percentOfInt(size: Double): Int = percentOf(size).toInt()
 inline fun Int.percentOf(range: ClosedRange<Int>): Float {
     val size = range.size.takeIf { it > 0 } ?: return 0f
     return range.first + percentOf(size)
