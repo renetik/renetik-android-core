@@ -34,7 +34,9 @@ inline fun Float.toPercentOf(total: Float): Float = when {
 inline fun Float.toPercentOf(total: Int): Float = toPercentOf(total.toFloat())
 inline fun Float.toPercentOf(range: ClosedRange<Float>): Float =
     (this - range.first).toPercentOf(range.size)
+
 inline fun Float.toPercentOfInt(total: Int): Int = toPercentOf(total).roundToInt()
+inline fun Float.toPercentOfInt(range: ClosedRange<Float>): Int = toPercentOf(range).roundToInt()
 
 inline fun Float.toPercentOfDouble(total: Int): Double = toPercentOfDouble(total.toDouble())
 inline fun Float.toPercentOfDouble(total: Double): Double = when {
