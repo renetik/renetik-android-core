@@ -1,2 +1,5 @@
-include ':renetik-android-core' 
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+include ':renetik-android-core'
 project(':renetik-android-core').projectDir = file("library")

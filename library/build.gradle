@@ -1,6 +1,6 @@
 rootProject.ext.namespace = 'renetik.android.core'
-if (rootProject.ext.is_renetik_library_module) apply from: '../library.gradle'
-else apply from: '../../library.gradle'
+if (rootProject.ext.is_renetik_development) apply from: '../../library.gradle'
+else apply from: '../library.gradle'
 android {
     buildFeatures { buildConfig = true }
 }
@@ -8,6 +8,10 @@ dependencies {
     // Fixes: Cannot access 'androidx.navigationevent.NavigationEventDispatcherOwner' in Android Studio editor.
     implementation "androidx.navigationevent:navigationevent:1.1.0"
 
-    testImplementation project(':renetik-android-testing')
-    b_leakcanaryImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
+    if (rootProject.ext.is_renetik_development) {
+        testImplementation project(':renetik-android-testing')
+        b_leakcanaryImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
+    } else testImplementation "com.github.renetik:renetik-android-testing:1.0.0"
+
+
 }
