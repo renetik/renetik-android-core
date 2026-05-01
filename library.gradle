@@ -36,15 +36,3 @@ dependencies {
         testImplementation project(':renetik-android-testing')
     else testImplementation "com.github.renetik:renetik-android-testing:1.0.0"
 }
-//afterEvaluate {
-//    publishing {
-//        publications {
-//            release(MavenPublication) {
-//                from components.release
-//                groupId 'com.github.renetik'
-//                artifactId project.name
-//                version = "1.0.0"
-//            }
-//        }
-//    }
-//}
