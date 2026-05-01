@@ -13,6 +13,9 @@ android {
         targetSdkVersion project.properties.sdk_version
     }
     testOptions {
+        unitTests {
+            includeAndroidResources = true // https://robolectric.org/getting-started/
+        }
         unitTests.all {
             testLogging {
                 outputs.upToDateWhen { false }
