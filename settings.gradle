@@ -1,5 +1,7 @@
 plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
 }
-include ':renetik-android-core'
+include ':renetik-android-core',
+        ':renetik-android-core-leakcanary'
 project(':renetik-android-core').projectDir = file("library")
+project(':renetik-android-core-leakcanary').projectDir = file("leakcanary")

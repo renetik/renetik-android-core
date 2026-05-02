@@ -1,64 +1,61 @@
-package renetik.android.core.lang
+package renetik.android.core.leakcanary
 
 import leakcanary.AppWatcher.objectWatcher
 import leakcanary.LeakCanary.config
 import leakcanary.LeakCanary.showLeakDisplayActivityLauncherIcon
 import renetik.android.core.kotlin.then
 import renetik.android.core.lang.CSEnvironment.isTestRunner
+import renetik.android.core.lang.CSLeakCanaryInterface
 import renetik.android.core.lang.variable.CSVariable.Companion.variable
 import shark.IgnoredReferenceMatcher
 import shark.ObjectInspector
 import shark.ReferencePattern.InstanceFieldPattern
 import shark.ReferencePattern.StaticFieldPattern
 
-val CLASS_PREFIXES = listOf("renetik.android.", "com.renetik.")
-val FIELD_CANDIDATES = listOf("id", "key", "name", "title", "text")
-val REF_FIELDS = listOf("parent", "preset")
+private val classPrefixes = listOf("renetik.android.", "com.renetik.")
+private val fieldCandidates = listOf("id", "key", "name", "title", "text")
+private val refFields = listOf("parent", "preset")
 
-val objectInspector = ObjectInspector { reporter ->
+private val objectInspector = ObjectInspector { reporter ->
     val heapObject = reporter.heapObject
     val instance = heapObject.asInstance ?: return@ObjectInspector
     val instanceClassName = instance.instanceClassName
-    if (!CLASS_PREFIXES.any { instanceClassName.startsWith(it) }) return@ObjectInspector
+    if (!classPrefixes.any { instanceClassName.startsWith(it) }) return@ObjectInspector
     val found = mutableSetOf<String>()
-    // 1) Primary: scan all instance fields (covers fields declared on superclasses)
     runCatching {
-        instance.readFields().forEach { f ->
-            val name = f.name
-            if (name in FIELD_CANDIDATES) {
-                val s = runCatching { f.value.readAsJavaString() }.getOrNull()
-                if (!s.isNullOrBlank()) found.add("$name=$s")
+        instance.readFields().forEach { field ->
+            val name = field.name
+            if (name in fieldCandidates) {
+                val value = runCatching { field.value.readAsJavaString() }.getOrNull()
+                if (!value.isNullOrBlank()) found.add("$name=$value")
             }
         }
     }
-    // 2) Secondary: explicit per-class field lookup (keeps your old approach as fallback)
     if (found.isEmpty()) {
-        FIELD_CANDIDATES.forEach { fieldName ->
+        fieldCandidates.forEach { fieldName ->
             runCatching {
-                val hf = instance[instanceClassName, fieldName] ?: return@runCatching
-                val s = hf.value.readAsJavaString()
-                if (!s.isNullOrBlank()) found.add("$fieldName=$s")
+                val heapField = instance[instanceClassName, fieldName] ?: return@runCatching
+                val value = heapField.value.readAsJavaString()
+                if (!value.isNullOrBlank()) found.add("$fieldName=$value")
             }
         }
     }
-    // 3) Tertiary: follow one-level refs and inspect their instance fields (preset/parent/owner)
-    REF_FIELDS.forEach { refField ->
+    refFields.forEach { refField ->
         runCatching {
             val ref = instance[instanceClassName, refField]?.value?.asObject?.asInstance
             ref?.readFields()?.forEach { field ->
                 val fieldName = field.name
-                if (fieldName in FIELD_CANDIDATES) {
-                    val s = runCatching { field.value.readAsJavaString() }.getOrNull()
-                    if (!s.isNullOrBlank()) found.add("$refField.$fieldName=$s")
+                if (fieldName in fieldCandidates) {
+                    val value = runCatching { field.value.readAsJavaString() }.getOrNull()
+                    if (!value.isNullOrBlank()) found.add("$refField.$fieldName=$value")
                 }
             }
         }
     }
-    // attach labels
     if (found.isNotEmpty()) found.forEach { reporter.labels.add(it) }
 }
 
-object CSLeakCanary : CSLeakCanaryInterface {
+object CSLeakCanaryImplementation : CSLeakCanaryInterface {
     override var isEnabled: Boolean by variable(true, ::updateConfiguration)
 
     override fun Any.expectWeaklyReachable(description: () -> String) {
