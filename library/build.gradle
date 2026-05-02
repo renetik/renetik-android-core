@@ -12,6 +12,4 @@ dependencies {
         testImplementation project(':renetik-android-testing')
         b_leakcanaryImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
     } else testImplementation "com.github.renetik:renetik-android-testing:1.0.0"
-
-
 }
