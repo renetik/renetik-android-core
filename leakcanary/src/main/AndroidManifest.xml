@@ -4,6 +4,6 @@
             android:name=".CSLeakCanaryProvider"
             android:authorities="${applicationId}.renetik.android.core.leakcanary.provider"
             android:exported="false"
-            android:initOrder="100" />
+            android:initOrder="-100" />
     </application>
 </manifest>
