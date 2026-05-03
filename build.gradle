@@ -9,3 +9,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.21"
     }
 }
+wrapper {
+    gradleVersion = "9.5.0"
+    distributionType = Wrapper.DistributionType.BIN
+}
