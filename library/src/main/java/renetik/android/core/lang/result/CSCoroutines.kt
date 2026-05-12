@@ -9,7 +9,7 @@ import kotlin.time.Duration.Companion.milliseconds
 object CSCoroutines {
     suspend fun waitFor(
         timeout: Duration,
-        delay: Duration = 10.milliseconds,
+        delay: Duration,
         message: String = "Condition not met within $timeout",
         condition: () -> Boolean
     ) {
@@ -20,4 +20,10 @@ object CSCoroutines {
             delay(delay)
         }
     }
+
+    suspend fun waitFor(
+        timeout: Duration,
+        message: String = "Condition not met within $timeout",
+        condition: () -> Boolean
+    ) = waitFor(timeout, 10.milliseconds, message, condition)
 }
