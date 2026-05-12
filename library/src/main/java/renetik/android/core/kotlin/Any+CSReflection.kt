@@ -31,8 +31,8 @@ fun <T> createClass(className: String): Class<T>? = runCatching {
 fun classExist(name: String): Boolean = runCatching {
     val loader = Thread.currentThread().contextClassLoader
         ?: ClassLoader.getSystemClassLoader()
-    Class.forName(name, false, loader); true
-}.getOrDefault(false)
+    Class.forName(name, false, loader)
+}.isSuccess
 
 fun <T> createInstance(className: String): T? = createClass<T>(className)?.createInstance()
 
