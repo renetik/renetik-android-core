@@ -43,7 +43,7 @@ object CSEnvironment {
 
     val isRelease by lazy { !isDebug }
 
-    var runnerClassNames = mutableListOf(
+    val runnerClassNames = arrayOf(
         "org.junit.runner.Runner",
         "androidx.test.runner.AndroidJUnitRunner",
         "org.robolectric.RobolectricTestRunner"
