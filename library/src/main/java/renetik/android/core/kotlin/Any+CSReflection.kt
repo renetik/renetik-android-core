@@ -29,7 +29,9 @@ fun <T> createClass(className: String): Class<T>? = runCatching {
 }.onFailure(::logWarn).getOrNull()
 
 fun classExist(name: String): Boolean = runCatching {
-    Class.forName(name); true
+    val loader = Thread.currentThread().contextClassLoader
+        ?: ClassLoader.getSystemClassLoader()
+    Class.forName(name, false, loader); true
 }.getOrDefault(false)
 
 fun <T> createInstance(className: String): T? = createClass<T>(className)?.createInstance()
