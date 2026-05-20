@@ -226,3 +226,9 @@ fun Context.colorFromStyle(@StyleRes style: Int): Int? =
     obtainStyledAttributes(style, intArrayOf(R.attr.textColor)).use {
         runCatching { it.getColorOrThrow(0) }.getOrNull()
     }
+
+val Context.actionBarSize: Int
+    get() {
+        val attrs = theme.obtainStyledAttributes(intArrayOf(R.attr.actionBarSize))
+        return attrs.getDimensionPixelSize(0, 0).also { attrs.recycle() }
+    }
