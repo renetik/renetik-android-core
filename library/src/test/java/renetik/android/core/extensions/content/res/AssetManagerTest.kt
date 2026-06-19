@@ -1,6 +1,5 @@
 package renetik.android.core.extensions.content.res
 
-import android.content.res.AssetManager
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import org.junit.Rule

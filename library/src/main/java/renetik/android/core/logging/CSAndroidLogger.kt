@@ -2,9 +2,6 @@ package renetik.android.core.logging
 
 import android.util.Log
 import renetik.android.core.BuildConfig.LIBRARY_PACKAGE_NAME
-import renetik.android.core.kotlin.applyIf
-import renetik.android.core.kotlin.primitives.Space
-import renetik.android.core.kotlin.text.add
 import renetik.android.core.lang.CSEnvironment.isDebug
 import renetik.android.core.logging.CSLogLevel.Debug
 import renetik.android.core.logging.CSLogLevel.Error
