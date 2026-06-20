@@ -10,21 +10,49 @@ Framework to enjoy, improve and speed up your application development while writ
 Used as library in many projects and improving it while developing new projects.
 I am open for [Hire](https://renetik.github.io) or investment in my mobile app music production & perfromance project Renetik Instruments www.renetik.com.
 
+## Installation
+
+Add JitPack to dependency repositories in `settings.gradle`:
+
 ```gradle
-allprojects {
+dependencyResolutionManagement {
     repositories {
-        // For master-SNAPSHOT
-        maven { url 'https://github.com/renetik/maven-snapshot/raw/master/repository' }
-        // For release builds
-        maven { url 'https://github.com/renetik/maven/raw/master/repository' }
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 ```
+
+Add the core module to the application or library module:
+
 ```gradle
 dependencies {
-    implementation 'com.renetik.library:renetik-android-core:$renetik-android-version'
+    implementation 'com.github.renetik.renetik-android-core:renetik-android-core:VERSION'
 }
 ```
+
+Replace `VERSION` with a GitHub release tag, for example `1.0.1`.
+
+LeakCanary integration is published separately:
+
+```gradle
+dependencies {
+    debugImplementation 'com.github.renetik.renetik-android-core:renetik-android-core-leakcanary:VERSION'
+}
+```
+
+## Release
+
+Commit all intended release changes, make sure the `master` working tree is clean, then pass the new version to the release script:
+
+```sh
+./release.sh 1.0.1
+```
+
+The script validates the version and repository state, builds and publishes both modules locally with the requested coordinates, pushes `master`, and creates the matching GitHub release and tag. JitPack then builds that tag on demand.
+
+
 ## Examples
 ```kotlin
 class CSLazyVarTest {

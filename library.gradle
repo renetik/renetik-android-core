@@ -1,6 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
+group = providers.gradleProperty('group')
+        .getOrElse('com.github.renetik.renetik-android-core')
+version = providers.gradleProperty('version').getOrElse('LOCAL')
+
 android {
     namespace rootProject.ext.namespace
     compileOptions {
@@ -11,6 +15,11 @@ android {
     defaultConfig {
         minSdkVersion project.properties.min_sdk_version
         targetSdkVersion project.properties.sdk_version
+    }
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
     }
     testOptions {
         unitTests {
@@ -28,6 +37,10 @@ android {
             }
         }
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/LICENSE-notice.md'
+    }
 }
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
@@ -37,5 +50,16 @@ dependencies {
 
     if (rootProject.ext.is_renetik_development)
         testImplementation project(':renetik-android-testing')
-    else testImplementation "com.github.renetik:renetik-android-testing:1.0.0"
+    else testImplementation "com.github.renetik:renetik-android-testing:1.0.1"
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                artifactId project.name
+            }
+        }
+    }
 }
