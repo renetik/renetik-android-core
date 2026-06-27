@@ -2,13 +2,19 @@
 [![Android Build](https://github.com/renetik/renetik-android-core/workflows/Android%20Build/badge.svg)
 ](https://github.com/renetik/renetik-android-core/actions/workflows/android.yml)
 
-# Renetik Android - Core
+# Renetik Android Core
 #### [https://github.com/renetik/renetik-android-core](https://github.com/renetik/renetik-android-core/) ➜ [Documentation](https://renetik.github.io/renetik-android-core/)
 
-Core library of Renetik Libraries collection, with **bunch** **of** **useful** **staff**.
-Framework to enjoy, improve and speed up your application development while writing readable code.
-Used as library in many projects and improving it while developing new projects.
-I am open for [Hire](https://renetik.github.io) or investment in my mobile app music production & perfromance project Renetik Instruments www.renetik.com.
+Core library for the Renetik Android libraries collection.
+It provides shared application runtime helpers, Kotlin/Java/Android extensions,
+state primitives, logging, math helpers, resources, and optional LeakCanary wiring.
+
+The project favors compact extension files such as `Context+.kt`, `Int+.kt`,
+and `CSValue+.kt`. The `+` suffix is intentional and marks files that extend
+an existing platform or Renetik type.
+
+Used as a library in many projects and improved while developing new projects.
+I am open for [Hire](https://renetik.github.io) or investment in my mobile app music production & performance project Renetik Instruments www.renetik.com.
 
 ## Installation
 
@@ -41,6 +47,35 @@ dependencies {
     debugImplementation 'com.github.renetik.renetik-android-core:renetik-android-core-leakcanary:VERSION'
 }
 ```
+
+## Project Layout
+
+| Path | Purpose |
+| --- | --- |
+| `library/` | Main `renetik-android-core` Android library artifact. |
+| `leakcanary/` | Optional `renetik-android-core-leakcanary` integration artifact. |
+| `docs/package-map.md` | Package guide for finding source areas quickly. |
+| `library.gradle` | Shared Android library build configuration. |
+| `renetik_android_build_common.gradle` | Shared repository build constants and repositories. |
+
+## Package Map
+
+| Package | Contains |
+| --- | --- |
+| `renetik.android.core.base` | `CSApplication` and app lifecycle base classes. |
+| `renetik.android.core.lang` | Core Renetik contracts, runtime helpers, guards, handlers, and type aliases. |
+| `renetik.android.core.lang.value` | Read-only value primitives. |
+| `renetik.android.core.lang.variable` | Mutable variable primitives and weak/safe variants. |
+| `renetik.android.core.lang.lazy` | Lazy property primitives. |
+| `renetik.android.core.lang.result` | Coroutine and result helpers. |
+| `renetik.android.core.kotlin` | Kotlin type extensions. |
+| `renetik.android.core.java` | Java/JDK type extensions. |
+| `renetik.android.core.extensions` | Android framework extensions by Android package area. |
+| `renetik.android.core.android` | Lower-level Android platform helpers. |
+| `renetik.android.core.logging` | Logger abstraction and implementations. |
+| `renetik.android.core.math` | Math and point helpers. |
+
+See [docs/package-map.md](docs/package-map.md) for the fuller navigation guide.
 
 ## Release
 
