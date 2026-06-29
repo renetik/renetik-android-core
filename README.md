@@ -70,8 +70,9 @@ dependencies {
 | `renetik.android.core.lang.result` | Coroutine and result helpers. |
 | `renetik.android.core.kotlin` | Kotlin type extensions. |
 | `renetik.android.core.java` | Java/JDK type extensions. |
-| `renetik.android.core.extensions` | Android framework extensions by Android package area. |
-| `renetik.android.core.android` | Lower-level Android platform helpers. |
+| `renetik.android.core.android` | Android framework extensions and platform helpers by Android package area. |
+| `renetik.android.core.android.os` | Android handler, looper, and main-thread helpers. |
+| `renetik.android.core.android.graphics` | Android graphics helpers and color types. |
 | `renetik.android.core.logging` | Logger abstraction and implementations. |
 | `renetik.android.core.math` | Math and point helpers. |
 

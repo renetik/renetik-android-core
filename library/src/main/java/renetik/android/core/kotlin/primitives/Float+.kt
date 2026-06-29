@@ -2,7 +2,7 @@
 
 package renetik.android.core.kotlin.primitives
 
-import renetik.android.core.extensions.content.dpToPixelF
+import renetik.android.core.android.content.dpToPixelF
 import renetik.android.core.lang.CSEnvironment.app
 import renetik.android.core.lang.value.CSValue
 import java.math.RoundingMode

@@ -2,11 +2,11 @@
 
 package renetik.android.core.kotlin.primitives
 
-import renetik.android.core.extensions.content.dpToPixel
-import renetik.android.core.extensions.content.dpToPixelF
-import renetik.android.core.extensions.content.spToPixelF
-import renetik.android.core.extensions.content.toDp
-import renetik.android.core.extensions.content.toDpF
+import renetik.android.core.android.content.dpToPixel
+import renetik.android.core.android.content.dpToPixelF
+import renetik.android.core.android.content.spToPixelF
+import renetik.android.core.android.content.toDp
+import renetik.android.core.android.content.toDpF
 import renetik.android.core.lang.ArgFun
 import renetik.android.core.lang.CSEnvironment.app
 import renetik.android.core.lang.CSTimeConstants.Minute

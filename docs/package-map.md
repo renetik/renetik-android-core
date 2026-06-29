@@ -16,7 +16,6 @@ or `CSValue+.kt` contain extensions for the type named before `+`.
 | Package | Use when looking for |
 | --- | --- |
 | `renetik.android.core.base` | Application base classes, app singleton access, and lifecycle hooks. |
-| `renetik.android.core.common` | Shared data types and small common utilities. |
 | `renetik.android.core.lang` | Core contracts, runtime helpers, guards, handlers, type aliases, resource wrappers, and small domain interfaces. |
 | `renetik.android.core.lang.atomic` | Atomic and producer/consumer state helpers. |
 | `renetik.android.core.lang.direction` | Direction enums and direction helpers. |
@@ -42,17 +41,18 @@ or `CSValue+.kt` contain extensions for the type named before `+`.
 | `renetik.android.core.kotlin.text` | Kotlin text builder types. |
 | `renetik.android.core.java` | General Java/JDK helpers. |
 | `renetik.android.core.java.io` | `File`, `InputStream`, `Reader`, and `Closeable`. |
-| `renetik.android.core.java.lang` | `Class`, `Thread`, and system helpers. |
+| `renetik.android.core.java.lang` | `Class` and system helpers. |
 | `renetik.android.core.java.util` | `Date`, `Calendar`, timers, and related helpers. |
 | `renetik.android.core.java.util.concurrent` | Executors, futures, scheduled executors, and thread factories. |
-| `renetik.android.core.extensions.app` | Android `Application`. |
-| `renetik.android.core.extensions.content` | Android `Context`, `Intent`, preferences, services, display, files, resources, permissions, and toast helpers. |
-| `renetik.android.core.extensions.content.res` | Android resources and assets. |
-| `renetik.android.core.extensions.graphics` | Android graphics framework types. |
-| `renetik.android.core.extensions.media` | Android media framework types. |
-| `renetik.android.core.android` | Android platform helpers that do not fit the higher-level extension packages. |
-| `renetik.android.core.android.graphics` | Lower-level Android graphics helpers. |
+| `renetik.android.core.android.app` | Android `Application`. |
+| `renetik.android.core.android.bluetooth` | Android Bluetooth manager and adapter helpers. |
+| `renetik.android.core.android.content` | Android `Context`, `Intent`, preferences, services, display, files, resources, permissions, URLs, locale, and toast helpers. |
+| `renetik.android.core.android.content.res` | Android resources and assets. |
+| `renetik.android.core.android.graphics` | Android graphics framework types, color helpers, and `CSColor`/`CSMaterialColor`. |
+| `renetik.android.core.android.media` | Android media framework types. |
 | `renetik.android.core.android.net` | Android `Uri` helpers. |
+| `renetik.android.core.android.opengl` | OpenGL/EGL helpers such as `CSMaxTextureSize`. |
+| `renetik.android.core.android.os` | Android `Handler`, looper, and main-thread helpers. |
 | `renetik.android.core.android.util` | Android utility helpers such as display metrics. |
 
 ## Optional Packages
@@ -66,4 +66,5 @@ or `CSValue+.kt` contain extensions for the type named before `+`.
 - `Type+.kt` contains extension properties or functions for `Type`.
 - `Type+Topic.kt` contains grouped extensions for `Type` around one topic.
 - `CS*` names are Renetik primitives, contracts, or helpers.
+- Do not use `CSExtension` or `+CS` as extension-file suffixes.
 - Tests mirror the package they cover under `library/src/test/java`.

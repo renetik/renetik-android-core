@@ -2,7 +2,6 @@
 
 package renetik.android.core.kotlin.primitives
 
-import android.util.Patterns.EMAIL_ADDRESS
 import renetik.android.core.kotlin.text.StringBuilder
 import renetik.android.core.kotlin.text.add
 import renetik.android.core.kotlin.text.deleteLast
@@ -150,9 +149,6 @@ fun String.splitInTwo(separator: String): Pair<String, String?> {
     return if (index == -1) this to null
     else substring(0, index) to substring(index + separator.length)
 }
-
-fun String?.isValidEmail(): Boolean =
-    !isNullOrEmpty() && EMAIL_ADDRESS.matcher(this).matches()
 
 private val ILLEGAL_FILENAME_CHARS = Regex("[\\x00-\\x1F\\\\/:*?\"<>|]")
 fun String.sanitizeForFile(default: String, max: Int = 200): String = this

@@ -11,7 +11,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
-import renetik.android.core.extensions.content.CSToast.toast
+import renetik.android.core.android.content.CSToast.toast
 import renetik.android.core.kotlin.className
 import renetik.android.core.kotlin.findCause
 import renetik.android.core.kotlin.primitives.isTrue
