@@ -1,8 +1,8 @@
 package renetik.android.core.android.util
 
 import android.util.DisplayMetrics
-import renetik.android.core.base.CSApplication.Companion.app
 import renetik.android.core.android.content.isLandscape
+import renetik.android.core.base.CSApplication.Companion.app
 
 val DisplayMetrics.orientedWidthPixels: Int
     get() = if (app.isLandscape) heightPixels else widthPixels

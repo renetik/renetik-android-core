@@ -9,8 +9,8 @@ import android.os.Build.HARDWARE
 import android.os.Build.MANUFACTURER
 import android.os.Build.MODEL
 import android.os.Build.PRODUCT
-import renetik.android.core.base.CSApplication
 import renetik.android.core.android.content.isDebug
+import renetik.android.core.base.CSApplication
 import renetik.android.core.kotlin.classExist
 import renetik.android.core.kotlin.createClass
 import renetik.android.core.kotlin.invoke

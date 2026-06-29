@@ -5,10 +5,10 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import android.widget.Toast.LENGTH_SHORT
 import renetik.android.core.android.content.CSToastTime.ShortTime
-import renetik.android.core.android.os.isThreadMain
-import renetik.android.core.lang.CSEnvironment.app
 import renetik.android.core.android.os.CSHandler.mainHandler
+import renetik.android.core.android.os.isThreadMain
 import renetik.android.core.android.os.send
+import renetik.android.core.lang.CSEnvironment.app
 
 object CSToast {
     fun toast(text: String) = app.toast(text)
