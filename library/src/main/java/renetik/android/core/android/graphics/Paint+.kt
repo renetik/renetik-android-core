@@ -6,4 +6,4 @@ inline fun Paint(function: (Paint).() -> Unit): Paint =
     Paint(Paint.ANTI_ALIAS_FLAG).also(function)
 
 inline fun Paint.clone(function: (Paint).() -> Unit): Paint =
-    Paint(Paint.ANTI_ALIAS_FLAG).also { it.set(this); function(it) }
+    Paint(this).also(function)

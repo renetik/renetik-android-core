@@ -8,7 +8,7 @@ class CSVariableImpl<T>(
     val onChange: ArgFun<T>? = null
 ) : CSVariable<T> {
 
-    fun apply() = apply { onChange?.invoke(value) }
+    fun apply() = this.also { onChange?.invoke(value) }
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): T =
         synchronized(this) { value }
