@@ -6,15 +6,14 @@ group = providers.gradleProperty('group')
 version = providers.gradleProperty('version').getOrElse('LOCAL')
 
 android {
-    namespace rootProject.ext.namespace
+    namespace = rootProject.ext.namespace
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_21
         targetCompatibility JavaVersion.VERSION_21
     }
     compileSdk = project.properties.sdk_version
     defaultConfig {
-        minSdkVersion project.properties.min_sdk_version
-        targetSdkVersion project.properties.sdk_version
+        minSdk = project.properties.min_sdk_version
     }
     publishing {
         singleVariant('release') {
@@ -37,9 +36,11 @@ android {
             }
         }
     }
-    packagingOptions {
-        exclude 'META-INF/LICENSE.md'
-        exclude 'META-INF/LICENSE-notice.md'
+    packaging {
+        resources {
+            excludes += ['META-INF/LICENSE.md',
+                         'META-INF/LICENSE-notice.md']
+        }
     }
 }
 dependencies {
@@ -59,7 +60,7 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                artifactId project.name
+                artifactId = project.name
             }
         }
     }

@@ -8,7 +8,7 @@ def smokeGroup = providers.gradleProperty('smokeGroup')
         .getOrElse('com.github.renetik.renetik-android-core')
 
 android {
-    namespace 'renetik.android.core.consumer.smoke'
+    namespace = 'renetik.android.core.consumer.smoke'
     compileSdk 37
 
     compileOptions {
