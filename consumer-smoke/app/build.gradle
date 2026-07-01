@@ -2,11 +2,6 @@ plugins {
     id 'com.android.application'
 }
 
-def smokeVersion = providers.gradleProperty('smokeVersion')
-        .getOrElse('0.0.0-smoke')
-def smokeGroup = providers.gradleProperty('smokeGroup')
-        .getOrElse('com.github.renetik.renetik-android-core')
-
 android {
     namespace = 'renetik.android.core.consumer.smoke'
     compileSdk 37
@@ -26,6 +21,6 @@ android {
 }
 
 dependencies {
-    implementation "${smokeGroup}:renetik-android-core:${smokeVersion}"
-    debugImplementation "${smokeGroup}:renetik-android-core-leakcanary:${smokeVersion}"
+    implementation "com.github.renetik:renetik-android-core:master-SNAPSHOT"
+    debugImplementation "com.github.renetik:renetik-android-core-leakcanary:master-SNAPSHOT"
 }
