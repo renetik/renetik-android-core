@@ -1,14 +1,14 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
-group = providers.gradleProperty('group')
-        .getOrElse('com.github.renetik.renetik-android-core')
-version = providers.gradleProperty('version').getOrElse('LOCAL')
-
 def libraryRoot = projectDir
 while (libraryRoot != null && !new File(libraryRoot, ".git").exists())
     libraryRoot = libraryRoot.parentFile
 def libraryLintConfig = new File(libraryRoot ?: projectDir.parentFile, "lint.xml")
+
+group = providers.gradleProperty('group')
+        .getOrElse('com.github.renetik')
+version = providers.gradleProperty('version').getOrElse('LOCAL')
 
 android {
     namespace = rootProject.ext.namespace
@@ -45,23 +45,12 @@ android {
             }
         }
     }
-    packaging {
-        resources {
-            excludes += ['META-INF/LICENSE.md',
-                         'META-INF/LICENSE-notice.md']
-        }
-    }
 }
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     implementation "androidx.core:core-ktx:$ktx_version"
-    api "androidx.appcompat:appcompat:$appcompat_version"
-
-    if (rootProject.ext.is_renetik_development)
-        testImplementation project(':renetik-android-testing')
-    else testImplementation "com.github.renetik:renetik-android-testing:master-SNAPSHOT"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
 }
 
 afterEvaluate {
