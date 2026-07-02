@@ -18,8 +18,8 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build --no-daemon
-    - name: Publish smoke artifacts to Maven local
-      run: ./gradlew publishToMavenLocal --no-daemon -Pgroup=com.github.renetik -Pversion=0.0.0-smoke
+      run: ./gradlew build
+#    - name: Publish smoke artifacts to Maven local
+#      run: ./gradlew publishToMavenLocal --no-daemon -Pgroup=com.github.renetik -Pversion=0.0.0-smoke
     - name: Build consumer smoke app
-      run: ./gradlew -p consumer-smoke assembleDebug --no-daemon -PsmokeVersion=0.0.0-smoke
+      run: ./gradlew -p consumer-smoke assembleDebug #-PsmokeVersion=0.0.0-smoke
