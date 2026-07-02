@@ -20,6 +20,11 @@ allprojects {
         maven { url = 'https://jitpack.io' }
     }
 }
+//allprojects {
+//    configurations.configureEach {
+//        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+//    }
+//}
 wrapper {
     gradleVersion = "9.5.0"
     distributionType = Wrapper.DistributionType.BIN
