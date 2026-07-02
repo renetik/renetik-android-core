@@ -21,6 +21,6 @@ android {
 }
 
 dependencies {
-    implementation "com.github.renetik:renetik-android-core:master-SNAPSHOT"
-    debugImplementation "com.github.renetik:renetik-android-core-leakcanary:master-SNAPSHOT"
+    implementation "com.github.renetik.renetik-android-core:renetik-android-core:master-SNAPSHOT"
+    debugImplementation "com.github.renetik.renetik-android-core:renetik-android-core-leakcanary:master-SNAPSHOT"
 }
