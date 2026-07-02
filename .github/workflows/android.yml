@@ -20,6 +20,6 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build --no-daemon
     - name: Publish smoke artifacts to Maven local
-      run: ./gradlew publishToMavenLocal --no-daemon -Pgroup=com.github.renetik.renetik-android-core -Pversion=0.0.0-smoke
+      run: ./gradlew publishToMavenLocal --no-daemon -Pgroup=com.github.renetik -Pversion=0.0.0-smoke
     - name: Build consumer smoke app
       run: ./gradlew -p consumer-smoke assembleDebug --no-daemon -PsmokeVersion=0.0.0-smoke

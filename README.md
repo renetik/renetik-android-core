@@ -34,7 +34,7 @@ Add the core module to the application or library module:
 
 ```gradle
 dependencies {
-    implementation 'com.github.renetik.renetik-android-core:renetik-android-core:VERSION'
+    implementation 'com.github.renetik:renetik-android-core:VERSION'
 }
 ```
 
@@ -44,7 +44,7 @@ LeakCanary integration is published separately:
 
 ```gradle
 dependencies {
-    debugImplementation 'com.github.renetik.renetik-android-core:renetik-android-core-leakcanary:VERSION'
+    debugImplementation 'com.github.renetik:renetik-android-core-leakcanary:VERSION'
 }
 ```
 

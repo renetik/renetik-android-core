@@ -61,7 +61,7 @@ fi
 
 echo "Building and validating Maven publications $VERSION..."
 ./gradlew clean build publishToMavenLocal --no-daemon \
-    -Pgroup=com.github.renetik.renetik-android-core \
+    -Pgroup=com.github.renetik \
     -Pversion="$VERSION"
 
 echo "Pushing master..."
